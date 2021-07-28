@@ -73,7 +73,7 @@ public class StructureWritingManagerTest {
             e.printStackTrace();
         }
 
-        var fileReadableDataLocation = new ReadableDataLocationTmp(FileUtil.getNewestFile(TMP_DIR));
+        var fileReadableDataLocation = new ReadableDataLocationTmp(file);
         SdmxBeans loaded = parsingManager.parseStructures(fileReadableDataLocation).getStructureBeans(false);
 
         assertFalse(loaded.getProvisionAgreements().isEmpty());
@@ -98,7 +98,7 @@ public class StructureWritingManagerTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        var fileReadableDataLocation = new ReadableDataLocationTmp(FileUtil.getNewestFile(TMP_DIR));
+        var fileReadableDataLocation = new ReadableDataLocationTmp(file);
         SdmxBeans loaded = parsingManager.parseStructures(fileReadableDataLocation).getStructureBeans(false);
 
         assertFalse(loaded.getRegistrations().isEmpty());
@@ -111,10 +111,10 @@ public class StructureWritingManagerTest {
         ReadableDataLocation location = new ReadableDataLocationTmp(fileInfo);
         SdmxBeans sdmxBeans = parsingManager.parseStructures(location).getStructureBeans(false);
         var sdmxStructureFormat = new SdmxStructureFormat(STRUCTURE_OUTPUT_FORMAT.SDMX_V2_STRUCTURE_DOCUMENT);
-        var outputFileName = FileUtil.createTemporaryFile(file, "-output.xml");
+        var outputFile = FileUtil.createTemporaryFile(file, "-output.xml");
         try {
-            FileOutputStream stream = new FileOutputStream(outputFileName);
-            FileInputStream inputStream = new FileInputStream(outputFileName);
+            FileOutputStream stream = new FileOutputStream(outputFile);
+            FileInputStream inputStream = new FileInputStream(outputFile);
             writerManager.writeStructures(sdmxBeans, sdmxStructureFormat, stream);
             XMLParser.validateXML(inputStream, SDMX_SCHEMA.VERSION_TWO);
             stream.close();
@@ -122,7 +122,7 @@ public class StructureWritingManagerTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ReadableDataLocation outputLocation = new ReadableDataLocationTmp(FileUtil.getNewestFile(TMP_DIR));
+        ReadableDataLocation outputLocation = new ReadableDataLocationTmp(outputFile);
         SdmxBeans sdmxBeans2 = parsingManager.parseStructures(outputLocation).getStructureBeans(false);
 
         assertEquals(sdmxBeans.getAllMaintainables().size(), sdmxBeans2.getAllMaintainables().size());

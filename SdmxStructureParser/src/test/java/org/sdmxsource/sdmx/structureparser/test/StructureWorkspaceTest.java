@@ -93,7 +93,7 @@ public class StructureWorkspaceTest {
             XMLParser.validateXML(inputStream, SDMX_SCHEMA.VERSION_TWO_POINT_ONE);
             inputStream.close();
             outputStream.close();
-            ReadableDataLocation location = new ReadableDataLocationTmp(FileUtil.getNewestFile(TMP_DIR));
+            ReadableDataLocation location = new ReadableDataLocationTmp(outputFile);
             SdmxBeans sdmxBeans2 = parsingManager.parseStructures(location).getStructureBeans(false);
             assertEquals(sdmxBeans.getAllMaintainables().size(), sdmxBeans2.getAllMaintainables().size());
         } catch (IOException e) {

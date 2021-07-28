@@ -43,12 +43,13 @@ public class SubmitStructureResponseBuilderTest {
         sdmxObjects.addCodelist(getDefaultCodelistBean());
         var output = responseBuilder.buildSuccessResponse(sdmxObjects, version);
         var filePrefix = "TestBuildSuccessResponse" + version;
+        File outputFile = FileUtil.createTemporaryFile(filePrefix, FILE_SUFFIX);
         try {
-            output.save(FileUtil.createTemporaryFile(filePrefix, FILE_SUFFIX));
+            output.save(outputFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ReadableDataLocation dataLocation = new ReadableDataLocationTmp(FileUtil.getNewestFile(TMP_DIR));
+        ReadableDataLocation dataLocation = new ReadableDataLocationTmp(outputFile);
         XMLParser.validateXML(dataLocation, version);
     }
 
@@ -63,12 +64,13 @@ public class SubmitStructureResponseBuilderTest {
 
         var output = responseBuilder.buildSuccessResponse(structureBeans, VERSION_TWO_POINT_ONE);
         String filePrefix = "TestBuildSuccessResponse" + VERSION_TWO_POINT_ONE;
+        final File outputFile = FileUtil.createTemporaryFile(filePrefix, FILE_SUFFIX);
         try {
-            output.save(FileUtil.createTemporaryFile(filePrefix, FILE_SUFFIX));
+            output.save(outputFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ReadableDataLocation dataLocation2 = new ReadableDataLocationTmp(FileUtil.getNewestFile(TMP_DIR));
+        ReadableDataLocation dataLocation2 = new ReadableDataLocationTmp(outputFile);
         XMLParser.validateXML(dataLocation2, VERSION_TWO_POINT_ONE);
     }
 
@@ -81,16 +83,16 @@ public class SubmitStructureResponseBuilderTest {
         var output = responseBuilder.buildErrorResponse(new SdmxSyntaxException(errorMessage),
                 new StructureReferenceBeanImpl("TEST", "CL_TEST", "1.0", SDMX_STRUCTURE_TYPE.CODE_LIST), version);
         var filePrefix = "build/tmp/TestBuildErrorResponse" + version;
+        File outputFile = FileUtil.createTemporaryFile(filePrefix, FILE_SUFFIX);
         try {
-            output.save(FileUtil.createTemporaryFile(filePrefix, FILE_SUFFIX));
+            output.save(outputFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        File createdFile = FileUtil.getNewestFile(TMP_DIR);
-        ReadableDataLocation dataLocation = new ReadableDataLocationTmp(createdFile);
+        ReadableDataLocation dataLocation = new ReadableDataLocationTmp(outputFile);
         XMLParser.validateXML(dataLocation, version);
 
-        assertTrue(FileUtil.readFileAsString(createdFile.getAbsolutePath()).contains(errorMessage));
+        assertTrue(FileUtil.readFileAsString(outputFile.getAbsolutePath()).contains(errorMessage));
     }
 
     private CodelistBean getDefaultCodelistBean() {
