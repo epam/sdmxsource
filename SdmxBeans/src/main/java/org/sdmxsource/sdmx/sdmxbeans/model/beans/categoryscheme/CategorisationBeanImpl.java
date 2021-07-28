@@ -307,9 +307,9 @@ public class CategorisationBeanImpl extends MaintainableBeanImpl implements Cate
 
     @Override
     protected Set<CrossReferenceBean> getCrossReferenceInternal() {
-        Set<CrossReferenceBean> crossReferences = new HashSet<CrossReferenceBean>();
-        crossReferences.add(categoryReference);
-        crossReferences.add(structureReference);
+        Set<CrossReferenceBean> crossReferences = new HashSet<>();
+        if (categoryReference != null) crossReferences.add(categoryReference);
+        if (structureReference != null) crossReferences.add(structureReference);
         return crossReferences;
     }
 
