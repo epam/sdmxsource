@@ -1,0 +1,1653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2004  -   www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" elementFormDefault="qualified">
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" schemaLocation="SDMXCommon.xsd"/>
+	<!-- Organisation Schemes and Agencies -->
+	<xs:complexType name="OrganisationSchemesType">
+		<xs:annotation>
+			<xs:documentation>OrganisationSchemesType contains one or more OrganisationSchemes.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OrganisationScheme" type="OrganisationSchemeType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrganisationSchemeType">
+		<xs:annotation>
+			<xs:documentation>OrganisationSchemeType contains the details of an OrganisationScheme. In OrganisationSchemes, the organisation roles of agency, data provider, and data consumer may be specified. A single organisation may play more than one role. Name is an element which provides for a human-readable name for the organization. Description may be used to provide a longer, human-readable description. the is attribute provides a formal ID for the organisation scheme; the version attribute specifies a particular version. If blank, it is assumed that the version is "1.0". The uri attributre specifies the location of a valid SDMC Structure Message containing the full details of the organisation sc`heme, and is required if the isExternalReference attribute has a value of true. If isExternalReference has a value of false, full details must be provided in the current instance of the OrganisationScheme element. The urn attribute provides a formal SDMX Registry URL - see the Logical Registry Specification for specific requirements. An agencyID must be provided, identifying the maintenance agency of the organisation scheme. Also, if the organisation scheme is final, the isFinal attribute must have a value of true - otherwise, it will be assumed to be non-final. (All production schemes must be made final - that is, unchangeable without versioning.) The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Agencies" type="AgenciesType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DataProviders" type="DataProvidersType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DataConsumers" type="DataConsumersType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="DataProvidersType">
+		<xs:annotation>
+			<xs:documentation>DataProvidersType contains one or more data providers. Data providers are those who report or disseminate data sets or metadata sets.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataProvider" type="OrganisationType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataConsumersType">
+		<xs:annotation>
+			<xs:documentation>DataConsumersType contains one or more data consumers. Data consumers collect or use disseminated data sets and metadata sets.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataConsumer" type="OrganisationType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AgenciesType">
+		<xs:annotation>
+			<xs:documentation>AgenciesType contains one or more Agencies. Agencies are those organisations which act as the maintainers of structural definitions of various types. Agencies are often supplied as part of an organisation scheme, but may also be supplied independently using this element.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Agency" type="OrganisationType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrganisationType">
+		<xs:annotation>
+			<xs:documentation>OrganisationType provides a structure for describing agencies, data providers, and data consumers and their contact information. The id attribute carries a code identifying the agency. The version attribute indicates the version of the agency description. The uri attribute provides a uri for an alternate way of identifying the agency information (typically a URL resolving to an agency described in SDMX-ML). Name is an element which provides for a human-readable name for the organization. Description provides for a longer human-readable description of the organisation, which may be provided in multiple, parallel language-equivalent forms. MaintenanceContact provides contact information for the agency when acting as a MaintenanceAgency; CollectorContact does the same when the agency is acting as a statistics collector; DisseminatorContact for when the agency functions as a statistics disseminator; and ReporterContact for when the Agency is functioning as a statistics reporter. OtherContact is used to describe any other role. Note that the Role field in the contact information structure should only be specified for OtherContact. It is allowable to reference full Agency information by using (at a minimum) only the id, name, and uri fields, with the uri pointing to an external description in a valid SDMX-ML Structure message which provides more complete information. (This is termed an "external reference".) If an external reference is being made, the isExternalReference attribute must be set to "true". The urn attribute holds a valid SDMX Registry URN (see SDMX Registry Specification). The parentOrganisation attribute holds the id of a parent organisation of the same type from the same scheme, indicating that the organisation in question is a department or other sub-division of the parent organisation. Annotations may be provided using the Annotations element, in multiple, parallel-language form.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MaintenanceContact" type="ContactType" minOccurs="0"/>
+			<xs:element name="CollectorContact" type="ContactType" minOccurs="0"/>
+			<xs:element name="DisseminatorContact" type="ContactType" minOccurs="0"/>
+			<xs:element name="ReporterContact" type="ContactType" minOccurs="0"/>
+			<xs:element name="OtherContact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="parentOrganisation" type="common:IDType" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ContactType">
+		<xs:annotation>
+			<xs:documentation>ContactType provides defines the contact information about a party. The id element is used to carry user id information for the contact, whereas Name provides a human-readable name.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="id" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Department" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Role" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Telephone" type="xs:string"/>
+				<xs:element name="Fax" type="xs:string"/>
+				<xs:element name="X400" type="xs:string"/>
+				<xs:element name="URI" type="xs:anyURI"/>
+				<xs:element name="Email" type="xs:string"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Data flows and Metadata flows-->
+	<xs:complexType name="DataflowsType">
+		<xs:annotation>
+			<xs:documentation>DataflowsType contains one or more data flows.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Dataflow" type="DataflowType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataflowType">
+		<xs:annotation>
+			<xs:documentation>DataflowType describes the structure of a data flow. A human-readable name must be provided, and may be given in several language-specific variations. A longer human-readable description (also in multiple language-specific versions) may be provided. A reference must be made to a key family, and to a category within a category scheme, using the KeyFamilyRef and CategoryRef elements, unless the Dataflow is a reference to an external data flow, in which case a url must be provided in the uri attribute, and the isExternalReference attribute must be set to true.. Annotations may be provided in the Annotations element. An id unique to the maintaining agency (identified in the agencyID attribute) must be supplied in the "id" attribute;  a version may be specified, and is assumed to be "1.0" if not supplied. The urn attribute may contain a valid registry URN (as per the SDMX Registry Specification). If the dataflow is final, the isFinal attribute must have a value of true - any production dataflow must be final (that is, it cannot be changed without versioning). The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="KeyFamilyRef" type="KeyFamilyRefType" minOccurs="0"/>
+			<xs:element name="CategoryRef" type="CategoryRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="KeyFamilyRefType">
+		<xs:annotation>
+			<xs:documentation>KeyFamilyRefType provides a reference to a key-family (data set structure definition). At a minimum, either (a) The key family ID must be provided, as assigned to the key family by the agency whose ID is the value of KeyFamilyAgencyID. A version must also be provided; OR (b) a valid SDMX Registry URN must be provided in the URN element (see SDMX Registry Specification)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="KeyFamilyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="KeyFamilyAgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CategoryRefType">
+		<xs:annotation>
+			<xs:documentation>CategoryRefType provides a reference to a category. At a minimum, either a value for CategorySchemeAgencyID, CategorySchemeID, and CategoryID must be provided, or a valid SDMX Registry URN must be provided in the URN element (see SDMX Registry Specification).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="CategorySchemeID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="CategorySchemeAgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="CategorySchemeVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="CategoryID" type="CategoryIDType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CategoryIDType">
+		<xs:annotation>
+			<xs:documentation>CategoryIDType describes a structure which can provide a path inside a hierarchical category scheme. Each node (category) of the referenced scheme is represented by a CategoryID element, with sub-categories represented by the child CategoryID element. Each CategoryID element must be given a node identifier in the ID field, which corresponds to the ID of the category. It is not necessary to represent the full category path with the nesting structure if each node within the hierarchical category scheme has a unique id.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ID" type="common:IDType"/>
+			<xs:element name="CategoryVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="CategoryID" type="CategoryIDType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MetadataflowsType">
+		<xs:annotation>
+			<xs:documentation>MetadataflowsType contains one or more metadata flows.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Metadataflow" type="MetadataflowType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MetadataflowType">
+		<xs:annotation>
+			<xs:documentation>MetadataflowType describes the structure of a metadata flow. A human-readable name must be provided, and may be given in several language-specific variations. A longer human-readable description (also in multiple language-specific versions) may be provided. A reference must be made to a metadata structure definition, and to a category within a category scheme, using the MetadataStructureRef and CategoryRef elements. If the Metadataflow is an external reference, this is indicated by setting the isExternalReference attribute to true, and providing a url where the full description can be found in the form of a valid SDMX-ML structure message. In this case, only the id and name must be provided. Annotations may be provided in the Annotations element. An id unique to the maintaining agency (identified in the agencyID attribute) must be supplied in the "id" attribute;  a version may be specified, and is assumed to be "1.0" if not supplied. The urn attribute may contain a valid registry URN (as per the SDMX Registry Specification). If the metadata flow is final, the isFinal attribute must have a value of true - any production metadata flow must be final (that is, it cannot be changed without versioning). The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MetadataStructureRef" type="MetadataStructureRefType" minOccurs="0"/>
+			<xs:element name="CategoryRef" type="CategoryRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MetadataStructureRefType">
+		<xs:annotation>
+			<xs:documentation>MetadataStructureRefType provides a reference to a metadata structure definition. The ID must be provided, as assigned to the metadata structure definition by the agency whose ID is the value of MetadataStructureAgencyID. A version must also be provided.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="MetadataStructureID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="MetadataStructureAgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Category Schemes -->
+	<xs:complexType name="CategorySchemesType">
+		<xs:annotation>
+			<xs:documentation>CategorySchemesType contains one or more category schemes.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CategoryScheme" type="CategorySchemeType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CategorySchemeType">
+		<xs:annotation>
+			<xs:documentation>CategorySchemeType describes the structure of a category scheme. This is a simple, levelled hierarchy. The scheme itself is given a human-readable name (which may be in multiple language-specific versions), and may optionally have a human-readable description (also in multiple, landuage-specific versions). Annotations may be provided in the Annotations element. The Category element represents a set of nested categories which describe a simple classification hierarchy. The CategoryScheme must have an agency specified in teh agency attribute, and a unique ID provided for all of the category schemes of that agency in the id attribute. A version may also be supplied - if ommitted, the version is understood to be "1.0". If the isFinal attribute has a value of true, the category scheme  is final and cannot be changed without versioning. All production category schemes must be final. The urn attribute holds a valid registry URN (see the SDMX Registry Specification). If the isExternalReference attribute has a value of true, then the uri attribute must have a value which provides the location of a valid SDMX Structure message providing full details of the Category Scheme. Otherwise, all details must be provided here. The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Category" type="CategoryType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="CategoryType">
+		<xs:annotation>
+			<xs:documentation> The category is given a human-readable name (which may be in multiple language-specific versions), and may optionally have a human-readable description (also in multiple, landuage-specific versions). Annotations may be provided in the Annotations element. References to dataflows and metadataflows may be provided. The Category element represents a set of nested categories which are child categories. The Category must have a unique ID within the Category Scheme provided in the id attribute. A version may also be supplied - if ommitted, the version is understood to be "1.0". The urn attribute holds a valid registry URN (see the SDMX Registry Specification).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DataflowRef" type="DataflowRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MetadataflowRef" type="MetadataflowRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Category" type="CategoryType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<!-- Codelists -->
+	<xs:complexType name="CodeListsType">
+		<xs:annotation>
+			<xs:documentation>CodelistsType contains one or more codelists. It also defines uniqueness constraints for codelist IDs.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CodeList" type="CodeListType" minOccurs="0" maxOccurs="unbounded">
+				<xs:unique name="SDMX_CodeUniqueness">
+					<xs:selector xpath="structure:Code"/>
+					<xs:field xpath="@value"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CodeListType">
+		<xs:annotation>
+			<xs:documentation>CodeListType defines the contents of a codelist. This includes an ID, the agency which maintains the codelist, its version, and a URL where it is located. Elements are provided for supplying a name and the codes. It is acceptable to provide only the id, name, and uri fields at a minimum, with the uri pointing to an SDMX Structure message containing complete details on the codelist. (This is termed an "external reference".) If an external reference is being made, the isExternalReference attribute must be set to "true". The urn attribute holds a valiud SDMX Registry URN (see SDMX Registry Specification). The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Code" type="CodeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="CodeType">
+		<xs:annotation>
+			<xs:documentation>CodeType defines the structure of a code. This allows for plain-text descriptions as element content, and the coded value as the value attribute. (Short descriptions or other presentational information may be added using Annotations with an indicative type field [eg, "ShortDescription"]). The urn attribute supplies a valid SDMX Registry URN (see the SDMX Registry Specification).The parentCode attribute provides the ability to describe simple hierarchies within a single codelist, by referenceing the id value of another code in the same codelist.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Description" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="value" type="common:IDType" use="required"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="parentCode" type="common:IDType" use="optional"/>
+	</xs:complexType>
+	<!-- Hierarchical Codelists -->
+	<xs:complexType name="HierarchicalCodelistsType">
+		<xs:annotation>
+			<xs:documentation>HierarchicalCodelistsType contains one or more sets of structural information about the hierarchies within a codelist (hierarchical codelists). This corresponds to complex hierarchical codelists within the SDMX Information Model - very simple hierarchies can be described within the regular Codelist, using the parentCode attribute. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="HierarchicalCodelist" type="HierarchicalCodelistType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HierarchicalCodelistType">
+		<xs:annotation>
+			<xs:documentation>A hierarchical codelist references a Codelist, and supplies the extra structural metadata to assemble the codes into a hierarchy. A human-readable name must be supplied, and multiple language-specific variants may be provided. A longer human-readable description may be provided, and may also be presented as a set of language-specific variants. The CodelistRef element references a codelist, and may indicate more than one. Annotations may be provided in the Annotaions element. An ID unique for the agency specified in the agency attribute must be assigned, using the id attribute. A version may be provided using the version attribute - if no value is provided, it is assumed to be "1.0". A valid SDMX Registry URN may be provided in the urn attribute, as specified in the SDMX Registry Specification. If the isExternalReference attribute has a value of true, the uri attribute must specify the location of a valid SDMX Structure Message which provides the full details of the hierarchical codelist; otherwise, all details must be present. The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CodelistRef" type="CodelistRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Hierarchy" type="HierarchyType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="HierarchyType">
+		<xs:annotation>
+			<xs:documentation>The recursive CodeRef element is used to assemble the codes in the codelist(s) referenced by the parent hierarchical codelist into a hierarchy. The Level element is used to describe the levels of a levelled hierarchy, which may be referenced from each of the CodeRefs in the Hierarchy. A human-readable name must be assigned, which may be provided in multiple, parallel-language versions. A longer, human-readable Description may also be provided, which can also have multiple parallel-language versions. Annotations may be provided with the Annotations element. The id attribute provides a unique id for the hierarchy. The urn attribute can be used to specify the hierarchy with a valid SDMX Registry URN (see the SDMX Registry Specification). The version attribute specifies a version (understood to be "1.0" if not specified), and isFinal, once given a value of true, indicates that nothing may be changed without also changing the version number. validFrom and validTo are inclusive dates indicating the relevant period of the hierarchy.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CodeRef" type="CodeRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Level" type="LevelType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="LevelType">
+		<xs:annotation>
+			<xs:documentation>LevelType describes a level in a hierarchical codelist. The Order element specifies where the level is in a levelled hierarchy, starting with the value "1" for the top level, and going sequentially from there using whole integers. CodingType specifies the text formatting of the codes at that level. A human-readable name must be assigned, which may be provided in multiple, parallel-language versions. A longer, human-readable Description may also be provided, which can also have multiple parallel-language versions. Annotations may be provided with the Annotations element. The id attribute provides a unique id for the hierarchy. The urn attribute can be used to specify the hierarchy with a valid SDMX Registry URN (see the SDMX Registry Specification).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Order" type="xs:integer"/>
+			<xs:element name="CodingType" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="CodelistRefType">
+		<xs:annotation>
+			<xs:documentation>The CodelistRefType provides the structure for a codelist reference. (Note that this is structured differently than a similarly-named type in the Registry namespace.) At a minimum, either: AgencyID has the ID of an agency as a value; CodelistID takes the ID of a codelist maintained by that agency; and Version specifies the version of the codelist; or URN supplies a valid SDMX Registry URN (see the SDMX Registry Specification). Alias is used to carry the identifier for the referenced codelist, so that codes from that list can be easily referenced by the CodeRefs contained in the parent Hierarchy, without having to repeat the agency and version for each reference. The Alias must be unique within the parent Hierarchical Codelist.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="AgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="CodelistID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+			<xs:element name="Alias" type="common:IDType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CodeRefType">
+		<xs:annotation>
+			<xs:documentation>The CodeRefType provides the structure for a codelist reference. At a minimum, either a URN value (a valid SDMX Registry URN as specified in teh SDMX Registry Specification) must be supplied, or a ColdelistAliasRef and a CodeID must be specified. CodelistAliasRef references an alias assigned in a CodelistRef element in the containing hierarchical codelist.CodeRef references a code from the codelist identified at the level of the parent hierarchical codelist. Codes are arranged in a hierarchy by reference. Note that it is possible to reference a single code such that it has multiple parents within the hierarchy. Further, the hierarchy may or may not be a levelled one. CodeID holds the ID of the code in the codelist referenced by the hierarchical codelist. CodeRef references a code. LevelRef holds the id of a Level described in the same parent Hierarchical Codelist. NodeAliasID allows for an ID to be assigned to the use of the particular code at that specific point in the hierarchy. This value is unique within the hierarchy being created, and is used to map the hierarchy against external structures. Version holds the version number of the referenced code, to support management of complex hierarchies. Along with this field are the ValidFrom and ValidTo dates, which are inclusive dates during which the code is valid within the parent hierarchy.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="CodelistAliasRef" type="common:IDType" minOccurs="0"/>
+			<xs:element name="CodeID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="CodeRef" type="CodeRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LevelRef" type="common:IDType" minOccurs="0"/>
+			<xs:element name="NodeAliasID" type="xs:string" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+			<xs:element name="ValidFrom" type="common:TimePeriodType" minOccurs="0"/>
+			<xs:element name="ValidTo" type="common:TimePeriodType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Concepts and Concept Schemes -->
+	<xs:complexType name="ConceptsType">
+		<xs:annotation>
+			<xs:documentation>The ConceptsType describes an XML type which contains information about sets of concepts and their relationships, each of which is described in a ConceptScheme element. This section replaces the section of the version 1.0 SDMXStructure message which provides details about concepts. As such, it is backward-compatible, and may be used to contain a simple list of concepts as per the 1.0 SDMX-ML specification.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Concept" type="ConceptType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ConceptScheme" type="ConceptSchemeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConceptType">
+		<xs:annotation>
+			<xs:documentation>ConceptType specifies the information provided for a single concept. This includes a name, as element content, and an ID. It is possible to use the uri field to point to the location of an SDMX-ML Structure message which contains a more detailed version of the concept. (This is termed an "external reference".) If an external reference is being made, the isExternalReference attribute must be set to "true". In this case, all details of the concept are assumed to be found externally, and inline characteristics provided through child elements and the coreRepresentation and coreRepresentationAgency attributes are to be ignored. The coreRepresentation and coreRepresentationAgency attributes can identify a codelist which is a default representation of the concept. Uncoded default representations (or information about the textual aspects of coded default representations) can be provided with the TextFormat child element of the concept. Semantic relationships between concepts which occur within a single concept scheme can be captured with the parent and parentAgency attributes - these identify the concept of which the current concept is a qualification (in the ISO 11179 sense) or subclass. When used outside of a containing ConceptScheme, these attributes may be ignored. If a coreRepresentation and core RepresentationAgency are not provided, but are provided in the indicated parent, then the default representation is inherited from the specified parent concept. Note that all concepts within a concept scheme must be uniquely identified by their id - each concept scheme has only one agency for all its concepts. The agency attribute here is provided for backward-compatibility with version 1.0 of the standards, and it must not be used for concepts which are child elements of a concept scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="optional"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="coreRepresentation" type="common:IDType" use="optional"/>
+		<xs:attribute name="coreRepresentationAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="parent" type="common:IDType" use="optional"/>
+		<xs:attribute name="parentAgency" type="common:IDType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ConceptSchemeType">
+		<xs:annotation>
+			<xs:documentation>ConceptSchemeType describes the structure of a ConceptScheme element, which is the preferred form (as of version 2.0) of presenting the concepts used in other SDMX constructs. ConceptSchemes may be included inline (that is, with all details provided in the instance or may be referenced externally. It is possible to use the uri field to point to the location of an SDMX-ML Structure message which contains a more detailed version of the concept. (This is termed an "external reference".) If an external reference is being made, the isExternalReference attribute must be set to "true". A Name may be provided as a child element (in multiple parallel language versions) and an ID and version and agency information may be provided. ConceptSchemes represent a collection of concepts which are used to describe a meaningful set of distinct concepts, to be used in the reporting of data or metadata. The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Concept" type="ConceptType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<!-- Reference Metadata Structure Definitions -->
+	<xs:complexType name="MetadataStructureDefinitionsType">
+		<xs:annotation>
+			<xs:documentation>MetadataStructureDefinitionsType describes one or more metadata structure definitions.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MetadataStructureDefinition" type="MetadataStructureDefinitionType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MetadataStructureDefinitionType">
+		<xs:annotation>
+			<xs:documentation>A metadata structure definition performs several functions: it groups sets of objects into "targets" against which reference metadata may be reported. Targets define the structure of the reference metadata "keys" which identify specific types of reported metadata, and describe the valid values for populating the keys. Also, metadata structure definitions provide a presentational organization of concepts for reporting purposes. The structure of a reference metadata report is derived from this presentational structure. Also, representations - unless defaults from the concepts are used - must be indicated as part of this presentational structure. Attributes allow the assignment of an ID, an agency, a version, and a uri. It is possible to use the uri field to point to the location of an SDMX-ML Structure message which contains a more detailed version of the metadata structure definition. (This is termed an "external reference".) If an external reference is being made, the isExternalReference attribute must be set to "true". When an external reference is being made, none of the child elements should be included. Otherwise, both TargetIdentifiers and at least one ReportStructure must be included. The urn attribute holds a valid SDMX registry URN (see the SDMX Registry Specification). The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TargetIdentifiers" type="TargetIdentifiersType" minOccurs="0"/>
+			<xs:element name="ReportStructure" type="ReportStructureType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="TargetIdentifiersType">
+		<xs:annotation>
+			<xs:documentation>TargetIdentifiers are the set of objects against which reference metadata is reported (data providers, data flows, data or metadata structures, etc.). There are two types of TargetIdentifiers: the "full" target identifier, which lists every object used to attach metadata to in the metadata structure definition, and the partial target identifiers, which indicate sub-sets of those concepts against which reference metadata may be reported. It is sometimes the case that metadata will also be reported against the full target identifier. 
+			
+			An example of this is as follows: we might wish to collect some metadata concepts such as contact information for some of the objects described by the SDMX Information Model - for each instance of a metadata flow or a data provider, for example. Our concepts would be the concepts associated with contact information: CONTACT_NAME, CONTACT_PHONE_NUMBER, etc. We would determine how these concepts are associated with the objects in the model: do we want a contact for each data provider broken out by data flow? Or do we want only a single contact reported for each data provider (who might provide several data flows)? Each object or combination of objects we need to have metadata reported for becomes a partial target identifier, unless it happens to contain the full target identifier, in which case we use that instead. Thus, our valid partial target identifiers here would be "data flow" and "data provider", because "data flow by data provider" is a full target identifier. For each target identifier, we could have some set of our concepts reported.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="FullTargetIdentifier" type="FullTargetIdentifierType"/>
+			<xs:element name="PartialTargetIdentifier" type="PartialTargetIdentifierType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FullTargetIdentifierType">
+		<xs:annotation>
+			<xs:documentation>The full target identifier provides details on all of the objects against which metadata can be reported. The full target identifier is made up of a set of identifier components - each getting its own child element - which are similar to the dimensions of a key family: each one indicates that a value will be provided by the metadata reporter to identify and describe the metadata being reported. A human-readable name must be provided, which may be provided in multiple, parallel-language versions. A longer, human-readable name may also be provided in multiple, language-parallel versions. Annotations may be provided.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="IdentifierComponent" type="IdentifierComponentType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="IdentifierComponentType">
+		<xs:annotation>
+			<xs:documentation>An identifier component describes the use of an object within the full target identifier set. An identifier component must be one of the formally-recognized object classes found in the SDMX Information Model: the sub-element TargetObjectClass provides a way of indicating which objects will be used in reporting metadata, and will indicate how those objects are to be identified by the metadata reporters (which value sets will be allowed for each identification field for each object). The RepresentationScheme child element is used to indicate the valid range of values for the providing taget identifiers in reported metadata.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TargetObjectClass" type="ObjectIDType"/>
+			<xs:element name="RepresentationScheme" type="RepresentationSchemeType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="PartialTargetIdentifierType">
+		<xs:annotation>
+			<xs:documentation>Partial target identifiers are subsets of the full target identifier. They are themselves given an identifier, so that they can be referenced by the metadata attributes of a report. A human-readable name must be provided, which may be provided in multiple, parallel-language versions. A longer, human-readable name may also be provided in multiple, language-parallel versions. Annotations may be provided.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="IdentifierComponentRef" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+	</xs:complexType>
+	<xs:simpleType name="ObjectIDType">
+		<xs:annotation>
+			<xs:documentation>The Object ID is used to reference a particular Object within the SDMX Information Model's formalization of statistical exchanges.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Agency">
+				<xs:annotation>
+					<xs:documentation>Agency</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ConceptScheme">
+				<xs:annotation>
+					<xs:documentation>Concept scheme</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Concept">
+				<xs:annotation>
+					<xs:documentation>Concept</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Codelist">
+				<xs:annotation>
+					<xs:documentation>Codelist</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Code">
+				<xs:annotation>
+					<xs:documentation>Code</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KeyFamily">
+				<xs:annotation>
+					<xs:documentation>Key family</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Component">
+				<xs:annotation>
+					<xs:documentation>Component</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="KeyDescriptor">
+				<xs:annotation>
+					<xs:documentation>Key descriptor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MeasureDescriptor">
+				<xs:annotation>
+					<xs:documentation>Measure descriptor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AttributeDescriptor">
+				<xs:annotation>
+					<xs:documentation>Attribute descriptor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GroupKeyDescriptor">
+				<xs:annotation>
+					<xs:documentation>Group key descriptor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Dimension">
+				<xs:annotation>
+					<xs:documentation>Dimension</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Measure">
+				<xs:annotation>
+					<xs:documentation>Measure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Attribute">
+				<xs:annotation>
+					<xs:documentation>Attribute</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CategoryScheme">
+				<xs:annotation>
+					<xs:documentation>Category scheme</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingTaxonomy">
+				<xs:annotation>
+					<xs:documentation>Reporting taxonomy</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Category">
+				<xs:annotation>
+					<xs:documentation>Category</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OrganisationScheme">
+				<xs:annotation>
+					<xs:documentation>Organisation scheme</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DataProvider">
+				<xs:annotation>
+					<xs:documentation>Data or metadata provioder</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MetadataStructure">
+				<xs:annotation>
+					<xs:documentation>Metadata structure definition</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FullTargetIdentifier">
+				<xs:annotation>
+					<xs:documentation>Full target identifier</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PartialTargetIdentifier">
+				<xs:annotation>
+					<xs:documentation>Partial target identifier</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MetadataAttribute">
+				<xs:annotation>
+					<xs:documentation>Metadata attribute</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DataFlow">
+				<xs:annotation>
+					<xs:documentation>Data flow</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ProvisionAgreement">
+				<xs:annotation>
+					<xs:documentation>Data or metadata provision agreement</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MetadataFlow">
+				<xs:annotation>
+					<xs:documentation>Metadata flow</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ContentConstraint">
+				<xs:annotation>
+					<xs:documentation>Content constraint</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AttachmentConstraint">
+				<xs:annotation>
+					<xs:documentation>Attachment constraint</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DataSet">
+				<xs:annotation>
+					<xs:documentation>Data set</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="XSDataSet">
+				<xs:annotation>
+					<xs:documentation>Cross-sectional data set</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MetadataSet">
+				<xs:annotation>
+					<xs:documentation>Metadata set</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="HierarchicalCodelist">
+				<xs:annotation>
+					<xs:documentation>Hierarchical codelist</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hierarchy">
+				<xs:annotation>
+					<xs:documentation>Hierarchy</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StructureSet">
+				<xs:annotation>
+					<xs:documentation>Structure set</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="StructureMap">
+				<xs:annotation>
+					<xs:documentation>Structure map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ComponentMap">
+				<xs:annotation>
+					<xs:documentation>Component map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CodelistMap">
+				<xs:annotation>
+					<xs:documentation>Codelist map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CodeMap">
+				<xs:annotation>
+					<xs:documentation>Code map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CategorySchemeMap">
+				<xs:annotation>
+					<xs:documentation>Category scheme map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CategoryMap">
+				<xs:annotation>
+					<xs:documentation>Category map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OrganisationSchemeMap">
+				<xs:annotation>
+					<xs:documentation>Organisation scheme map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OrganisationRoleMap">
+				<xs:annotation>
+					<xs:documentation>Organisation role map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ConceptSchemeMap">
+				<xs:annotation>
+					<xs:documentation>Concept scheme map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ConceptMap">
+				<xs:annotation>
+					<xs:documentation>Concept map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Process">
+				<xs:annotation>
+					<xs:documentation>Process</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ProcessStep">
+				<xs:annotation>
+					<xs:documentation>Process step</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RepresentationSchemeType">
+		<xs:annotation>
+			<xs:documentation>Representation schemes indicated which values are valid for identifying objects within each class. For any given representation scheme, two IDs must be provided: the RepresentationScheme must have an ID as assigned to it by it representationSchemeAgency, whose ID must also be provided. The type of the representation scheme is expressed in the representationSchemeType attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="representationScheme" type="common:IDType" use="required"/>
+		<xs:attribute name="representationSchemeAgency" type="common:IDType" use="required"/>
+		<xs:attribute name="representationSchemeType" type="RepresentationSchemeTypeType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ReportStructureType">
+		<xs:annotation>
+			<xs:documentation>The report structure describes the presentation of the reported concepts, and associates them with target identifiers, full or partial. It can be given a name and/or annotations. It must be given an ID, using the id attribute, which must be unique within the MetadataStructureDefinition element. It contains one or more MetadataAttribute elements, each of which may either hold a value, or may have subordinate MetadataAttribute elements. The target attribute holds the ID of a full or partial identifier, which is the identifier of the target against which the metadata attributes are reported.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MetadataAttribute" type="MetadataAttributeType" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="target" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MetadataAttributeType">
+		<xs:annotation>
+			<xs:documentation>Metadata attributes are those concepts - whether taking a coded or uncoded value, or made up of child concepts, or both - which are reported against a full or partial target identifier. If there are nested metadata attributes, these concepts are subordinate to the parent metadata attribute - that is, for the purposes of presentation, the parent concept is made up of the child concepts. This hierarchy is strictly presentational, for the purposes of structuring reports. If the metadata attribute can have a coded or uncoded value, then the charateristics of the value are indicated with the TextFormat child element. If the value is coded, then the representationScheme and representationSchemeAgency attributes must hold values: the representationScheme attribute takes the ID of a representation scheme, and the representationSchemeAgency takes the ID of the agency which maintains that scheme. The conceptRef attribute holds the ID of the metadata attribute's concept. The conceptAgency attribute takes the agency ID of the concept referenced in conceptRef. The conceptSchemeRef attribute holds the ID value of the concept scheme from which the concept is taken, and the conceptSchemeAgency holds the ID of the agency that maintains the concept scheme referenced in the conceptSchemeRef attribute. The useageStatus attribute indicates whether provision of the metadata attribute is conditional or mandatory.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MetadataAttribute" type="MetadataAttributeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="conceptRef" type="common:IDType" use="required"/>
+		<xs:attribute name="conceptVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="conceptAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeRef" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="representationScheme" type="common:IDType" use="optional"/>
+		<xs:attribute name="representationSchemeAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="usageStatus" type="UsageStatusType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TextFormatType">
+		<xs:annotation>
+			<xs:documentation>TextFormatType defines the information for describing a text format. If the TextType attribute is not specified, any valid characters may be included in the text field. (It corresponds to the xs:string datatype of W3C XML Schema.) The textType attribute provides a description of the data type, and may place restrictions on the values of the other attributes, referred to as "facets". The isSequence attribute indicates whether the values are intended to be ordered, and it may work in combination with the interval attribute. The minLength and maxLength attributes specify the minimum and maximum lengths of the value in characters. startValue and endValue are used for inclusive and exclusive ranges, indicating what the bounds of the range are. The interval attribute specifies the permitted interval between two values. The timeInterval attribute indicates the permitted duration between two time expressions. The decimals attribute indicates the number of characters allowed after the decimal separator. The pattern attribute holds any regular expression permitted in the simila facet in W3C XML Schema.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="textType" type="TextTypeType" use="optional"/>
+		<xs:attribute name="isSequence" type="xs:boolean" use="optional"/>
+		<xs:attribute name="minLength" type="xs:integer" use="optional"/>
+		<xs:attribute name="maxLength" type="xs:integer" use="optional"/>
+		<xs:attribute name="startValue" type="xs:double" use="optional"/>
+		<xs:attribute name="endValue" type="xs:double" use="optional"/>
+		<xs:attribute name="interval" type="xs:double" use="optional"/>
+		<xs:attribute name="timeInterval" type="xs:duration" use="optional"/>
+		<xs:attribute name="decimals" type="xs:integer" use="optional"/>
+		<xs:attribute name="pattern" type="xs:string" use="optional"/>
+	</xs:complexType>
+	<xs:simpleType name="TextTypeType">
+		<xs:annotation>
+			<xs:documentation>TextTypeType provides an enumerated list of the types of characters allowed in a TextFormat field.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="String">
+				<xs:annotation>
+					<xs:documentation>A string datatype corresponding to W3C XML Schema's xs:string datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="BigInteger">
+				<xs:annotation>
+					<xs:documentation>An integer datatype corresponding to W3C XML Schema's xs:integer datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Integer">
+				<xs:annotation>
+					<xs:documentation>An integer datatype corresponding to W3C XML Schema's xs:int datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Long">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:long datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Short">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:short datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Decimal">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:decimal datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Float">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:float datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Double">
+				<xs:annotation>
+					<xs:documentation>A numeric datatype corresponding to W3C XML Schema's xs:double datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Boolean">
+				<xs:annotation>
+					<xs:documentation>A datatype corresponding to W3C XML Schema's xs:boolean datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DateTime">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:dateTime datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Date">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:date datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Time">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:time datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Year">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gYear datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Month">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gMonth datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Day">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gDay datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="MonthDay">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gMonthDay datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="YearMonth">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:gYearMonth datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Duration">
+				<xs:annotation>
+					<xs:documentation>A time datatype corresponding to W3C XML Schema's xs:duration datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="URI">
+				<xs:annotation>
+					<xs:documentation>A datatype corresponding to W3C XML Schema's xs:anyURI datatype.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Timespan">
+				<xs:annotation>
+					<xs:documentation>A complex datatype specifying a start date (xs:dateTime) and a duration (xs:duration). Note that this is not allowed as thre text type representing a dimension.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Count">
+				<xs:annotation>
+					<xs:documentation>A simple incrementing Integer type. The isSequence facet must be set to true, and the interval facet must be set to "1".</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="InclusiveValueRange">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the startValue and endValue attributes provide an inclusive numeric range of type xs:double.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ExclusiveValueRange">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the startValue and endValue attributes provide an exclusive numeric range, of type xs:double.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Incremental">
+				<xs:annotation>
+					<xs:documentation>This value indicates that the value increments according to the value provided in the interval facet, and has a true value for the isSequence facet.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ObservationalTimePeriod">
+				<xs:annotation>
+					<xs:documentation>This is a time datatype, and is the conventional representation of time in SDMX formats. It is a union of W3C XML Schema time datatypes and a set of codes for indicating quarterly, tri-annual, bi-annual, and weekly time periods. See common:TimePeriodType for specifics.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UsageStatusType">
+		<xs:annotation>
+			<xs:documentation>UsageStatus provides a list of enumerated types for indicating whether reporting a given metadata attribute is mandatory or conditional.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Mandatory">
+				<xs:annotation>
+					<xs:documentation>Reporting the associated attribute is mandatory - a value must be supplied.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Conditional">
+				<xs:annotation>
+					<xs:documentation>Reporting the associated attribute is not mandatory - a value may  be supplied, but is not required.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RepresentationSchemeTypeType">
+		<xs:annotation>
+			<xs:documentation>Representation scheme type provides an enumerated list of valid types of representation schemes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Codelist">
+				<xs:annotation>
+					<xs:documentation>Representation scheme is a codelist.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Concept">
+				<xs:annotation>
+					<xs:documentation>Representation scheme is a concept scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Category">
+				<xs:annotation>
+					<xs:documentation>Representation scheme is a category scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Organisation">
+				<xs:annotation>
+					<xs:documentation>Representation scheme is an organisation scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="External">
+				<xs:annotation>
+					<xs:documentation>Representation scheme is "external" to the known model - that is, it cannot be enumerated at the time the report is designed. This will only be valid if some maintained and changing object is to have metadata reported against it: for example, if the concepts of dimension objects are to be reported against for all of an agencies' key families, then it is not possible at design time to enumerate all of the concepts which will be used by that agencies' key families into the future. This value should not be used unless absolutely necessary, as it reduces the processability of the metadata report generated.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- Key Families -->
+	<xs:complexType name="KeyFamiliesType">
+		<xs:annotation>
+			<xs:documentation>KeyFamiliesType defines the structure for describing one or more key families. It also provides uniqueness constraints for each of the key family IDs.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="KeyFamily" type="KeyFamilyType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KeyFamilyType">
+		<xs:annotation>
+			<xs:documentation>KeyFamilyType defines the structure of a key-family description. This includes the name and a set of components (attributes and dimensions) as element content, and an ID, agency, version, and the URL where located as attributes. The urn attribute holds a valid SDMX Registry URN, as per the SDMX Registry spec. The isFinal attribute, once set to true, indicates that no changes may be made without versioning. The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version. If the isExternalReference attribute is true, then the uri attribute must be provided, giving a location where a valid structure message can be found containing the full details of the key family.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Components" type="ComponentsType" minOccurs="0">
+				<xs:unique name="SDMX_KeyFamilyComponentUniqueness">
+					<xs:selector xpath="structure:TimeDimension|structure:Dimension|structure:Attribute|structure:PrimaryMeasure|structure:CrossSectionalMeasure"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+				<xs:unique name="SDMX_KeyFamilyGroupUniqueness">
+					<xs:selector xpath="structure:Group"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ComponentsType">
+		<xs:annotation>
+			<xs:documentation>ComponentsType describes the dimensions, groups, attributes, and measures of the key family. If TimeDimension is included in the key family - which it must be if time series formats for the data (GenericData, CompactData, and UtilityData formats) are to be used - then there must also be a frequency dimension. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Dimension" type="DimensionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TimeDimension" type="TimeDimensionType" minOccurs="0"/>
+			<xs:element name="Group" type="GroupType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="PrimaryMeasure" type="PrimaryMeasureType"/>
+			<xs:element name="CrossSectionalMeasure" type="CrossSectionalMeasureType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DimensionType">
+		<xs:annotation>
+			<xs:documentation>DimensionType describes the structure of non-Time dimensions. The order of their declaration is significant: it is used to describe the order in which they will appear in data formats for which key values are supplied in an ordered fashion (exclusive of the Time dimension, which is not represented as a member of the ordered key). Some types of non-Time  dimensions have un-coded values: the TextFormat element must be provided, to indicate what type of values are permissible. The attributes isFrequencyDimension and isEntityDimension may have a "true" value for any instance of the Dimension element, indicating that it is a dimension of the stated type. The attributes isCountDimension, isNonObservationalTimeDimension, isMeasureDimension, and is IdentityDimension may occur multiple times, and take a true value to indicate that the diemsnion in question is of that type. Note that only one dimension in the key family may be of the following types: Frequency dimension and Entity dimension, and only if there is not also an attribute in the key family of the same type. Any given dimension may only have a true value for one of the set of attributes isFrequencyDimension, isCountDimension, is measureDimension,  isEntityDimension, isNonObservationalTimeDimension, and is IdentityDimension. The definitions and limits on representation of each dimension type are as follows: Frequency dimension describes the period between observations, and is coded; Count dimensions are represented by values which are sequential, incrementing numbers - representations are always of the Increment or Count type; measureType dimensions are always coded, and they enumerate the set of possible measures declared for the key family; Entity dimensions describe the subject of the data set (ie, a country) - they can be coded or represented in any other form; Non-Observational Time dimensions must have a representation which contains a time; Identity dimensions may be coded or uncoded, but must be represented by a scheme which refers to the identifiers of external entites. (Conventionally, it is the first dimension in the ordered set of dimensions - the key.) If a key family describes cross-sectional data, then for each dimension, the crossSectionalAttachDataSet, crossSectionalAttachGroup, crossSectionalAttachSection, and crossSectionalAttachObservation attributes must be given values. A value of "true" for any of these attributes indicates that the dimension may be provided a value at the indicated level within the cross-sectional structure. Note that these attributes do not need to be provided for any dimension with the isFrequencyDimension set to "true", as these dimensions are always attached only at the group level, as is time. A key family designed for cross-sectional use must be structured such that any observation's complete key can be unambiguously described by taking each dimension value from its observation level, section level, group level, and data set level, and ordered according to the sequence given in the key family.  For any dimension, the id of the referenced concept
+			must be unique acrss the entire key family, including all dimensions, attributes and measures.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="conceptRef" type="common:IDType" use="required"/>
+		<xs:attribute name="conceptVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="conceptAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeRef" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelist" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelistVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="codelistAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="isMeasureDimension" type="xs:boolean" default="false"/>
+		<xs:attribute name="isFrequencyDimension" type="xs:boolean" default="false"/>
+		<xs:attribute name="isEntityDimension" type="xs:boolean" default="false"/>
+		<xs:attribute name="isCountDimension" type="xs:boolean" default="false"/>
+		<xs:attribute name="isNonObservationTimeDimension" type="xs:boolean" default="false"/>
+		<xs:attribute name="isIdentityDimension" type="xs:boolean" default="false"/>
+		<xs:attribute name="crossSectionalAttachDataSet" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachGroup" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachSection" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachObservation" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="TimeDimensionType">
+		<xs:annotation>
+			<xs:documentation>TimeDimensionType describes the special Time dimension. Any key family which will be used for time-series formats (GenericData, CompactData, and UtilityData) must include the time dimension. Any key family which uses the time dimension must also declare a frequency dimension, conventionally the first dimension in the key (the set of ordered non-time dimensions). A TextFormat element may be included for indicating the representation of time. The concept attribute must contain the concept name of the time concept. The codelist attribute may provide the value of the concept name of a codelist if needed. If a key family describes cross-sectional data, then for each dimension, the crossSectionalAttachDataSet, crossSectionalAttachGroup, crossSectionalAttachSection, and crossSectionalAttachObservation attributes must be given values. A value of "true" for any of these attributes indicates that the dimension may be provided a value at the indicated level within the cross-sectional structure. Note that these attributes do not need to be provided for any dimension with the isFrequencyDimension set to "true", as these dimensions are always attached only at the group level, as is time. A key family designed for cross-sectional use must be structured such that any observation's complete key can be unambiguously described by taking each dimension value from its observation level, section level, group level, and data set level, and ordered according to the sequence given in the key family. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="conceptRef" type="common:IDType" use="required"/>
+		<xs:attribute name="conceptVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="conceptAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeRef" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelist" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelistVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="codelistAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="crossSectionalAttachDataSet" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachGroup" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachSection" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachObservation" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="GroupType">
+		<xs:annotation>
+			<xs:documentation>GroupType declares any useful groupings of data, based on a selection of the declared (non-Time) dimensions (indicated with the DimensionRef element) which form partial keys to which attributes may be attached. The value of the DimensionRef element is the concept of the dimension - that is, the value of the dimension's concept attribute. Thus, if data is to be presented as a set of time series which vary only according to their differing frequencies, a "sibling group" would be declared, with all dimensions except the frequency dimension in it. If data is commonly grouped as a set of all countries, then a "Country Group" could be declared, with all dimensions except the country dimension forming part of the partial key. Any dimension which is not part of a group has a value which varies at the series level (for time series formats). There is no requirement to have only a single dimension ommitted from a partial key - it can be any subset of the set of ordered dimensions (that is, all dimensions except the time dimension, which may never be declared as belonging to a group partial key). All groups declared in the key family must be unique - that is, you may not have duplicate partial keys. All groups must also be given unique names (id attributes). Although it is conventional to declare dimensions in the same order as they are declared in the ordered key, there is no requirement to do so - the ordering of the values of the key are taken from the order in which the dimensions are declared. The Description element provides a human-readable description (potentially in multiple, parallel languages) of the group. Note that for cross-sectional formats, the named group mechanism is not used, but is instead replaced by a generic group which carries time and frequency values with it, and allows for any available group-level attributes to be specified if desired. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="DimensionRef" type="common:IDType" maxOccurs="unbounded"/>
+				<xs:element name="AttachmentConstraintRef" type="common:IDType"/>
+			</xs:choice>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AttachmentConstraintRefType">
+		<xs:annotation>
+			<xs:documentation>AttachmentConstraintRefType describes a reference to an attachment constraint. This includes a reference to a dataflow, metadataflow, data provider, or provision agreement plus the ID of the attachment constraint, as assigned within the constraints associated with the referenced object, in the ConstraintRef element.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="DataflowRef" type="DataflowRefType"/>
+				<xs:element name="MetadataflowRef" type="MetadataflowRefType"/>
+				<xs:element name="DataProviderRef" type="DataProviderRefType"/>
+				<xs:element name="ProvisionAgreementRef" type="ProvisionAgreementRefType"/>
+			</xs:choice>
+			<xs:element name="ConstraintRef" type="common:IDType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProvisionAgreementRefType">
+		<xs:annotation>
+			<xs:documentation>ProvisionAgreementRef allows for the identification of a provision agreement. At a minimum, either the URN element - holding a valid registry URN - or the set of OragnisationSchemeAgencyID, OrganisationSchemeID, DataProviderID, DataflowAgencyID, and DataflowID must be specified. Constraint can be used to express constraints associated with the provision agreement. This type differs from the similar type in the Registry namespace package by not providing information about the datasource or constraints.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="OrganisationSchemeAgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="OrganisationSchemeID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="DataProviderID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="DataProviderVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="DataflowAgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="DataflowID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="DataflowVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="Constraint" type="common:ConstraintType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataProviderRefType">
+		<xs:annotation>
+			<xs:documentation>The DataProviderRef type structures a reference to a data provider. This requires that IDs be provided for an organisation scheme, its maintenance agency, and the data provider as identified in the referenced organisation scheme. The Version element may be used to specify the version of the indicated data provider. If absent, the most recent version is assumed. The URN element is used to provide the registry-specific urn as an alternate means of identification. At a minimum, either the URN element or OrgansisationSchemeID, OrganisationSchemeAgencyID, DataProviderID, and (optionally) Version must be supplied. When used in a response document of any type, the URN must always be provided. Constraints can be used to specify constraints associated with the data provider. This type differs from the similar type in the Registry namespace by not describing the datasource.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="OrganisationSchemeAgencyID" type="common:IDType"/>
+			<xs:element name="OrganisationSchemeID" type="common:IDType"/>
+			<xs:element name="DataProviderID" type="common:IDType"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+			<xs:element name="Constraint" type="common:ConstraintType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AttributeType">
+		<xs:annotation>
+			<xs:documentation>AttributeType describes the structure of attributes declared in the key family. If the codelist attribute is not used, then the attribute is uncoded. You may use the TextFormat element to specify constraints on the value of the uncoded attribute. The concept attribute contains the name of a concept. The codelist attribute supplies the id value of a codelist. The attachmentLevel attribute indicates the level to which the attribute is attached in time-series formats (GenericData, CompactData, and UtilityData formats). The assignmentStatus attribute indicates whether a value must be provided for the attribute when sending documentation along with the data. The AttachmentGroup element is included only when the attribute is attached at the Group level, to indicate which declared group or groups the attribute may be attached to. For each such group, an AttachmentGroup element should appear, with the content of the element being the name of the group. The AttachmentMeasure element is similar, indicating for cross-sectional formats which declared measure or measures the attribute attached at the observation level may be attached to. The isTimeFormat attribute indicates that the attribute represents the concept of time format (typically a mandatory series-level attribute with a codelist representation taken from ISO 8601). For key families not used to structure cross-sectional formats, this element may be ommitted. Each such element contains the name of the declared measure. The attributes crossSectionalAttachDataSet, crossSectionalAttachGroup, crossSectionalAttachSection, and crossSectionalAttachObservation indicate what the attachment level or levels are for cross-sectional data formats, and may be ommitted if the key family will not be used to structure them. A value of "true" indicates that it is permissible to provide a value for the attribute at the specified level within the structure. Note that all groups in cross-sectional formats are replaced by a generic group which has any values for time and frequency, and allows any group-level attributes to be attached to it. An attribute which is an Entity attribute has a true value for the isEntityAttribute attribute - you may have either one Entity dimension or one Entity Attribute in a key family; a non-observational time  has a true value for isNonObservationalTimeAttribute; and a Count attribute has a true value for the isCountAttribute attribute. The attributes  isFrequencyAttribute and isEntityAttribute are mutually exclusive - that is, only one of them may have a "true" value for any instance of the Attribute element. The definitions and limits on representation of each attribute type are as follows: Frequency attribute describes the period between observations, and is coded; Count attributes are represented by values which are sequential, incrementing numbers - representations are always of the Increment or Count type; Entity attributes describe the subject of the data set - they can be coded or represented in any other form; Non-Observational Time attributes must have a representation which contains a time; Identity attributes may be coded or uncoded, but must be represented by a scheme which refers to the identifiers of external entities. Any given instance of an attribute may only have a true value for this set of attributes, and if so may not have a true value for the isTimeFormat attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="AttachmentGroup" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AttachmentMeasure" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="conceptRef" type="common:IDType" use="required"/>
+		<xs:attribute name="conceptVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="conceptAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeRef" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelist" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelistVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="codelistAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="attachmentLevel" type="structure:AttachmentLevelType" use="required"/>
+		<xs:attribute name="assignmentStatus" type="structure:AssignmentStatusType" use="required"/>
+		<xs:attribute name="isTimeFormat" type="xs:boolean" default="false"/>
+		<xs:attribute name="crossSectionalAttachDataSet" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachGroup" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachSection" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachObservation" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isEntityAttribute" type="xs:boolean" default="false"/>
+		<xs:attribute name="isNonObservationalTimeAttribute" type="xs:boolean" default="false"/>
+		<xs:attribute name="isCountAttribute" type="xs:boolean" default="false"/>
+		<xs:attribute name="isFrequencyAttribute" type="xs:boolean" default="false"/>
+		<xs:attribute name="isIdentityAttribute" type="xs:boolean" default="false"/>
+	</xs:complexType>
+	<xs:simpleType name="AttachmentLevelType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="DataSet">
+				<xs:annotation>
+					<xs:documentation>Data set level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Group">
+				<xs:annotation>
+					<xs:documentation>Group level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Series">
+				<xs:annotation>
+					<xs:documentation>Series level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Observation">
+				<xs:annotation>
+					<xs:documentation>Observation level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AssignmentStatusType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Mandatory">
+				<xs:annotation>
+					<xs:documentation>Providing attribute value is mandatory</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Conditional">
+				<xs:annotation>
+					<xs:documentation>Providing attribute value is optional</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PrimaryMeasureType">
+		<xs:annotation>
+			<xs:documentation>PrimaryMeasureType describes the observation values for all presentations of the data, except those cross-sectional formats which have multiple measures (for which a set of cross-sectional measures are used instead). The concept attribute points to the unique concept represented by the measure. The PrimaryMeasure  is conventionally associated with the OBS-VALUE concept. The TextFormat element allows description of the contents of the observation value. The codelist attribute references a codelist if the observation value is coded. If this attribute is used, then codelistAgencyID must contain the ID of the maintenance agency of the referenced codelist. The codelistVersion attribute may be specified - if not, then the version of the referenced codelist is assumed to be "1.0".</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="conceptRef" type="common:IDType" use="required"/>
+		<xs:attribute name="conceptVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="conceptAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeRef" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelist" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelistVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="codelistAgency" type="common:IDType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="CrossSectionalMeasureType">
+		<xs:annotation>
+			<xs:documentation>CrossSectionalMeasureType describes the observation values for multiple-measure cross-sectional data formats. For non-cross sectional key families, it is not necesary to specify any cross-sectional measures.The concept attribute points to the unique concept represented by the measure. The measureDimension attribute contains the concept name of the measure dimension. The code attribute contains the value of its corresponding code in the codelist used to represent the measure dimension. A CrossSectionalMeasure must be declared for each code in the codelist used to represent the measure dimension - these will replace the primary measure for multiple-measure cross-sectional data formats.The TextFormat element allows description of the contents of the observation value. The codelist attribute references a codelist if the observation value is coded. If this attribute is used, then codelistAgencyID must contain the ID of the maintenance agency of the referenced codelist. The codelistVersion attribute may be specified - if not, then the version of the referenced codelist is assumed to be "1.0".</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="conceptRef" type="common:IDType" use="required"/>
+		<xs:attribute name="conceptVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="conceptAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeRef" type="common:IDType" use="optional"/>
+		<xs:attribute name="conceptSchemeAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelist" type="common:IDType" use="optional"/>
+		<xs:attribute name="codelistVersion" type="xs:string" use="optional"/>
+		<xs:attribute name="codelistAgency" type="common:IDType" use="optional"/>
+		<xs:attribute name="measureDimension" type="common:IDType" use="required"/>
+		<xs:attribute name="code" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<!-- Structure Sets  -->
+	<xs:complexType name="StructureSetsType">
+		<xs:annotation>
+			<xs:documentation>StructureSetsType contains one or more structure sets.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StructureSet" type="StructureSetType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StructureSetType">
+		<xs:annotation>
+			<xs:documentation>StructureSetType describes the relationships between two or more key families and/or metadata structure definitions, including the mapping between category schemes and concept schemes, to provide for the mapping of representations. This can include inheritance and extension of properties, or total or partial equivalencies. It also includes mapping of concepts existing in metadata structure definitions to those used in key families, and vice-versa. A human-readable name is provided in the Name element, which may include several language-specific variants. A longer human-readable description may also be provided, in the Description element, which may also have language-specific variants provided. The Annotations element may be used to provide annotations. The StructureRefs element references all of the key families and/or metadata structure definitions included in the Structure Set - these must be provided if a StructureMap element is used, but is not required if the structure set is only used to provide codelist mappings, concept mappings, or category mappings. The StructureMap element indicates which components in the included data and metadata structures are equivalent; CodelistMap indicates which codes map to other codelists. CategorySchemeMap indicates which categories in one scheme map to those in another scheme. ConceptSchemeMap indicates which concepts in one scheme map to those in another scheme. OrganisationSchemeMap describes how one organisation scheme maps to another. The id attribute takes an id which is unique to all structure sets maintained by the agency specified in the agency attribute. version specifies a version number (by default "1.0"). The uri attribute holds a URL where a valid SDMX Structure messgae can be found which provides full details of the StructureSet, and it must be used if the isExternalReference attribute has a value of true. The urn attribute holds a valid SDMX Registry URN as described in the SDMX Registry specification. A true value in the isFinal attribute indicates that the contents of the structure set may not be changed without versioning. The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RelatedStructures" type="RelatedStructuresType" minOccurs="0"/>
+			<xs:element name="StructureMap" type="StructureMapType" minOccurs="0"/>
+			<xs:element name="CodelistMap" type="CodelistMapType" minOccurs="0"/>
+			<xs:element name="CategorySchemeMap" type="CategorySchemeMapType" minOccurs="0"/>
+			<xs:element name="ConceptSchemeMap" type="ConceptSchemeMapType" minOccurs="0"/>
+			<xs:element name="OrganisationSchemeMap" type="OrganisationSchemeMapType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="optional"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="RelatedStructuresType">
+		<xs:annotation>
+			<xs:documentation>RelatedStructuresType includes references to key families (in the KeyFamilyRef element) and/or metadata structure definitions (In the MetadataStructureRef element). Any mapped CategorySchemes, ConceptSchemes, or Organisation Schemes should also be referenced. HierarchicalCodelistRef allows for HierarchicalCodelists which describe relationships between pertinent codelists to be referenced and included in the structure set - this must be used if the CodelistMap in the StructureSet refers to any hierarchical codelists.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="KeyFamilyRef" type="KeyFamilyRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MetadataStructureRef" type="MetadataStructureRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ConceptSchemeRef" type="ConceptSchemeRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CategorySchemeRef" type="CategorySchemeRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OrganisationSchemeRef" type="OrganisationSchemeRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="HierarchicalCodelistRef" type="HierarchicalCodelistRefType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CategorySchemeRefType">
+		<xs:annotation>
+			<xs:documentation>CategorySchemeRef allows for references to specific category schemes. At a minimum, either the URN - which contains a valid Registry/Repository URN - or the rest of the child elements must be supplied.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="AgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="CategorySchemeID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConceptSchemeRefType">
+		<xs:annotation>
+			<xs:documentation>ConceptSchemeRef allows for references to specific concept schemes. At a minimum, either the URN - which contains a valid Registry/Repository URN - or the rest of the child elements must be supplied. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="AgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="ConceptSchemeID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrganisationSchemeRefType">
+		<xs:annotation>
+			<xs:documentation>OrganisationSchemeRef allows for references to specific organisation schemes. At a minimum, either the URN - which contains a valid Registry/Repository URN - or the rest of the child elements must be supplied.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="AgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="OrganisationSchemeID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HierarchicalCodelistRefType">
+		<xs:annotation>
+			<xs:documentation>HierarchicalCodelistRef allows for references to specific hierarchical codelists. At a minimum, either the URN - which contains a valid Registry/Repository URN - or the rest of the child elements must be supplied.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="AgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="HierarchicalCodelistID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StructureMapType">
+		<xs:annotation>
+			<xs:documentation>StructureMapType describes the structure of the mapping of components between a referenced key family or metadata structure and a target key family or metadata structure. Components include any dimension, attribute, or reported concept. The Name element is used to provide a human-readable name for the component map; the Description element is used to provide a longer human-readable description. Both of these elements may be provided in multiple, language-specific variations. The StructureMapType provides for Annotations with the Annotations element. Either a KeyFamilyRef or a MetadataStructureRef must be provided; and also a TargetKeyFamilyRef or a TargetMetadataStructureRef. A series of map components are then specified using the ComponentMap element, each of which specifies the equivalence of a concept in the referenced straucture definition to one in the target structure definition. If the isExtension attribute has a value of true, then the target structure definition inherits all properties of the referenced structure definition, and may have additional components. Note that this attribute may only be set to true if the component map has as a referenced structure definition and a target structure definition either two key families or two metadata structure definition. You cannot inherit concepts between the two type of structure definitions using this mechanism. The id attribute allows for an id to be assigned to the component map - it must be unique within its StructureSet.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice>
+				<xs:element name="KeyFamilyRef" type="KeyFamilyRefType"/>
+				<xs:element name="MetadataStructureRef" type="MetadataStructureRefType"/>
+			</xs:choice>
+			<xs:choice>
+				<xs:element name="TargetKeyFamilyRef" type="KeyFamilyRefType"/>
+				<xs:element name="TargetMetadataStructureRef" type="MetadataStructureRefType"/>
+			</xs:choice>
+			<xs:element name="ComponentMap" type="ComponentMapType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="isExtension" type="xs:boolean" use="optional"/>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="CodelistMapType">
+		<xs:annotation>
+			<xs:documentation>CodelistMap allows the description of how the codes in a codelist are represented in a target codelist or associated hierarchical codelist. A human-readable Name is provided, and a longer, human-readable description may be provided as well, in the Name and Description elements respectively. These may be supplied in multiple, language-specific versions.CodelistRef references the codelist or hierarchical codelist being mapped; TargetCodelistRef indicates the codelist to which it will be mapped. CodeMap is the element which indicates the equivalence of codes in the referenced codelist to those in the target codelist. Any codes not mapped are assumed to lack equivalence. The CodelistMap may be annotated using the Annotations element. The id attribute is used to assign an identifier which is unique within the StructureSet for all CodelistMaps.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice>
+				<xs:element name="CodelistRef" type="CodelistRefType"/>
+				<xs:element name="HierarchicalCodelistRef" type="HierarchicalCodelistRefType"/>
+			</xs:choice>
+			<xs:choice>
+				<xs:element name="TargetCodelistRef" type="CodelistRefType"/>
+				<xs:element name="TargetHierarchicalCodelistRef" type="HierarchicalCodelistRefType"/>
+			</xs:choice>
+			<xs:element name="CodeMap" type="CodeMapType" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="CodeMapType">
+		<xs:annotation>
+			<xs:documentation>CodeMap describes the equivalence of the codes in the referenced codelist or hierarchical codelist indicated in the CodelistRef element of the containing CodelistMap to those in the referenced TargetCodelist in the containing CodelistMap. The CodeAlias attribute is used to assign an alias code to the equivalence for querying the structure set.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MapCodeRef" type="common:IDType"/>
+			<xs:element name="MapTargetCodeRef" type="common:IDType"/>
+		</xs:sequence>
+		<xs:attribute name="CodeAlias" type="common:IDType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ComponentMapType">
+		<xs:annotation>
+			<xs:documentation>ComponentMapType describes how a component (that is, dimension, attribute, or reported concept) in a referenced metadata structure definition or key family maps to a component in a referenced  "target" metadata structure definition or key family. The MapConceptRef contains the id of the concept in the metadata structure definition or key family referenced in the KeyFamilyRef or MetadataStructureRef element of the containing ComponentMap element. The MapTargetConceptRef contains the id of the concept in the metadata structure definition or key family referenced in the TargetKeyFamilyRef or TargetMetadataStructureRef element of the containing ComponentMap element. The RepresentationMapRef element contains a reference to the CodelistMap which describes how the coded representation of the referenced component maps to the coded representation of the target component. If the target component has an uncoded representation, then ToTextFormat is used to describe the un-coded representation to which the code of the referenced component should be transformed. The ToValueType element tells you whether the value, name, or description of the source value should be used in the resulting text field. The componentAlias attribute assigns a new ID to the relationship between these components. Note that of three components from different key families and/or metadata structure definitions are all equivalent, the two component maps can share a single alias. Note also that for metadata concepts which are represented not by codelists but rather by other types of item schemes (OrganisationSchemes or CategorySchemes), these can also be referenced using the RepresentationMapRef element. The preferredLanguage attribute specifies the language to use when translating coded values into their names or descriptions, if available, in the same form as xml:lang.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MapConceptRef" type="common:IDType"/>
+			<xs:element name="MapTargetConceptRef" type="common:IDType"/>
+			<xs:choice>
+				<xs:element name="RepresentationMapRef" type="RepresentationMapRefType"/>
+				<xs:sequence>
+					<xs:element name="ToTextFormat" type="TextFormatType"/>
+					<xs:element name="ToValueType" type="ToValueTypeType"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="componentAlias" type="common:IDType" use="optional"/>
+		<xs:attribute name="preferredLanguage" type="xs:language" default="en"/>
+	</xs:complexType>
+	<xs:simpleType name="ToValueTypeType">
+		<xs:annotation>
+			<xs:documentation>ToValueTypeType provides an enumeration of available text-equivalents for translation of coded values into textual formats. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Value">
+				<xs:annotation>
+					<xs:documentation>Code or other tokenized value, as provided in the representation scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Name">
+				<xs:annotation>
+					<xs:documentation>The human-readable name of the Value, as provided in the representation scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Description">
+				<xs:annotation>
+					<xs:documentation>The human-readable description of the Value, as provided in the representation scheme.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="RepresentationMapRefType">
+		<xs:annotation>
+			<xs:documentation>RepresentationMapRefType describes the structure of a reference to a codelist, category scheme, or organisation scheme map. RepresentationMapAgencyID takes the id value of the maintenance agency of the codelist, category scheme, or organisation scheme map; RepresentationMapID takes the id attribute value of the codelist, category scheme, or organisation scheme map.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RepresentationMapAgencyID" type="common:IDType"/>
+			<xs:element name="RepresentationMapID" type="common:IDType"/>
+		</xs:sequence>
+		<xs:attribute name="representationType" type="RepresentationTypeType" default="Codelist"/>
+	</xs:complexType>
+	<xs:simpleType name="RepresentationTypeType">
+		<xs:annotation>
+			<xs:documentation>RepresentationTypeType provides an enumeration of representation scheme types useful for the mapping of reference metadata concepts to one another.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Codelist">
+				<xs:annotation>
+					<xs:documentation>Codelist</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CategoryScheme">
+				<xs:annotation>
+					<xs:documentation>CategoryScheme</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OrganisationScheme">
+				<xs:annotation>
+					<xs:documentation>OrganisationScheme</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CategorySchemeMapType">
+		<xs:annotation>
+			<xs:documentation>CategorySchemeMap provides for the mapping of categories in one scheme against those in another. It requires a human-readable Name, and can have a longer human-readable Description, both of which can be supplied in multiple, parallel-language form. It may be annotated using Annotations. The id attribute carries a unique ID for CategorySchemeMaps within the StructureSet. CategorySchemeRef identifies the source CategoryScheme; TargetCategorySchemeRef identifies the target CategoryScheme.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CategorySchemeRef" type="CategorySchemeRefType"/>
+			<xs:element name="TargetCategorySchemeRef" type="CategorySchemeRefType"/>
+			<xs:element name="CategoryMap" type="CategoryMapType" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="CategoryMapType">
+		<xs:annotation>
+			<xs:documentation>CategoryMap allows for the mapping of a category in one scheme against a category in another, target scheme. The categoryAlias attribute allows for an alias to be assigned to the mapping for searching across the set of mapped categories. Note that the Category IDs are recursive, and can therefore describe a path through a category scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CategoryID" type="CategoryIDType"/>
+			<xs:element name="TargetCategoryID" type="CategoryIDType"/>
+		</xs:sequence>
+		<xs:attribute name="categoryAlias" type="common:IDType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ConceptSchemeMapType">
+		<xs:annotation>
+			<xs:documentation>ConceptSchemeMap provides for the mapping of concepts in one scheme against those in another. It requires a human-readable Name, and can have a longer human-readable Description, both of which can be supplied in multiple, parallel-language form. It may be annotated using Annotations. The id attribute carries a unique ID for ConceptSchemeMaps within the StructureSet. ConceptSchemeRef identifies the source ConceptScheme; TargetConceptSchemeRef identifies the target ConceptScheme.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ConceptSchemeRef" type="ConceptSchemeRefType"/>
+			<xs:element name="TargetConceptSchemeRef" type="ConceptSchemeRefType"/>
+			<xs:element name="ConceptMap" type="ConceptMapType" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ConceptMapType">
+		<xs:annotation>
+			<xs:documentation>ConceptMap allows for the mapping of a concept in one scheme against a concept in another, target scheme. The conceptAlias attribute allows for an alias to be assigned to the mapping for searching across the set of mapped concepts.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ConceptID" type="common:IDType"/>
+			<xs:element name="TargetConceptID" type="common:IDType"/>
+		</xs:sequence>
+		<xs:attribute name="conceptAlias" type="common:IDType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="OrganisationSchemeMapType">
+		<xs:annotation>
+			<xs:documentation>OrganisationSchemeMap provides for the mapping of Organisations in one scheme against those in another. It requires a human-readable Name, and can have a longer human-readable Description, both of which can be supplied in multiple, parallel-language form. It may be annotated using Annotations. The id attribute carries a unique ID for OrganisationSchemeMaps within the StructureSet. OrganisationSchemeRef identifies the source OrganisationScheme; TargetOrganisationSchemeRef identifies the target OrganisationScheme.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="OrganisationSchemeRef" type="OrganisationSchemeRefType"/>
+			<xs:element name="TargetOrganisationSchemeRef" type="OrganisationSchemeRefType"/>
+			<xs:element name="OrganisationMap" type="OrganisationMapType" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="OrganisationMapType">
+		<xs:annotation>
+			<xs:documentation>OrganisationMap allows for the mapping of an organisation in one scheme against an organisation in another, target scheme. The organisationAlias attribute allows for an alias to be assigned to the mapping for searching across the set of mapped organisations.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OrganisationID" type="common:IDType"/>
+			<xs:element name="TargetOrganisationID" type="common:IDType"/>
+		</xs:sequence>
+		<xs:attribute name="organisationAlias" type="common:IDType" use="optional"/>
+	</xs:complexType>
+	<!-- Reporting Taxonomy -->
+	<xs:complexType name="ReportingTaxonomiesType">
+		<xs:annotation>
+			<xs:documentation>ReportingTaxonomiesType holds on or more ReportingTaxonomy elements.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ReportingTaxonomy" type="ReportingTaxonomyType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReportingTaxonomyType">
+		<xs:annotation>
+			<xs:documentation>ReportingTaxonomyType groups data flows and/or metadata flows for the purposes of assembling "reports" made up of data from disparate sources. It is a maintainable object, and thus has a mandatory human-readable Name and optional Description containing a longer human-readable description. Annotations may be included. All of these fields may be provided in multiple, parallel languages. The id attribute assignes a unique ID to the Reporting Taxonomy, version provides a version number, uri contains a URL where the SDMX-ML expression of the Reporting taxonomy can be found, and must be included if the isExternalReference attribute has a value of true. The urn attribute holds the value of a valid SDMX Registry URN as per the SDMX Registry specification. The isExternalReference attribute, if set to true, indicates that the uri attribute points to an external location for the ReportingTaxonomy, with only the id, Name element, and version supplied in addition. The agencyID attribute holds the ID of the Reporting Taxonomies' maintenance agency. Also, if the Reporting Taxonomy is final, the isFinal attribute must`have a value of true - otherwise, it will be assumed to be non-final. (All production versions must be made final - that is, unchangeable without versioning.) The sub-element Category may be used to group dataflows and metadataflows into useful sub-packages. DataflowRef and MetadataFlowRef are references to the flows which make up the reporting taxonomy at the top level. The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DataflowRef" type="DataflowRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="MetadataflowRef" type="MetadataflowRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Category" type="CategoryType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="MetadataflowRefType">
+		<xs:annotation>
+			<xs:documentation>The MetadataflowRef type structures a reference to a metadataflow definition. This requires that ID are provided for a pre-existing Agency and Metadataflow Definition in the registry. The Version element may be used to specify the version of the indicated dataflow. If absent, the most recent version is assumed. The URN element is used to provide the registry-specific URN as an alternate means of identification. When used in a response document of any type, the URN must always be provided. At a minimum, either the URN element or AgencyID, MetadataflowID, and (optionally) version must be supplied. Datasource may be used to specify a datasource. Constraint can be used to provide constraints associated with the metadataflow.  Note that this is similar, but not identical to the MetadataflowRefType found in the SDMX-ML registry namespace package - it lacks references to the datasource and the constraints.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="AgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="MetadataflowID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataflowRefType">
+		<xs:annotation>
+			<xs:documentation>The DataflowRef type structures a reference to a dataflow definition. This requires that ID are provided for a pre-existing Agency and Dataflow Definition in the registry. The Version element may be used to specify the version of the indicated dataflow. If absent, the most recent version is assumed. The URN element is used to provide the registry-specific URN as an alternate means of identification. At a minimum, either the URN element or AgencyID, DataflowID, and (optionally) version must be supplied. When used in a response document of any type, the URN must always be provided. Datasource may be used to specify a datasource. Constraints can be used to specify constraints associated with the dataflow. Note that this is similar, but not identical to the DataflowRefType found in the SDMX-ML registry namespace package - it lacks references to the datasource and the constraints.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="URN" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="AgencyID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="DataflowID" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Process  -->
+	<xs:complexType name="ProcessesType">
+		<xs:annotation>
+			<xs:documentation>ProcessesType describes a list of Processes.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Process" type="ProcessType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProcessType">
+		<xs:annotation>
+			<xs:documentation>ProcessType generically describes a statistical process. In this version of the SDMX Technical Specifications, it is not meant to support process automation, but serves as a description of how processes occur. The primary use for this structural mechanism is the attachment of reference metadata regarding statistical processing. A process has a human-readable Name, which may be provided in multiple, parallel-language versions. It also has an optional human-readable Description, which also may be provided with multiple, parallel-language versions. The Annotations element allows for it to be annotated. The id attribute takes a unique id within the set of processes maintained by the agency identified in the agencyID attribute. The version attribute indicated the version of teh process description. The uri value is a URL where a complete description of the Process may be found; the urn attribute takes the valid registry URN of the Process, as described in the SDMX Registry Specification. If isFinal is set to true, the process description cannot be changed without versioning. If isExternalReference is true, then only the id, agency, Name, and uri (or URN) need be supplied - all other fields are assumed to be found in a valid SDMX Structure message found at the uri attribute location. The validFrom and validTo attributes provide inclusive dates for providing supplemental validity information about the version.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ProcessStep" type="ProcessStepType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+		<xs:attribute name="agencyID" type="common:IDType" use="required"/>
+		<xs:attribute name="isFinal" type="xs:boolean" use="optional"/>
+		<xs:attribute name="validFrom" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ProcessStepType">
+		<xs:annotation>
+			<xs:documentation>ProcessStepType describes a single step in a statistical process. ProcessSteps may be recursive. The Input element specifies the type of object(s) which serve as inputs to the process; the Output element specifies the type of objects which are the result of the process. Computation elements describe the computations involved in the process, in any form desired by the user (these are informational rather than machine-actionable), and so may be supplied in multiple, parallel-language versions. Transitions describe the process steps to which a process is connected - that is, which processes happen next. The process step maust be given a Name, and may be given a Description. These are human-readable, and may be supplied in multiple, parallel-language versions. Annotations may be supplied. The id attribute takes the unique identifier of the process step within the parent process.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Input" type="ObjectIDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Output" type="ObjectIDType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Computation" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Transition" type="TransitionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ProcessStep" type="ProcessStepType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:IDType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TransitionType">
+		<xs:annotation>
+			<xs:documentation>TransitionType describes the Condition and next step in a transition. The Condition text is informational, and may be supplied in multiple, parallel-language form. The TargetStep holds the id of the next step in the process if the condition is met.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TargetStep" type="common:IDType" minOccurs="0"/>
+			<xs:element name="Condition" type="common:TextType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

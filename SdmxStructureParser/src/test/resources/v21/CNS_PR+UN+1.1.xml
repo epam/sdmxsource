@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+    <mes:Header>
+        <mes:ID>CNS_PR</mes:ID>
+        <mes:Test>false</mes:Test>
+        <mes:Prepared>2014-05-07T09:36:31.298Z</mes:Prepared>
+        <mes:Sender id="DSW"/>
+        <mes:Receiver id="unknown"/>
+    </mes:Header>
+    <mes:Structures>
+        <str:Constraints>
+            <str:ContentConstraint id="CNS_PR" uri="http://www.istat.it" urn="urn:sdmx:org.sdmx.infomodel.registry.ContentConstraint=UN:CNS_PR(1.1)" agencyID="UN" version="1.1" validFrom="2014-05-01T09:32:49.000Z" validTo="2014-05-24T09:32:51.000Z" isFinal="true" type="Actual">
+                <com:Annotations>
+                    <com:Annotation>
+                        <com:AnnotationTitle>Constraint annotation</com:AnnotationTitle>
+                        <com:AnnotationType>SEM</com:AnnotationType>
+                        <com:AnnotationText xml:lang="it">Annotazione di constraint</com:AnnotationText>
+                        <com:AnnotationText xml:lang="en">Constraint annotation</com:AnnotationText>
+                    </com:Annotation>
+                </com:Annotations>
+                <com:Name xml:lang="en">2.1 Proof constraint</com:Name>
+                <com:Description xml:lang="en">2.1 Proof constraint</com:Description>
+                <str:ConstraintAttachment>
+                    <str:DataStructure>
+                        <Ref id="NA_PENS" version="1.1" agencyID="ESTAT" package="datastructure" class="DataStructure"/>
+                    </str:DataStructure>
+                </str:ConstraintAttachment>
+                <str:CubeRegion include="true">
+                    <com:KeyValue id="COUNTERPART_AREA">
+                        <com:Value>1A</com:Value>
+                        <com:Value>1D</com:Value>
+                        <com:Value>1F</com:Value>
+                        <com:Value>1K</com:Value>
+                    </com:KeyValue>
+                    <com:Attribute id="DECIMALS">
+                        <com:Value>8</com:Value>
+                        <com:Value>6</com:Value>
+                        <com:Value>11</com:Value>
+                        <com:Value>13</com:Value>
+                    </com:Attribute>
+                    <com:Attribute id="TABLE_IDENTIFIER">
+                        <com:Value>T0121</com:Value>
+                        <com:Value>T0900</com:Value>
+                        <com:Value>T0999</com:Value>
+                        <com:Value>T1001</com:Value>
+                    </com:Attribute>
+                </str:CubeRegion>
+                <str:ReleaseCalendar>
+                    <str:Periodicity>P4M</str:Periodicity>
+                    <str:Offset>P2W</str:Offset>
+                    <str:Tolerance>P10D</str:Tolerance>
+                </str:ReleaseCalendar>
+            </str:ContentConstraint>
+        </str:Constraints>
+    </mes:Structures>
+</mes:Structure>

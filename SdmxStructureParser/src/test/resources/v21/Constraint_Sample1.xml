@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RegistryInterface xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+                   xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+                   xmlns:reg="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry"
+                   xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+                   xmlns:foot="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message/footer"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message file:/Users/gpa/_PROJECTS/SDMX-Maintainance/2.1_implementations/2.1_XMLs/SDMX_2-1-1_SECTION_3B_SDMX_ML_Schemas_Samples_201108/schemas/SDMXMessage.xsd">
+    <Header>
+        <ID>RI_2_1</ID>
+        <Test>true</Test>
+        <Prepared>2009-03-23</Prepared>
+        <Sender id="ESTAT"></Sender>
+        <Receiver id="ECB"/>
+    </Header>
+
+    <SubmitStructureRequest action="Append" externalDependencies="false">
+
+        <str:Structures>
+            <!--Optional:-->
+            <str:Constraints>
+
+                <str:ContentConstraint id="CSR_TEST_KEY_SET" version="1.0" agencyID="ESTAT" isFinal="false"
+                                       isExternalReference="false" type="Actual">
+                    <!--1 or more repetitions:-->
+                    <com:Name xml:lang="en">Test Constraint</com:Name>
+                    <!--Optional:-->
+                    <str:ConstraintAttachment>
+                        <!--1 or more repetitions:-->
+                        <str:ProvisionAgreement>
+                            <Ref xmlns="" agencyID="ESTAT" id="SSTSCONS_PROD_M_DE1" version="1.0" local="false"
+                                 class="ProvisionAgreement"/>
+                        </str:ProvisionAgreement>
+                    </str:ConstraintAttachment>
+
+                    <!-- gpa: WITH KEY_SET -->
+                    <str:DataKeySet isIncluded="false">
+                        <!--1 or more repetitions:-->
+                        <str:Key include="true">
+                            <!--1 or more repetitions:-->
+                            <com:KeyValue id="FREQ" include="true">
+                                <com:Value>M</com:Value>
+                            </com:KeyValue>
+                            <com:KeyValue id="SEX" include="true">
+                                <com:Value>M</com:Value>
+                            </com:KeyValue>
+                        </str:Key>
+                    </str:DataKeySet>
+
+                    <!--Optional:
+                             <str:ReleaseCalendar>
+                                <str:Periodicity>?</str:Periodicity>
+                                <str:Offset>?</str:Offset>
+                                <str:Tolerance>?</str:Tolerance>
+                             </str:ReleaseCalendar>
+                 -->
+                    <!--Optional:
+                             <str:ReferencePeriod startTime="?" endTime="?"/>
+                 -->
+                </str:ContentConstraint>
+            </str:Constraints>
+        </str:Structures>
+
+    </SubmitStructureRequest>
+
+
+    <!--Optional:-->
+    <foot:Footer>
+        <!--1 or more repetitions:-->
+        <foot:Message code="REQ_SUBM_CSR" severity="Information">
+            <!--1 or more repetitions:-->
+            <com:Text xml:lang="en">Submit Constraint</com:Text>
+        </foot:Message>
+    </foot:Footer>
+</RegistryInterface>
+

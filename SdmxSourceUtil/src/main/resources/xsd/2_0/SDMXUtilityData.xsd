@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2004  -   www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility" targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility">
+
+<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" schemaLocation="SDMXCommon.xsd"/>
+
+
+
+
+
+<xs:element name="DataSet" type="DataSetType">
+	<xs:annotation>
+		<xs:documentation>DataSet exists to act as the head of a substitution group to which key-family-specific attributes and elements are bound.</xs:documentation>
+	</xs:annotation>
+	
+</xs:element>
+
+<xs:complexType name="DataSetType" abstract="true">
+	<xs:annotation>
+		<xs:documentation>DataSetType acts as a structural base, which is extended through the addition of attributes and elements to reflect the particular needs of a specific key family using the xs:extends element. Attributes are provided for describing the contents of a data or metadata set, which are particularly important for interactions with the SDMX Registry: datasetID, dataProviderSchemeAgencyID, dataProviderSchemeID, dataflowAgencyID, and dataflowID all take the IDs specified by the attribute names. The action attribute indicates whether the file is appending, replacing, or deleting. Attributes reportingBeginDate, reportingEndDate, validFromDate, and validToDate are inclusive. publicationYear holds the ISO 8601 four-digit year, and publicationPeriod specifies the period of publication of the data in terms of whatever provisioning agreements might be in force (ie, "Q1 2005" if that is the time of publication for a data set published on a quarterly basis).</xs:documentation>
+	</xs:annotation>
+	<xs:attribute name="keyFamilyURI" type="xs:anyURI" use="optional"/>	
+	<xs:attribute name="datasetID" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataProviderSchemeAgencyId" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataProviderSchemeId" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataProviderID" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataflowAgencyID" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataflowID" type="common:IDType" use="optional"/>
+	<xs:attribute name="action" type="common:ActionType" use="optional"/>
+	<xs:attribute name="reportingBeginDate" type="common:TimePeriodType" use="optional"/>
+	<xs:attribute name="reportingEndDate" type="common:TimePeriodType" use="optional"/>
+	<xs:attribute name="validFromDate" type="common:TimePeriodType" use="optional"/>
+	<xs:attribute name="validToDate" type="common:TimePeriodType" use="optional"/>
+	<xs:attribute name="publicationYear" type="xs:gYear" use="optional"/>
+	<xs:attribute name="publicationPeriod" type="common:TimePeriodType" use="optional"/>
+</xs:complexType>
+
+<xs:element name="Group" type="GroupType">
+	<xs:annotation>
+		<xs:documentation>Group exists to act as the head of a substitution group to which key-family-specific attributes and elements are bound.</xs:documentation>
+	</xs:annotation>
+
+</xs:element>
+
+<xs:complexType name="GroupType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>GroupType acts as a structural base, which is renamed and extended through the addition of attributes to reflect the particular needs of a specific key family using the xs:extends element.</xs:documentation>
+		</xs:annotation>
+
+</xs:complexType>
+
+<xs:element name="Series" type="SeriesType">
+	<xs:annotation>
+		<xs:documentation>Series exists to act as the head of a substitution group to which key-family-specific attributes and elements are bound.</xs:documentation>
+	</xs:annotation>
+
+</xs:element>
+
+<xs:complexType name="SeriesType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>SeriesType acts as a structural base, which is extended through the addition of attributes to reflect the particular needs of a specific key family using the xs:extends element.</xs:documentation>
+		</xs:annotation>
+
+</xs:complexType>
+
+<xs:element name="Key" type="KeyType">
+	<xs:annotation>
+		<xs:documentation>Key is an element which serves as the head of a substitution group containing the key-family-specific key values.</xs:documentation>
+	</xs:annotation>
+</xs:element>
+<xs:complexType name="KeyType" abstract="true">
+	<xs:annotation>
+		<xs:documentation>KeyType describes the abstract type which defines the Key element.</xs:documentation>
+	</xs:annotation>
+</xs:complexType>
+
+<xs:element name="Obs" type="ObsType">
+	<xs:annotation>
+		<xs:documentation>Obs exists to act as the head of a substitution group to which key-family-specific attributes and elements are bound.</xs:documentation>
+	</xs:annotation>
+
+</xs:element>
+
+<xs:complexType name="ObsType" abstract="true">
+	<xs:annotation>
+		<xs:documentation>ObsType acts as a structural base, which is extended through the addition of attributes to reflect the particular needs of a specific key family using the xs:extends element.</xs:documentation>
+	</xs:annotation>
+</xs:complexType>
+
+</xs:schema>

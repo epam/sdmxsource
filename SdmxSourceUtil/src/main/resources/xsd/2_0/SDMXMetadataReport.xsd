@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2005  -   www.sdmx.org -->
+<xs:schema targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/metadatareport" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/metadatareport" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" schemaLocation="SDMXCommon.xsd"/>
+	<xs:element name="MetadataSet" type="MetadataSetType">
+		<xs:annotation>
+			<xs:documentation>The MetadataSet element contains metadata-structure-specific report(s)described in a single metadata structure definition. Attributes are provided for describing the contents of a data or metadata set, which are particularly important for interactions with the SDMX Registry: datasetID, dataProviderSchemeAgencyID, dataProviderSchemeID, dataflowAgencyID, and dataflowID all take the IDs specified by the attribute names. The action attribute indicates whether the file is appending, replacing, or deleting. Attributes reportingBeginDate, reportingEndDate, validFromDate, and validToDate are inclusive. publicationYear holds the ISO 8601 four-digit year, and publicationPeriod specifies the period of publication of the data in terms of whatever provisioning agreements might be in force (ie, "Q1 2005" if that is the time of publication for a data set published on a quarterly basis).</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="MetadataSetType">
+		<xs:annotation>
+			<xs:documentation>MetadataReportType defines the structure of a metadata structure definition-specific Metadata Report. This consists of a MetadataStructureRef which holds the ID fo the metadata structure, and MetadataStructureAgencyRef, which holds the ID of the maintraenance agency of the metadata structure, and Version, which provides the version number of the referenced metadata structure definition. If not provided, version is assumed to be "1.0". This type is designed to be extended to hold the metadata-structure-sepcific fields needed to validate a specific metadata report.
+	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MetadataStructureRef" type="common:IDType"/>
+			<xs:element name="MetadataStructureAgencyRef" type="common:IDType"/>
+			<xs:element name="Version" type="xs:string" minOccurs="0"/>			
+		</xs:sequence>
+		<xs:attribute name="MetadataStructureURI" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="datasetID" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataProviderSchemeAgencyId" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataProviderSchemeId" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataProviderID" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataflowAgencyID" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataflowID" type="common:IDType" use="optional"/>
+		<xs:attribute name="action" type="common:ActionType" use="optional"/>
+		<xs:attribute name="reportingBeginDate" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="reportingEndDate" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validFromDate" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validToDate" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="publicationYear" type="xs:gYear" use="optional"/>
+		<xs:attribute name="publicationPeriod" type="common:TimePeriodType" use="optional"/>
+	</xs:complexType>
+	
+	
+</xs:schema>

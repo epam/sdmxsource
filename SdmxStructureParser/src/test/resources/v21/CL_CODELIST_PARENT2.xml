@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+    <mes:Header>
+        <mes:ID>REGISTRY_RESPONSE</mes:ID>
+        <mes:Test>false</mes:Test>
+        <mes:Prepared>2013-12-06T03:19:19.884Z</mes:Prepared>
+        <mes:Sender id="ESTAT"/>
+        <mes:Receiver id="unknown"/>
+    </mes:Header>
+    <mes:Structures>
+        <str:Codelists>
+            <str:Codelist id="CL_ATECO2007" urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=IT1:CL_ATECO2007(1.1)" agencyID="IT1" version="1.3" isExternalReference="false" isFinal="true" structureURL="http://need/to/change/this">
+                <com:Name xml:lang="it">ATECO 2007</com:Name>
+                <com:Name xml:lang="en">NACE 2007</com:Name>
+                <str:Code id="A" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=IT1:CL_ATECO2007(1.1).A">
+                    <com:Name xml:lang="it">agricoltura, silvicoltura e pesca</com:Name>
+                    <com:Name xml:lang="en">agriculture, forestry and fishing</com:Name>
+                </str:Code>
+                <str:Code id="B" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=IT1:CL_ATECO2007(1.1).B">
+                    <com:Name xml:lang="it">estrazione di minerali da cave e miniere</com:Name>
+                    <com:Name xml:lang="en">mining and quarrying</com:Name>
+                    <str:Parent>
+                        <Ref id="A"/>
+                    </str:Parent>
+                </str:Code>
+            </str:Codelist>
+        </str:Codelists>
+    </mes:Structures>
+</mes:Structure>

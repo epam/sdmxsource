@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:DataflowQuery xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common" xmlns:quer="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query">
+    <mes:Header>
+        <mes:ID>ID1</mes:ID>
+        <mes:Test>false</mes:Test>
+        <mes:Prepared>2006-05-04T18:13:51.0Z</mes:Prepared>
+        <mes:Sender id="SID2"/>
+        <mes:Receiver id="RID2"/>
+    </mes:Header>
+    <mes:Query>
+        <quer:ReturnDetails defaultLimit="10000" detail="Full" returnMatchedArtefact="true">
+            <quer:References processConstraints="false" detail="Full">
+                <quer:All/>
+            </quer:References>
+        </quer:ReturnDetails>
+    </mes:Query>
+</mes:DataflowQuery>
+

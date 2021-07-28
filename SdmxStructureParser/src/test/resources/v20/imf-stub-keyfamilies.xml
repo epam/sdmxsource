@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Structure xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message https://registry.sdmx.org/schemas/v2_0/SDMXMessage.xsd">
+    <Header>
+        <ID>4b9e1cbf-cbc4-45ec-800c-58eef6914eeb</ID>
+        <Test>false</Test>
+        <Prepared>2016-08-18T04:23:54</Prepared>
+        <Sender id="IMF">
+            <Name xml:lang="en">IMF</Name>
+            <Contact>
+                <URI>http://www.imf.org</URI>
+                <Telephone>+ 1 (202) 623-6220</Telephone>
+            </Contact>
+        </Sender>
+    </Header>
+    <KeyFamilies>
+        <KeyFamily id="FSIRE" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Financial Soundness Indicators (FSI), Reporting Entities</Name>
+        </KeyFamily>
+        <KeyFamily id="FAS" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Financial Access Survey (FAS)</Name>
+        </KeyFamily>
+        <KeyFamily id="IFS" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">International Financial Statistics (IFS)</Name>
+        </KeyFamily>
+        <KeyFamily id="MCDREO" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Middle East and Central Asia Regional Economic Outlook (MCDREO)</Name>
+        </KeyFamily>
+        <KeyFamily id="FSIBS" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Financial Soundness Indicators (FSI), Balance Sheets</Name>
+        </KeyFamily>
+        <KeyFamily id="FSI" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Financial Soundness Indicators (FSI)</Name>
+        </KeyFamily>
+        <KeyFamily id="DOT" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Direction of Trade Statistics (DOTS)</Name>
+        </KeyFamily>
+        <KeyFamily id="FSIREM" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Financial Soundness Indicators (FSI), Reporting Entities - Multidimensional</Name>
+        </KeyFamily>
+        <KeyFamily id="CDIS" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Coordinated Direct Investment Survey (CDIS)</Name>
+        </KeyFamily>
+        <KeyFamily id="GFS01M" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS 2001) - Multidimensional</Name>
+            <Description xml:lang="en">Indicator decomposed into multiple dimensions</Description>
+        </KeyFamily>
+        <KeyFamily id="GFS01" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS 2001)</Name>
+        </KeyFamily>
+        <KeyFamily id="BOP" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Balance of Payments (BOP)</Name>
+        </KeyFamily>
+        <KeyFamily id="BOPAGG" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Balance of Payments (BOP), World and Regional Aggregates</Name>
+        </KeyFamily>
+        <KeyFamily id="CPIS" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Coordinated Portfolio Investment Survey (CPIS)</Name>
+        </KeyFamily>
+        <KeyFamily id="APDREO" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Asia and Pacific Regional Economic Outlook (APDREO)</Name>
+        </KeyFamily>
+        <KeyFamily id="FM" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Fiscal Monitor (FM)</Name>
+        </KeyFamily>
+        <KeyFamily id="AFRREO" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Sub-Saharan Africa Regional Economic Outlook (AFRREO)</Name>
+        </KeyFamily>
+        <KeyFamily id="MCDREO201410" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">MCD Regional Economic Outlook October 2014</Name>
+        </KeyFamily>
+        <KeyFamily id="FM201410" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Fiscal Monitor (FM) October 2014</Name>
+        </KeyFamily>
+        <KeyFamily id="AFRREO201410" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Sub-Saharan Africa Regional Economic Outlook (AFRREO) October 2014</Name>
+        </KeyFamily>
+        <KeyFamily id="MCDREO201501" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">MCD Regional Economic Outlook January 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="APDREO201410" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Asia and Pacific Regional Economic Outlook (APDREO) October 2014</Name>
+        </KeyFamily>
+        <KeyFamily id="COMMP" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Primary Commodity Prices</Name>
+        </KeyFamily>
+        <KeyFamily id="COMMPP" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Primary Commodity Prices Projections</Name>
+        </KeyFamily>
+        <KeyFamily id="WoRLD" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">World Revenue Longitudinal Data (WoRLD)</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSR" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS), Revenue</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSSSUC" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS), Statement of Sources and Uses of Cash</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSCOFOG" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS), Expenditure by Function of Government (COFOG)</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSFALCS" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS), Financial Assets and Liabilities by Counterpart Sector</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSIBS" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS), Integrated Balance Sheet (Stock Positions and Flows in Assets and Liabilities)</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSMAB" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS), Main Aggregates and Balances</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSE" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics (GFS), Expense</Name>
+        </KeyFamily>
+        <KeyFamily id="PGI" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Principal Global Indicators (PGI)</Name>
+        </KeyFamily>
+        <KeyFamily id="WHDREO201504" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Western Hemisphere Regional Economic Outlook (WHDREO) April 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="WCED" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">World Commodity Exporters (WCED)</Name>
+        </KeyFamily>
+        <KeyFamily id="WHDREO" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Western Hemisphere Regional Economic Outlook (WHDREO)</Name>
+        </KeyFamily>
+        <KeyFamily id="FM201504" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Fiscal Monitor (FM) April 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="APDREO201504" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Asia and Pacific Regional Economic Outlook (APDREO) April 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="MCDREO201505" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">MCD Regional Economic Outlook May 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="AFRREO201504" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Sub-Saharan Africa Regional Economic Outlook (AFRREO) April 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="CDISARCHIVE" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Coordinated Direct Investment Survey (CDIS) - Archive</Name>
+        </KeyFamily>
+        <KeyFamily id="ICSD" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Investment and Capital Stock (ICSD)</Name>
+        </KeyFamily>
+        <KeyFamily id="HPDD" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Historical Public Debt (HPDD)</Name>
+        </KeyFamily>
+        <KeyFamily id="COFR" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Coverage of Fiscal Reporting (COFR)</Name>
+        </KeyFamily>
+        <KeyFamily id="CPI" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Consumer Price Index (CPI)</Name>
+        </KeyFamily>
+        <KeyFamily id="IRFCL" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">International Reserves and Foreign Currency Liquidity (IRFCL)</Name>
+        </KeyFamily>
+        <KeyFamily id="COFER" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Currency Composition of Official Foreign Exchange Reserves (COFER)</Name>
+        </KeyFamily>
+        <KeyFamily id="FM201510" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Fiscal Monitor (FM) October 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="RAFIT2AGG" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">RA-FIT Round 2 Aggregates</Name>
+            <Description xml:lang="en">Summary Statistics</Description>
+        </KeyFamily>
+        <KeyFamily id="MCDREO201510" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">MCD Regional Economic Outlook (MCDREO) October 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="WHDREO201510" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Western Hemisphere Regional Economic Outlook (WHDREO) October 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="APDREO201510" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Asia and Pacific Regional Economic Outlook (APDREO) October 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="AFRREO201510" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Sub-Saharan Africa Regional Economic Outlook (AFRREO) October 2015</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSYR2014" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2014), Revenue</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSYSSUC2014" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2014), Statement of Sources and Uses of Cash</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSYCOFOG2014" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2014), Expenditure by Function of Government (COFOG)</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSYIBS2014" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2014), Integrated Balance Sheet (Stock Positions and Flows in Assets and Liabilities)</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSYMAB2014" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2014), Main Aggregates and Balances</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSYFALCS2014" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2014), Financial Assets and Liabilities by Counterpart Sector</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSYE2014" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2014), Expense</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSIBS2015" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2015), Integrated Balance Sheet (Stock Positions and Flows in Assets and Liabilities)</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSR2015" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2015), Revenue</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSFALCS2015" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2015), Financial Assets and Liabilities by Counterpart Sector</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSSSUC2015" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2015), Statement of Sources and Uses of Cash</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSMAB2015" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2015), Main Aggregates and Balances</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSCOFOG2015" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2015), Expenditure by Function of Government (COFOG)</Name>
+        </KeyFamily>
+        <KeyFamily id="GFSE2015" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Government Finance Statistics Yearbook (GFSY 2015), Expense</Name>
+        </KeyFamily>
+        <KeyFamily id="BOPSDMXUSD" agencyID="IMF" version="1.0" isFinal="true" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+            <Name xml:lang="en">Balance of Payments (BOP), Global SDMX (US Dollars)</Name>
+        </KeyFamily>
+    </KeyFamilies>
+</Structure>

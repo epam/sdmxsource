@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DSD for Demography Domain (XDIS/SDMX Phase-3) for the 2008 transmission -->
+<Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common"
+    xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://katharma.agilis-sa.gr/SDMXML/SDMXMessage.xsd">
+    <Header>
+        <ID>DEMOGRAPHY_RAPID_V21</ID>
+        <Test>false</Test>
+        <Name xml:lang="en">Demography Rapid Questionnaire DSD</Name>
+        <Prepared>2008-05-14T12:00:00+02:00</Prepared>
+        <Sender id="ESTAT">
+            <Name xml:lang="en">Statistical Office of the European Communities</Name>
+        </Sender>
+    </Header>
+    <CodeLists>
+        <structure:CodeList id="CL_DEMO" agencyID="ESTAT" version="1.0" isFinal="true">
+            <structure:Name xml:lang="en">Demography code list</structure:Name>
+            <structure:Code value="PJANT">
+                <structure:Description xml:lang="en">Population on 1 January of Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="LBIRTHST">
+                <structure:Description xml:lang="en">Births in Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="DEATHST">
+                <structure:Description xml:lang="en">Deaths in Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="ADJT">
+                <structure:Description xml:lang="en">Statistical adjustment in Year X</structure:Description>
+                <structure:Annotations>
+                    <common:Annotation>
+                        <common:AnnotationType>ShortDescription</common:AnnotationType>
+                        <common:AnnotationText>All changes in the population size that cannot be classified as births, deaths, immigration or emigration. This includes late notifications of demographic events, which the country decides not to add to the pertinent component. In some countries, the statistical adjustments might be incorporated in the net migration.</common:AnnotationText>
+                    </common:Annotation>
+                </structure:Annotations>
+            </structure:Code>
+            <structure:Code value="PJAN1T">
+                <structure:Description xml:lang="en">Population on 1 January Year X+1</structure:Description>
+            </structure:Code>
+            <structure:Code value="LBIRTHOUT">
+                <structure:Description xml:lang="en">Births outside marriage in Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="DEATHUN1">
+                <structure:Description xml:lang="en">Deaths under 1 year in Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="MAR">
+                <structure:Description xml:lang="en">Marriages in Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="DIV">
+                <structure:Description xml:lang="en">Divorces in Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="IMMIT">
+                <structure:Description xml:lang="en">Immigrants in Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="EMIGT">
+                <structure:Description xml:lang="en">Emigrants in Year X</structure:Description>
+            </structure:Code>
+            <structure:Code value="NETMT">
+                <structure:Description xml:lang="en">Net migration in Year X</structure:Description>
+                <structure:Annotations>
+                    <common:Annotation>
+                        <common:AnnotationType>ShortDescription</common:AnnotationType>
+                        <common:AnnotationText>The difference between the number of immigrants and the number of emigrants. Since most countries either do not have accurate figures on immigration and emigration or have no figures at all, net migration is estimated on the basis of the difference between population change and natural increase between the two dates concerned. The statistics on net migration are therefore affected by all the statistical inaccuracies in the two components of this equation, especially population change (that includes notably corrections due to population censuses, register counts, etc. which cannot be classified as births, deaths or migrations). Note that changes to national systems and methodologies for population statistics may result in unusually high or low numbers in one or more years.</common:AnnotationText>
+                    </common:Annotation>
+                </structure:Annotations>
+            </structure:Code>
+            <structure:Code value="TFRNSI">
+                <structure:Description xml:lang="en">Total fertility rate in Year X</structure:Description>
+                <structure:Annotations>
+                    <common:Annotation>
+                        <common:AnnotationType>ShortDescription</common:AnnotationType>
+                        <common:AnnotationText>The average number of children that would be born alive to a woman during her lifetime if current age specific fertility rates were to continue.</common:AnnotationText>
+                    </common:Annotation>
+                </structure:Annotations>
+            </structure:Code>
+            <structure:Code value="LEXPNSIT">
+                <structure:Description xml:lang="en">Life expectancy at birth in Year X</structure:Description>
+                <structure:Annotations>
+                    <common:Annotation>
+                        <common:AnnotationType>ShortDescription</common:AnnotationType>
+                        <common:AnnotationText>The average number of years a person would live if current age specific mortality rates were to continue.</common:AnnotationText>
+                    </common:Annotation>
+                </structure:Annotations>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_OBS_STATUS" agencyID="ESTAT" version="1.0" isFinal="true">
+            <structure:Name xml:lang="en">Observation status code list</structure:Name>
+            <structure:Code value="P">
+                <structure:Description xml:lang="en">Provisional</structure:Description>
+                <structure:Annotations>
+                    <common:Annotation>
+                        <common:AnnotationType>ShortDescription</common:AnnotationType>
+                        <common:AnnotationText>Estimates are considered provisional when one or more of the following conditions are met: they are based on data from a different source; they are calculated by a method different from the one usually applied; they are calculated from a smaller set of data, which does not include all the reporting units; the expected final value might be more than 5% higher or lower. However, even if not provisional, figures might always be subject to further revision and therefore should not be regarded as definitive but only as giving a good measure at a given moment.</common:AnnotationText>
+                    </common:Annotation>
+                </structure:Annotations>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_COUNTRY" agencyID="ESTAT" version="1.1" isFinal="true">
+            <!-- Since version '1.1' (referenced by 'DEMOGRAPHY' DSD version '2.1') 9 new country codes (DZ, EG, IL, JO, LB, MA, PS, SY, TN) have been added. -->
+            <structure:Name xml:lang="en">Country Codelist</structure:Name>
+            <structure:Code value="AD">
+                <structure:Description xml:lang="en">Andorra</structure:Description>
+            </structure:Code>
+            <structure:Code value="AL">
+                <structure:Description xml:lang="en">Albania</structure:Description>
+            </structure:Code>
+            <structure:Code value="AM">
+                <structure:Description xml:lang="en">Armenia</structure:Description>
+            </structure:Code>
+            <structure:Code value="AT">
+                <structure:Description xml:lang="en">Austria</structure:Description>
+            </structure:Code>
+            <structure:Code value="AZ">
+                <structure:Description xml:lang="en">Azerbaijan</structure:Description>
+            </structure:Code>
+            <structure:Code value="BA">
+                <structure:Description xml:lang="en">Bosnia and Herzegovina</structure:Description>
+            </structure:Code>
+            <structure:Code value="BE">
+                <structure:Description xml:lang="en">Belgium</structure:Description>
+            </structure:Code>
+            <structure:Code value="BG">
+                <structure:Description xml:lang="en">Bulgaria</structure:Description>
+            </structure:Code>
+            <structure:Code value="CY">
+                <structure:Description xml:lang="en">Cyprus</structure:Description>
+            </structure:Code>
+            <structure:Code value="CZ">
+                <structure:Description xml:lang="en">Czech Republic</structure:Description>
+            </structure:Code>
+            <structure:Code value="DE">
+                <structure:Description xml:lang="en">Germany</structure:Description>
+            </structure:Code>
+            <structure:Code value="DK">
+                <structure:Description xml:lang="en">Denmark</structure:Description>
+            </structure:Code>
+            <structure:Code value="DZ">
+                <structure:Description xml:lang="en">Algeria</structure:Description>
+            </structure:Code>
+            <structure:Code value="EE">
+                <structure:Description xml:lang="en">Estonia</structure:Description>
+            </structure:Code>
+            <structure:Code value="EG">
+                <structure:Description xml:lang="en">Egypt</structure:Description>
+            </structure:Code>
+            <structure:Code value="EL">
+                <structure:Description xml:lang="en">Greece</structure:Description>
+            </structure:Code>
+            <structure:Code value="ES">
+                <structure:Description xml:lang="en">Spain</structure:Description>
+            </structure:Code>
+            <structure:Code value="FI">
+                <structure:Description xml:lang="en">Finland</structure:Description>
+            </structure:Code>
+            <structure:Code value="FR">
+                <structure:Description xml:lang="en">France</structure:Description>
+            </structure:Code>
+            <structure:Code value="GE">
+                <structure:Description xml:lang="en">Georgia</structure:Description>
+            </structure:Code>
+            <structure:Code value="HR">
+                <structure:Description xml:lang="en">Croatia</structure:Description>
+            </structure:Code>
+            <structure:Code value="HU">
+                <structure:Description xml:lang="en">Hungary</structure:Description>
+            </structure:Code>
+            <structure:Code value="IE">
+                <structure:Description xml:lang="en">Ireland</structure:Description>
+            </structure:Code>
+            <structure:Code value="IL">
+                <structure:Description xml:lang="en">Israel</structure:Description>
+            </structure:Code>
+            <structure:Code value="IS">
+                <structure:Description xml:lang="en">Iceland</structure:Description>
+            </structure:Code>
+            <structure:Code value="IT">
+                <structure:Description xml:lang="en">Italy</structure:Description>
+            </structure:Code>
+            <structure:Code value="JO">
+                <structure:Description xml:lang="en">Jordan</structure:Description>
+            </structure:Code>
+            <structure:Code value="LB">
+                <structure:Description xml:lang="en">Lebanon</structure:Description>
+            </structure:Code>
+            <structure:Code value="LI">
+                <structure:Description xml:lang="en">Liechtenstein</structure:Description>
+            </structure:Code>
+            <structure:Code value="LT">
+                <structure:Description xml:lang="en">Lithuania</structure:Description>
+            </structure:Code>
+            <structure:Code value="LU">
+                <structure:Description xml:lang="en">Luxembourg</structure:Description>
+            </structure:Code>
+            <structure:Code value="LV">
+                <structure:Description xml:lang="en">Latvia</structure:Description>
+            </structure:Code>
+            <structure:Code value="MA">
+                <structure:Description xml:lang="en">Morocco</structure:Description>
+            </structure:Code>
+            <structure:Code value="MD">
+                <structure:Description xml:lang="en">Moldova</structure:Description>
+            </structure:Code>
+            <structure:Code value="ME">
+                <structure:Description xml:lang="en">Montenegro</structure:Description>
+            </structure:Code>
+            <structure:Code value="MK">
+                <structure:Description xml:lang="en">The former Yugoslav Republic of Macedonia</structure:Description>
+            </structure:Code>
+            <structure:Code value="MT">
+                <structure:Description xml:lang="en">Malta</structure:Description>
+            </structure:Code>
+            <structure:Code value="NL">
+                <structure:Description xml:lang="en">The Netherlands</structure:Description>
+            </structure:Code>
+            <structure:Code value="NO">
+                <structure:Description xml:lang="en">Norway</structure:Description>
+            </structure:Code>
+            <structure:Code value="PL">
+                <structure:Description xml:lang="en">Poland</structure:Description>
+            </structure:Code>
+            <structure:Code value="PS">
+                <structure:Description xml:lang="en">Occupied Palestinian Territory</structure:Description>
+            </structure:Code>
+            <structure:Code value="PT">
+                <structure:Description xml:lang="en">Portugal</structure:Description>
+            </structure:Code>
+            <structure:Code value="RO">
+                <structure:Description xml:lang="en">Romania</structure:Description>
+            </structure:Code>
+            <structure:Code value="RS">
+                <structure:Description xml:lang="en">Serbia</structure:Description>
+            </structure:Code>
+            <structure:Code value="RU">
+                <structure:Description xml:lang="en">Russian Federation</structure:Description>
+            </structure:Code>
+            <structure:Code value="SE">
+                <structure:Description xml:lang="en">Sweden</structure:Description>
+            </structure:Code>
+            <structure:Code value="SI">
+                <structure:Description xml:lang="en">Slovenia</structure:Description>
+            </structure:Code>
+            <structure:Code value="SK">
+                <structure:Description xml:lang="en">Slovak Republic</structure:Description>
+            </structure:Code>
+            <structure:Code value="SM">
+                <structure:Description xml:lang="en">San Marino</structure:Description>
+            </structure:Code>
+            <structure:Code value="SY">
+                <structure:Description xml:lang="en">Syria</structure:Description>
+            </structure:Code>
+            <structure:Code value="TN">
+                <structure:Description xml:lang="en">Tunisia</structure:Description>
+            </structure:Code>
+            <structure:Code value="TR">
+                <structure:Description xml:lang="en">Turkey</structure:Description>
+            </structure:Code>
+            <structure:Code value="UA">
+                <structure:Description xml:lang="en">Ukraine</structure:Description>
+            </structure:Code>
+            <structure:Code value="UK">
+                <structure:Description xml:lang="en">United Kingdom</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_UNIT" agencyID="ESTAT" version="1.0" isFinal="true">
+            <structure:Name xml:lang="en">Unit code list</structure:Name>
+            <structure:Code value="ARS">
+                <structure:Description xml:lang="en">Argentine peso</structure:Description>
+            </structure:Code>
+            <structure:Code value="ATS">
+                <structure:Description xml:lang="en">Austrian Schilling</structure:Description>
+            </structure:Code>
+            <structure:Code value="AUD">
+                <structure:Description xml:lang="en">Australian Dollar</structure:Description>
+            </structure:Code>
+            <structure:Code value="BEF">
+                <structure:Description xml:lang="en">Belgian Franc</structure:Description>
+            </structure:Code>
+            <structure:Code value="BEL">
+                <structure:Description xml:lang="en">Belgian Franc (Financial)</structure:Description>
+            </structure:Code>
+            <structure:Code value="BGN">
+                <structure:Description xml:lang="en">Bulgarian Lev</structure:Description>
+            </structure:Code>
+            <structure:Code value="BRL">
+                <structure:Description xml:lang="en">Brazilian real</structure:Description>
+            </structure:Code>
+            <structure:Code value="CAD">
+                <structure:Description xml:lang="en">Canadian Dollar</structure:Description>
+            </structure:Code>
+            <structure:Code value="CHF">
+                <structure:Description xml:lang="en">Swiss Franc</structure:Description>
+            </structure:Code>
+            <structure:Code value="CNY">
+                <structure:Description xml:lang="en">Chinese Yuan Renminbi</structure:Description>
+            </structure:Code>
+            <structure:Code value="CYP">
+                <structure:Description xml:lang="en">Cypriot Pound</structure:Description>
+            </structure:Code>
+            <structure:Code value="CZK">
+                <structure:Description xml:lang="en">Czech Koruna</structure:Description>
+            </structure:Code>
+            <structure:Code value="DAYS">
+                <structure:Description xml:lang="en">Days</structure:Description>
+            </structure:Code>
+            <structure:Code value="DEM">
+                <structure:Description xml:lang="en">German Mark</structure:Description>
+            </structure:Code>
+            <structure:Code value="DKK">
+                <structure:Description xml:lang="en">Danish Krone</structure:Description>
+            </structure:Code>
+            <structure:Code value="DZD">
+                <structure:Description xml:lang="en">Algerian dinar</structure:Description>
+            </structure:Code>
+            <structure:Code value="EEK">
+                <structure:Description xml:lang="en">Estonian Kroon</structure:Description>
+            </structure:Code>
+            <structure:Code value="ESP">
+                <structure:Description xml:lang="en">Spanish Peseta</structure:Description>
+            </structure:Code>
+            <structure:Code value="EUR">
+                <structure:Description xml:lang="en">Euro</structure:Description>
+            </structure:Code>
+            <structure:Code value="FIM">
+                <structure:Description xml:lang="en">Finnish Markka</structure:Description>
+            </structure:Code>
+            <structure:Code value="FRF">
+                <structure:Description xml:lang="en">French Franc</structure:Description>
+            </structure:Code>
+            <structure:Code value="GBP">
+                <structure:Description xml:lang="en">UK Pound Sterling</structure:Description>
+            </structure:Code>
+            <structure:Code value="GRD">
+                <structure:Description xml:lang="en">Greek Drachma</structure:Description>
+            </structure:Code>
+            <structure:Code value="HKD">
+                <structure:Description xml:lang="en">Hong Kong Dollar</structure:Description>
+            </structure:Code>
+            <structure:Code value="HOURS">
+                <structure:Description xml:lang="en">Hours</structure:Description>
+            </structure:Code>
+            <structure:Code value="HRK">
+                <structure:Description xml:lang="en">Kroatian kuna</structure:Description>
+            </structure:Code>
+            <structure:Code value="HUF">
+                <structure:Description xml:lang="en">Hungarian Forint</structure:Description>
+            </structure:Code>
+            <structure:Code value="IDR">
+                <structure:Description xml:lang="en">Indonesian rupiah</structure:Description>
+            </structure:Code>
+            <structure:Code value="IEP">
+                <structure:Description xml:lang="en">Irish Pound</structure:Description>
+            </structure:Code>
+            <structure:Code value="ILS">
+                <structure:Description xml:lang="en">Israeli shekel</structure:Description>
+            </structure:Code>
+            <structure:Code value="INR">
+                <structure:Description xml:lang="en">Indian Rupee</structure:Description>
+            </structure:Code>
+            <structure:Code value="ISK">
+                <structure:Description xml:lang="en">Iceland Krona</structure:Description>
+            </structure:Code>
+            <structure:Code value="ITL">
+                <structure:Description xml:lang="en">Italian Lira</structure:Description>
+            </structure:Code>
+            <structure:Code value="JPY">
+                <structure:Description xml:lang="en">Japanese Yen</structure:Description>
+            </structure:Code>
+            <structure:Code value="KILO">
+                <structure:Description xml:lang="en">Kilograms</structure:Description>
+            </structure:Code>
+            <structure:Code value="KLITRE">
+                <structure:Description xml:lang="en">Kilolitres</structure:Description>
+            </structure:Code>
+            <structure:Code value="KRW">
+                <structure:Description xml:lang="en">Korean Won (Republic)</structure:Description>
+            </structure:Code>
+            <structure:Code value="LITRES">
+                <structure:Description xml:lang="en">Litres</structure:Description>
+            </structure:Code>
+            <structure:Code value="LKR">
+                <structure:Description xml:lang="en">Sri Lanka Rupee</structure:Description>
+            </structure:Code>
+            <structure:Code value="LTL">
+                <structure:Description xml:lang="en">Lithuanian Litas</structure:Description>
+            </structure:Code>
+            <structure:Code value="LUF">
+                <structure:Description xml:lang="en">Luxembourg Franc</structure:Description>
+            </structure:Code>
+            <structure:Code value="LVL">
+                <structure:Description xml:lang="en">Latvian Lats</structure:Description>
+            </structure:Code>
+            <structure:Code value="MAD">
+                <structure:Description xml:lang="en">Moroccan dirham</structure:Description>
+            </structure:Code>
+            <structure:Code value="MAN-DY">
+                <structure:Description xml:lang="en">Man Days</structure:Description>
+            </structure:Code>
+            <structure:Code value="MAN-YR">
+                <structure:Description xml:lang="en">Man Years</structure:Description>
+            </structure:Code>
+            <structure:Code value="MONTHS">
+                <structure:Description xml:lang="en">Months</structure:Description>
+            </structure:Code>
+            <structure:Code value="MTL">
+                <structure:Description xml:lang="en">Maltese Lira</structure:Description>
+            </structure:Code>
+            <structure:Code value="MXN">
+                <structure:Description xml:lang="en">Mexican Peso</structure:Description>
+            </structure:Code>
+            <structure:Code value="MXP">
+                <structure:Description xml:lang="en">Mexican Peso</structure:Description>
+            </structure:Code>
+            <structure:Code value="MYR">
+                <structure:Description xml:lang="en">Malaysian Ringgit</structure:Description>
+            </structure:Code>
+            <structure:Code value="NATCUR">
+                <structure:Description xml:lang="en">National Currency</structure:Description>
+            </structure:Code>
+            <structure:Code value="NLG">
+                <structure:Description xml:lang="en">Netherlands Guilder</structure:Description>
+            </structure:Code>
+            <structure:Code value="NOK">
+                <structure:Description xml:lang="en">Nowegian Krone</structure:Description>
+            </structure:Code>
+            <structure:Code value="NZD">
+                <structure:Description xml:lang="en">New Zealand Dollar</structure:Description>
+            </structure:Code>
+            <structure:Code value="OUNCES">
+                <structure:Description xml:lang="en">Ounces</structure:Description>
+            </structure:Code>
+            <structure:Code value="PC">
+                <structure:Description xml:lang="en">Percent</structure:Description>
+            </structure:Code>
+            <structure:Code value="PCPA">
+                <structure:Description xml:lang="en">Percent per annum</structure:Description>
+            </structure:Code>
+            <structure:Code value="PERS">
+                <structure:Description xml:lang="en">Persons</structure:Description>
+            </structure:Code>
+            <structure:Code value="PHP">
+                <structure:Description xml:lang="en">Philippine peso</structure:Description>
+            </structure:Code>
+            <structure:Code value="PLN">
+                <structure:Description xml:lang="en">Polish (new) Zloty</structure:Description>
+            </structure:Code>
+            <structure:Code value="PM">
+                <structure:Description xml:lang="en">Per thousand</structure:Description>
+            </structure:Code>
+            <structure:Code value="POINTS">
+                <structure:Description xml:lang="en">Points</structure:Description>
+            </structure:Code>
+            <structure:Code value="PTE">
+                <structure:Description xml:lang="en">Portugese Escudo</structure:Description>
+            </structure:Code>
+            <structure:Code value="PURE_NUMB">
+                <structure:Description xml:lang="en">dimensionless value other than PC, PCPA and POINTS</structure:Description>
+            </structure:Code>
+            <structure:Code value="ROL">
+                <structure:Description xml:lang="en">Romanian Leu</structure:Description>
+            </structure:Code>
+            <structure:Code value="RUB">
+                <structure:Description xml:lang="en">Rouble (new)</structure:Description>
+            </structure:Code>
+            <structure:Code value="SAR">
+                <structure:Description xml:lang="en">Saudi Riyal</structure:Description>
+            </structure:Code>
+            <structure:Code value="SEK">
+                <structure:Description xml:lang="en">Swedish Krona</structure:Description>
+            </structure:Code>
+            <structure:Code value="SGD">
+                <structure:Description xml:lang="en">Singapore Dollar</structure:Description>
+            </structure:Code>
+            <structure:Code value="SIT">
+                <structure:Description xml:lang="en">Slovenian Tolar</structure:Description>
+            </structure:Code>
+            <structure:Code value="SKK">
+                <structure:Description xml:lang="en">Slovak Koruna</structure:Description>
+            </structure:Code>
+            <structure:Code value="SQ_M">
+                <structure:Description xml:lang="en">Square Metres</structure:Description>
+            </structure:Code>
+            <structure:Code value="THB">
+                <structure:Description xml:lang="en">Thai Bhat</structure:Description>
+            </structure:Code>
+            <structure:Code value="TONNES">
+                <structure:Description xml:lang="en">Tonnes</structure:Description>
+            </structure:Code>
+            <structure:Code value="TRL">
+                <structure:Description xml:lang="en">Turkish Lira</structure:Description>
+            </structure:Code>
+            <structure:Code value="TRY">
+                <structure:Description xml:lang="en">Turkish lira (new)</structure:Description>
+            </structure:Code>
+            <structure:Code value="TWD">
+                <structure:Description xml:lang="en">New Taiwan Dollar</structure:Description>
+            </structure:Code>
+            <structure:Code value="UNITS">
+                <structure:Description xml:lang="en">Unit described in title</structure:Description>
+            </structure:Code>
+            <structure:Code value="USD">
+                <structure:Description xml:lang="en">US Dollar</structure:Description>
+            </structure:Code>
+            <structure:Code value="XDR">
+                <structure:Description xml:lang="en">Special Drawing Rights (S.D.R.)</structure:Description>
+            </structure:Code>
+            <structure:Code value="XEU">
+                <structure:Description xml:lang="en">European Currency Unit (E.C.U.)</structure:Description>
+            </structure:Code>
+            <structure:Code value="ZAR">
+                <structure:Description xml:lang="en">South African Rand</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_DECI" agencyID="ESTAT" version="1.0" isFinal="true">
+            <structure:Name xml:lang="en">Decimals codelist</structure:Name>
+            <structure:Code value="0">
+                <structure:Description xml:lang="en">Zero</structure:Description>
+            </structure:Code>
+            <structure:Code value="1">
+                <structure:Description xml:lang="en">One</structure:Description>
+            </structure:Code>
+            <structure:Code value="2">
+                <structure:Description xml:lang="en">Two</structure:Description>
+            </structure:Code>
+            <structure:Code value="3">
+                <structure:Description xml:lang="en">Three</structure:Description>
+            </structure:Code>
+            <structure:Code value="4">
+                <structure:Description xml:lang="en">Four</structure:Description>
+            </structure:Code>
+            <structure:Code value="5">
+                <structure:Description xml:lang="en">Five</structure:Description>
+            </structure:Code>
+            <structure:Code value="6">
+                <structure:Description xml:lang="en">Six</structure:Description>
+            </structure:Code>
+            <structure:Code value="7">
+                <structure:Description xml:lang="en">Seven</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_FREQ" agencyID="ESTAT" version="1.0" isFinal="true">
+            <structure:Name xml:lang="en">Frequency codelist</structure:Name>
+            <structure:Code value="A">
+                <structure:Description xml:lang="en">Annual</structure:Description>
+            </structure:Code>
+            <structure:Code value="M">
+                <structure:Description xml:lang="en">Monthly</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_SEX" agencyID="ESTAT" version="1.0" isFinal="true">
+            <structure:Name xml:lang="en">Sex codelist</structure:Name>
+            <structure:Code value="F">
+                <structure:Description xml:lang="en">Female</structure:Description>
+            </structure:Code>
+            <structure:Code value="M">
+                <structure:Description xml:lang="en">Male</structure:Description>
+            </structure:Code>
+            <structure:Code value="T">
+                <structure:Description xml:lang="en">Total</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_UNIT_MULT" agencyID="ESTAT" version="1.0" isFinal="true">
+            <structure:Name xml:lang="en">Unit multiplier code list</structure:Name>
+            <structure:Code value="0">
+                <structure:Description xml:lang="en">Units</structure:Description>
+            </structure:Code>
+            <structure:Code value="1">
+                <structure:Description xml:lang="en">Tens</structure:Description>
+            </structure:Code>
+            <structure:Code value="2">
+                <structure:Description xml:lang="en">Hundreds</structure:Description>
+            </structure:Code>
+            <structure:Code value="3">
+                <structure:Description xml:lang="en">Thousands</structure:Description>
+            </structure:Code>
+            <structure:Code value="4">
+                <structure:Description xml:lang="en">Tens of thousands</structure:Description>
+            </structure:Code>
+            <structure:Code value="6">
+                <structure:Description xml:lang="en">Millions</structure:Description>
+            </structure:Code>
+            <structure:Code value="9">
+                <structure:Description xml:lang="en">Billions</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_TIME_FORMAT" agencyID="ESTAT" version="1.0" isFinal="true">
+            <structure:Name xml:lang="en">Time Format</structure:Name>
+            <structure:Code value="P1Y">
+                <structure:Description xml:lang="en">Annual</structure:Description>
+            </structure:Code>
+            <structure:Code value="P6M">
+                <structure:Description xml:lang="en">Semi-Annual</structure:Description>
+            </structure:Code>
+            <structure:Code value="P3M">
+                <structure:Description xml:lang="en">Quarterly</structure:Description>
+            </structure:Code>
+            <structure:Code value="P1M">
+                <structure:Description xml:lang="en">Monthly</structure:Description>
+            </structure:Code>
+            <structure:Code value="P7D">
+                <structure:Description xml:lang="en">Weekly</structure:Description>
+            </structure:Code>
+            <structure:Code value="P1D">
+                <structure:Description xml:lang="en">Daily</structure:Description>
+            </structure:Code>
+            <structure:Code value="PT1M">
+                <structure:Description xml:lang="en">Minutely</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+    </CodeLists>
+    <Concepts>
+        <structure:ConceptScheme id="DEMO_CONCEPTS" agencyID="ESTAT" version="2.0" isFinal="true">
+            <structure:Name xml:lang="en">Demography domain concept scheme</structure:Name>
+            <structure:Concept id="FREQ">
+                <structure:Name xml:lang="en">Frequency</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="COUNTRY">
+                <structure:Name xml:lang="en">Reporting Country</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="SEX">
+                <structure:Name xml:lang="en">Sex</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="DEMO">
+                <structure:Name xml:lang="en">Demography</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="TIME_FORMAT">
+                <structure:Name xml:lang="en">Time format code</structure:Name>
+            </structure:Concept>
+            <!-- Since version 2.0 of the CodeList, 'REF_PERIOD' has been replaced by 'TIME' (see comment in DSD: ESTAT+DEMOGRAPHY+2.0 below) -->
+            <structure:Concept id="TIME">
+                <structure:Name xml:lang="en">Time period or range</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="OBS_VALUE">
+                <structure:Name xml:lang="en">Observation Value</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="OBS_STATUS">
+                <structure:Name xml:lang="en">Observation Status</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="UNIT">
+                <structure:Name xml:lang="en">Base Unit measure</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="UNIT_MULT">
+                <structure:Name xml:lang="en">Unit Multiplier</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="DECI">
+                <structure:Name xml:lang="en">Decimals</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="TAB_NUM">
+                <structure:Name xml:lang="en">Table Number</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="REV_NUM">
+                <structure:Name xml:lang="en">Revision Number</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="PJANT">
+                <structure:Name xml:lang="en">Population on 1 January of Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="LBIRTHST">
+                <structure:Name xml:lang="en">Births in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="DEATHST">
+                <structure:Name xml:lang="en">Deaths in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="ADJT">
+                <structure:Name xml:lang="en">Statistical adjustment in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="PJAN1T">
+                <structure:Name xml:lang="en">Population on 1 January Year X+1</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="LBIRTHOUT">
+                <structure:Name xml:lang="en">Births outside marriage in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="DEATHUN1">
+                <structure:Name xml:lang="en">Deaths under 1 year in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="MAR">
+                <structure:Name xml:lang="en">Marriages in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="DIV">
+                <structure:Name xml:lang="en">Divorces in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="IMMIT">
+                <structure:Name xml:lang="en">Immigrants in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="EMIGT">
+                <structure:Name xml:lang="en">Emigrants in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="NETMT">
+                <structure:Name xml:lang="en">Net migration in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="TFRNSI">
+                <structure:Name xml:lang="en">Total fertility rate in Year X</structure:Name>
+            </structure:Concept>
+            <structure:Concept id="LEXPNSIT">
+                <structure:Name xml:lang="en">Life expectancy at birth in Year X</structure:Name>
+            </structure:Concept>
+        </structure:ConceptScheme>
+    </Concepts>
+    <KeyFamilies>
+        <structure:KeyFamily id="DEMOGRAPHY" agencyID="ESTAT" version="2.1" isFinal="true" validFrom="2008-05-14" urn="urn:estat:sdmx.infomodel.keyfamily.KeyFamily=ESTAT:DEMOGRAPHY:2.1">
+            <structure:Name xml:lang="en">Demography Rapid Questionnaire Data Structure Definition</structure:Name>
+            <structure:Components>
+                <structure:Dimension conceptRef="FREQ" codelist="CL_FREQ" codelistAgency="ESTAT" codelistVersion="1.0"
+                    conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0" crossSectionalAttachGroup="true"
+                    isFrequencyDimension="true"/>
+                <structure:Dimension conceptRef="COUNTRY" codelist="CL_COUNTRY" codelistAgency="ESTAT" codelistVersion="1.1"
+                    conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0" crossSectionalAttachGroup="true"
+                    isEntityDimension="true"/>
+                <structure:Dimension conceptRef="SEX" codelist="CL_SEX" codelistAgency="ESTAT" codelistVersion="1.0" conceptSchemeRef="DEMO_CONCEPTS"
+                    conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0" crossSectionalAttachObservation="true"/>
+                <structure:Dimension conceptRef="DEMO" codelist="CL_DEMO" codelistAgency="ESTAT" codelistVersion="1.0"
+                    conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0" isMeasureDimension="true"/>
+                <!-- The concept for the Time Dimension has changed from REF_PERIOD to TIME since version 2.0 of the DSD. This is according to the SDMX COG.
+                The Text Format of type 'Year' has been added since version 2.0 -->
+                <structure:TimeDimension conceptRef="TIME" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0"
+                    crossSectionalAttachGroup="true">
+                    <structure:TextFormat textType="Year"/>
+                </structure:TimeDimension>
+                <structure:PrimaryMeasure conceptRef="OBS_VALUE" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0">
+                    <structure:TextFormat textType="Double"/>
+                </structure:PrimaryMeasure>
+                <structure:CrossSectionalMeasure conceptRef="PJANT" code="PJANT" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="LBIRTHST" code="LBIRTHST" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="DEATHST" code="DEATHST" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="ADJT" code="ADJT" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="PJAN1T" code="PJAN1T" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="LBIRTHOUT" code="LBIRTHOUT" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="DEATHUN1" code="DEATHUN1" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="MAR" code="MAR" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="DIV" code="DIV" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="IMMIT" code="IMMIT" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="EMIGT" code="EMIGT" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="NETMT" code="NETMT" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="TFRNSI" code="TFRNSI" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <structure:CrossSectionalMeasure conceptRef="LEXPNSIT" code="LEXPNSIT" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" measureDimension="DEMO"/>
+                <!-- Since v2.0 the 'TAB_NUM' attribute has a TextFormat with a corresponding pattern. The allowable country codes are those included in CL_COUNTRY -->
+                <structure:Attribute conceptRef="TAB_NUM" assignmentStatus="Mandatory" attachmentLevel="DataSet" conceptSchemeRef="DEMO_CONCEPTS"
+                    conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0" crossSectionalAttachDataSet="true">
+                    <structure:TextFormat textType="String"
+                        pattern="RQ(AL|AD|AM|AT|AZ|BE|BA|BG|HR|CY|CZ|DK|DZ|EE|EG|FI|FR|GE|DE|EL|HU|IS|IE|IL|IT|JO|LB|LV|LI|LI|LT|LU|MA|ME|MT|MD|NO|PL|PS|PT|RO|RS|RU|SM|SK|SI|ES|SE|SY|MK|NL|TN|TR|UA|UK)[0-9][0-9]V[1-9]"
+                    />
+                </structure:Attribute>
+                <structure:Attribute conceptRef="REV_NUM" assignmentStatus="Mandatory" attachmentLevel="DataSet" conceptSchemeRef="DEMO_CONCEPTS"
+                    conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0" crossSectionalAttachDataSet="true">
+                    <structure:TextFormat startValue="1" endValue="9" isSequence="true" interval="1" textType="Integer"/>
+                </structure:Attribute>
+                <structure:Attribute conceptRef="UNIT_MULT" codelist="CL_UNIT_MULT" codelistAgency="ESTAT" codelistVersion="1.0"
+                    assignmentStatus="Mandatory" attachmentLevel="Series" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" crossSectionalAttachSection="true"/>
+                <structure:Attribute conceptRef="DECI" codelist="CL_DECI" codelistAgency="ESTAT" codelistVersion="1.0" assignmentStatus="Mandatory"
+                    attachmentLevel="Series" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0"
+                    crossSectionalAttachSection="true"/>
+                <structure:Attribute conceptRef="TIME_FORMAT" codelist="CL_TIME_FORMAT" codelistAgency="ESTAT" codelistVersion="1.0"
+                    assignmentStatus="Mandatory" attachmentLevel="Series" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" crossSectionalAttachGroup="true" isTimeFormat="true"/>
+                <structure:Attribute conceptRef="UNIT" codelist="CL_UNIT" codelistAgency="ESTAT" codelistVersion="1.0" assignmentStatus="Mandatory"
+                    attachmentLevel="Series" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT" conceptSchemeVersion="2.0"
+                    crossSectionalAttachSection="true"/>
+                <structure:Attribute conceptRef="OBS_STATUS" codelist="CL_OBS_STATUS" codelistAgency="ESTAT" codelistVersion="1.0"
+                    assignmentStatus="Conditional" attachmentLevel="Observation" conceptSchemeRef="DEMO_CONCEPTS" conceptSchemeAgency="ESTAT"
+                    conceptSchemeVersion="2.0" crossSectionalAttachObservation="true">
+                    <structure:AttachmentMeasure>PJANT</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>LBIRTHST</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>DEATHST</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>ADJT</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>PJAN1T</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>LBIRTHOUT</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>DEATHUN1</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>MAR</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>DIV</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>IMMIT</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>EMIGT</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>NETMT</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>TFRNSI</structure:AttachmentMeasure>
+                    <structure:AttachmentMeasure>LEXPNSIT</structure:AttachmentMeasure>
+                </structure:Attribute>
+            </structure:Components>
+        </structure:KeyFamily>
+    </KeyFamilies>
+</Structure>

@@ -1,0 +1,183 @@
+/*******************************************************************************
+ * Copyright (c) 2013 Metadata Technology Ltd.
+ *
+ * All rights reserved. This program and the accompanying materials are made 
+ * available under the terms of the GNU Lesser General Public License v 3.0 
+ * which accompanies this distribution, and is available at
+ * http://www.gnu.org/licenses/lgpl.html
+ *
+ * This file is part of the SDMX Component Library.
+ *
+ * The SDMX Component Library is free software: you can redistribute it and/or 
+ * modify it under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ *
+ * The SDMX Component Library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser 
+ * General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License 
+ * along with The SDMX Component Library If not, see 
+ * http://www.gnu.org/licenses/lgpl.
+ *
+ * Contributors:
+ * Metadata Technology - initial API and implementation
+ ******************************************************************************/
+package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v21;
+
+import org.sdmx.resources.sdmxml.schemas.v21.common.TextType;
+import org.sdmx.resources.sdmxml.schemas.v21.message.ContactType;
+import org.sdmx.resources.sdmxml.schemas.v21.message.PartyType;
+import org.sdmx.resources.sdmxml.schemas.v21.message.SenderType;
+import org.sdmx.resources.sdmxml.schemas.v21.message.StructureHeaderType;
+import org.sdmxsource.sdmx.api.builder.Builder;
+import org.sdmxsource.sdmx.api.exception.SdmxException;
+import org.sdmxsource.sdmx.api.model.beans.base.ContactBean;
+import org.sdmxsource.sdmx.api.model.beans.base.TextTypeWrapper;
+import org.sdmxsource.sdmx.api.model.header.HeaderBean;
+import org.sdmxsource.sdmx.api.model.header.PartyBean;
+import org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v21.assemblers.AbstractBeanAssembler;
+import org.sdmxsource.sdmx.util.date.DateUtil;
+import org.sdmxsource.util.ObjectUtil;
+
+import java.util.Date;
+import java.util.UUID;
+
+
+/**
+ * The type Structure header xml bean builder.
+ */
+public class StructureHeaderXmlBeanBuilder extends AbstractBeanAssembler implements Builder<StructureHeaderType, HeaderBean> {
+
+    @Override
+    public StructureHeaderType build(HeaderBean buildFrom) throws SdmxException {
+        StructureHeaderType headerType = StructureHeaderType.Factory.newInstance();
+        if (buildFrom == null) {
+            headerType.setID("IDREF" + UUID.randomUUID().toString());
+            headerType.setTest(false);
+            headerType.setPrepared(DateUtil.createCalendar(new Date()));
+            SenderType senderType = headerType.addNewSender();
+            senderType.setId("unknown");
+            PartyType receiverType = headerType.addNewReceiver();
+            receiverType.setId("unknown");
+            return headerType;
+        }
+        if (ObjectUtil.validString(buildFrom.getId())) {
+            headerType.setID(buildFrom.getId());
+        }
+        headerType.setTest(buildFrom.isTest());
+
+        if (buildFrom.getName() != null) {
+            for (TextTypeWrapper ttw : buildFrom.getName()) {
+                TextType tt = headerType.addNewName();
+                tt.setLang(ttw.getLocale());
+                tt.setStringValue(ttw.getValue());
+            }
+        }
+
+        if (buildFrom.getSource() != null) {
+            for (TextTypeWrapper ttw : buildFrom.getSource()) {
+                TextType tt = headerType.addNewSource();
+                tt.setLang(ttw.getLocale());
+                tt.setStringValue(ttw.getValue());
+            }
+        }
+
+        //ALL DATE RELATED INFO
+        if (buildFrom.getPrepared() != null) {
+            headerType.setPrepared(DateUtil.createCalendar(buildFrom.getPrepared()));
+        }
+        //SENDER
+        if (buildFrom.getSender() != null) {
+            PartyBean sender = buildFrom.getSender();
+            SenderType senderType = headerType.addNewSender();
+            if (ObjectUtil.validString(sender.getId())) {
+                senderType.setId(sender.getId());
+            }
+            for (TextTypeWrapper ttw : sender.getName()) {
+                TextType tt = senderType.addNewName();
+                tt.setLang(ttw.getLocale());
+                tt.setStringValue(ttw.getValue());
+            }
+            //CONTACT INFO
+            for (ContactBean contact : sender.getContacts()) {
+                buildContact(senderType.addNewContact(), contact);
+            }
+        }
+        //RECEIVER
+        if (buildFrom.getReceiver() != null) {
+            for (PartyBean receiver : buildFrom.getReceiver()) {
+                PartyType receiverType = headerType.addNewReceiver();
+                if (ObjectUtil.validString(receiver.getId())) {
+                    receiverType.setId(receiver.getId());
+                }
+                for (TextTypeWrapper ttw : receiver.getName()) {
+                    TextType tt = receiverType.addNewName();
+                    tt.setLang(ttw.getLocale());
+                    tt.setStringValue(ttw.getValue());
+                }
+                //CONTACT INFO
+                for (ContactBean contact : receiver.getContacts()) {
+                    buildContact(receiverType.addNewContact(), contact);
+                }
+            }
+        }
+        if (!ObjectUtil.validCollection(headerType.getReceiverList())) {
+            PartyType receiverType = headerType.addNewReceiver();
+            receiverType.setId("unknown");
+        }
+        return headerType;
+    }
+
+
+    private void buildContact(ContactType contactType, ContactBean contact) {
+        if (contact.getDepartments() != null) {
+            for (TextTypeWrapper ttw : contact.getDepartments()) {
+                TextType tt = contactType.addNewDepartment();
+                tt.setLang(ttw.getLocale());
+                tt.setStringValue(ttw.getValue());
+            }
+        }
+        if (contact.getName() != null) {
+            for (TextTypeWrapper ttw : contact.getName()) {
+                TextType tt = contactType.addNewName();
+                tt.setLang(ttw.getLocale());
+                tt.setStringValue(ttw.getValue());
+            }
+        }
+        if (contact.getRole() != null) {
+            for (TextTypeWrapper ttw : contact.getRole()) {
+                TextType tt = contactType.addNewRole();
+                tt.setLang(ttw.getLocale());
+                tt.setStringValue(ttw.getValue());
+            }
+        }
+        if (contact.getEmail() != null) {
+            for (String val : contact.getEmail()) {
+                contactType.addEmail(val);
+            }
+        }
+        if (contact.getFax() != null) {
+            for (String val : contact.getFax()) {
+                contactType.addFax(val);
+            }
+        }
+        if (contact.getTelephone() != null) {
+            for (String val : contact.getTelephone()) {
+                contactType.addTelephone(val);
+            }
+        }
+        if (contact.getUri() != null) {
+            for (String val : contact.getUri()) {
+                contactType.addURI(val);
+            }
+        }
+        if (contact.getX400() != null) {
+            for (String val : contact.getX400()) {
+                contactType.addX400(val);
+            }
+        }
+    }
+}

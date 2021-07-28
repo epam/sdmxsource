@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Structure xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message">
+    <Header>
+        <ID>IDREF2</ID>
+        <Test>false</Test>
+        <Prepared>2015-09-08T10:07:54.2635882+02:00</Prepared>
+        <Sender id="Unknown" />
+        <Receiver id="Unknown" />
+    </Header>
+    <Structures>
+        <StructureSets xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure">
+            <StructureSet id="SS_1" urn="urn:sdmx:org.sdmx.infomodel.mapping.StructureSet=SDMX:SS_1(1.0)" agencyID="SDMX" version="1.0" isFinal="false">
+                <Annotations xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+                    <Annotation id="ssann1">
+                        <AnnotationTitle>tit</AnnotationTitle>
+                        <AnnotationType>tip</AnnotationType>
+                        <AnnotationText xml:lang="it">testo</AnnotationText>
+                    </Annotation>
+                </Annotations>
+                <Name xml:lang="it" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">ss name</Name>
+                <StructureMap id="sm1" urn="urn:sdmx:org.sdmx.infomodel.mapping.StructureMap=SDMX:SS_1(1.0).sm1" isExtension="false">
+                    <Annotations xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+                        <Annotation id="smann1">
+                            <AnnotationTitle>tit1</AnnotationTitle>
+                            <AnnotationText xml:lang="it">testo sm annot</AnnotationText>
+                        </Annotation>
+                    </Annotations>
+                    <Name xml:lang="it" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">sm name</Name>
+                    <Source>
+                        <Ref id="NA_PENS" version="1.0" agencyID="ESTAT" package="datastructure" class="DataStructure" xmlns="" />
+                    </Source>
+                    <Target>
+                        <Ref id="NA_PENS2" version="1.0" agencyID="ESTAT" package="datastructure" class="DataStructure" xmlns="" />
+                    </Target>
+                    <ComponentMap>
+                        <Source>
+                            <Ref id="REF_AREA" containerID="DimensionList" package="datastructure" class="Dimension" xmlns="" />
+                        </Source>
+                        <Target>
+                            <Ref id="COUNTERPART_AREA" containerID="DimensionList" package="datastructure" class="Dimension" xmlns="" />
+                        </Target>
+                    </ComponentMap>
+                </StructureMap>
+            </StructureSet>
+        </StructureSets>
+    </Structures>
+</Structure>

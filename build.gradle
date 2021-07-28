@@ -1,0 +1,100 @@
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'signing'
+    apply plugin: 'maven-publish'
+
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
+    ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(Jar) {
+        destinationDirectory = file("$rootDir/build/deploy")
+    }
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+    }
+
+    publishing {
+        repositories {
+            maven {
+                url System.getenv('MAVEN_REPOSITORY')
+
+                credentials {
+                    username System.getenv('MAVEN_USERNAME')
+                    password System.getenv('MAVEN_PASSWORD')
+                }
+            }
+        }
+
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+
+                pom {
+                    name = 'sdmxsource'
+                    packaging = 'jar'
+                    description = 'Open source reference implementation of SDMX'
+                    url = 'https://github.com/epam/sdmxsource.git'
+
+                    scm {
+                        connection = 'scm:https://github.com/epam/sdmxsource.git'
+                        developerConnection = 'scm:git:https://github.com/epam/sdmxsource.git'
+                        url = 'https://github.com/epam/sdmxsource.git'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'GNU LESSER GENERAL PUBLIC LICENSE, Version 3.0'
+                            url = 'https://www.gnu.org/licenses/lgpl-3.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id = 'ekarankow'
+                            name = 'Eugene Karankow'
+                            email = 'gmx@karankow.com'
+                            url = 'https://github.com/ekarankow'
+                            organization = 'EPAM Systems'
+                            organizationUrl = 'https://www.epam.com/'
+                        }
+                        developer {
+                            id = 'Vitaly-Work'
+                            name = 'Vitalii Adoievtsev'
+                            email = 'adviva.work@gmail.com'
+                            url = 'https://github.com/Vitaly-Work'
+                            organization = 'EPAM Systems'
+                            organizationUrl = 'https://www.epam.com/'
+                        }
+                    }
+                }
+            }
+        }
+
+        signing {
+            def signingKey = System.getenv("SIGNING_KEY")
+            def signingPassword = System.getenv("SIGNING_PASSWORD")
+
+            useInMemoryPgpKeys(signingKey, signingPassword)
+            sign publishing.publications.mavenJava
+
+            required { isReleaseVersion }
+        }
+    }
+
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}

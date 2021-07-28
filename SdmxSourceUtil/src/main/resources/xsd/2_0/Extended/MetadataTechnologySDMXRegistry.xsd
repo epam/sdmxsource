@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/registry" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/registry" xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common">
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" schemaLocation="../../Schemas/SDMXCommon.xsd"/>
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry" schemaLocation="../../Schemas/SDMXRegistry.xsd"/>	
+	
+	<xs:complexType name="ProvisionAgreementType">
+		<xs:complexContent>
+			<xs:extension base="registry:ProvisionAgreementType">
+				<xs:sequence>
+					<xs:element name="Constraint" type="common:ConstraintType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="ProvisionAgreementRefType">
+		<xs:complexContent>
+			<xs:extension base="registry:ProvisionAgreementRefType">
+				<xs:sequence>
+					<xs:element name="MetadataflowAgencyID" type="common:IDType" minOccurs="0"/>			
+					<xs:element name="MetadataflowID" type="common:IDType" minOccurs="0"/>			
+			      <xs:element name="MetadataflowVersion" type="xs:string" minOccurs="0"/>
+					<xs:element name="Constraint" type="common:ConstraintType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="DataflowRefType">
+		<xs:complexContent>
+			<xs:extension base="registry:DataflowRefType">
+				<xs:sequence>
+					<xs:element name="Constraint" type="common:ConstraintType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DataProviderRefType">
+		<xs:complexContent>
+			<xs:extension base="registry:DataProviderRefType">
+				<xs:sequence>
+					<xs:element name="Constraint" type="common:ConstraintType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+</xs:schema>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Optional:-->
+<RegistryInterface xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message SDMXMessage.xsd" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/compact" xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry" xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Header>
+        <ID>JD014</ID>
+        <Test>true</Test>
+        <Truncated>false</Truncated>
+        <Name xml:lang="en">Trans46302</Name>
+        <Prepared>2001-03-11T09:30:47-05:00</Prepared>
+        <Sender id="BIS"/>
+    </Header>
+    <QueryStructureRequest resolveReferences="false">
+        <registry:CodelistRef>
+            <registry:AgencyID>ECB</registry:AgencyID>
+            <registry:CodelistID>CL_ADJUSTMENT</registry:CodelistID>
+            <registry:Version>1.1</registry:Version>
+        </registry:CodelistRef>
+        <registry:DataflowRef>
+            <registry:AgencyID>ESTAT</registry:AgencyID>
+            <registry:DataflowID>SSTSIND_PROD_M</registry:DataflowID>
+            <!--<registry:Version>2.0</registry:Version>-->
+            <registry:Constraint ConstraintType="Content">
+                <common:ConstraintID>FREQ</common:ConstraintID>
+                <common:CubeRegion isIncluded="true">
+                    <common:Member isIncluded="true">
+                        <common:ComponentRef>FREQ</common:ComponentRef>
+                        <common:MemberValue>
+                            <common:Value>M</common:Value>
+                        </common:MemberValue>
+                    </common:Member>
+                    <common:Member isIncluded="true">
+                        <common:ComponentRef>REF_AREA</common:ComponentRef>
+                        <common:MemberValue>
+                            <common:Value>IT</common:Value>
+                        </common:MemberValue>
+                    </common:Member>
+                    <common:Member isIncluded="true">
+                        <common:ComponentRef>ADJUSTMENT</common:ComponentRef>
+                    </common:Member>
+                    <common:Member isIncluded="true">
+                        <common:ComponentRef>STS_ACTIVITY</common:ComponentRef>
+                        <common:MemberValue>
+                            <common:Value>N100DL</common:Value>
+                        </common:MemberValue>
+                        <common:MemberValue>
+                            <common:Value>N100DM</common:Value>
+                        </common:MemberValue>
+                    </common:Member>
+                </common:CubeRegion>
+                <common:ReferencePeriod startTime="2005-04-01T00:00:00" endTime="2010-01-01T00:00:00"/>
+            </registry:Constraint>
+        </registry:DataflowRef>
+    </QueryStructureRequest>
+</RegistryInterface>

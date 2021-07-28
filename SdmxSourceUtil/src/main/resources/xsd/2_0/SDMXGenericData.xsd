@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2005  -   www.sdmx.org -->
+<xs:schema targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation/>
+	</xs:annotation>
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" schemaLocation="SDMXCommon.xsd"/>
+	<xs:element name="DataSet" type="DataSetType">
+		<xs:annotation>
+			<xs:documentation>The DataSet element contains one or more groups that comprise the data set.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="DataSetType">
+		<xs:annotation>
+			<xs:documentation>DataSetType defines the structure of a data set. This consists of a key family reference which contains the ID of the key family, and the attribute values attached at the data set level. A DataSet may be used to transmit documentation (that is, only attribute values), data, or a combination of both. If providing only documentation, you need not send the complete set of attributes. If transmitting only data, the Group may be omitted if desired. Uniqueness constraints are defined for the attributes of the data set. If dataset-level attributes are sent in a delete message, then any valid attribute value will indicate that the current attribute value should be deleted. The keyFamilyURI attribute is provided to allow a URI (typically a URL) to be provided, pointing to an SDMX-ML Structure message describing the key family. Attributes are provided for describing the contents of a data or metadata set, which are particularly important for interactions with the SDMX Registry: datasetID, dataProviderSchemeAgencyID, dataProviderSchemeID, dataflowAgencyID, and dataflowID all take the IDs specified by the attribute names. The action attribute indicates whether the file is appending, replacing, or deleting. Attributes reportingBeginDate, reportingEndDate, validFromDate, and validToDate are inclusive. publicationYear holds the ISO 8601 four-digit year, and publicationPeriod specifies the period of publication of the data in terms of whatever provisioning agreements might be in force (ie, "Q1 2005" if that is the time of publication for a data set published on a quarterly basis).
+	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="KeyFamilyRef" type="common:IDType" />
+			<xs:element name="Attributes" type="ValuesType" minOccurs="0">
+				<xs:unique name="SDMX_GenericDataSetAttributeUniqueness">
+					<xs:selector xpath="generic:Value"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Group" type="GroupType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Series" type="SeriesType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>			
+		</xs:sequence>
+		<xs:attribute name="keyFamilyURI" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="datasetID" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataProviderSchemeAgencyId" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataProviderSchemeId" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataProviderID" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataflowAgencyID" type="common:IDType" use="optional"/>
+		<xs:attribute name="dataflowID" type="common:IDType" use="optional"/>
+		<xs:attribute name="action" type="common:ActionType" use="optional"/>
+		<xs:attribute name="reportingBeginDate" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="reportingEndDate" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validFromDate" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="validToDate" type="common:TimePeriodType" use="optional"/>
+		<xs:attribute name="publicationYear" type="xs:gYear" use="optional"/>
+		<xs:attribute name="publicationPeriod" type="common:TimePeriodType" use="optional"/>
+
+	</xs:complexType>
+	<xs:complexType name="GroupType">
+		<xs:annotation>
+			<xs:documentation>The key values at the group level may be stated explicitly, and all which are not wildcarded listed in GroupKey - they must also all be given a value at the series level. It is not necessary to specify the group key, however, as this may be inferred from the values repeated at the series level. If only documentation (group-level attributes) are being transmitted, however, the GroupKey cannot be omitted. The type attribute contains the name of the declared group in the key family. If any group-level attributes are specified in a delete message, then any valid value supplied for the attribute indicates that the current attribute value should be deleted for the specified attribute.
+	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			
+			<xs:element name="GroupKey" type="ValuesType" minOccurs="0">
+				<xs:unique name="SDMX_GenericGroupKeyUniqueness">
+					<xs:selector xpath="generic:Value"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+			</xs:element>
+
+			<xs:element name="Attributes" type="ValuesType" minOccurs="0">
+				<xs:unique name="SDMX_GenericGroupAttributeUniqueness">
+					<xs:selector xpath="generic:Value"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Series" type="SeriesType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>				
+		</xs:sequence>
+		
+		<xs:attribute name="type" type="xs:NMTOKEN" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="SeriesType">
+		<xs:annotation>
+			<xs:documentation>SeriesType specifies the structure of a series. This includes all of the key values, values for all the attributes, and the set of observations making up the series content. Messages may transmit only attributes, only data, or both. Regardless, the series key is always required. Key values appear at the Series level in an ordered sequence which corresponds to the key sequence in the key family. A series in a delete message need not supply more than the key, indicating that the entire series identified by that key should be deleted. If series attributes are sent in a delete message, any valid value specified for an attribute indicates that the attribute should be deleted.
+	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SeriesKey" type="SeriesKeyType">
+				
+				<xs:unique name="SDMX_GenericSeriesKeyUniqueness">
+					<xs:selector xpath="generic:Value"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Attributes" type="ValuesType" minOccurs="0">
+				<xs:unique name="SDMX_GenericSeriesAttributeUniqueness">
+					<xs:selector xpath="generic:Value"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Obs" type="ObsType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="SeriesKeyType">
+		<xs:annotation>
+			<xs:documentation>SeriesKeyType defines the contents of a series key. Each non-time dimension must have a value supplied for it, in the order in which the dimensions are specified in the key family. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Value" type="ValueType" maxOccurs="unbounded"/>
+		</xs:sequence>
+
+	</xs:complexType>
+	<xs:complexType name="ObsType">
+		<xs:annotation>
+			<xs:documentation>ObsType defines the structure of an observation. This includes a time and observation value, as well as values for each of the attributes assigned at the observation level by the key family. In a delete message, only the time need be given, indicating that the observation identified by the key and time should be deleted. For an update message, both time and observation value are required. If any attributes appear in a delete message, any valid value supplied for an attribute indicates that the current value should be deleted.		
+	</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Time" type="common:TimePeriodType"/>
+			<xs:element name="ObsValue" type="ObsValueType" minOccurs="0"/>
+			<xs:element name="Attributes" type="ValuesType" minOccurs="0">
+				<xs:unique name="SDMX_GenericObsAttributeUniqueness">
+					<xs:selector xpath="generic:Value"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ValuesType">
+		<xs:sequence>
+			<xs:element name="Value" type="ValueType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ValueType">
+		<xs:annotation>
+			<xs:documentation>ValueType is used to assign a single value to a concept, as for attribute values and key values. It has no element content. The startTime attribute is only used if the textFormat of the attribute is of the Timespan type in the key family (in which case the value field takes a duration).	
+	</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="concept" type="common:IDType"/>
+		<xs:attribute name="value" type="xs:string"/>
+		<xs:attribute name="startTime" type="xs:dateTime" use="optional"/>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="ObsValueType">
+		<xs:annotation>
+			<xs:documentation>ObsValueType describes the information set for an observation value. This is associated with the primary measure concept declared in the key family. The startTime attribute is only used if the textFormat of the observation is of the Timespan type in the key family (in which case the value field takes a duration).	
+	</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="value" type="xs:double"/>
+		<xs:attribute name="startTime" type="xs:dateTime" use="optional"/>		
+		
+	</xs:complexType>
+	
+</xs:schema>

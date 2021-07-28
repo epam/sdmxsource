@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2004  -   www.sdmx.org -->
+<xs:schema targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/structure" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/structure" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/structure" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common">
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" schemaLocation="SDMXCommon.xsd"/>
+	<xs:complexType name="AgenciesType">
+		<xs:annotation>
+			<xs:documentation>AgenciesType contains one or more Agencies.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Agency" type="AgencyType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AgencyType">
+		<xs:annotation>
+			<xs:documentation>AgencyType provides a structure for describing agencies and their contact information. The id attribute carries a code identifying the agency. The version attribute indicates the version of the agency description. The uri attribute provides a uri for an alternate way of identifying the agency information (typically a URL resolving to an agency described in SDMX-ML). Name is an element which provides for a human-readable name for the organization. MaintenanceContact provides contact information for the agency when acting as a MaintenanceAgency; CollectorContact does the same when the agency is acting as a statistics collector; DisseminatorContact for when the agency functions as a statistics disseminator; and ReporterContact for when the Agency is functioning as a statistics reporter. OtherContact is used to describe any other role. Note that the Role field in the contact information structure should only be specified for OtherContact. It is allowable to reference full Agency information by using (at a minimum) only the id, name, and uri fields, with the uri pointing to an external description in a valid SDMX-ML Structure message which provides more complete information. (This is termed an "external reference".) If an external reference is being made, the isExternalReference attribute must be set to “true”.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="MaintenanceContact" type="ContactType" minOccurs="0"/>
+			<xs:element name="CollectorContact" type="ContactType" minOccurs="0"/>
+			<xs:element name="DisseminatorContact" type="ContactType" minOccurs="0"/>
+			<xs:element name="ReporterContact" type="ContactType" minOccurs="0"/>
+			<xs:element name="OtherContact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NCName" use="required"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ContactType">
+		<xs:annotation>
+			<xs:documentation>ContactType provides defines the contact information about a party. The id element is used to carry user id information for the contact, whereas Name provides a human-readable name.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="id" type="xs:NMTOKEN" minOccurs="0"/>
+			<xs:element name="Department" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Role" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Telephone" type="xs:string"/>
+				<xs:element name="Fax" type="xs:string"/>
+				<xs:element name="X400" type="xs:string"/>
+				<xs:element name="URI" type="xs:anyURI"/>
+				<xs:element name="Email" type="xs:string"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CodeListsType">
+		<xs:annotation>
+			<xs:documentation>CodelistsType contains one or more codelists. It also defines uniqueness constraints for codelist IDs.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CodeList" type="CodeListType" minOccurs="0" maxOccurs="unbounded">
+				<xs:unique name="SDMX_CodeListsIDUniqueness">
+					<xs:selector xpath="structure:CodeList"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CodeListType">
+		<xs:annotation>
+			<xs:documentation>CodeListType defines the contents of a codelist. This includes an ID, the agency which maintains the codelist, its version, and a URL where it is located. Elements are provided for supplying a name and the codes. It is acceptable to provide only the id, name, and uri fields at a minimum, with the uri pointing to an SDMX Structure message containing complete details on the codelist. (This is termed an "external reference".) If an external reference is being made, the isExternalReference attribute must be set to “true”.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Code" type="CodeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NCName" use="required"/>
+		<xs:attribute name="agency" type="xs:NMTOKEN" use="optional"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="CodeType">
+		<xs:annotation>
+			<xs:documentation>CodeType defines the structure of a code. This allows for plain-text descriptions as element content, and the coded value as the value attribute. (Short descriptions or other presentational information may be added using Annotations with an indicative type field [eg, "ShortDescription"]).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Description" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="value" type="xs:NMTOKEN" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ConceptsType">
+		<xs:annotation>
+			<xs:documentation>ConceptsType defines the structure of a set of Concepts.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Concept" type="ConceptType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConceptType">
+		<xs:annotation>
+			<xs:documentation>ConceptType specifies the information provided for a single concept. This includes a name, as element content, and an ID. It is possible to use the uri field to point to the location of an SDMX-ML Structure message which contains a more detailed version of the concept. (This is termed an "external reference".) If an external reference is being made, the isExternalReference attribute must be set to "true".</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NCName" use="required"/>
+		<xs:attribute name="agency" type="xs:NMTOKEN" use="optional"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+		<xs:attribute name="isExternalReference" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="KeyFamiliesType">
+		<xs:annotation>
+			<xs:documentation>KeyFamiliesType defines the structure for describing one or more key families. It also provides uniqueness constraints for each of the key family IDs.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="KeyFamily" type="KeyFamilyType" maxOccurs="unbounded">
+				<xs:unique name="SDMX_KeyFamilyIDUniqueness">
+					<xs:selector xpath="structure:KeyFamily"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="KeyFamilyType">
+		<xs:annotation>
+			<xs:documentation>KeyFamilyType defines the structure of a key-family description. This includes the name and a set of components (attributes and dimensions) as element content, and an ID, agency, version, and the URL where located as attributes.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" maxOccurs="unbounded"/>
+			<xs:element name="Components" type="ComponentsType"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NCName" use="required"/>
+		<xs:attribute name="agency" type="xs:NMTOKEN" use="optional"/>
+		<xs:attribute name="version" type="xs:string" use="optional"/>
+		<xs:attribute name="uri" type="xs:anyURI" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="ComponentsType">
+		<xs:annotation>
+			<xs:documentation>ComponentsType describes the dimensions, groups, attributes, and measures of the key family. If TimeDimension is included in the key family - which it must be if time series formats for the data (GenericData, CompactData, and UtilityData formats) are to be used - then there must also be a frequency dimension. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Dimension" type="DimensionType" minOccurs="0" maxOccurs="unbounded">
+				<xs:unique name="SDMX_DimensionConceptUniqueness">
+					<xs:selector xpath="structure:Dimension"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="TimeDimension" type="TimeDimensionType" minOccurs="0"/>
+			<xs:element name="Group" type="GroupType" minOccurs="0" maxOccurs="unbounded">
+				<xs:unique name="SDMX_GroupNameUniqueness">
+					<xs:selector xpath="structure:Group"/>
+					<xs:field xpath="@name"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="PrimaryMeasure" type="PrimaryMeasureType"/>
+			<xs:element name="CrossSectionalMeasure" type="CrossSectionalMeasureType" minOccurs="0" maxOccurs="unbounded">
+				<xs:unique name="SDMX_CSMeasureConceptUniqueness">
+					<xs:selector xpath="structure:CrossSectionalMeasure"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>			
+			</xs:element>
+			<xs:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded">
+				<xs:unique name="SDMX_AttributeConceptUniqueness">
+					<xs:selector xpath="structure:Attribute"/>
+					<xs:field xpath="@concept"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DimensionType">
+		<xs:annotation>
+			<xs:documentation>DimensionType describes the structure of non-Time dimensions. The order of their declaration is significant: it is used to describe the order in which they will appear in data formats for which key values are supplied in an ordered fashion (exclusive of the Time dimension, which is not represented as a member of the ordered key). In the case of key families which are used for cross-sectional data as well as time-series data, any "measure" dimension must have the value of the "isMeasureDimension" attribute set to "true". If a dimension is declared to be a measure dimension, it must have a measure declared elsewhere in the key family which corresponds to each value in the codelist which represents it. Any dimension which corresponds to the frequency concept must have its isFrequencyDimension attribute set to "true". There may only be one such dimension in any key family. (Conventionally, it is the first dimension in the ordered set of dimensions - the key.) If a key family describes cross-sectional data, then for each non-time dimension, the crossSectionalAttachDataSet, crossSectionalAttachGroup, crossSectionalAttachSection, and crossSectionalAttachObservation attributes must be given values. A value of "true" for any of these attributes indicates that the dimension may be provided a value at the indicated level within the cross-sectional structure. Note that these attributes do not need to be provided for any dimension with the isFrequencyDimension set to "true", as these dimensions are always attached only at the group level, as is time. A key family designed for cross-sectional use must be structured such that any observation's complete key can be unambiguously described by taking each dimension value from its observation level, section level, group level, and data set level, and ordered according to the sequence given in the key family. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="concept" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="codelist" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="isMeasureDimension" type="xs:boolean" default="false"/>
+		<xs:attribute name="isFrequencyDimension" type="xs:boolean" default="false"/>
+		<xs:attribute name="crossSectionalAttachDataSet" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachGroup" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachSection" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachObservation" type="xs:boolean" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="TimeDimensionType">
+		<xs:annotation>
+			<xs:documentation>TimeDimensionType describes the special Time dimension. Any key family which will be used for time-series formats (GenericData, CompactData, and UtilityData) must include the time dimension. Any key family which uses the time dimension must also declare a frequency dimension, conventionally the first dimension in the key (the set of ordered non-time dimensions). A TextFormat element may be included for indicating the representation of time in some non-XML data formats. The concept attribute must contain the concept name of the time concept. The codelist attribute may provide the value of the concept name of a codelist if needed.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="concept" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="codelist" type="xs:NMTOKEN" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="GroupType">
+		<xs:annotation>
+			<xs:documentation>GroupType declares any useful groupings of data, based on a selection of the declared (non-Time) dimensions (indicated with the DimensionRef element) which form partial keys to which attributes may be attached. The value of the DimensionRef element is the concept of the dimension - that is, the value of the dimension's concept attribute. Thus, if data is to be presented as a set of time series which vary only according to their differing frequencies, a "sibling group" would be declared, with all dimensions except the frequency dimension in it. If data is commonly grouped as a set of all countries, then a "Country Group" could be declared, with all dimensions except the country dimension forming part of the partial key. Any dimension which is not part of a group has a value which varies at the series level (for time series formats). There is no requirement to have only a single dimension ommitted from a partial key - it can be any subset of the set of ordered dimensions (that is, all dimensions except the time dimension, which may never be declared as belonging to a group partial key). All groups declared in the key family must be unique - that is, you may not have duplicate partial keys. All groups must also be given unique names (id attributes). Although it is conventional to declare dimensions in the same order as they are declared in the ordered key, there is no requirement to do so - the ordering of the values of the key are taken from the order in which the dimensions are declared. The Description element provides a human-readable description (potentially in multiple, parallel languages) of the group. Note that for cross-sectional formats, the named group mechanism is not used, but is instead replaced by a generic group which carries time and frequency values with it, and allows for any available group-level attributes to be specified if desired. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DimensionRef" type="xs:NMTOKEN" maxOccurs="unbounded"/>
+			<xs:element name="Description" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AttributeType">
+		<xs:annotation>
+			<xs:documentation>AttributeType describes the structure of attributes declared in the key family. If the codelist attribute is not used, then the attribute is uncoded. You may use the TextFormat element to specify constraints on the value of the uncoded attribute. The concept attribute contains the name of a concept. The codelist attribute supplies the id value of a codelist. The attachmentLevel attribute indicates the level to which the attribute is attached in time-series formats (GenericData, CompactData, and UtilityData formats). The assignmentStatus attribute indicates whether a value must be provided for the attribute when sending documentation along with the data. The AttachmentGroup element is included only when the attribute is attached at the Group level, to indicate which declared group or groups the attribute may be attached to. For each such group, an AttachmentGroup element should appear, with the content of the element being the name of the group. The AttachmentMeasure element is similar, indicating for cross-sectional formats which declared measure or measures the attribute attached at the observation level may be attached to. The isTimeFormat attribute indicates that the attribute represents the concept of time format (typically a mandatory series-level attribute with a codelist representation taken from ISO 8601). For key families not used to structure cross-sectional formats, this element may be ommitted. Each such element contains the name of the declared measure. The attributes crossSectionalAttachDataSet, crossSectionalAttachGroup, crossSectionalAttachSection, and crossSectionalAttachObservation indicate what the attachment level or levels are for cross-sectional data formats, and may be ommitted if the key family will not be used to structure them. A value of "true" indicates that it is permissible to provide a value for the attribute at the specified level within the structure. Note that all groups in cross-sectional formats are replaced by a generic group which has any values for time and frequency, and allows any group-level attributes to be attached to it. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TextFormat" type="TextFormatType" minOccurs="0"/>
+			<xs:element name="AttachmentGroup" type="xs:NMTOKEN" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AttachmentMeasure" type="xs:NMTOKEN" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="concept" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="codelist" type="xs:NMTOKEN" use="optional"/>
+		<xs:attribute name="attachmentLevel" type="structure:AttachmentLevelType" use="required"/>
+		<xs:attribute name="assignmentStatus" type="structure:AssignmentStatusType" use="required"/>
+		<xs:attribute name="isTimeFormat" type="xs:boolean" default="false"/>
+		<xs:attribute name="crossSectionalAttachDataSet" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachGroup" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachSection" type="xs:boolean" use="optional"/>
+		<xs:attribute name="crossSectionalAttachObservation" type="xs:boolean" use="optional"/>
+		
+	</xs:complexType>
+	<xs:simpleType name="AttachmentLevelType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="DataSet">
+				<xs:annotation>
+					<xs:documentation>Data set level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Group">
+				<xs:annotation>
+					<xs:documentation>Group level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Series">
+				<xs:annotation>
+					<xs:documentation>Series level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Observation">
+				<xs:annotation>
+					<xs:documentation>Observation level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AssignmentStatusType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Mandatory">
+				<xs:annotation>
+					<xs:documentation>Providing attribute value is mandatory</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Conditional">
+				<xs:annotation>
+					<xs:documentation>Providing attribute value is optional</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="TextFormatType">
+		<xs:annotation>
+			<xs:documentation>TextFormatType defines the information for describing a text format. If the TextType attribute is not specified, any valid characters may be included in the text field. (It corresponds to the xs:string datatype of W3C XML Schema.) In this case, the Length attribute is interpreted as a maximum length. Otherwise, length provides either maximum or set string lengths as per the TextType attribute value. The decimals attribute provides the precision (the number of decimal places) that numeric data must use. This is an integer indicating the number of digits to occur after the decimal separator ("."). If used, a missing digit in numeric data is to be interpreted as a 0. If not used, no restrictions on the number of digits provided in data exist for the purposes of exchange.</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="length" type="xs:integer" use="optional"/>
+		<xs:attribute name="decimals" type="xs:integer" use="optional"/>
+		<xs:attribute name="TextType" type="TextTypeType" use="optional"/>
+	</xs:complexType>
+	<xs:simpleType name="TextTypeType">
+		<xs:annotation>
+			<xs:documentation>TextTypeType provides an enumerated list of the types of characters allowed in a TextFormat field.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Alpha">
+				<xs:annotation>
+					<xs:documentation>Allows any non-numeric characters to be used in the string, with a maximum as specified in the length attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AlphaFixed">
+				<xs:annotation>
+					<xs:documentation>Allows any non-numeric characters to be used in the string, with a set length as specified in the length attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Num">
+				<xs:annotation>
+					<xs:documentation>Allows any numeric character (0 - 9) to be used in the string, with a maximum as specified in the length attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="NumFixed">
+				<xs:annotation>
+					<xs:documentation>Allows any numeric character (0 - 9) to be used in the string, with a set length as specified in the length attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AlphaNum">
+				<xs:annotation>
+					<xs:documentation>Allows any numeric or non-nuumeric characters to be used in the string, with a maximum as specified in the length attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="AlphaNumFixed">
+				<xs:annotation>
+					<xs:documentation>Allows any numeric or non-numeric characters to be used in the string, with a set length as specified in the length attribute.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="PrimaryMeasureType">
+		<xs:annotation>
+			<xs:documentation>PrimaryMeasureType describes the observation values for all presentations of the data, except those cross-sectional formats which have multiple measures (for which a set of cross-sectional measures are used instead). The concept attribute points to the unique concept represented by the measure. The PrimaryMeasure  is conventionally associated with the OBS-VALUE concept. </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="concept" type="xs:NMTOKEN" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="CrossSectionalMeasureType">
+		<xs:annotation>
+			<xs:documentation>CrossSectionalMeasureType describes the observation values for multiple-measure cross-sectional data formats. For non-cross sectional key families, it is not necesary to specify any cross-sectional measures.The concept attribute points to the unique concept represented by the measure. The measureDimension attribute contains the concept name of the measure dimension. The code attribute contains the value of its corresponding code in the codelist used to represent the measure dimension. A CrossSectionalMeasure must be declared for each code in the codelist used to represent the measure dimension - these will replace the primary measure for multiple-measure cross-sectional data formats.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="concept" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="measureDimension" type="xs:NMTOKEN" use="required"/>
+		<xs:attribute name="code" type="xs:NMTOKEN" use="required"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message"
+           xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common"
+           xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry"
+           xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message SDMXMessage.xsd">
+  <Header>
+    <ID>REGISTRY_RESPONSE</ID>
+    <Test>false</Test>
+    <Prepared>2011-05-20T17:21:46</Prepared>
+    <Sender id="ESTAT" />
+  </Header>
+  <HierarchicalCodelists>
+    <structure:HierarchicalCodelist id="TESTLEVELS" agencyID="ESTAT" version="1.0" isFinal="false">
+      <structure:Name xml:lang="en">TESTLEVELS</structure:Name>
+      <structure:CodelistRef>
+        <structure:AgencyID>ESTAT</structure:AgencyID>
+        <structure:CodelistID>CL_ADJUSTMENT</structure:CodelistID>
+        <structure:Version>1.0</structure:Version>
+        <structure:Alias>CL_ADJUSTMENT@ESTAT@10</structure:Alias>
+      </structure:CodelistRef>
+      <structure:Hierarchy id="HIER1" version="1.0">
+        <structure:Name xml:lang="en">HIER1</structure:Name>
+        <structure:Description xml:lang="en">HIER1</structure:Description>
+        <structure:CodeRef>
+          <structure:CodelistAliasRef>CL_ADJUSTMENT@ESTAT@10</structure:CodelistAliasRef>
+          <structure:CodeID>C</structure:CodeID>
+          <structure:CodeRef>
+            <structure:CodelistAliasRef>CL_ADJUSTMENT@ESTAT@10</structure:CodelistAliasRef>
+            <structure:CodeID>N</structure:CodeID>
+            <structure:LevelRef>KARPOYZI</structure:LevelRef>
+          </structure:CodeRef>
+          <structure:CodeRef>
+            <structure:CodelistAliasRef>CL_ADJUSTMENT@ESTAT@10</structure:CodelistAliasRef>
+            <structure:CodeID>S</structure:CodeID>
+            <structure:LevelRef>KARPOYZI</structure:LevelRef>
+          </structure:CodeRef>
+          <structure:LevelRef>PEPONI</structure:LevelRef>
+        </structure:CodeRef>
+        <structure:Level id="PEPONI">
+          <structure:Name xml:lang="en">peponi</structure:Name>
+          <structure:Order>1</structure:Order>
+        </structure:Level>
+        <structure:Level id="KARPOYZI">
+          <structure:Name xml:lang="en">Watermelon</structure:Name>
+          <structure:Order>2</structure:Order>
+        </structure:Level>
+        <structure:Level id="BANANA">
+          <structure:Name xml:lang="en">BANANA</structure:Name>
+          <structure:Order>3</structure:Order>
+        </structure:Level>
+      </structure:Hierarchy>
+    </structure:HierarchicalCodelist>
+  </HierarchicalCodelists>
+</Structure>

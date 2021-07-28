@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Structure xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message">
+    <Header>
+        <ID>IDREF1</ID>
+        <Test>false</Test>
+        <Prepared>2016-02-25T13:08:30.908+01:00</Prepared>
+        <Sender id="Unknown" />
+        <Receiver id="Unknown" />
+    </Header>
+    <Structures>
+        <Processes xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure">
+            <Process id="TEST_PROCESS" urn="urn:sdmx:org.sdmx.infomodel.process.Process=TEST:TEST_PROCESS(1.0)" agencyID="TEST" version="1.0">
+                <Name xml:lang="en" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">Test name</Name>
+                <ProcessStep id="TEST_STEP1" urn="urn:sdmx:org.sdmx.infomodel.process.ProcessStep=TEST:TEST_PROCESS(1.0).TEST_STEP1">
+                    <Name xml:lang="en" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">The first step</Name>
+                    <Input localID="TEST_IO">
+                        <ObjectReference>
+                            <Ref id="DF_WBI" version="1.0" agencyID="SDMXSOURCE" package="datastructure" class="Dataflow" xmlns="" />
+                        </ObjectReference>
+                    </Input>
+                    <Transition id="T_ONE" urn="urn:sdmx:org.sdmx.infomodel.process.Transition=TEST:TEST_PROCESS(1.0).TEST_STEP1.T_ONE">
+                        <TargetStep>
+                            <Ref id="TEST_STEP3" xmlns="" />
+                        </TargetStep>
+                        <Condition xml:lang="en">obs != null</Condition>
+                    </Transition>
+                    <ProcessStep id="TEST_STEP2" urn="urn:sdmx:org.sdmx.infomodel.process.ProcessStep=TEST:TEST_PROCESS(1.0).TEST_STEP1.TEST_STEP2">
+                        <Name xml:lang="en" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">The second step</Name>
+                        <Computation localID="TestComputation" softwarePackage="SDMX-RI" softwareLanguage="csharp" softwareVersion="0.7.4">
+                            <Description xml:lang="en" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">Disseminate data</Description>
+                        </Computation>
+                    </ProcessStep>
+                </ProcessStep>
+                <ProcessStep id="TEST_STEP3" urn="urn:sdmx:org.sdmx.infomodel.process.ProcessStep=TEST:TEST_PROCESS(1.0).TEST_STEP3">
+                    <Name xml:lang="en" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">Test step 3</Name>
+                    <Computation localID="Test3" softwarePackage="TestPackage">
+                        <Description xml:lang="en" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">Test Description</Description>
+                    </Computation>
+                </ProcessStep>
+            </Process>
+        </Processes>
+    </Structures>
+</Structure>

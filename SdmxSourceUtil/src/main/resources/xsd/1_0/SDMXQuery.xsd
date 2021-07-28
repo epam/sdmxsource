@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2004  -   www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/query" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/query" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/query">
+
+<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" schemaLocation="SDMXCommon.xsd"/>
+
+	<xs:element name="Query" type="QueryType">
+		<xs:annotation>
+			<xs:documentation>The Query message allows standard querying of SDMX-compliant databases and web services. 
+			It allows queries to retrieve data, key families, codelists, and concepts.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="QueryType">
+		<xs:annotation>
+			<xs:documentation>The Query element is a top-level element for this namespace, which is referenced by the SDMX message envelope, or could be put inside another envelope, such as SOAP. It contains a query. The defaultLimit attribute is the suggested maximum response size in kilobytes.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataWhere" type="DataWhereType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="KeyFamilyWhere" type="KeyFamilyWhereType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="CodelistWhere" type="CodelistWhereType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ConceptWhere" type="ConceptWhereType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AgencyWhere" type="AgencyWhereType" minOccurs="0" maxOccurs="unbounded"/>
+			
+		</xs:sequence>
+		<xs:attribute name="defaultLimit" type="xs:integer" use="optional"/>
+	</xs:complexType>
+	<xs:complexType name="DataWhereType">
+		<xs:annotation>
+			<xs:documentation>The DataWhere element representes a query for data. It contains all of the clauses in that query, represented by its child elements.</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="DataSet" type="xs:string"/>
+			<xs:element name="KeyFamily" type="xs:string"/>
+			<xs:element name="Dimension" type="DimensionType"/>
+			<xs:element name="Attribute" type="AttributeType"/>
+			<xs:element name="Codelist" type="CodelistType"/>
+			<xs:element name="Time" type="TimeType"/>
+			<xs:element name="Category" type="CategoryType"/>
+			<xs:element name="Concept" type="xs:string"/>
+			<xs:element name="Agency" type="xs:string"/>
+			<xs:element name="Or" type="OrType"/>
+			<xs:element name="And" type="AndType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="AndType">
+		<xs:annotation>
+			<xs:documentation> For the And element, each of its immediate child elements represent clauses all of which represent conditions which must be satisfied. If children are A, B, and C, then any legitimate response will meet conditions A, B, and C.</xs:documentation>
+		</xs:annotation>	
+                     <xs:sequence>
+			<xs:element name="DataSet" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="KeyFamily" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Dimension" type="DimensionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Codelist" type="CodelistType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Time" type="TimeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Category" type="CategoryType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Concept" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Agency" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Or" type="OrType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="And" type="AndType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrType">
+		<xs:annotation>
+			<xs:documentation>The Or element's immediate children represent clauses in the query any one of which is sufficient to satisfy the query. If these children are A,  B, and C, then any result which meets condition A, or condition B, or condition C is a match for that query.</xs:documentation>
+		</xs:annotation>	
+		<xs:sequence>
+			<xs:element name="DataSet" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="KeyFamily" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Dimension" type="DimensionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Attribute" type="AttributeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Codelist" type="CodelistType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Time" type="TimeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Category" type="CategoryType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Concept" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Agency" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Or" type="OrType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="And" type="AndType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DimensionType">
+		<xs:annotation>
+			<xs:documentation>Dimension elements contain the  (single) value being searched on within the key of data set. The name attribute holds the agency-qualified ID of the dimension. If the content is empty, then the query is for any dimension with the given name. If the name attribute is not supplied, then the query is for the given key value within any dimension.</xs:documentation>
+		</xs:annotation>	
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="name" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AttributeType">
+		<xs:annotation>
+			<xs:documentation>Attribute elements contain the (single) value of an attribute being queried for. The name attribute contains the agency-qualified name of the attribute. The attachmentLevel attribute specifies the attachment level of the attribute. If the content of Attribute is empty, then the search is for the specified attribute (and attachment level). If the name attribute is not specified, then the search is on any attribute. If the attachmentLevel attribute is not specified, then the query is for an attribute at any attachment level, as the value defaults to "Any".</xs:documentation>
+		</xs:annotation>	
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="name" type="xs:string" use="optional"/>
+				<xs:attribute name="attachmentLevel" type="AttachmentLevelType" default="Any"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:simpleType name="AttachmentLevelType">
+		<xs:annotation>
+			<xs:documentation>This type supplies an enumeration of attachment levels corresponding to those in the SDMX Information Model, plus a value of "Any" where the search is wildcarded.</xs:documentation>
+		</xs:annotation>	
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="DataSet">
+				<xs:annotation>
+					<xs:documentation>Attached at the Data Set level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Group">
+				<xs:annotation>
+					<xs:documentation>Attached at the Group level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Series">
+				<xs:annotation>
+					<xs:documentation>Attached at the Series level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Observation">
+				<xs:annotation>
+					<xs:documentation>Attached at the Observation level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Any">
+				<xs:annotation>
+					<xs:documentation>Attached at any attachment level</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="CodelistType">
+		<xs:annotation>
+			<xs:documentation>The Codelist element allows queries to specify a (single) value found within a codelist as the element content, and the agency-qualified name of the codelist being queried for in the name attribute. If no content is supplied, then the query is for the named codelist. If the name attribute is left empty, then the value is searched for in any codelist.</xs:documentation>
+		</xs:annotation>	
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="name" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="CategoryType">
+		<xs:annotation>
+			<xs:documentation>The Category element allows for a search to be made on the values within a specific category, which is specified (in agency-qualified form) with the name attribute. If there is no element content, then the search is for the named Category; if the name is not supplied, then the category value supplied as content should be sought-for in all available categories.</xs:documentation>
+		</xs:annotation>	
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="name" type="xs:string" use="optional"/>
+				<xs:attribute name="agency" type="xs:NCName" use="optional"/>
+				
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="KeyFamilyWhereType">
+		<xs:annotation>
+			<xs:documentation>The KeyFamilyWhere element representes a query for a key family or key families. It contains all of the clauses in that query, represented by its child elements.</xs:documentation>
+		</xs:annotation>	
+		<xs:choice>
+			<xs:element name="KeyFamily" type="xs:string"/>
+			<xs:element name="Dimension" type="DimensionType"/>
+			<xs:element name="Attribute" type="AttributeType"/>
+			<xs:element name="Codelist" type="CodelistType"/>
+			<xs:element name="Category" type="CategoryType"/>
+			<xs:element name="Concept" type="xs:string"/>
+			<xs:element name="Agency" type="xs:string"/>
+			<xs:element name="Or" type="OrType"/>
+			<xs:element name="And" type="AndType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="CodelistWhereType">
+			<xs:annotation>
+				<xs:documentation>The CodelistWhere element representes a query for a codelist or codelists. It contains all of the clauses in that query, represented by its child elements.</xs:documentation>
+			</xs:annotation>	
+
+		<xs:choice>
+			<xs:element name="Codelist" type="CodelistType"/>
+			<xs:element name="Agency" type="xs:string"/>
+			<xs:element name="Or" type="OrType"/>
+			<xs:element name="And" type="AndType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="ConceptWhereType">
+		<xs:annotation>
+			<xs:documentation>The ConceptWhere element representes a query for a concept or concepts. It contains all of the clauses in that query, represented by its child elements.</xs:documentation>
+		</xs:annotation>	
+	
+		<xs:choice>
+			<xs:element name="Concept" type="xs:string"/>
+			<xs:element name="Agency" type="xs:string"/>
+			<xs:element name="Or" type="OrType"/>
+			<xs:element name="And" type="AndType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="AgencyWhereType">
+		<xs:annotation>
+			<xs:documentation>The AgencyWhere element representes a query for details for an Agency. It contains all of the clauses in that query, represented by its child elements.</xs:documentation>
+		</xs:annotation>	
+		<xs:choice>
+			<xs:element name="DataSet" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="KeyFamily" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Codelist" type="CodelistType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Category" type="CategoryType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Concept" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Agency" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Or" type="OrType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="And" type="AndType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="TimeType">
+		<xs:annotation>
+			<xs:documentation>TimeType contains the time point or period for which results should be supplied. When StartTime and EndTime are used, these must be understood as inclusive.</xs:documentation>
+		</xs:annotation>	
+	
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="StartTime" type="common:TimePeriodType"/>
+				<xs:element name="EndTime" type="common:TimePeriodType" minOccurs="0"/>			
+			</xs:sequence>
+			<xs:element name="Time" type="common:TimePeriodType"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RegistryInterface xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message SDMXMessage.xsd" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Header>
+    <ID>635206362930703153</ID>
+    <Test>false</Test>
+    <Prepared>2013-11-21T13:11:33</Prepared>
+    <Sender id="ESTAT" />
+  </Header>
+  <QueryStructureResponse>
+    <registry:StatusMessage status="Success" />
+    <registry:Dataflows>
+      <structure:Dataflow id="HC06" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=ESTAT:HC06(2.0)" version="2.0" agencyID="ESTAT" isFinal="true">
+        <structure:Name xml:lang="en">HC06 Marital Status(GEO; SEX; FET; LMS; CAS; POB; COC; AGE)</structure:Name>
+        <structure:KeyFamilyRef>
+          <structure:URN>urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=ESTAT:HC06(1.0)</structure:URN>
+          <structure:KeyFamilyID>HC06</structure:KeyFamilyID>
+          <structure:KeyFamilyAgencyID>ESTAT</structure:KeyFamilyAgencyID>
+          <structure:Version>1.0</structure:Version>
+        </structure:KeyFamilyRef>
+        <structure:CategoryRef>
+          <structure:URN>urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).21</structure:URN>
+          <structure:CategorySchemeID>ESTAT_DATAFLOWS_SCHEME</structure:CategorySchemeID>
+          <structure:CategorySchemeAgencyID>ESTAT</structure:CategorySchemeAgencyID>
+          <structure:CategorySchemeVersion>1.0</structure:CategorySchemeVersion>
+          <structure:CategoryID>
+            <structure:ID>21</structure:ID>
+          </structure:CategoryID>
+        </structure:CategoryRef>
+      </structure:Dataflow>
+    </registry:Dataflows>
+    <registry:CategorySchemes>
+      <structure:CategoryScheme id="ESTAT_DATAFLOWS_SCHEME" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.CategoryScheme=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0)" version="1.0" agencyID="ESTAT" isFinal="true">
+        <structure:Name xml:lang="en">CensusHub domain category scheme</structure:Name>
+        <structure:Category id="1" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).1">
+          <structure:Name xml:lang="en">Households</structure:Name>
+          <structure:Description xml:lang="en">Households</structure:Description>
+          <structure:Category id="11" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).1.11">
+            <structure:Name xml:lang="en">People in households</structure:Name>
+            <structure:Description xml:lang="en">People in households</structure:Description>
+          </structure:Category>
+          <structure:Category id="12" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).1.12">
+            <structure:Name xml:lang="en">Private households</structure:Name>
+            <structure:Description xml:lang="en">Private households</structure:Description>
+          </structure:Category>
+        </structure:Category>
+        <structure:Category id="2" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).2">
+          <structure:Name xml:lang="en">Families</structure:Name>
+          <structure:Description xml:lang="en">Families</structure:Description>
+          <structure:Category id="21" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).2.21">
+            <structure:Name xml:lang="en">People in families</structure:Name>
+            <structure:Description xml:lang="en">People in families</structure:Description>
+            <structure:DataflowRef>
+              <structure:URN>urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=ESTAT:HC06(2.0)</structure:URN>
+              <structure:AgencyID>ESTAT</structure:AgencyID>
+              <structure:DataflowID>HC06</structure:DataflowID>
+              <structure:Version>2.0</structure:Version>
+            </structure:DataflowRef>
+          </structure:Category>
+        </structure:Category>
+        <structure:Category id="3" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).3">
+          <structure:Name xml:lang="en">Employment</structure:Name>
+          <structure:Description xml:lang="en">Employment</structure:Description>
+          <structure:Category id="31" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).3.31">
+            <structure:Name xml:lang="en">People where they live</structure:Name>
+            <structure:Description xml:lang="en">People where they live</structure:Description>
+          </structure:Category>
+          <structure:Category id="32" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).3.32">
+            <structure:Name xml:lang="en">People where they work</structure:Name>
+            <structure:Description xml:lang="en">People where they work</structure:Description>
+          </structure:Category>
+          <structure:Category id="33" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).3.33">
+            <structure:Name xml:lang="en">People working abroad</structure:Name>
+            <structure:Description xml:lang="en">People working abroad</structure:Description>
+          </structure:Category>
+        </structure:Category>
+        <structure:Category id="4" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).4">
+          <structure:Name xml:lang="en">Migration</structure:Name>
+          <structure:Description xml:lang="en">Migration</structure:Description>
+          <structure:Category id="41" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).4.41">
+            <structure:Name xml:lang="en">Arrival and country</structure:Name>
+            <structure:Description xml:lang="en">Arrival and country</structure:Description>
+          </structure:Category>
+          <structure:Category id="42" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).4.42">
+            <structure:Name xml:lang="en">Employment</structure:Name>
+            <structure:Description xml:lang="en">Employment</structure:Description>
+          </structure:Category>
+        </structure:Category>
+        <structure:Category id="5" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).5">
+          <structure:Name xml:lang="en">Housing</structure:Name>
+          <structure:Description xml:lang="en">Housing</structure:Description>
+          <structure:Category id="51" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).5.51">
+            <structure:Name xml:lang="en">Population in dwellings and collective living quarters</structure:Name>
+            <structure:Description xml:lang="en">Population in dwellings and collective living quarters</structure:Description>
+          </structure:Category>
+          <structure:Category id="52" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).5.52">
+            <structure:Name xml:lang="en">Homeless and Persons in unconventional shelter</structure:Name>
+            <structure:Description xml:lang="en">Homeless and Persons in unconventional shelter</structure:Description>
+          </structure:Category>
+          <structure:Category id="54" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).5.54">
+            <structure:Name xml:lang="en">Dwellings</structure:Name>
+            <structure:Description xml:lang="en">Dwellings</structure:Description>
+          </structure:Category>
+        </structure:Category>
+        <structure:Category id="6" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).6">
+          <structure:Name xml:lang="en">Single ages</structure:Name>
+          <structure:Description xml:lang="en">Single ages</structure:Description>
+          <structure:Category id="61" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).6.61">
+            <structure:Name xml:lang="en">Population overview</structure:Name>
+            <structure:Description xml:lang="en">Population overview</structure:Description>
+          </structure:Category>
+          <structure:Category id="62" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).6.62">
+            <structure:Name xml:lang="en">Country</structure:Name>
+            <structure:Description xml:lang="en">Country</structure:Description>
+          </structure:Category>
+        </structure:Category>
+        <structure:Category id="7" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).7">
+          <structure:Name xml:lang="en">Geography: Nation + Regions NUTS 1, 2, 3</structure:Name>
+          <structure:Description xml:lang="en">Geography: Nation + Regions NUTS 1, 2, 3</structure:Description>
+          <structure:Category id="71" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).7.71">
+            <structure:Name xml:lang="en">Population overview</structure:Name>
+            <structure:Description xml:lang="en">Population overview</structure:Description>
+          </structure:Category>
+          <structure:Category id="72" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).7.72">
+            <structure:Name xml:lang="en">Households</structure:Name>
+            <structure:Description xml:lang="en">Households</structure:Description>
+          </structure:Category>
+          <structure:Category id="73" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).7.73">
+            <structure:Name xml:lang="en">Families</structure:Name>
+            <structure:Description xml:lang="en">Families</structure:Description>
+          </structure:Category>
+          <structure:Category id="74" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).7.74">
+            <structure:Name xml:lang="en">Housing</structure:Name>
+            <structure:Description xml:lang="en">Housing</structure:Description>
+          </structure:Category>
+          <structure:Category id="75" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).7.75">
+            <structure:Name xml:lang="en">Single ages</structure:Name>
+            <structure:Description xml:lang="en">Single ages</structure:Description>
+          </structure:Category>
+        </structure:Category>
+        <structure:Category id="8" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).8">
+          <structure:Name xml:lang="en">Geography: Nation + Regions NUTS 1, 2, 3 + Municipalities</structure:Name>
+          <structure:Description xml:lang="en">Geography: Nation + Regions NUTS 1, 2, 3 + Municipalities</structure:Description>
+          <structure:Category id="81" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).8.81">
+            <structure:Name xml:lang="en">Population overview</structure:Name>
+            <structure:Description xml:lang="en">Population overview</structure:Description>
+          </structure:Category>
+          <structure:Category id="82" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).8.82">
+            <structure:Name xml:lang="en">Households</structure:Name>
+            <structure:Description xml:lang="en">Households</structure:Description>
+          </structure:Category>
+          <structure:Category id="83" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).8.83">
+            <structure:Name xml:lang="en">Families</structure:Name>
+            <structure:Description xml:lang="en">Families</structure:Description>
+          </structure:Category>
+          <structure:Category id="84" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_DATAFLOWS_SCHEME(1.0).8.84">
+            <structure:Name xml:lang="en">Housing</structure:Name>
+            <structure:Description xml:lang="en">Housing</structure:Description>
+          </structure:Category>
+        </structure:Category>
+        <structure:Annotations>
+          <common:Annotation>
+            <common:AnnotationType>CategoryScheme_node_order</common:AnnotationType>
+            <common:AnnotationText xml:lang="en">0</common:AnnotationText>
+          </common:Annotation>
+        </structure:Annotations>
+      </structure:CategoryScheme>
+      <structure:CategoryScheme id="ESTAT_QHC_DATAFLOWS_SCHEME" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.CategoryScheme=ESTAT:ESTAT_QHC_DATAFLOWS_SCHEME(1.0)" version="1.0" agencyID="ESTAT" isFinal="true">
+        <structure:Name xml:lang="en">CensusHub QHC scheme</structure:Name>
+        <structure:Category id="9" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_QHC_DATAFLOWS_SCHEME(1.0).9">
+          <structure:Name xml:lang="en">Quality data on completeness, sources and census topics</structure:Name>
+          <structure:Description xml:lang="en">Quality data on completeness, sources and census topics</structure:Description>
+        </structure:Category>
+        <structure:Category id="10" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_QHC_DATAFLOWS_SCHEME(1.0).10">
+          <structure:Name xml:lang="en">Quality data on topics related to persons</structure:Name>
+          <structure:Description xml:lang="en">Quality data on topics related to persons</structure:Description>
+        </structure:Category>
+        <structure:Category id="11" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_QHC_DATAFLOWS_SCHEME(1.0).11">
+          <structure:Name xml:lang="en">Quality data on topics related to households and families</structure:Name>
+          <structure:Description xml:lang="en">Quality data on topics related to households and families</structure:Description>
+        </structure:Category>
+        <structure:Category id="12" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_QHC_DATAFLOWS_SCHEME(1.0).12">
+          <structure:Name xml:lang="en">Quality data on topics related to housing</structure:Name>
+          <structure:Description xml:lang="en">Quality data on topics related to housing</structure:Description>
+        </structure:Category>
+        <structure:Category id="91" urn="urn:sdmx:org.sdmx.infomodel.categoryscheme.Category=ESTAT:ESTAT_QHC_DATAFLOWS_SCHEME(1.0).91">
+          <structure:Name xml:lang="en">QHC30</structure:Name>
+        </structure:Category>
+        <structure:Annotations>
+          <common:Annotation>
+            <common:AnnotationType>CategoryScheme_node_order</common:AnnotationType>
+            <common:AnnotationText xml:lang="en">0</common:AnnotationText>
+          </common:Annotation>
+        </structure:Annotations>
+      </structure:CategoryScheme>
+    </registry:CategorySchemes>
+  </QueryStructureResponse>
+</RegistryInterface>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message https://katharma.agilis-sa.gr/sdmxrr/xsd/SDMXMessage.xsd">
+<Header>
+<ID>REGISTRY_RESPONSE</ID>
+<Test>false</Test>
+<Prepared>2009-07-10T18:19:55</Prepared>
+<Sender id="ESTAT"/>
+</Header>
+<Dataflows>
+<structure:Dataflow id="SSTSCONS_PROD_M" agencyID="ESTAT" version="2.0" isFinal="true">
+<structure:Name xml:lang="en">Production in construction, total, building construction, civil engineering (Monthly)</structure:Name>
+<structure:KeyFamilyRef>
+<structure:KeyFamilyID>STS</structure:KeyFamilyID>
+<structure:KeyFamilyAgencyID>ESTAT</structure:KeyFamilyAgencyID>
+<structure:Version>2.0</structure:Version>
+</structure:KeyFamilyRef>
+<structure:CategoryRef>
+<structure:CategorySchemeID>ESTAT_DATAFLOWS_SCHEME</structure:CategorySchemeID>
+<structure:CategorySchemeAgencyID>ESTAT</structure:CategorySchemeAgencyID>
+<structure:CategorySchemeVersion>1.1</structure:CategorySchemeVersion>
+<structure:CategoryID>
+<structure:ID>SSTSCONS</structure:ID>
+<structure:CategoryVersion>1.0</structure:CategoryVersion>
+</structure:CategoryID>
+</structure:CategoryRef>
+</structure:Dataflow>
+</Dataflows>
+</Structure>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RegistryInterface xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message">
+    <Header>
+        <ID>IDREF1</ID>
+        <Test>false</Test>
+        <Prepared>2016-02-24T17:58:41.8844+01:00</Prepared>
+        <Sender id="Unknown" />
+        <Receiver id="Unknown" />
+    </Header>
+    <SubmitRegistrationsRequest>
+        <RegistrationRequest action="Append" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/registry">
+            <Registration id="575f364955367e82" lastUpdated="2016-02-24T17:58:41.8274+01:00">
+                <ProvisionAgreement>
+                    <Ref id="TEST_PA" version="1.0" agencyID="TEST" package="registry" class="ProvisionAgreement" xmlns="" />
+                </ProvisionAgreement>
+                <Datasource>
+                    <QueryableDataSource isRESTDatasource="true" isWebServiceDatasource="false">
+                        <DataURL xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">http://webservice.org/ws/rest/data/DF_TEST</DataURL>
+                    </QueryableDataSource>
+                </Datasource>
+            </Registration>
+        </RegistrationRequest>
+    </SubmitRegistrationsRequest>
+</RegistryInterface>

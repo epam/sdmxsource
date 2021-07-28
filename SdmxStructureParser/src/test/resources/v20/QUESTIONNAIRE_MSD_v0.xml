@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Structure xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://wlsmed.cc.cec.eu.int:8223/sdmxrr/xsd/SDMXMessage.xsd" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+    <Header>
+        <ID>NEW_MSD</ID>
+        <Test>false</Test>
+        <Prepared>2010-02-15T15:20:02.593+01:00</Prepared>
+        <Sender id="MSD_EDITOR"/>
+    </Header>
+    <CodeLists>
+        <structure:CodeList id="CL_FREQ" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_FREQ[1.0]">
+            <structure:Name xml:lang="sk">cl_freq</structure:Name>
+            <structure:Name xml:lang="en">cl_freq</structure:Name>
+            <structure:Description xml:lang="sk">Frekvencia (obdobie) vykazovania - mesačne, ...</structure:Description>
+            <structure:Description xml:lang="en">The frequency (period) reporting - monthly ...</structure:Description>
+            <structure:Code value="A" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_FREQ[1.0].A">
+                <structure:Description xml:lang="en">Annual</structure:Description>
+                <structure:Description xml:lang="sk">Ročne</structure:Description>
+            </structure:Code>
+            <structure:Code value="B" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_FREQ[1.0].B">
+                <structure:Description xml:lang="en">Business (not supported)</structure:Description>
+                <structure:Description xml:lang="sk">Nie je podporované</structure:Description>
+            </structure:Code>
+            <structure:Code value="D" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_FREQ[1.0].D">
+                <structure:Description xml:lang="en">Daily</structure:Description>
+                <structure:Description xml:lang="sk">Denne</structure:Description>
+            </structure:Code>
+            <structure:Code value="M" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_FREQ[1.0].M">
+                <structure:Description xml:lang="sk">Mesačne</structure:Description>
+                <structure:Description xml:lang="en">Monthly</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_IKP" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_IKP[1.0]">
+            <structure:Name xml:lang="sk">cl_ikp</structure:Name>
+            <structure:Name xml:lang="en">cl_ikp</structure:Name>
+            <structure:Description xml:lang="sk">Zoznam ikp položiek - všetky dátové a kľúčové položky dotazníkov</structure:Description>
+            <structure:Description xml:lang="en">ID list of items - all key data items and questionnaires</structure:Description>
+            <structure:Code value="605-Rn-S2_AQ1825" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].605-Rn-S2_AQ1825">
+                <structure:Description xml:lang="sk">Návštevníci v ubyt.zar-CC6015 za m.-osoba</structure:Description>
+            </structure:Code>
+            <structure:Code value="605-Rn-S3_AQ1826" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].605-Rn-S3_AQ1826">
+                <structure:Description xml:lang="sk">Prenocovanie v ubyt.zar-CC6015 za m.-počet</structure:Description>
+            </structure:Code>
+            <structure:Code value="601-R1-S1_AQ1827" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].601-R1-S1_AQ1827">
+                <structure:Description xml:lang="sk">Prevádzkové dni ubyt.zariad.za m.-počet</structure:Description>
+            </structure:Code>
+            <structure:Code value="603-R1-S1_AQ1828" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].603-R1-S1_AQ1828">
+                <structure:Description xml:lang="sk">Izby k posl.dňu m.-počet</structure:Description>
+            </structure:Code>
+            <structure:Code value="002-R1-S1_XY0008" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].002-R1-S1_XY0008">
+                <structure:Description xml:lang="sk">Dátová položka - z podkladov účtovnej evidencie (hodiny)</structure:Description>
+            </structure:Code>
+            <structure:Code value="602-R99-S1_RS9902" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].602-R99-S1_RS9902">
+                <structure:Description xml:lang="sk">Položka súčtového riadku</structure:Description>
+            </structure:Code>
+            <structure:Code value="603-R2-S1_AQ1829" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].603-R2-S1_AQ1829">
+                <structure:Description xml:lang="sk">Súčet denných stavov obsad.izieb za m.-poč.</structure:Description>
+            </structure:Code>
+            <structure:Code value="603-R3-S1_AQ1830" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].603-R3-S1_AQ1830">
+                <structure:Description xml:lang="sk">Lôžka k posl.dňu m.-počet</structure:Description>
+            </structure:Code>
+            <structure:Code value="603-R4-S1_AQ1831" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].603-R4-S1_AQ1831">
+                <structure:Description xml:lang="sk">Stále lôžka k posl.dňu m.-počet</structure:Description>
+            </structure:Code>
+            <structure:Code value="603-R5-S1_AQ1833" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].603-R5-S1_AQ1833">
+                <structure:Description xml:lang="sk">Súč.den.stavov stál.lôžok k disp.návšt.za m.-poč</structure:Description>
+            </structure:Code>
+            <structure:Code value="603-R6-S1_AQ1834" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].603-R6-S1_AQ1834">
+                <structure:Description xml:lang="sk">Miesta na voľnej ploche k posl.dňu m.-poč.</structure:Description>
+            </structure:Code>
+            <structure:Code value="603-R99-S1_RS9901" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].603-R99-S1_RS9901">
+                <structure:Description xml:lang="sk">Položka súčtového riadku</structure:Description>
+            </structure:Code>
+            <structure:Code value="602-R1-S1_AA1112" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].602-R1-S1_AA1112">
+                <structure:Description xml:lang="sk">Tržby-ubytovanie s DPH za q.-EUR</structure:Description>
+            </structure:Code>
+            <structure:Code value="602-R1-S2_AN0087" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].602-R1-S2_AN0087">
+                <structure:Description xml:lang="sk">DPH z tržieb za ubytovanie za q.-EUR</structure:Description>
+            </structure:Code>
+            <structure:Code value="602-R2-S1_AN0753" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].602-R2-S1_AN0753">
+                <structure:Description xml:lang="sk">Tržby-ubytovanie zahr.návšt.s DPH za q.-EUR</structure:Description>
+            </structure:Code>
+            <structure:Code value="602-R2-S2_AN0745" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].602-R2-S2_AN0745">
+                <structure:Description xml:lang="sk">DPH z tržieb za ubytovanie zahr.návšt.za q.-EUR</structure:Description>
+            </structure:Code>
+            <structure:Code value="604-R1-S1_AK0714" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].604-R1-S1_AK0714">
+                <structure:Description xml:lang="sk">Súkromní podnikatelia vr.spoloč.k posl.dňu q.-os</structure:Description>
+            </structure:Code>
+            <structure:Code value="604-R2-S1_AA1431" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].604-R2-S1_AA1431">
+                <structure:Description xml:lang="sk">Priem.evid.počet zamestnancov za q.-fyz.osoby</structure:Description>
+            </structure:Code>
+            <structure:Code value="604-R3-S1_AO2697" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].604-R3-S1_AO2697">
+                <structure:Description xml:lang="sk">Mzdy,náhrady mzdy zamestnancov za q.-EUR</structure:Description>
+            </structure:Code>
+            <structure:Code value="604-R4-S1_AO2719" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].604-R4-S1_AO2719">
+                <structure:Description xml:lang="sk">Náhrady za pracovnú pohotovosť mimo pracoviska za q.-EUR</structure:Description>
+            </structure:Code>
+            <structure:Code value="002-R2-S1_XY0009" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].002-R2-S1_XY0009">
+                <structure:Description xml:lang="sk">Dátová položka - z podkladov účtovnej evidencie (minúty)</structure:Description>
+            </structure:Code>
+            <structure:Code value="602-R99-S2_RS9903" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].602-R99-S2_RS9903">
+                <structure:Description xml:lang="sk">Položka súčtového riadku</structure:Description>
+            </structure:Code>
+            <structure:Code value="604-R99-S1_RS9904" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].604-R99-S1_RS9904">
+                <structure:Description xml:lang="sk">Položka súčtového riadku</structure:Description>
+            </structure:Code>
+            <structure:Code value="605-Rn-S1_XY0010" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].605-Rn-S1_XY0010">
+                <structure:Description xml:lang="en">Country code of residence</structure:Description>
+                <structure:Description xml:lang="sk">Kód krajiny trvalého pobytu</structure:Description>
+            </structure:Code>
+            <structure:Code value="COMPL-R1_XY0001" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].COMPL-R1_XY0001">
+                <structure:Description xml:lang="en">Date item - Name and address of Reporting unit (business runner)</structure:Description>
+                <structure:Description xml:lang="sk">Dátová položka - Názov a adresa sída organizácie</structure:Description>
+            </structure:Code>
+            <structure:Code value="COMPL-R2_XY0002" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].COMPL-R2_XY0002">
+                <structure:Description xml:lang="sk">Dátová položka - Názov ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Date item - Name of the accomodation establishment</structure:Description>
+            </structure:Code>
+            <structure:Code value="COMPL-R3_XY0003" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].COMPL-R3_XY0003">
+                <structure:Description xml:lang="sk">Dátová položka - Adresa ubytovacieho zariadenia (ulica a číslo)</structure:Description>
+                <structure:Description xml:lang="en">Date item - Addresss of place of accomodation establishment unit (Street, Number)</structure:Description>
+            </structure:Code>
+            <structure:Code value="COMPL-R4_XY0004" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].COMPL-R4_XY0004">
+                <structure:Description xml:lang="sk">Dátová položka - Obec ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Date item - Municipality of accomodation unit</structure:Description>
+            </structure:Code>
+            <structure:Code value="COMPL-R5_XY0005" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].COMPL-R5_XY0005">
+                <structure:Description xml:lang="sk">Dátová položka - Okres</structure:Description>
+                <structure:Description xml:lang="en">Date item - District</structure:Description>
+            </structure:Code>
+            <structure:Code value="COMPL-R6_XY0006" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].COMPL-R6_XY0006">
+                <structure:Description xml:lang="sk">Dátová položka - Názov kategórie a triedy ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Date item - Accommodation unit category</structure:Description>
+            </structure:Code>
+            <structure:Code value="KEY4_ICO" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].KEY4_ICO">
+                <structure:Description xml:lang="sk">IČO - Registračné číslo organizácie</structure:Description>
+                <structure:Description xml:lang="en">UID - Unit Identification number of the Reporting Unit</structure:Description>
+            </structure:Code>
+            <structure:Code value="KEY1_IKF" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].KEY1_IKF">
+                <structure:Description xml:lang="sk">IKF - Identifikačný kód dotazníka (formulára)</structure:Description>
+                <structure:Description xml:lang="en">IKF - Questionnaire Identification Code</structure:Description>
+            </structure:Code>
+            <structure:Code value="IND3_KATZAR" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].IND3_KATZAR">
+                <structure:Description xml:lang="sk">KATZAR - katagória ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Category code of AU – Accommodation category code</structure:Description>
+            </structure:Code>
+            <structure:Code value="KEY3_MESIAC" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].KEY3_MESIAC">
+                <structure:Description xml:lang="sk">MESIAC - Odobie vykazovania</structure:Description>
+                <structure:Description xml:lang="en">MONTH - Reporting period</structure:Description>
+            </structure:Code>
+            <structure:Code value="IND2_MESTO" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].IND2_MESTO">
+                <structure:Description xml:lang="sk">MESTO - Kód mesta v Slovenskej republike</structure:Description>
+                <structure:Description xml:lang="en">Town code</structure:Description>
+            </structure:Code>
+            <structure:Code value="KEY2_ROK" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].KEY2_ROK">
+                <structure:Description xml:lang="sk">ROK - Rok vykazovania</structure:Description>
+                <structure:Description xml:lang="en">YEAR - Year survey</structure:Description>
+            </structure:Code>
+            <structure:Code value="KEY5_PCUZ" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].KEY5_PCUZ">
+                <structure:Description xml:lang="sk">PČUZ - Poradové číslo ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">SNAU - is a sequence number of the accommodation unit</structure:Description>
+            </structure:Code>
+            <structure:Code value="IND1_OKRES" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKP[1.0].IND1_OKRES">
+                <structure:Description xml:lang="sk">OKRES - Kód okresu ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">DISTRICT - District code of accomm. unit</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_MODULE" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_MODULE[1.0]">
+            <structure:Name xml:lang="sk">cl_module</structure:Name>
+            <structure:Name xml:lang="en">cl_module</structure:Name>
+            <structure:Description xml:lang="sk">Moduly - skupina dátových položiek v roli key, ind, compl, module. V číselníku je kód modulu zároveň hodnotou pre concept MODULE_SIGN, meno modulu je hodnotou pre concept MODULE_NAME.</structure:Description>
+            <structure:Description xml:lang="en">Modules - group data items in a key role, ind., compl, module. The dial is a code module while the value of the concept MODULE_SIGN, the name of the module concept is a value for the MODULE_NAME.</structure:Description>
+            <structure:Code value="KEY" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].KEY">
+                <structure:Description xml:lang="sk">IDENTIFICATION_KEY - Kľúčové položky</structure:Description>
+                <structure:Description xml:lang="en">IDENTIFICATION_KEY - Key items</structure:Description>
+            </structure:Code>
+            <structure:Code value="IND" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].IND">
+                <structure:Description xml:lang="sk">INDICATION_DATA - Indikačné dáta</structure:Description>
+                <structure:Description xml:lang="en">INDICATION_DATA - Indicator Data</structure:Description>
+            </structure:Code>
+            <structure:Code value="COMPL" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].COMPL">
+                <structure:Description xml:lang="sk">COMPLEMENTARY - Doplňujúce dáta k indikačným položkám</structure:Description>
+                <structure:Description xml:lang="en">COMPLEMENTARY - Additional data indicating the items</structure:Description>
+            </structure:Code>
+            <structure:Code value="603" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].603">
+                <structure:Description xml:lang="sk">KAPACITA</structure:Description>
+                <structure:Description xml:lang="en">CAPACITY</structure:Description>
+            </structure:Code>
+            <structure:Code value="605" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].605">
+                <structure:Description xml:lang="sk">PRENOCOVANIA NÁVŠTEVNÍKOV  V UBYTOVACOM ZARIADENÍ</structure:Description>
+                <structure:Description xml:lang="en">NIGHTS SPENT BY VISITORS IN ACCOMMODATION FACILITY</structure:Description>
+            </structure:Code>
+            <structure:Code value="604" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].604">
+                <structure:Description xml:lang="sk">ZAMESTNANCI A MZDY UBYTOVACIEHO ZARIADENIA</structure:Description>
+                <structure:Description xml:lang="en">STAFF SALARIES AND ACCOMMODATION</structure:Description>
+            </structure:Code>
+            <structure:Code value="601" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].601">
+                <structure:Description xml:lang="sk">PREVÁDZKOVÁ ČINNOST  UBYTOVACIEHO ZARIADENIA</structure:Description>
+                <structure:Description xml:lang="en">OPERATIONAL ACTIVITIES ACCOMMODATION</structure:Description>
+            </structure:Code>
+            <structure:Code value="2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].2">
+                <structure:Description xml:lang="sk">ČAS VYPĹŇANIA FORMULÁRA</structure:Description>
+                <structure:Description xml:lang="en">Time filling in forms</structure:Description>
+            </structure:Code>
+            <structure:Code value="602" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE[1.0].602">
+                <structure:Description xml:lang="sk">TRŽBY ZA UBYTOVANIE</structure:Description>
+                <structure:Description xml:lang="en">REVENUES FOR ACCOMMODATION</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_CODELISTSNAME" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_CODELISTSNAME[1.0]">
+            <structure:Name xml:lang="sk">cl_codelistname</structure:Name>
+            <structure:Name xml:lang="en">cl_codelistname</structure:Name>
+            <structure:Description xml:lang="sk">Zoznam všetkých číselníkov - ich názvov</structure:Description>
+            <structure:Description xml:lang="en">List of all code lists - their names</structure:Description>
+            <structure:Code value="CL_STAT_TRVALY_POBYT" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_STAT_TRVALY_POBYT">
+                <structure:Description xml:lang="sk">Krajina trvalého pobytu</structure:Description>
+                <structure:Description xml:lang="en">Country of residence</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_FREQ" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_FREQ">
+                <structure:Description xml:lang="sk">Frekvencia (obdobie) vykazovania - mesačne, ...</structure:Description>
+                <structure:Description xml:lang="en">The frequency (period) reporting - monthly ...</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_REGISTER_ICO" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_REGISTER_ICO">
+                <structure:Description xml:lang="sk">Register pre IČO</structure:Description>
+                <structure:Description xml:lang="en">Index for ID</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_LANGUAGE" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_LANGUAGE">
+                <structure:Description xml:lang="sk">Zoznam jazykov - skratka, označenie</structure:Description>
+                <structure:Description xml:lang="en">List of languages - an abbreviation, sign</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_OBSVAL_TYPE" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_OBSVAL_TYPE">
+                <structure:Description xml:lang="sk">Typ dátovej položky - number, string</structure:Description>
+                <structure:Description xml:lang="en">Type of data items - number, string</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_IKP" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_IKP">
+                <structure:Description xml:lang="sk">Zoznam ikp položiek - všetky dátové a kľúčové položky dotazníkov</structure:Description>
+                <structure:Description xml:lang="en">ID list of items - all key items and questionnaires</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_MODULE" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_MODULE">
+                <structure:Description xml:lang="sk">Moduly - skupina dátových položiek v roli key, ind, compl, module. V číselníku je kód modulu zároveň hodnotou pre concept MODULE_SIGN, meno modulu je hodnotou pre concept MODULE_NAME.</structure:Description>
+                <structure:Description xml:lang="en">Modules - group data items in a key role, ind., compl, module. The dial is a code module while the value of the concept MODULE_SIGN, the name of the module concept is a value for the MODULE_NAME.</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_LEGENDS" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_LEGENDS">
+                <structure:Description xml:lang="sk">Legendy riadkov a stĺpcov</structure:Description>
+                <structure:Description xml:lang="en">Legends of rows and columns</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_MODULE_TYPE" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_MODULE_TYPE">
+                <structure:Description xml:lang="sk">Typ modulu - zatvorený, otvorený, otázka,...</structure:Description>
+                <structure:Description xml:lang="en">Module Type - closed, open,...</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_POSITION_TYPE" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_POSITION_TYPE">
+                <structure:Description xml:lang="sk">Typ pozície - riadok alebo stĺpec</structure:Description>
+                <structure:Description xml:lang="en">Type of position - the row or column</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_IKF" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_IKF">
+                <structure:Description xml:lang="en">List of statistical questionnaires</structure:Description>
+                <structure:Description xml:lang="sk">Zoznam štatistických dotazníkov (formulárov)</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_SURVEY_CODE" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_SURVEY_CODE">
+                <structure:Description xml:lang="sk">Označenie pre štatistické zisťovanie</structure:Description>
+                <structure:Description xml:lang="en">Identification of the survey</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_KATEGORIA_UBYT_ZAR" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_KATEGORIA_UBYT_ZAR">
+                <structure:Description xml:lang="sk">Kategória a trieda ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Category and class accommodation</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_MESTO_VYBER" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_MESTO_VYBER">
+                <structure:Description xml:lang="sk">Vybraté mestá</structure:Description>
+                <structure:Description xml:lang="en">Selected Cities</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_OKRES" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_OKRES">
+                <structure:Description xml:lang="sk">Číselník okresov Slovenskej republiky</structure:Description>
+                <structure:Description xml:lang="en">List of districts of the Slovak Republic</structure:Description>
+            </structure:Code>
+            <structure:Code value="CL_KEY_IND_COMPL" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_CODELISTSNAME[1.0].CL_KEY_IND_COMPL">
+                <structure:Description xml:lang="en">IKP list of items - key items (group key), indicating item questionnaire (group ind), indicating additional information on items (group compl)</structure:Description>
+                <structure:Description xml:lang="sk">Zoznam ikp položiek - kľúčové položky (skupina key), indikačné položky dotazníkov (skupina ind), doplňujúce informácie k indikačným položkám (skupina compl)</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_MODULE_TYPE" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_MODULE_TYPE[1.0]">
+            <structure:Name xml:lang="sk">cl_module_type</structure:Name>
+            <structure:Name xml:lang="en">cl_module_type</structure:Name>
+            <structure:Description xml:lang="sk">Typ modulu - zatvorený, otvorený, otázka,...</structure:Description>
+            <structure:Description xml:lang="en">Module Type - closed, open,...</structure:Description>
+            <structure:Code value="CLOSED" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE_TYPE[1.0].CLOSED">
+                <structure:Description xml:lang="sk">Zatvorený modul</structure:Description>
+                <structure:Description xml:lang="en">Closed module</structure:Description>
+            </structure:Code>
+            <structure:Code value="OPEN" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE_TYPE[1.0].OPEN">
+                <structure:Description xml:lang="sk">Otvorený modul</structure:Description>
+                <structure:Description xml:lang="en">Open module</structure:Description>
+            </structure:Code>
+            <structure:Code value="QUESTION" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_MODULE_TYPE[1.0].QUESTION">
+                <structure:Description xml:lang="en">New Code</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_POSITION_TYPE" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_POSITION_TYPE[1.0]">
+            <structure:Name xml:lang="sk">cl_position_type</structure:Name>
+            <structure:Name xml:lang="en">cl_position_type</structure:Name>
+            <structure:Description xml:lang="sk">Typ pozície - riadok alebo stĺpec</structure:Description>
+            <structure:Description xml:lang="en">Type of position - the row or column</structure:Description>
+            <structure:Code value="ROW" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_POSITION_TYPE[1.0].ROW">
+                <structure:Description xml:lang="sk">Informácia vzťahujúca sa k riadku</structure:Description>
+            </structure:Code>
+            <structure:Code value="COLUMN" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_POSITION_TYPE[1.0].COLUMN">
+                <structure:Description xml:lang="sk">Informácia vzťahujúca sa k stĺpcu</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_LEGENDS" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_LEGENDS[1.0]">
+            <structure:Name xml:lang="sk">cl_legends</structure:Name>
+            <structure:Name xml:lang="en">cl_legends</structure:Name>
+            <structure:Description xml:lang="sk">Legendy riadkov a stĺpcov</structure:Description>
+            <structure:Description xml:lang="en">Legends of rows and columns</structure:Description>
+            <structure:Code value="605_C2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].605_C2">
+                <structure:Description xml:lang="sk">Počet návštevníkov</structure:Description>
+                <structure:Description xml:lang="en">Number visitors</structure:Description>
+            </structure:Code>
+            <structure:Code value="605_C3" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].605_C3">
+                <structure:Description xml:lang="sk">Počet prenocovaní</structure:Description>
+                <structure:Description xml:lang="en">Number nights</structure:Description>
+            </structure:Code>
+            <structure:Code value="605_C0" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].605_C0">
+                <structure:Description xml:lang="sk">Názov krajiny trvalého pobytu</structure:Description>
+                <structure:Description xml:lang="en">Country of visitors residence</structure:Description>
+            </structure:Code>
+            <structure:Code value="605_C1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].605_C1">
+                <structure:Description xml:lang="sk">Kód krajiny trvalého pobytu</structure:Description>
+                <structure:Description xml:lang="en">Country code</structure:Description>
+            </structure:Code>
+            <structure:Code value="601_R1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].601_R1">
+                <structure:Description xml:lang="sk">Prevádzkové dni (počet)</structure:Description>
+                <structure:Description xml:lang="en">Operational days (number)</structure:Description>
+            </structure:Code>
+            <structure:Code value="603_R1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].603_R1">
+                <structure:Description xml:lang="sk">Počet izieb (kajút) k poslednému dňu mesiaca</structure:Description>
+                <structure:Description xml:lang="en">Number of rooms to the end of month</structure:Description>
+            </structure:Code>
+            <structure:Code value="603_R2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].603_R2">
+                <structure:Description xml:lang="sk">Celkový počet obsadených izieb</structure:Description>
+                <structure:Description xml:lang="en">Total number of occupied rooms</structure:Description>
+            </structure:Code>
+            <structure:Code value="603_R3" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].603_R3">
+                <structure:Description xml:lang="sk">Počet lôžok spolu k poslednému dňu mesiaca</structure:Description>
+                <structure:Description xml:lang="en">Number of beds to the end of month</structure:Description>
+            </structure:Code>
+            <structure:Code value="603_R4" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].603_R4">
+                <structure:Description xml:lang="sk">z toho stále lôžka</structure:Description>
+                <structure:Description xml:lang="en">Out of it permanent beds</structure:Description>
+            </structure:Code>
+            <structure:Code value="603_R5" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].603_R5">
+                <structure:Description xml:lang="sk">Celkový počet stálych lôžok k dispozícii návštevníkom</structure:Description>
+                <structure:Description xml:lang="en">Total number of beds at disposal for visitors</structure:Description>
+            </structure:Code>
+            <structure:Code value="603_R6" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].603_R6">
+                <structure:Description xml:lang="sk">Počet miest na voľnej ploche k poslednému dňu mesiaca</structure:Description>
+                <structure:Description xml:lang="en">Number of free places to the end of months</structure:Description>
+            </structure:Code>
+            <structure:Code value="603_R99" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].603_R99">
+                <structure:Description xml:lang="sk">Počet miest na voľnej ploche k poslednému dňu mesiaca</structure:Description>
+                <structure:Description xml:lang="en">Checksum (r. 1 to 6)</structure:Description>
+            </structure:Code>
+            <structure:Code value="602_R1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].602_R1">
+                <structure:Description xml:lang="sk">Tržby za ubytovanie návštevníkov spolu</structure:Description>
+                <structure:Description xml:lang="en">Sales from accommodation</structure:Description>
+            </structure:Code>
+            <structure:Code value="602_R2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].602_R2">
+                <structure:Description xml:lang="sk">z toho tržby za ubytovanie zahraničných návštevníkov</structure:Description>
+                <structure:Description xml:lang="en">Out of it sales from foreign visitors</structure:Description>
+            </structure:Code>
+            <structure:Code value="602_R3" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].602_R3">
+                <structure:Description xml:lang="sk">Kontrólny súčet (r. 1 a 2)</structure:Description>
+                <structure:Description xml:lang="en">Checksum (r. 1 and 2)</structure:Description>
+            </structure:Code>
+            <structure:Code value="604_R2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].604_R2">
+                <structure:Description xml:lang="sk">Priemerný evidenčný počet zamestnancov vo fyzických osobách</structure:Description>
+                <structure:Description xml:lang="en">Average number of employees</structure:Description>
+            </structure:Code>
+            <structure:Code value="602_C1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].602_C1" parentCode="602_C_PARENT1">
+                <structure:Description xml:lang="sk">vrátane DPH</structure:Description>
+                <structure:Description xml:lang="en">VAT included</structure:Description>
+            </structure:Code>
+            <structure:Code value="602_C2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].602_C2" parentCode="602_C_PARENT1">
+                <structure:Description xml:lang="sk">z toho DPH</structure:Description>
+                <structure:Description xml:lang="en">VAT</structure:Description>
+            </structure:Code>
+            <structure:Code value="604_R1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].604_R1">
+                <structure:Description xml:lang="sk">Súkromní podnikatelia a ich spoločníci (počet)</structure:Description>
+                <structure:Description xml:lang="en">Private owners including partners (number)</structure:Description>
+            </structure:Code>
+            <structure:Code value="604_R3" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].604_R3">
+                <structure:Description xml:lang="sk">Mzdy a náhrada mzdy zamestnancov (v EUR)</structure:Description>
+                <structure:Description xml:lang="en">Salaries and salaries compensations of employees (in EUR)</structure:Description>
+            </structure:Code>
+            <structure:Code value="604_R4" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].604_R4">
+                <structure:Description xml:lang="sk">Náhrada za pracovnú pohotovosť mimo pracoviska (v EUR)</structure:Description>
+                <structure:Description xml:lang="en">Compensations for work availability outside the place of work (in EUR)</structure:Description>
+            </structure:Code>
+            <structure:Code value="604_R99" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].604_R99">
+                <structure:Description xml:lang="sk">Kontrólny súčet (r. 1 až 4)</structure:Description>
+                <structure:Description xml:lang="en">Checksum (r. 1 to 4)</structure:Description>
+            </structure:Code>
+            <structure:Code value="2_R_PARENT1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].2_R_PARENT1">
+                <structure:Description xml:lang="sk">Odhadnite čas, ktorý ste spotrebovali na vyplnenie tohto štatistického formulára z podkladov účtovnej, resp. štatistickej evidencie .</structure:Description>
+                <structure:Description xml:lang="en">Estimate the time spent for filling this questionnaire Based on book keeping or statistical record.</structure:Description>
+            </structure:Code>
+            <structure:Code value="2_R1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].2_R1" parentCode="2_R_PARENT1">
+                <structure:Description xml:lang="sk">hodiny</structure:Description>
+                <structure:Description xml:lang="en">hours</structure:Description>
+            </structure:Code>
+            <structure:Code value="2_R2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].2_R2" parentCode="2_R_PARENT1">
+                <structure:Description xml:lang="sk">minúty</structure:Description>
+                <structure:Description xml:lang="en">minutes</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_KEY_C1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_KEY_C1">
+                <structure:Description xml:lang="sk">IKF</structure:Description>
+                <structure:Description xml:lang="en">IKF</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_KEY_C2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_KEY_C2">
+                <structure:Description xml:lang="sk">Rok</structure:Description>
+                <structure:Description xml:lang="en">Year</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_KEY_C3" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_KEY_C3">
+                <structure:Description xml:lang="sk">Mesiac</structure:Description>
+                <structure:Description xml:lang="en">Month</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_KEY_C4" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_KEY_C4">
+                <structure:Description xml:lang="sk">IČO</structure:Description>
+                <structure:Description xml:lang="en">UID</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_KEY_C5" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_KEY_C5">
+                <structure:Description xml:lang="sk">PČUZ</structure:Description>
+                <structure:Description xml:lang="en">SNAU</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_IND_C1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_IND_C1">
+                <structure:Description xml:lang="sk">Kód okresu ubytov. zariadenia</structure:Description>
+                <structure:Description xml:lang="en">District code of AU</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_IND_C2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_IND_C2">
+                <structure:Description xml:lang="sk">Kód mesta</structure:Description>
+                <structure:Description xml:lang="en">Town code</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_IND_C3" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_IND_C3">
+                <structure:Description xml:lang="sk">Kód kategórie zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Category code of AU</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_COMPL_R1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_COMPL_R1">
+                <structure:Description xml:lang="sk">Názov a adresa sídla organizácie (prevádzkovateľa)</structure:Description>
+                <structure:Description xml:lang="en">Name and address of Reporting unit (business runner)</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_COMPL_R2" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_COMPL_R2">
+                <structure:Description xml:lang="sk">Názov ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Name of the accomodation establishment</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_COMPL_R3" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_COMPL_R3">
+                <structure:Description xml:lang="sk">Adresa ubytovacieho zariadenia (ulica a číslo)</structure:Description>
+                <structure:Description xml:lang="en">Addresss of place of accomodation establishment unit (Street, Number)</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_COMPL_R4" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_COMPL_R4">
+                <structure:Description xml:lang="sk">Obec ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Municipality of accomodation unit</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_COMPL_R5" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_COMPL_R5">
+                <structure:Description xml:lang="sk">Okres</structure:Description>
+                <structure:Description xml:lang="en">District</structure:Description>
+            </structure:Code>
+            <structure:Code value="0901_COMPL_R6" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].0901_COMPL_R6">
+                <structure:Description xml:lang="sk">Názov kategórie a triedy ubytovacieho zariadenia</structure:Description>
+                <structure:Description xml:lang="en">Accommodation unit category</structure:Description>
+            </structure:Code>
+            <structure:Code value="601_C1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].601_C1">
+                <structure:Description xml:lang="sk">V sledovanom mesiaci</structure:Description>
+                <structure:Description xml:lang="en">In the reporting month</structure:Description>
+            </structure:Code>
+            <structure:Code value="603_C1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].603_C1">
+                <structure:Description xml:lang="sk">V sledovanom mesiaci</structure:Description>
+                <structure:Description xml:lang="en">In the reporting month</structure:Description>
+            </structure:Code>
+            <structure:Code value="602_C_PARENT1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].602_C_PARENT1">
+                <structure:Description xml:lang="sk">V sledovanom štvrťroku</structure:Description>
+                <structure:Description xml:lang="en">In current quarter</structure:Description>
+            </structure:Code>
+            <structure:Code value="604_C1" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_LEGENDS[1.0].604_C1">
+                <structure:Description xml:lang="sk">V sledovanom štvrťroku</structure:Description>
+                <structure:Description xml:lang="en">In current quarter</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_OBSVAL_TYPE" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_OBSVAL_TYPE[1.0]">
+            <structure:Name xml:lang="sk">cl_obsval_type</structure:Name>
+            <structure:Name xml:lang="en">cl_obsval_type</structure:Name>
+            <structure:Description xml:lang="sk">Typ dátovej položky - number, string</structure:Description>
+            <structure:Description xml:lang="en">Type of data items - number, string</structure:Description>
+            <structure:Code value="NUMBER" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_OBSVAL_TYPE[1.0].NUMBER">
+                <structure:Description xml:lang="sk">Numerická položka</structure:Description>
+            </structure:Code>
+            <structure:Code value="STRING" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_OBSVAL_TYPE[1.0].STRING">
+                <structure:Description xml:lang="sk">Znaková, nenumerická položka</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+        <structure:CodeList id="CL_IKF" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.codelist.CodeList=INFOSTAT:CL_IKF[1.0]">
+            <structure:Name xml:lang="sk">cl_ikf</structure:Name>
+            <structure:Name xml:lang="en">cl_ikf</structure:Name>
+            <structure:Description xml:lang="sk">Zoznam štatistických dotazníkov (formulárov)</structure:Description>
+            <structure:Description xml:lang="en">List of statistical questionnaires</structure:Description>
+            <structure:Code value="0901" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKF[1.0].0901">
+                <structure:Description xml:lang="sk">MESAČNÝ VÝKAZ O ČINNOSTI UBYTOVACIEHO ZARIADENIA</structure:Description>
+                <structure:Description xml:lang="en">MONTHLY STATEMENT ON ACTIVITIES ACCOMMODATION</structure:Description>
+            </structure:Code>
+            <structure:Code value="1310" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKF[1.0].1310">
+                <structure:Description xml:lang="sk">ŠTATISTICKÉ ZISŤOVANIE O INOVÁCIÁCH</structure:Description>
+                <structure:Description xml:lang="en">STATISTICAL SURVEY OF INNOVATIONS</structure:Description>
+            </structure:Code>
+            <structure:Code value="1605" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKF[1.0].1605">
+                <structure:Description xml:lang="sk">MESAČNÝ VÝKAZ O POHYBE CIEN PRIEMYSELNÝCH VÝROBCOV</structure:Description>
+                <structure:Description xml:lang="en">MONTHLY STATEMENT OF CHANGES INDUSTRIAL PRODUCER PRICES</structure:Description>
+            </structure:Code>
+            <structure:Code value="2001" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKF[1.0].2001">
+                <structure:Description xml:lang="sk">MESAČNÝ PODNIKOVÝ VÝKAZ V PRIEMYSLE</structure:Description>
+                <structure:Description xml:lang="en">MONTHLY CORPORATE STATEMENT IN INDUSTRY</structure:Description>
+            </structure:Code>
+            <structure:Code value="990300" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKF[1.0].990300">
+                <structure:Description xml:lang="sk">ROČNÝ VÝKAZ PRODUKČNÝCH ODVETVÍ</structure:Description>
+                <structure:Description xml:lang="en">ANNUAL QUESTIONNAIRE ON BUSINESS</structure:Description>
+            </structure:Code>
+            <structure:Code value="990500" urn="urn:sdmx:org.sdmx.infomodel.codelist.Code=INFOSTAT:CL_IKF[1.0].990500">
+                <structure:Description xml:lang="sk">ROČNÝ VÝKAZ SÚKROMNÝCH PODNIKATEĽOV NEZAPÍSANÝCH V OBCHODNOM REGISTRI</structure:Description>
+                <structure:Description xml:lang="en">ANNUAL REPORT FOR UNREGISTERED PRIVATE BUSINESSES</structure:Description>
+            </structure:Code>
+        </structure:CodeList>
+    </CodeLists>
+    <Concepts>
+        <structure:ConceptScheme id="QUESTIONNAIRE" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.ConceptScheme=INFOSTAT:QUESTIONNAIRE[1.0]">
+            <structure:Name xml:lang="sk">Concept Scheme pre dotazník</structure:Name>
+            <structure:Name xml:lang="en">Concept schema for the e-questionnaire</structure:Name>
+            <structure:Description xml:lang="sk">Všeobecná Concept Scheme pre dotazník, ako bola zadefinovaná projektom ECOLLECTION-X.</structure:Description>
+            <structure:Description xml:lang="en">Concept schema defined for the e-questionnaire generator</structure:Description>
+            <structure:Concept id="SURVEY_IDENTIFICATION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].SURVEY_IDENTIFICATION">
+                <structure:Name xml:lang="sk">01 Survey_identification</structure:Name>
+                <structure:Name xml:lang="en">01 Survey_identification</structure:Name>
+                <structure:Description xml:lang="sk">Údaje o štatistickom zisťovaní (z programu zisťovaní)</structure:Description>
+                <structure:Description xml:lang="en">Details of the survey (from the  program/plan of surveys)</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="SURVEY_CODE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].SURVEY_CODE" parent="SURVEY_IDENTIFICATION">
+                <structure:Name xml:lang="sk">01.1 survey_code</structure:Name>
+                <structure:Name xml:lang="en">01.1 survey_code</structure:Name>
+                <structure:Description xml:lang="sk">Značka štatistického zisťovania (tiež dotazníka)</structure:Description>
+                <structure:Description xml:lang="en">Code of statistical  QUESTIONNAIRE</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="SURVEY_TITLE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].SURVEY_TITLE" parent="SURVEY_IDENTIFICATION">
+                <structure:Name xml:lang="sk">01.2 survey_title</structure:Name>
+                <structure:Name xml:lang="en">01.2 survey_title</structure:Name>
+                <structure:Description xml:lang="sk">Názov zisťovania</structure:Description>
+                <structure:Description xml:lang="en">Name of survey</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="SURVEY_DESCRIPTION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].SURVEY_DESCRIPTION" parent="SURVEY_IDENTIFICATION">
+                <structure:Name xml:lang="sk">01.3 survey_description</structure:Name>
+                <structure:Name xml:lang="en">01.3 survey_description</structure:Name>
+                <structure:Description xml:lang="sk">Popis zisťovania</structure:Description>
+                <structure:Description xml:lang="en">Description of survey</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="PROGRAM_PERIOD" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].PROGRAM_PERIOD" parent="SURVEY_IDENTIFICATION">
+                <structure:Name xml:lang="sk">01.4 program_period</structure:Name>
+                <structure:Name xml:lang="en">01.4 program_period</structure:Name>
+                <structure:Description xml:lang="sk">Zisťovanie z programu na roky od - do</structure:Description>
+                <structure:Description xml:lang="en">Survey program validity for the years since - from</structure:Description>
+                <structure:TextFormat textType="Date"/>
+            </structure:Concept>
+            <structure:Concept id="REGISTRATION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].REGISTRATION">
+                <structure:Name xml:lang="sk">03 Registration</structure:Name>
+                <structure:Name xml:lang="en">03 Registration</structure:Name>
+                <structure:Description xml:lang="sk">Údaje o registrácii výkazu</structure:Description>
+                <structure:Description xml:lang="en">Information on QUESTIONNAIRE registration</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="REGISTRATION_NUMBER" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].REGISTRATION_NUMBER" parent="REGISTRATION">
+                <structure:Name xml:lang="sk">03.1 registration_number</structure:Name>
+                <structure:Name xml:lang="en">03.1 registration_number</structure:Name>
+                <structure:Description xml:lang="sk">Registračné číslo</structure:Description>
+                <structure:Description xml:lang="en">Registration number</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="REGISTRATION_DATE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].REGISTRATION_DATE" parent="REGISTRATION">
+                <structure:Name xml:lang="sk">03.2 registration_date</structure:Name>
+                <structure:Name xml:lang="en">03.2 registration_date</structure:Name>
+                <structure:Description xml:lang="sk">Dátum registrácie</structure:Description>
+                <structure:Description xml:lang="en">Date of registration</structure:Description>
+                <structure:TextFormat textType="Date"/>
+            </structure:Concept>
+            <structure:Concept id="REGISTRATION_PLACE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].REGISTRATION_PLACE" parent="REGISTRATION">
+                <structure:Name xml:lang="sk">03.3 registration_place</structure:Name>
+                <structure:Name xml:lang="en">03.3 registration_place</structure:Name>
+                <structure:Description xml:lang="sk">Miesto registrácie</structure:Description>
+                <structure:Description xml:lang="en">Place of registration</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="IKF_CODE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].IKF_CODE" parent="QUESTIONNAIRE_IDENTIFICATION" coreRepresentation="CL_IKF" coreRepresentationAgency="INFOSTAT">
+                <structure:Name xml:lang="sk">02.1 ikf_code</structure:Name>
+                <structure:Name xml:lang="en">02.1 ikf_code</structure:Name>
+                <structure:Description xml:lang="sk">Identifikačný kód dotazníka</structure:Description>
+                <structure:Description xml:lang="en">QUESTIONNAIRE Identification Code</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="SURVEY_YEAR" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].SURVEY_YEAR" parent="QUESTIONNAIRE_IDENTIFICATION">
+                <structure:Name xml:lang="sk">02.2 survey_year</structure:Name>
+                <structure:Name xml:lang="en">02.2 survey_year</structure:Name>
+                <structure:Description xml:lang="sk">Rok vykazovania</structure:Description>
+                <structure:Description xml:lang="en">Reporting Year</structure:Description>
+                <structure:TextFormat textType="Date" isSequence="true"/>
+            </structure:Concept>
+            <structure:Concept id="IDENTIFICATION_KEY" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].IDENTIFICATION_KEY">
+                <structure:Name xml:lang="sk">05 Identification_Key</structure:Name>
+                <structure:Name xml:lang="en">05 Identification_Key</structure:Name>
+                <structure:Description xml:lang="sk">Identifikačné položky</structure:Description>
+                <structure:Description xml:lang="en">Identification Items</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="INDICATION_DATA" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].INDICATION_DATA">
+                <structure:Name xml:lang="sk">06 Indication_Data</structure:Name>
+                <structure:Name xml:lang="en">06 Indication_Data</structure:Name>
+                <structure:Description xml:lang="sk">Indikačné dáta</structure:Description>
+                <structure:Description xml:lang="en">Indicator data</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="KCOMPLEMENTARY" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].KCOMPLEMENTARY">
+                <structure:Name xml:lang="sk">07 Complementary</structure:Name>
+                <structure:Name xml:lang="en">07 Complementary</structure:Name>
+                <structure:Description xml:lang="sk">Popisné informácie k identifikátorom a indikátorom</structure:Description>
+                <structure:Description xml:lang="en">Descriptive information on the identifier and indicator</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="CONFIDENTIALITY" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONFIDENTIALITY">
+                <structure:Name xml:lang="sk">08 Confidentiality (Dôvernosť, 7)</structure:Name>
+                <structure:Name xml:lang="en">08 Confidentiality</structure:Name>
+                <structure:Description xml:lang="sk">Dôvernosť</structure:Description>
+                <structure:Description xml:lang="en">Confidentiality</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="CONF_DATA_TR" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONF_DATA_TR" parent="CONFIDENTIALITY">
+                <structure:Name xml:lang="sk">08.2 conf_data_tr (Ochrana dôvernosti dát, 7.2)</structure:Name>
+                <structure:Name xml:lang="en">08.2 conf_data_tr</structure:Name>
+                <structure:Description xml:lang="sk">Ochrana dôvernosti dát</structure:Description>
+                <structure:Description xml:lang="en">Protecting of confidential data</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="DELIVER" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].DELIVER" parent="DELIVER_CONTACT">
+                <structure:Name xml:lang="sk">10.1 deliver (Doručiť do - popis)</structure:Name>
+                <structure:Name xml:lang="en">10.1 deliver</structure:Name>
+                <structure:Description xml:lang="sk">Doručiť do - popis</structure:Description>
+                <structure:Description xml:lang="en">Deliver - description</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="INST_MANDATE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].INST_MANDATE">
+                <structure:Name xml:lang="sk">09 Inst_mandate (6)</structure:Name>
+                <structure:Name xml:lang="en">09 Inst_mandate</structure:Name>
+                <structure:Description xml:lang="sk">Inštitucionálny mandát</structure:Description>
+                <structure:Description xml:lang="en">Institutional mandate</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="ADDRESSING" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].ADDRESSING" parent="INST_MANDATE">
+                <structure:Name xml:lang="sk">09.1 addressing (Oslovenie respondenta)</structure:Name>
+                <structure:Name xml:lang="en">09.1 addressing</structure:Name>
+                <structure:Description xml:lang="sk">Oslovenie respondenta k relevantnému zisťovaniu</structure:Description>
+                <structure:Description xml:lang="en">Addressing the respondent to the relevant survey</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="DELIVER_CONTACT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].DELIVER_CONTACT">
+                <structure:Name xml:lang="sk">10 DeliverContact (Údaje pre doručenie dotazníka)</structure:Name>
+                <structure:Name xml:lang="en">10 DeliverContact</structure:Name>
+                <structure:Description xml:lang="sk">Údaje pre doručenie formulára</structure:Description>
+                <structure:Description xml:lang="en">Information on form delivery</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="CONTACT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT">
+                <structure:Name xml:lang="sk">12 Contact (Kontakt pre metaúdaje a údaje)</structure:Name>
+                <structure:Name xml:lang="en">12 Contact</structure:Name>
+                <structure:Description xml:lang="sk">Kontakt pre metaúdaje a údaje</structure:Description>
+                <structure:Description xml:lang="en">Contact for the metadata and data</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="CONTACT_NAME" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT_NAME" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.3 contact_name (Názov kontaktu)</structure:Name>
+                <structure:Name xml:lang="en">12.3 contact_name</structure:Name>
+                <structure:Description xml:lang="sk">Názov kontaktných miest pre údaje a metaúdaje.</structure:Description>
+                <structure:Description xml:lang="en">Name of contact</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="CONTACT_EMAIL" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT_EMAIL" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.6 contact_email (Kontaktná emailová adresa)</structure:Name>
+                <structure:Name xml:lang="en">12.6 contact_email</structure:Name>
+                <structure:Description xml:lang="sk">E-mailová adresa kontaktných miest pre údaje alebo metaúdaje.</structure:Description>
+                <structure:Description xml:lang="en">Contact email address</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="CONTACT_PHONE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT_PHONE" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.7 contact_phone (Kontaktné telefónne číslo)</structure:Name>
+                <structure:Name xml:lang="en">12.7 contact_phone</structure:Name>
+                <structure:Description xml:lang="sk">Telefónne číslo kontaktných miest pre údaje alebo metaúdaje.</structure:Description>
+                <structure:Description xml:lang="en">Contact telephone number</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="CONTACT_FAX" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT_FAX" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.8 contact_fax (Kontaktné faxové číslo)</structure:Name>
+                <structure:Name xml:lang="en">12.8 contact_fax</structure:Name>
+                <structure:Description xml:lang="sk">Faxové číslo kontaktných miest pre údaje alebo metaúdaje.</structure:Description>
+                <structure:Description xml:lang="en">Contact fax number</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="CONTACT_WEB" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT_WEB" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.9 contact_web (Webová stránka)</structure:Name>
+                <structure:Name xml:lang="en">12.9 contact_web</structure:Name>
+                <structure:Description xml:lang="sk">Webová stránka kontaktných miest pre údaje alebo metaúdaje.</structure:Description>
+                <structure:Description xml:lang="en">Website address</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="ORGANISATION_RESPOSIBLE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].ORGANISATION_RESPOSIBLE">
+                <structure:Name xml:lang="sk">11 Organisation_resposible (Organizácia zodpovedná za štatistické zisťovanie)</structure:Name>
+                <structure:Name xml:lang="en">11 Organisation_resposible</structure:Name>
+                <structure:Description xml:lang="sk">Organizácia zodpovedná za štatistické zisťovanie.</structure:Description>
+                <structure:Description xml:lang="en">The organization responsible for survey</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="ABBREVIATION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].ABBREVIATION" parent="ORGANISATION_RESPOSIBLE">
+                <structure:Name xml:lang="sk">11.1 abbreviation (Značka organizácie)</structure:Name>
+                <structure:Name xml:lang="en">11.1 abbreviation</structure:Name>
+                <structure:Description xml:lang="sk">Značka organizácie, ktorá je zodpovedná za šatistické zisťovanie podľa programu zisťovaní.</structure:Description>
+                <structure:Description xml:lang="en">Short name for organization</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="LOGO" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].LOGO" parent="ORGANISATION_RESPOSIBLE">
+                <structure:Name xml:lang="sk">11.2 logo (Obrázok)</structure:Name>
+                <structure:Name xml:lang="en">11.2 logo</structure:Name>
+                <structure:Description xml:lang="sk">Názov súboru, v ktorom je obrázok organizácie zodpovednej za štatistické zisťovanie.</structure:Description>
+                <structure:Description xml:lang="en">Path and file name of the image logo</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="CONF_POLICY" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONF_POLICY" parent="CONFIDENTIALITY">
+                <structure:Name xml:lang="sk">08.1 conf_policy  (Politika dôvernosti, 7.1)</structure:Name>
+                <structure:Name xml:lang="en">08.1 conf_policy</structure:Name>
+                <structure:Description xml:lang="sk">Politika dôvernosti</structure:Description>
+                <structure:Description xml:lang="en">Confidentiality Policy</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="QUESTIONNAIRE_IDENTIFICATION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].QUESTIONNAIRE_IDENTIFICATION">
+                <structure:Name xml:lang="sk">02 QUESTIONNAIRE_identification</structure:Name>
+                <structure:Name xml:lang="en">02 Questionnaire_identification</structure:Name>
+                <structure:Description xml:lang="sk">Identifikačný kód dotazníka</structure:Description>
+                <structure:Description xml:lang="en">QUESTIONNAIRE Identification</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="CONTACT_ORGANISATION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT_ORGANISATION" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.1 contact_organisation (Kontaktná organizácia)</structure:Name>
+                <structure:Name xml:lang="en">12.1 contact_organisation</structure:Name>
+                <structure:Description xml:lang="sk">Názov organizácie kontaktných miest pre údaje a metaúdaje.</structure:Description>
+                <structure:Description xml:lang="en">Contact Organization</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="ORGANISATION_UNIT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].ORGANISATION_UNIT" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.2 organisation_unit (Jednotka v kontaktnej organizácii)</structure:Name>
+                <structure:Name xml:lang="en">12.2 organisation_unit</structure:Name>
+                <structure:Description xml:lang="sk">Oddelenie organizácie, na ktoré je možné sa obrátiť.</structure:Description>
+                <structure:Description xml:lang="en">Organization Unit</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="CONTACT_FUNCT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT_FUNCT" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.4 contact_funct (Funkcia kontaktnej osoby)</structure:Name>
+                <structure:Name xml:lang="en">12.4 contact_funct</structure:Name>
+                <structure:Description xml:lang="sk">Oblasť technickej zodpovednosti kontaktu.</structure:Description>
+                <structure:Description xml:lang="en">Function of contact person</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="CONTACT_MAIL" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CONTACT_MAIL" parent="CONTACT">
+                <structure:Name xml:lang="sk">12.5 contact_mail  (Kontaktná poštová adresa)</structure:Name>
+                <structure:Name xml:lang="en">12.5 contact_mail</structure:Name>
+                <structure:Description xml:lang="sk">Poštová adresa kontaktných miest pre údaje alebo metaúdaje.</structure:Description>
+                <structure:Description xml:lang="en">Contact postal address</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="SURVEY_PERIOD" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].SURVEY_PERIOD" parent="QUESTIONNAIRE_IDENTIFICATION">
+                <structure:Name xml:lang="sk">02.3 survey_period</structure:Name>
+                <structure:Name xml:lang="en">02.3 survey_period</structure:Name>
+                <structure:Description xml:lang="sk">Obdobie vykazovania – mesiac, štvrťrok (M - mesačne, Q - štvrťročne, A - ročne, B - polročne...)</structure:Description>
+                <structure:Description xml:lang="en">Reporting period - month, quarter,...</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="DIRECTIONS" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].DIRECTIONS" parent="METHODOLOGICAL_EXPLANATION">
+                <structure:Name xml:lang="sk">11.3 directions (pokyny)</structure:Name>
+                <structure:Name xml:lang="en">24.4 directions</structure:Name>
+                <structure:Description xml:lang="sk">Všeobecné pokyny pre spravodajské jednotky</structure:Description>
+                <structure:Description xml:lang="en">General instruction for reporting units</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="SURVEY_MODULES" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].SURVEY_MODULES">
+                <structure:Name xml:lang="sk">21 Survey_modules</structure:Name>
+                <structure:Name xml:lang="en">21 Survey_modules</structure:Name>
+                <structure:Description xml:lang="sk">Zoznam modulov vo výkaze</structure:Description>
+                <structure:Description xml:lang="en">List of modules in the statement</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="OBSVALUE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].OBSVALUE" parent="SURVEY_MODULES" coreRepresentation="CL_IKP" coreRepresentationAgency="INFOSTAT">
+                <structure:Name xml:lang="sk">21.1 obsvalue</structure:Name>
+                <structure:Name xml:lang="en">21.1 obsvalue</structure:Name>
+                <structure:Description xml:lang="sk">Názov dátovej položky dotazníka</structure:Description>
+                <structure:Description xml:lang="en">Name of data item questionnaire</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="MODULE_NAME" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].MODULE_NAME" parent="SURVEY_MODULES">
+                <structure:Name xml:lang="sk">21.2 module_name</structure:Name>
+                <structure:Name xml:lang="en">21.2 module_name</structure:Name>
+                <structure:Description xml:lang="sk">Názov pre skupinu dát (modul) dotazníka</structure:Description>
+                <structure:Description xml:lang="en">Module name</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="POSITION_TYPE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].POSITION_TYPE" parent="SURVEY_LEGENDS" coreRepresentation="CL_POSITION_TYPE" coreRepresentationAgency="INFOSTAT">
+                <structure:Name xml:lang="sk">20.3 position_type</structure:Name>
+                <structure:Name xml:lang="en">20.3 position_type</structure:Name>
+                <structure:Description xml:lang="sk">Pozícia informácie, k čomu sa vzťahuje -  riadok alebo stĺpec</structure:Description>
+                <structure:Description xml:lang="en">Position information to what is covered - the row or column module</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="LEGEND" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].LEGEND" parent="SURVEY_LEGENDS">
+                <structure:Name xml:lang="sk">20.1 legend</structure:Name>
+                <structure:Name xml:lang="en">20.1 legend</structure:Name>
+                <structure:Description xml:lang="sk">Text riadkovej alebo stĺpcovej legendy</structure:Description>
+                <structure:Description xml:lang="en">Text line or column legends</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="METHODOLOGICAL_EXPLANATION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].METHODOLOGICAL_EXPLANATION">
+                <structure:Name xml:lang="sk">24 Methodological_explanation</structure:Name>
+                <structure:Name xml:lang="en">24 Methodological_explanation</structure:Name>
+                <structure:Description xml:lang="sk">Metodické vysvetlivky</structure:Description>
+                <structure:Description xml:lang="en">Methodological notes on title</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="EXPLANATION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].EXPLANATION" parent="METHODOLOGICAL_EXPLANATION">
+                <structure:Name xml:lang="sk">24.1 explanation</structure:Name>
+                <structure:Name xml:lang="en">24.1 explanation</structure:Name>
+                <structure:Description xml:lang="sk">Text vysvetlivky</structure:Description>
+                <structure:Description xml:lang="en">Explanatory Text</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="INSTRUCTFILL" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].INSTRUCTFILL" parent="METHODOLOGICAL_EXPLANATION">
+                <structure:Name xml:lang="sk">24.2 instructfill</structure:Name>
+                <structure:Name xml:lang="en">24.2 instructfill</structure:Name>
+                <structure:Description xml:lang="sk">Popis pre vyplnenie dátových položiek</structure:Description>
+                <structure:Description xml:lang="en">Description entry for data items</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="INDEX_NOTE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].INDEX_NOTE">
+                <structure:Name xml:lang="sk">24.3 index_note</structure:Name>
+                <structure:Name xml:lang="en">24.3 index_note</structure:Name>
+                <structure:Description xml:lang="sk">Poznámka s horným indexom</structure:Description>
+                <structure:Description xml:lang="en">Note the superscript</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="MODULE_SIGN" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].MODULE_SIGN" parent="SURVEY_MODULES">
+                <structure:Name xml:lang="sk">21.3 module_sign</structure:Name>
+                <structure:Name xml:lang="en">21.3 module_sign</structure:Name>
+                <structure:Description xml:lang="sk">Označenie modulu</structure:Description>
+                <structure:Description xml:lang="en">Module Code</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="CORE_REPRESENTATION" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].CORE_REPRESENTATION" parent="SURVEY_MODULES" coreRepresentation="CL_CODELISTSNAME" coreRepresentationAgency="INFOSTAT">
+                <structure:Name xml:lang="sk">21.7 corre_representation</structure:Name>
+                <structure:Name xml:lang="en">21.7 corre_representation</structure:Name>
+                <structure:Description xml:lang="sk">Názov číselníka (pre výber hodnôt dátových položiek)</structure:Description>
+                <structure:Description xml:lang="en">Name of code (for selecting values of data items)</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="MODULE_TYPE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].MODULE_TYPE" parent="SURVEY_MODULES" coreRepresentation="CL_MODULE_TYPE" coreRepresentationAgency="INFOSTAT">
+                <structure:Name xml:lang="sk">21.4 module_type</structure:Name>
+                <structure:Name xml:lang="en">21.4 module_type</structure:Name>
+                <structure:Description xml:lang="sk">Typ modulu - otvorený, zatvorený, otázka</structure:Description>
+                <structure:Description xml:lang="en">Type of module - open, closed, the question like</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="POSITION_NUMBER" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].POSITION_NUMBER" parent="SURVEY_LEGENDS">
+                <structure:Name xml:lang="sk">21.4 position_number</structure:Name>
+                <structure:Name xml:lang="en">20.4 position_number</structure:Name>
+                <structure:Description xml:lang="sk">Poradie riadka alebo stĺpca v module</structure:Description>
+                <structure:Description xml:lang="en">Rank row or column in the module</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="NUMBER_ROW" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].NUMBER_ROW" parent="SURVEY_MODULES">
+                <structure:Name xml:lang="sk">21.5 number_row</structure:Name>
+                <structure:Name xml:lang="en">21.5 number_row</structure:Name>
+                <structure:Description xml:lang="sk">Číslo (poradie) riadka</structure:Description>
+                <structure:Description xml:lang="en">Row number</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="NUMBER_COLUMN" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].NUMBER_COLUMN">
+                <structure:Name xml:lang="sk">21.6 number_column</structure:Name>
+                <structure:Name xml:lang="en">21.6 number_column</structure:Name>
+                <structure:Description xml:lang="sk">Poradie stĺpca</structure:Description>
+                <structure:Description xml:lang="en">Column number</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="LEGEND_OPEN" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].LEGEND_OPEN" parent="SURVEY_LEGENDS" coreRepresentation="CL_CODELISTSNAME" coreRepresentationAgency="INFOSTAT">
+                <structure:Name xml:lang="sk">20.2 legend_open</structure:Name>
+                <structure:Name xml:lang="en">20.2 legend_open</structure:Name>
+                <structure:Description xml:lang="sk">Názov číselníka pre výber legendy (použiva sa v otvorenom module)</structure:Description>
+                <structure:Description xml:lang="en">The code name for the selection of legends (used in open module)</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="SURVEY_LEGENDS" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].SURVEY_LEGENDS">
+                <structure:Name xml:lang="sk">20. Survey_legends</structure:Name>
+                <structure:Name xml:lang="en">20. Survey_legends</structure:Name>
+                <structure:Description xml:lang="sk">Legendy k dátovým položkám</structure:Description>
+                <structure:Description xml:lang="en">List of modules in the statement</structure:Description>
+            </structure:Concept>
+            <structure:Concept id="OBSVALUE_SIZE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].OBSVALUE_SIZE" parent="SURVEY_MODULES">
+                <structure:Name xml:lang="sk">21.8 obsvalue_size</structure:Name>
+                <structure:Name xml:lang="en">21.8 obsvalue_size</structure:Name>
+                <structure:Description xml:lang="sk">Rozmer pre dátovú položku</structure:Description>
+                <structure:Description xml:lang="en">Dimension for data item</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+            <structure:Concept id="OBSVALUE_TYPE" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=INFOSTAT:QUESTIONNAIRE[1.0].OBSVALUE_TYPE" parent="SURVEY_MODULES" coreRepresentation="CL_OBSVAL_TYPE" coreRepresentationAgency="INFOSTAT">
+                <structure:Name xml:lang="sk">21.9 obsvalue_type</structure:Name>
+                <structure:Name xml:lang="en">21.9 obsvalue_type</structure:Name>
+                <structure:Description xml:lang="sk">Typ dátovej položky - number, string</structure:Description>
+                <structure:Description xml:lang="en">Type of data items - number, string</structure:Description>
+                <structure:TextFormat textType="String"/>
+            </structure:Concept>
+        </structure:ConceptScheme>
+    </Concepts>
+    <MetadataStructureDefinitions>
+        <structure:MetadataStructureDefinition id="MSD_QUESTIONNAIRE" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.MetadataStructureDefinition=INFOSTAT:MSD_QUESTIONNAIRE[1.0]">
+            <structure:Name xml:lang="en">01 MSD_questionnaire</structure:Name>
+            <structure:TargetIdentifiers>
+                <structure:FullTargetIdentifier id="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.FullTargetIdentifier=INFOSTAT:MSD_QUESTIONNAIRE[1.0].QESTIONNAIRE">
+                    <structure:Name xml:lang="sk">QESTIONNAIRE</structure:Name>
+                    <structure:IdentifierComponent id="IKF" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.IdentifierComponent=INFOSTAT:MSD_QUESTIONNAIRE[1.0].QESTIONNAIRE.IKF">
+                        <structure:Name xml:lang="en">Questionnaire identification code</structure:Name>
+                        <structure:TargetObjectClass>FullTargetIdentifier</structure:TargetObjectClass>
+                        <structure:RepresentationScheme representationSchemeType="Codelist" representationScheme="CL_IKF" representationSchemeAgency="INFOSTAT"/>
+                    </structure:IdentifierComponent>
+                </structure:FullTargetIdentifier>
+            </structure:TargetIdentifiers>
+            <structure:ReportStructure id="QUESTIONNAIRE" target="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.ReportStructure=INFOSTAT:MSD_QUESTIONNAIRE[1.0].QUESTIONNAIRE">
+                <structure:Name xml:lang="sk">021 Report structure - Questionaire</structure:Name>
+                <structure:Name xml:lang="en">02 Report structure - Questionnaire</structure:Name>
+                <structure:Description xml:lang="sk">Hlavičkové dáta dotazníka</structure:Description>
+                <structure:Description xml:lang="en">Header data questionnaire</structure:Description>
+                <structure:MetadataAttribute conceptRef="QUESTIONNAIRE_IDENTIFICATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:MetadataAttribute conceptRef="SURVEY_YEAR" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="Year" isSequence="true"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="CONTACT_NAME" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="METHODOLOGICAL_EXPLANATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:MetadataAttribute conceptRef="EXPLANATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="DIRECTIONS" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                </structure:MetadataAttribute>
+            </structure:ReportStructure>
+            <structure:ReportStructure id="MODULES" target="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.ReportStructure=INFOSTAT:MSD_QUESTIONNAIRE[1.0].MODULES">
+                <structure:Name xml:lang="sk">03 Report structure - Modules</structure:Name>
+                <structure:Name xml:lang="en">03 Report structure - Modules</structure:Name>
+                <structure:Description xml:lang="sk">Zoskupenie dát podľa určitej role v dotazníku</structure:Description>
+                <structure:Description xml:lang="en">Grouping the data according to specific roles in the questionnaire</structure:Description>
+                <structure:MetadataAttribute conceptRef="MODULE_SIGN" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_MODULE" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="MODULE_TYPE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_MODULE_TYPE" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="EXPLANATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="INDEX_NOTE" usageStatus="Conditional" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+            </structure:ReportStructure>
+            <structure:ReportStructure id="SURVEY" target="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.ReportStructure=INFOSTAT:MSD_QUESTIONNAIRE[1.0].SURVEY">
+                <structure:Name xml:lang="en">01 Report structure - Survey</structure:Name>
+                <structure:Description xml:lang="sk">Štatistické zisťovanie</structure:Description>
+                <structure:Description xml:lang="en">The survey</structure:Description>
+                <structure:MetadataAttribute conceptRef="SURVEY_IDENTIFICATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:MetadataAttribute conceptRef="SURVEY_PERIOD" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_FREQ" representationSchemeAgency="INFOSTAT">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="SURVEY_DESCRIPTION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="PROGRAM_PERIOD" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="REGISTRATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:MetadataAttribute conceptRef="REGISTRATION_NUMBER" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="REGISTRATION_DATE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="Date"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="REGISTRATION_PLACE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="ORGANISATION_RESPOSIBLE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:MetadataAttribute conceptRef="CONTACT_ORGANISATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="ABBREVIATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="LOGO" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="CONFIDENTIALITY" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:MetadataAttribute conceptRef="CONF_POLICY" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="CONF_DATA_TR" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="INST_MANDATE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:MetadataAttribute conceptRef="ADDRESSING" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="DELIVER_CONTACT" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:MetadataAttribute conceptRef="DELIVER" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="CONTACT_NAME" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="CONTACT_ORGANISATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                    <structure:MetadataAttribute conceptRef="CONTACT_MAIL" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                        <structure:TextFormat textType="String"/>
+                    </structure:MetadataAttribute>
+                </structure:MetadataAttribute>
+            </structure:ReportStructure>
+        </structure:MetadataStructureDefinition>
+        <structure:MetadataStructureDefinition id="MSD_ITEMS" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.MetadataStructureDefinition=INFOSTAT:MSD_ITEMS[1.0]">
+            <structure:Name xml:lang="en">03 MSD_questionnaire - Items of questionnaire</structure:Name>
+            <structure:TargetIdentifiers>
+                <structure:FullTargetIdentifier id="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.FullTargetIdentifier=INFOSTAT:ITEMS[1.0].QESTIONNAIRE">
+                    <structure:Name xml:lang="en">QESTIONNAIRE</structure:Name>
+                    <structure:IdentifierComponent id="IKF" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.IdentifierComponent=INFOSTAT:ITEMS[1.0].QESTIONNAIRE.IKF">
+                        <structure:Name xml:lang="en">Questionnaire identification code</structure:Name>
+                        <structure:TargetObjectClass>MetadataSet</structure:TargetObjectClass>
+                        <structure:RepresentationScheme representationSchemeType="Codelist" representationScheme="CL_IKF" representationSchemeAgency="INFOSTAT"/>
+                    </structure:IdentifierComponent>
+                    <structure:IdentifierComponent id="MODULE_SIGN" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.IdentifierComponent=INFOSTAT:ITEMS[1.0].QESTIONNAIRE.MODULE_SIGN">
+                        <structure:Name xml:lang="en">Module code</structure:Name>
+                        <structure:TargetObjectClass>Attribute</structure:TargetObjectClass>
+                        <structure:RepresentationScheme representationSchemeType="Codelist" representationScheme="CL_MODULE" representationSchemeAgency="INFOSTAT"/>
+                    </structure:IdentifierComponent>
+                    <structure:IdentifierComponent id="OBSVALUE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.IdentifierComponent=INFOSTAT:ITEMS[1.0].QESTIONNAIRE.OBSVALUE">
+                        <structure:Name xml:lang="en">Name of data item questionnaire</structure:Name>
+                        <structure:TargetObjectClass>Attribute</structure:TargetObjectClass>
+                        <structure:RepresentationScheme representationSchemeType="Codelist" representationScheme="CL_IKP" representationSchemeAgency="INFOSTAT"/>
+                    </structure:IdentifierComponent>
+                </structure:FullTargetIdentifier>
+            </structure:TargetIdentifiers>
+            <structure:ReportStructure id="OBSVALUES" target="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.ReportStructure=INFOSTAT:MSD_ITEMS[1.0].OBSVALUES">
+                <structure:Name xml:lang="en">02 Report structure - Data items</structure:Name>
+                <structure:MetadataAttribute conceptRef="NUMBER_ROW" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="Short"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="NUMBER_COLUMN" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="Short"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="OBSVALUE_SIZE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="Decimal"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="OBSVALUE_TYPE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_OBSVAL_TYPE" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="INSTRUCTFILL" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="CORE_REPRESENTATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_CODELISTSNAME" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+            </structure:ReportStructure>
+            <structure:ReportStructure id="KEYS" target="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.ReportStructure=INFOSTAT:MSD_ITEMS[1.0].KEYS">
+                <structure:Name>01 Report structure - Identification Items, indicator data, complemetary</structure:Name>
+                <structure:MetadataAttribute conceptRef="NUMBER_ROW" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="Short"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="OBSVALUE_TYPE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_OBSVAL_TYPE" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="OBSVALUE_SIZE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="Decimal"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="INSTRUCTFILL" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="LEGEND" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_LEGENDS" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="INDEX_NOTE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="CORE_REPRESENTATION" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_CODELISTSNAME" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+            </structure:ReportStructure>
+        </structure:MetadataStructureDefinition>
+        <structure:MetadataStructureDefinition id="MSD_LEGENDS" agencyID="INFOSTAT" version="1.0" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.MetadataStructureDefinition=INFOSTAT:MSD_LEGENDS[1.0]">
+            <structure:Name xml:lang="en">02 MSD_questionnaire - Legends</structure:Name>
+            <structure:TargetIdentifiers>
+                <structure:FullTargetIdentifier id="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.FullTargetIdentifier=INFOSTAT:KEYS[1.0].QESTIONNAIRE">
+                    <structure:Name xml:lang="en">QESTIONNAIRE</structure:Name>
+                    <structure:IdentifierComponent id="IKF" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.IdentifierComponent=INFOSTAT:KEYS[1.0].QESTIONNAIRE.IKF">
+                        <structure:Name xml:lang="en">Questionnaire identification code</structure:Name>
+                        <structure:TargetObjectClass>MetadataSet</structure:TargetObjectClass>
+                        <structure:RepresentationScheme representationSchemeType="Codelist" representationScheme="CL_IKF" representationSchemeAgency="INFOSTAT"/>
+                    </structure:IdentifierComponent>
+                    <structure:IdentifierComponent id="MODULE_SIGN" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.IdentifierComponent=INFOSTAT:KEYS[1.0].QESTIONNAIRE.MODULE_SIGN">
+                        <structure:Name xml:lang="en">Module code</structure:Name>
+                        <structure:TargetObjectClass>Attribute</structure:TargetObjectClass>
+                        <structure:RepresentationScheme representationSchemeType="Codelist" representationScheme="CL_MODULE" representationSchemeAgency="INFOSTAT"/>
+                    </structure:IdentifierComponent>
+                </structure:FullTargetIdentifier>
+            </structure:TargetIdentifiers>
+            <structure:ReportStructure id="LEGENDS" target="QESTIONNAIRE" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.ReportStructure=INFOSTAT:MSD_LEGENDS[1.0].LEGENDS">
+                <structure:Name>01 Report structure - Legends</structure:Name>
+                <structure:MetadataAttribute conceptRef="POSITION_TYPE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_POSITION_TYPE" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="POSITION_NUMBER" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="Short"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="LEGEND" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_LEGENDS" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="LEGEND_OPEN" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE" representationScheme="CL_CODELISTSNAME" representationSchemeAgency="INFOSTAT">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+                <structure:MetadataAttribute conceptRef="INDEX_NOTE" usageStatus="Mandatory" conceptSchemeAgency="INFOSTAT" conceptVersion="1.0" conceptSchemeRef="QUESTIONNAIRE">
+                    <structure:TextFormat textType="String"/>
+                </structure:MetadataAttribute>
+            </structure:ReportStructure>
+        </structure:MetadataStructureDefinition>
+    </MetadataStructureDefinitions>
+</Structure>

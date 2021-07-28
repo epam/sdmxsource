@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QueryMessage xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://katharma.agilis-sa.gr/SDMXML/SDMXMessage.xsd">
+  <Header>
+    <ID>CENSUSHUB_Q_XS1</ID>
+    <Test>true</Test>
+    <Name xml:lang="it">CENSUSHUB_Q_XS1</Name>
+    <Prepared>2008-05-06T12:01:00</Prepared>
+    <Sender id="4D0"/>
+    <Receiver id="IT1"/>
+  </Header>
+  <Query>
+	<query:DataWhere>
+	  <query:And>
+		<query:Dimension id="REF_AREA">IT</query:Dimension>
+	    <query:Dimension id="FREQ">Q</query:Dimension>
+		<query:Time>
+		  <query:StartTime>2005-Q2</query:StartTime>
+		</query:Time>
+	    <query:DataProvider>IT1</query:DataProvider>
+		<query:Dataflow>SSTSCONS_PROD_QT2</query:Dataflow>
+		<query:Or>
+		  <query:Dimension id="STS_ACTIVITY">NS0020</query:Dimension>
+		  <query:Dimension id="STS_ACTIVITY">NS0030</query:Dimension>
+		</query:Or>
+	  </query:And>
+	</query:DataWhere>
+  </Query>
+</QueryMessage>
