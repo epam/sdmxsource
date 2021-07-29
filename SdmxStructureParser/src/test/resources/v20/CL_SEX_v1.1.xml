@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common"
+           xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://katharma.agilis-sa.gr/SDMXML/SDMXMessage.xsd">
+	<Header>
+		<ID>DEMOGRAPHY_RAPID_V21</ID>
+		<Test>false</Test>
+		<Name xml:lang="en">Demography Rapid Questionnaire DSD</Name>
+		<Prepared>2008-05-14T12:00:00+02:00</Prepared>
+		<Sender id="ESTAT">
+			<Name xml:lang="en">Statistical Office of the European Communities</Name>
+		</Sender>
+	</Header>
+	<CodeLists>
+		<structure:CodeList id="CL_SEX" agencyID="ESTAT" version="1.1" isFinal="true">
+			<structure:Name xml:lang="en">Sex codelist</structure:Name>
+			<structure:Code value="F" parentCode="T">
+				<structure:Description xml:lang="en">Female</structure:Description>
+			</structure:Code>
+			<structure:Code value="M" parentCode="T">
+				<structure:Description xml:lang="en">Male</structure:Description>
+			</structure:Code>
+			<structure:Code value="T">
+				<structure:Description xml:lang="en">Total</structure:Description>
+			</structure:Code>
+		</structure:CodeList>
+	</CodeLists>
+</Structure>
+

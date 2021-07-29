@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Optional:-->
+<RegistryInterface xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message SDMXMessage.xsd" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/compact" xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry" xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Header>
+        <ID>JD014</ID>
+        <Test>true</Test>
+        <Truncated>false</Truncated>
+        <Name xml:lang="en">Trans46302</Name>
+        <Prepared>2001-03-11T09:30:47-05:00</Prepared>
+        <Sender id="BIS"/>
+    </Header>
+    <QueryStructureRequest resolveReferences="false">
+        <registry:CategorySchemeRef>
+            <registry:AgencyID>ESTAT</registry:AgencyID>
+            <registry:CategorySchemeID>ESTAT_DATAFLOWS_SCHEME</registry:CategorySchemeID>
+            <registry:Version>1.1</registry:Version>
+        </registry:CategorySchemeRef>
+
+    </QueryStructureRequest>
+</RegistryInterface>

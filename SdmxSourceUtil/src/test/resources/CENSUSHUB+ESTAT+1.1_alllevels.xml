@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Structure xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message"
+  xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message http://katharma.agilis-sa.gr/SDMXML/SDMXMessage.xsd">
+  <Header>
+    <ID>REGISTRY_RESPONSE</ID>
+    <Test>true</Test>
+    <Truncated>false</Truncated>
+    <Prepared>2008-04-18T13:07:27</Prepared>
+    <Sender id="EUROSTAT"/>
+    <Extracted>2008-04-18T13:07:27</Extracted>
+  </Header>
+  <CodeLists>
+    <structure:CodeList id="CL_AGE" agencyID="ESTAT" isFinal="true" validFrom="2008-04-01" validTo="2008-12-31" version="1.0">
+      <structure:Name xml:lang="en">Age code list</structure:Name>
+      <structure:Code value="TOT">
+        <structure:Description xml:lang="en">Total</structure:Description>
+      </structure:Code>
+      <structure:Code value="001" parentCode="TOT">
+        <structure:Description xml:lang="en">Under 5 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="002" parentCode="TOT">
+        <structure:Description xml:lang="en">5 to 9 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="003" parentCode="TOT">
+        <structure:Description xml:lang="en">10 to 14 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="004" parentCode="TOT">
+        <structure:Description xml:lang="en">15 to 19 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="005" parentCode="TOT">
+        <structure:Description xml:lang="en">20 to 24 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="006" parentCode="TOT">
+        <structure:Description xml:lang="en">25 to 29 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="007" parentCode="TOT">
+        <structure:Description xml:lang="en">30 to 34 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="008" parentCode="TOT">
+        <structure:Description xml:lang="en">35 to 39 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="009" parentCode="TOT">
+        <structure:Description xml:lang="en">40 to 44 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="010" parentCode="TOT">
+        <structure:Description xml:lang="en">45 to 49 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="011" parentCode="TOT">
+        <structure:Description xml:lang="en">50 to 54 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="012" parentCode="TOT">
+        <structure:Description xml:lang="en">55 to 59 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="013" parentCode="TOT">
+        <structure:Description xml:lang="en">60 to 64 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="014" parentCode="TOT">
+        <structure:Description xml:lang="en">65 to 69 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="015" parentCode="TOT">
+        <structure:Description xml:lang="en">70 to 74 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="016" parentCode="TOT">
+        <structure:Description xml:lang="en">75 to 79 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="017" parentCode="TOT">
+        <structure:Description xml:lang="en">80 to 84 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="018" parentCode="TOT">
+        <structure:Description xml:lang="en">85 to 89 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="019" parentCode="TOT">
+        <structure:Description xml:lang="en">90 to 94 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="020" parentCode="TOT">
+        <structure:Description xml:lang="en">95 to 99 years</structure:Description>
+      </structure:Code>
+      <structure:Code value="021" parentCode="TOT">
+        <structure:Description xml:lang="en">100 years and over</structure:Description>
+      </structure:Code>
+    </structure:CodeList>
+    <structure:CodeList id="CL_CAS" agencyID="ESTAT" isFinal="true" validFrom="2008-04-01" validTo="2008-12-31" version="1.0">
+      <structure:Name xml:lang="en">Current activity status code list</structure:Name>
+      <structure:Code value="TOT">
+        <structure:Description xml:lang="en">Total</structure:Description>
+      </structure:Code>
+      <structure:Code value="001" parentCode="TOT">
+        <structure:Description xml:lang="en">Persons aged 15 years and over</structure:Description>
+      </structure:Code>
+      <structure:Code value="002" parentCode="001">
+        <structure:Description xml:lang="en">Economically active</structure:Description>
+      </structure:Code>
+      <structure:Code value="003" parentCode="002">
+        <structure:Description xml:lang="en">Employed</structure:Description>
+      </structure:Code>
+      <structure:Code value="004" parentCode="002">
+        <structure:Description xml:lang="en">Unemployed</structure:Description>
+      </structure:Code>
+      <structure:Code value="005" parentCode="001">
+        <structure:Description xml:lang="en">Not economically active</structure:Description>
+      </structure:Code>
+      <structure:Code value="NST" parentCode="001">
+        <structure:Description xml:lang="en">Not stated (of the persons aged 15 years or over)</structure:Description>
+      </structure:Code>
+      <structure:Code value="NAP" parentCode="TOT">
+        <structure:Description xml:lang="en">Not applicable (persons below 15 years of age)</structure:Description>
+      </structure:Code>
+    </structure:CodeList>
+    <structure:CodeList id="CL_GEO" agencyID="ESTAT" isFinal="true" version="2.0">
+      <structure:Name xml:lang="en">Geographical code list</structure:Name>
+      <structure:Code value="CZ">
+        <structure:Description xml:lang="cs">Česká republika</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ0" parentCode="CZ">
+        <structure:Description xml:lang="cs">Česká republika</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ02" parentCode="CZ0">
+        <structure:Description xml:lang="cs">Střední Čechy</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ020" parentCode="CZ02">
+        <structure:Description xml:lang="cs">Středočeský kraj</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ020513482" parentCode="CZ020">
+        <structure:Description xml:lang="cs">Vysoký Újezd</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ020529303" parentCode="CZ020">
+        <structure:Description xml:lang="cs">Benešov</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ03" parentCode="CZ0">
+        <structure:Description xml:lang="cs">Jihozápad</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ031" parentCode="CZ03">
+        <structure:Description xml:lang="cs">Jihočeský kraj</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ031529729" parentCode="CZ031">
+        <structure:Description xml:lang="cs">Kvítkovice</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ031535176" parentCode="CZ031">
+        <structure:Description xml:lang="cs">Planá</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ032" parentCode="CZ03">
+        <structure:Description xml:lang="cs">Plzeňský kraj</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ032553425" parentCode="CZ032">
+        <structure:Description xml:lang="cs">Domažlice</structure:Description>
+      </structure:Code>
+      <structure:Code value="CZ032553433" parentCode="CZ032">
+        <structure:Description xml:lang="cs">Babylon</structure:Description>
+      </structure:Code>
+    </structure:CodeList>
+    <structure:CodeList id="CL_SEX" agencyID="ESTAT" isFinal="true" version="1.0">
+      <structure:Name xml:lang="en">Sex code list</structure:Name>
+      <structure:Code value="002" parentCode="TOT">
+        <structure:Description xml:lang="en">Female</structure:Description>
+      </structure:Code>
+      <structure:Code value="001" parentCode="TOT">
+        <structure:Description xml:lang="en">Male</structure:Description>
+      </structure:Code>
+      <structure:Code value="TOT">
+        <structure:Description xml:lang="en">Total</structure:Description>
+      </structure:Code>
+    </structure:CodeList>
+  </CodeLists>
+  <Concepts>
+    <structure:ConceptScheme id="CENSUSHUB_CONCEPTS" agencyID="ESTAT" isFinal="true" version="1.2">
+      <structure:Name xml:lang="en">CensusHub domain concept scheme</structure:Name>
+      <structure:Concept id="AGE">
+        <structure:Name xml:lang="en">Age</structure:Name>
+      </structure:Concept>
+      <structure:Concept id="CAS">
+        <structure:Name xml:lang="en">Current activity status</structure:Name>
+      </structure:Concept>
+      <structure:Concept id="GEO">
+        <structure:Name xml:lang="en">Geographical area</structure:Name>
+      </structure:Concept>
+      <structure:Concept id="SEX">
+        <structure:Name xml:lang="en">Sex</structure:Name>
+      </structure:Concept>
+      <structure:Concept id="OBS_VALUE">
+        <structure:Name xml:lang="en">Observation value</structure:Name>
+      </structure:Concept>
+      <!-- removed NUMBER concept, because it is not used in the DSD -->
+    </structure:ConceptScheme>
+  </Concepts>
+  <KeyFamilies>
+    <structure:KeyFamily id="CENSUSHUB_TEST" agencyID="ESTAT" isFinal="false" version="1.2" urn="urn:estat:sdmx.infomodel.keyfamily.KeyFamily=ESTAT:CENSUSHUB_TEST:1.2">
+      <structure:Name xml:lang="en">CensusHub Data Structure Definition</structure:Name>
+      <structure:Components>
+        <structure:Dimension conceptRef="AGE" conceptSchemeRef="CENSUSHUB_CONCEPTS" conceptSchemeVersion="1.2" conceptSchemeAgency="ESTAT"
+          codelist="CL_AGE" codelistVersion="1.0" codelistAgency="ESTAT" crossSectionalAttachSection="true"/>
+        <structure:Dimension conceptRef="CAS" conceptSchemeRef="CENSUSHUB_CONCEPTS" conceptSchemeVersion="1.2" conceptSchemeAgency="ESTAT"
+          codelist="CL_CAS" codelistVersion="1.0" codelistAgency="ESTAT" crossSectionalAttachObservation="true"/>
+        <structure:Dimension conceptRef="GEO" conceptSchemeRef="CENSUSHUB_CONCEPTS" conceptSchemeVersion="1.2" conceptSchemeAgency="ESTAT"
+          codelist="CL_GEO" codelistVersion="2.0" codelistAgency="ESTAT" crossSectionalAttachGroup="true"/>
+        <structure:Dimension conceptRef="SEX" conceptSchemeRef="CENSUSHUB_CONCEPTS" conceptSchemeVersion="1.2" conceptSchemeAgency="ESTAT"
+          codelist="CL_SEX" codelistVersion="1.0" codelistAgency="ESTAT" crossSectionalAttachObservation="true"/>
+        <structure:PrimaryMeasure conceptRef="OBS_VALUE" conceptSchemeRef="CENSUSHUB_CONCEPTS" conceptSchemeVersion="1.2" conceptSchemeAgency="ESTAT">
+          <structure:TextFormat textType="Long"/>
+        </structure:PrimaryMeasure>
+        <!-- removed CrossSectionalMeasure -->
+      </structure:Components>
+    </structure:KeyFamily>
+  </KeyFamilies>
+</Structure>

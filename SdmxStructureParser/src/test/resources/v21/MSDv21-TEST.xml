@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+    <mes:Header>
+        <mes:ID>IDREF1</mes:ID>
+        <mes:Test>false</mes:Test>
+        <mes:Prepared>2014-10-27T13:51:04.364Z</mes:Prepared>
+        <mes:Sender id="Unknown"/>
+        <mes:Receiver id="Unknown"/>
+    </mes:Header>
+    <mes:Structures>
+        <str:MetadataStructures>
+            <str:MetadataStructure id="TEST_MSD" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.MetadataStructure=TEST:TEST_MSD(1.0)" agencyID="TEST" version="1.0" isFinal="true">
+                <com:Name xml:lang="en">MSD Test name</com:Name>
+                <str:MetadataStructureComponents>
+                    <str:MetadataTarget id="TEST_TARGET" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.MetadataTarget=TEST:TEST_MSD(1.0).TEST_TARGET">
+                        <str:DataSetTarget id="DATA_SET_TARGET" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.DataSetTarget=TEST:TEST_MSD(1.0).TEST_TARGET.DATA_SET_TARGET">
+                            <com:Annotations>
+                                <com:Annotation>
+                                    <com:AnnotationTitle>Test</com:AnnotationTitle>
+                                    <com:AnnotationType>TEST_AN</com:AnnotationType>
+                                </com:Annotation>
+                            </com:Annotations>
+                            <str:LocalRepresentation>
+                                <str:TextFormat textType="DataSetReference"/>
+                            </str:LocalRepresentation>
+                        </str:DataSetTarget>
+                        <str:KeyDescriptorValuesTarget id="DIMENSION_DESCRIPTOR_VALUES_TARGET" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.DimensionDescriptorValuesTarget=TEST:TEST_MSD(1.0).TEST_TARGET.DIMENSION_DESCRIPTOR_VALUES_TARGET">
+                            <com:Annotations>
+                                <com:Annotation>
+                                    <com:AnnotationTitle>Test</com:AnnotationTitle>
+                                    <com:AnnotationType>TEST_AN</com:AnnotationType>
+                                </com:Annotation>
+                            </com:Annotations>
+                            <str:LocalRepresentation>
+                                <str:TextFormat textType="KeyValues"/>
+                            </str:LocalRepresentation>
+                        </str:KeyDescriptorValuesTarget>
+                        <str:ReportPeriodTarget id="REPORT_PERIOD_TARGET" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.ReportPeriodTarget=TEST:TEST_MSD(1.0).TEST_TARGET.REPORT_PERIOD_TARGET">
+                            <str:LocalRepresentation>
+                                <str:TextFormat textType="ObservationalTimePeriod" startTime="2010-03-02T13:51:04" endTime="2012-01-01T00:00:00"/>
+                            </str:LocalRepresentation>
+                        </str:ReportPeriodTarget>
+                        <str:ConstraintContentTarget id="CONSTRAINT_CONTENT_TARGET" urn="nullTEST:TEST_MSD(1.0).TEST_TARGET.CONSTRAINT_CONTENT_TARGET">
+                            <str:LocalRepresentation>
+                                <str:TextFormat textType="AttachmentConstraintReference"/>
+                            </str:LocalRepresentation>
+                        </str:ConstraintContentTarget>
+                    </str:MetadataTarget>
+                    <str:ReportStructure id="TEST_REPORT" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.ReportStructure=TEST:TEST_MSD(1.0).TEST_REPORT">
+                        <str:MetadataAttribute id="TEST_ATTR" urn="urn:sdmx:org.sdmx.infomodel.metadatastructure.MetadataAttribute=TEST:TEST_MSD(1.0).TEST_REPORT.TEST_ATTR" maxOccurs="unbounded">
+                            <str:ConceptIdentity>
+                                <Ref id="TEST_CONCEPT" maintainableParentID="TEST_CS" maintainableParentVersion="1.0" agencyID="TEST" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                        </str:MetadataAttribute>
+                        <str:MetadataTarget>
+                            <Ref id="TEST_TARGET"/>
+                        </str:MetadataTarget>
+                    </str:ReportStructure>
+                </str:MetadataStructureComponents>
+            </str:MetadataStructure>
+        </str:MetadataStructures>
+    </mes:Structures>
+</mes:Structure>

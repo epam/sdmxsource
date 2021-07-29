@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+    <mes:Header>
+        <mes:ID>IDREF1</mes:ID>
+        <mes:Test>false</mes:Test>
+        <mes:Prepared>2014-01-20T09:16:09.237Z</mes:Prepared>
+        <mes:Sender id="Unknown"/>
+        <mes:Receiver id="Unknown"/>
+    </mes:Header>
+    <mes:Structures>
+        <str:OrganisationSchemes>
+            <str:OrganisationUnitScheme id="TEST_5" uri="" urn="urn:sdmx:org.sdmx.infomodel.base.OrganisationUnitScheme=ESTAT:TEST_5(1.0)" agencyID="ESTAT" version="1.0" isFinal="false">
+                <com:Name xml:lang="en">Test Organisation Unit Scheme</com:Name>
+                <com:Description xml:lang="en">Organisation Unit Scheme description</com:Description>
+                <str:OrganisationUnit id="UNIT_A" urn="urn:sdmx:org.sdmx.infomodel.base.OrganisationUnit=ESTAT:TEST_5(1.0).UNIT_A">
+                    <com:Name xml:lang="en">unit A</com:Name>
+                </str:OrganisationUnit>
+                <str:OrganisationUnit id="UNIT_B" urn="urn:sdmx:org.sdmx.infomodel.base.OrganisationUnit=ESTAT:TEST_5(1.0).UNIT_B">
+                    <com:Name xml:lang="en">unit B</com:Name>
+                    <str:Parent>
+                        <Ref id="UNIT_A"/>
+                    </str:Parent>
+                </str:OrganisationUnit>
+                <str:OrganisationUnit id="UNIT_E" urn="urn:sdmx:org.sdmx.infomodel.base.OrganisationUnit=ESTAT:TEST_5(1.0).UNIT_E">
+                    <com:Annotations>
+                        <com:Annotation>
+                            <com:AnnotationTitle>Annotation 1 Title</com:AnnotationTitle>
+                            <com:AnnotationType>TEST</com:AnnotationType>
+                            <com:AnnotationText xml:lang="en">Test Text for an Organisation Unit.</com:AnnotationText>
+                        </com:Annotation>
+                    </com:Annotations>
+                    <com:Name xml:lang="en">English name for Unit E</com:Name>
+                    <com:Description xml:lang="en">This is a description for Unit E.
+                        This is text in a new line.</com:Description>
+                </str:OrganisationUnit>
+                <str:OrganisationUnit id="UNIT_C" urn="urn:sdmx:org.sdmx.infomodel.base.OrganisationUnit=ESTAT:TEST_5(1.0).UNIT_C">
+                    <com:Name xml:lang="en">Unit C</com:Name>
+                </str:OrganisationUnit>
+                <str:OrganisationUnit id="UNIT_D" urn="urn:sdmx:org.sdmx.infomodel.base.OrganisationUnit=ESTAT:TEST_5(1.0).UNIT_D">
+                    <com:Name xml:lang="en">Unit D</com:Name>
+                    <com:Description xml:lang="en">This is a test of the description</com:Description>
+                </str:OrganisationUnit>
+            </str:OrganisationUnitScheme>
+        </str:OrganisationSchemes>
+    </mes:Structures>
+</mes:Structure>

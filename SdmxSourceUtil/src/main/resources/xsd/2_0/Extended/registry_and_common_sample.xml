@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!-- Copyright SDMX 2005  -   www.sdmx.org -->
+<RegistryInterface xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" 
+xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry"
+xmlns:mt_r_ext="http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/registry" xmlns:mt_c_ext="http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message
+../../Schemas/SDMXMessage.xsd http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/registry MetadataTechnologySDMXRegistry.xsd http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/common MetadataTechnologySDMXCommon.xsd">
+	<Header>
+			<ID>JD014</ID>
+			<Test>true</Test>
+			<Truncated>false</Truncated>
+			<Name xml:lang="en">Trans46302</Name>
+			<Prepared>2001-03-11T09:30:47-05:00</Prepared>
+			<Sender id="BIS">
+				<Name xml:lang="en">Bank for International Settlements</Name>
+				<Contact>
+					<Name xml:lang="en">G.B. Smith</Name>
+					<Telephone>+000.000.0000</Telephone>
+				</Contact>
+			</Sender>
+			<Receiver id="ECB">
+				<Name xml:lang="en">European Central Bank</Name>
+				<Contact>
+					<Name xml:lang="en">B.S. Featherstone</Name>
+					<Department xml:lang="en">Statistics Division</Department>
+					<Telephone>+000.000.0001</Telephone>
+				</Contact>
+			</Receiver>
+			<DataSetAgency>BIS</DataSetAgency>
+			<DataSetID>BIS_JD_237</DataSetID>
+			<DataSetAction>Append</DataSetAction>
+			<Extracted>2001-03-11T09:30:47-05:00</Extracted>
+			<ReportingBegin>2000-01-01T00:00:00</ReportingBegin>
+			<ReportingEnd>2000-12-01T00:00:00</ReportingEnd>
+	</Header>
+	<QueryRegistrationRequest>
+		<registry:QueryType>DataSets</registry:QueryType>
+		<registry:ProvisionAgreementRef xsi:type="mt_r_ext:ProvisionAgreementRefType">
+			<registry:OrganisationSchemeAgencyID>SDMX</registry:OrganisationSchemeAgencyID>
+			<registry:OrganisationSchemeID>DATA_PROVIDERS</registry:OrganisationSchemeID>
+			<registry:DataProviderID>STAT</registry:DataProviderID>
+			<registry:DataflowAgencyID>STAT</registry:DataflowAgencyID> 
+			<registry:DataflowID>SERIES_3</registry:DataflowID>
+			<registry:Constraint ConstraintType="Content">
+				<common:ConstraintID>1</common:ConstraintID>
+				<common:KeySet isIncluded="true" xsi:type="mt_c_ext:KeySetType">
+					<common:Key>
+						<common:ComponentRef>FREQ</common:ComponentRef>
+						<common:Value>A</common:Value>
+					</common:Key>
+					<mt_c_ext:Key>
+						<common:ComponentRef>REF_AREA</common:ComponentRef>
+						<common:Value>GB</common:Value>
+					</mt_c_ext:Key>
+				</common:KeySet>
+			</registry:Constraint>
+			<mt_r_ext:MetadataflowAgencyID>MD_AG</mt_r_ext:MetadataflowAgencyID> 
+			<mt_r_ext:MetadataflowID>MSD_3</mt_r_ext:MetadataflowID>
+			<mt_r_ext:MetadataflowVersion>1.0</mt_r_ext:MetadataflowVersion>
+			<mt_r_ext:Constraint ConstraintType="Content">
+				<common:ConstraintID>1</common:ConstraintID>
+				<common:KeySet isIncluded="true" xsi:type="mt_c_ext:KeySetType">
+					<common:Key>
+						<common:ComponentRef>FREQ</common:ComponentRef>
+						<common:Value>A</common:Value>
+					</common:Key>
+					<mt_c_ext:Key>
+						<common:ComponentRef>REF_AREA</common:ComponentRef>
+						<common:Value>GB</common:Value>
+					</mt_c_ext:Key>
+				</common:KeySet>
+			</mt_r_ext:Constraint>
+		</registry:ProvisionAgreementRef>
+	</QueryRegistrationRequest>
+</RegistryInterface>	

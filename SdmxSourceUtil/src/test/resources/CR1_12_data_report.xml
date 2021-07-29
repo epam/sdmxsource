@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:GenericMetadata xmlns:mes="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:gen="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/genericmetadata">
+    <mes:Header>
+        <mes:ID>NEW_MSD</mes:ID>
+        <mes:Test>false</mes:Test>
+        <mes:Prepared>2010-10-10T17:28:19.671+02:00</mes:Prepared>
+        <mes:Sender id="MSD_EDITOR"/>
+    </mes:Header>
+    <gen:MetadataSet metadataStructureURI="file:/R:/ESSnet-on-SDMX/sdmx_hajdu/MetadataEditor/Luxemburg/QUESTIONNAIRE_MSD_v0.xml" datasetID="CR_1-12_OBSVALUES" dataProviderSchemeAgencyId="NFOSTAT" publicationYear="2010">
+        <gen:MetadataStructureRef>MSD_ITEMS</gen:MetadataStructureRef>
+        <gen:MetadataStructureAgencyRef>INFOSTAT</gen:MetadataStructureAgencyRef>
+        <gen:ReportRef>OBSVALUES</gen:ReportRef>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">2001</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">605</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">605-Rn-S1_XY0010</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en">4</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en">CL_STAT_TRVALY_POBYT</gen:Value>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">605</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">605-Rn-S2_AQ1825</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">2</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">605</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">605-Rn-S3_AQ1826</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">3</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">603</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">601-R1-S1_AQ1827</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">605</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">603-R2-S1_AQ1829</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">2</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">603</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">603-R4-S1_AQ1831</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">3</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">603</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">603-R4-S1_AQ1831</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">4</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">603</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">603-R5-S1_AQ1833</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">5</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">603</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">603-R6-S1_AQ1834</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">6</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+        <gen:AttributeValueSet>
+            <gen:TargetRef>QESTIONNAIRE</gen:TargetRef>
+            <gen:TargetValues>
+                <gen:ComponentValue component="IKF" object="MetadataSet">0901</gen:ComponentValue>
+                <gen:ComponentValue component="MODULE_SIGN" object="Attribute">603</gen:ComponentValue>
+                <gen:ComponentValue component="OBSVALUE" object="Attribute">603-R99-S1_RS9901</gen:ComponentValue>
+            </gen:TargetValues>
+            <gen:ReportedAttribute conceptID="NUMBER_ROW">
+                <gen:Value xml:lang="en">7</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="NUMBER_COLUMN">
+                <gen:Value xml:lang="en">1</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_SIZE">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="OBSVALUE_TYPE">
+                <gen:Value xml:lang="en">NUMBER</gen:Value>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="INSTRUCTFILL">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+            <gen:ReportedAttribute conceptID="CORE_REPRESENTATION">
+                <gen:Value xml:lang="en"/>
+            </gen:ReportedAttribute>
+        </gen:AttributeValueSet>
+    </gen:MetadataSet>
+</mes:GenericMetadata>

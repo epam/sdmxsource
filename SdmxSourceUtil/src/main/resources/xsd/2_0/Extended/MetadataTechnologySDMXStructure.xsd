@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/structure" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/structure" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure">
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" schemaLocation="../../Schemas/SDMXStructure.xsd"/>
+	
+	<xs:complexType name="PrimaryMeasureType">
+		<xs:complexContent>
+			<xs:extension base="structure:PrimaryMeasureType">
+				<xs:attribute name="conceptSchemeVersion" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataAttributeType">
+		<xs:complexContent>
+			<xs:extension base="structure:MetadataAttributeType">
+				<xs:attribute name="conceptSchemeVersion" type="xs:string" use="optional"/>
+				<xs:attribute name="representationSchemeVersion" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DimensionType">
+		<xs:complexContent>
+			<xs:extension base="structure:DimensionType">
+				<xs:attribute name="conceptSchemeVersion" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="TimeDimensionType">
+		<xs:complexContent>
+			<xs:extension base="structure:TimeDimensionType">
+				<xs:attribute name="conceptSchemeVersion" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AttributeType">
+		<xs:complexContent>
+			<xs:extension base="structure:AttributeType">
+				<xs:attribute name="conceptSchemeVersion" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CrossSectionalMeasureType">
+		<xs:complexContent>
+			<xs:extension base="structure:CrossSectionalMeasureType">
+				<xs:attribute name="conceptSchemeVersion" type="xs:string" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+</xs:schema>

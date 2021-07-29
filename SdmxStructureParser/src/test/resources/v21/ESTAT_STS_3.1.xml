@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message"
+               xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure"
+               xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message file:/Users/sli/Documents/sdmx/standard/SDMX_2-1_ALL_SECTIONS/Aug11/SDMX_2-1-1_SECTION_3B_SDMX_ML_Schemas_Samples_201108/schemas/SDMXMessage.xsd">
+    <mes:Header>
+        <mes:ID>IDREF1</mes:ID>
+        <mes:Test>false</mes:Test>
+        <mes:Prepared>2013-07-17T11:52:52.535Z</mes:Prepared>
+        <mes:Sender id="Unknown"/>
+        <mes:Receiver id="Unknown"/>
+    </mes:Header>
+    <mes:Structures>
+        <str:DataStructures>
+            <str:DataStructure id="STS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=ESTAT:STS(3.1)" agencyID="ESTAT" version="3.1" isFinal="true">
+                <com:Name xml:lang="en">Short Term Statistics</com:Name>
+                <str:DataStructureComponents>
+                    <str:DimensionList id="DimensionDescriptor" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DimensionDescriptor=ESTAT:STS(3.0).DimensionDescriptor">
+                        <str:Dimension id="FREQ" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ESTAT:STS(3.0).FREQ" position="1">
+                            <str:ConceptIdentity>
+                                <Ref id="FREQ" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_FREQ" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                        </str:Dimension>
+                        <str:Dimension id="AREA" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ESTAT:STS(3.0).AREA" position="2">
+                            <str:ConceptIdentity> <!-- Used to test compenent that has different id than concept -->
+                                <Ref id="REF_AREA" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_AREA_EE" version="2.1" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                        </str:Dimension>
+                        <str:Dimension id="ADJUSTMENT" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ESTAT:STS(3.0).ADJUSTMENT" position="3">
+                            <str:ConceptIdentity>
+                                <Ref id="ADJUSTMENT" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_ADJUSTMENT" version="1.1" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                        </str:Dimension>
+                        <str:Dimension id="STS_INDICATOR" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ESTAT:STS(3.0).STS_INDICATOR" position="4">
+                            <str:ConceptIdentity>
+                                <Ref id="STS_INDICATOR" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_STS_INDICATOR" version="1.0" agencyID="ESTAT" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                        </str:Dimension>
+                        <str:Dimension id="STS_ACTIVITY" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ESTAT:STS(3.0).STS_ACTIVITY" position="5">
+                            <str:ConceptIdentity>
+                                <Ref id="STS_ACTIVITY" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_STS_ACTIVITY" version="1.1" agencyID="ESTAT" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                        </str:Dimension>
+                        <str:Dimension id="STS_INSTITUTION" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ESTAT:STS(3.0).STS_INSTITUTION" position="6">
+                            <str:ConceptIdentity>
+                                <Ref id="STS_INSTITUTION" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_STS_INSTITUTION" version="1.0" agencyID="ESTAT" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                        </str:Dimension>
+                        <str:Dimension id="STS_BASE_YEAR" urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dimension=ESTAT:STS(3.0).STS_BASE_YEAR" position="7">
+                            <str:ConceptIdentity>
+                                <Ref id="STS_BASE_YEAR" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_STS_BASE_YEAR" version="1.0" agencyID="ESTAT" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                        </str:Dimension>
+                        <str:TimeDimension id="TIME_PERIOD" urn="urn:sdmx:org.sdmx.infomodel.datastructure.TimeDimension=ESTAT:STS(3.0).TIME_PERIOD" position="8">
+                            <str:ConceptIdentity>
+                                <Ref id="TIME_PERIOD" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:TextFormat/>
+                            </str:LocalRepresentation>
+                        </str:TimeDimension>
+                    </str:DimensionList>
+                    <str:Group id="Sibling">
+                        <str:GroupDimension>
+                            <str:DimensionReference>
+                                <Ref id="AREA"/>
+                            </str:DimensionReference>
+                        </str:GroupDimension>
+                        <str:GroupDimension>
+                            <str:DimensionReference>
+                                <Ref id="ADJUSTMENT"/>
+                            </str:DimensionReference>
+                        </str:GroupDimension>
+                        <str:GroupDimension>
+                            <str:DimensionReference>
+                                <Ref id="STS_INDICATOR"/>
+                            </str:DimensionReference>
+                        </str:GroupDimension>
+                        <str:GroupDimension>
+                            <str:DimensionReference>
+                                <Ref id="STS_ACTIVITY"/>
+                            </str:DimensionReference>
+                        </str:GroupDimension>
+                        <str:GroupDimension>
+                            <str:DimensionReference>
+                                <Ref id="STS_INSTITUTION"/>
+                            </str:DimensionReference>
+                        </str:GroupDimension>
+                        <str:GroupDimension>
+                            <str:DimensionReference>
+                                <Ref id="STS_BASE_YEAR"/>
+                            </str:DimensionReference>
+                        </str:GroupDimension>
+                    </str:Group>
+                    <str:AttributeList id="AttributeDescriptor" urn="urn:sdmx:org.sdmx.infomodel.datastructure.AttributeDescriptor=ESTAT:STS(3.0).AttributeDescriptor">
+                        <str:Attribute id="OBS_COM" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).OBS_COM" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="OBS_COM" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:PrimaryMeasure>
+                                    <Ref id="OBS_VALUE"/>
+                                </str:PrimaryMeasure>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="OBS_STATUS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).OBS_STATUS" assignmentStatus="Mandatory">
+                            <str:ConceptIdentity>
+                                <Ref id="OBS_STATUS" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_OBS_STATUS" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship>
+                                <str:PrimaryMeasure>
+                                    <Ref id="OBS_VALUE"/>
+                                </str:PrimaryMeasure>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="OBS_CONF" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).OBS_CONF" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="OBS_CONF" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_OBS_CONF" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship>
+                                <str:PrimaryMeasure>
+                                    <Ref id="OBS_VALUE"/>
+                                </str:PrimaryMeasure>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="OBS_PRE_BREAK" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).OBS_PRE_BREAK" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="OBS_PRE_BREAK" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:PrimaryMeasure>
+                                    <Ref id="OBS_VALUE"/>
+                                </str:PrimaryMeasure>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="COLLECTION" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).COLLECTION" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="COLLECTION" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_COLLECTION" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship> <!-- used to test att related with more less than time series dims. In this case ACTIVITY is missing -->
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="AVAILABILITY" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).AVAILABILITY" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="AVAILABILITY" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_AVAILABILITY" version="1.0" agencyID="ESTAT" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship> <!-- used to test the att that is attahed to group through dim refs that match group definition -->
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="UNIT_INDEX_BASE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).UNIT_INDEX_BASE" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="UNIT_INDEX_BASE" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="DOM_SER_IDS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).DOM_SER_IDS" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="DOM_SER_IDS" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="BREAKS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).BREAKS" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="BREAKS" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="TIME_FORMAT" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).TIME_FORMAT" assignmentStatus="Mandatory">
+                            <str:ConceptIdentity>
+                                <Ref id="TIME_FORMAT" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_TIME_FORMAT" version="1.0" agencyID="ESTAT" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="TITLE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).TITLE" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="TITLE" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship> <!-- user to test Dataset attachement -->
+                                <str:None/>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="UNIT" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).UNIT" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="UNIT" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_UNIT" version="2.3" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="UNIT_MULT" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).UNIT_MULT" assignmentStatus="Conditional">
+                            <str:ConceptIdentity> <!-- Set to test use of the same concept twice in a component UNIT as UNIT ans as UNIT_MULT -->
+                                <Ref id="UNIT_MULT" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_UNIT_MULT" version="1.1" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="DECIMALS" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).DECIMALS" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="DECIMALS" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_DECIMALS" version="1.0" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="TITLE_COMPL" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).TITLE_COMPL" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="TITLE_COMPL" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="NAT_TITLE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).NAT_TITLE" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="NAT_TITLE" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="COMPILATION" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).COMPILATION" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="COMPILATION" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship> <!-- user to test att with direct attchement to group -->
+                                <str:Group>
+                                    <Ref id="Sibling"/>
+                                </str:Group>
+
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="COVERAGE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).COVERAGE" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="COVERAGE" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="SOURCE_PUB" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).SOURCE_PUB" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="SOURCE_PUB" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                        <str:Attribute id="SOURCE_AGENCY" urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataAttribute=ESTAT:STS(3.0).SOURCE_AGENCY" assignmentStatus="Conditional">
+                            <str:ConceptIdentity>
+                                <Ref id="REF_AREA" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                            <str:LocalRepresentation>
+                                <str:Enumeration>
+                                    <Ref id="CL_ORGANISATION" version="1.2" agencyID="ECB" package="codelist" class="Codelist"/>
+                                </str:Enumeration>
+                            </str:LocalRepresentation>
+                            <str:AttributeRelationship>
+                                <str:Dimension>
+                                    <Ref id="FREQ"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="AREA"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="ADJUSTMENT"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INDICATOR"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_ACTIVITY"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_INSTITUTION"/>
+                                </str:Dimension>
+                                <str:Dimension>
+                                    <Ref id="STS_BASE_YEAR"/>
+                                </str:Dimension>
+                            </str:AttributeRelationship>
+                        </str:Attribute>
+                    </str:AttributeList>
+                    <str:MeasureList id="MeasureDescriptor" urn="urn:sdmx:org.sdmx.infomodel.datastructure.MeasureDescriptor=ESTAT:STS(3.0).MeasureDescriptor">
+                        <str:PrimaryMeasure id="OBS_VALUE" urn="urn:sdmx:org.sdmx.infomodel.datastructure.PrimaryMeasure=ESTAT:STS(3.0).OBS_VALUE">
+                            <str:ConceptIdentity>
+                                <Ref id="OBS_VALUE" maintainableParentID="STS_SCHEME" maintainableParentVersion="1.0" agencyID="ESTAT" package="conceptscheme" class="Concept"/>
+                            </str:ConceptIdentity>
+                        </str:PrimaryMeasure>
+                    </str:MeasureList>
+                </str:DataStructureComponents>
+            </str:DataStructure>
+        </str:DataStructures>
+    </mes:Structures>
+</mes:Structure>

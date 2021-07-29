@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2005  -   www.sdmx.org -->
+<xs:schema targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" elementFormDefault="qualified" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Note: The following import statement sometimes causes problems with IE 6.* If you have this problem, comment it out. -->
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	
+	<xs:complexType name="ConstraintType">
+		<xs:annotation><xs:documentation>Constraint specifies the object to which constraints are attached. Note that if the constraint is that for a Data Provider, then only ReleaseCalendar information is relevant, as there is no reliable way of determining which key family is being used to frame constraints in terms of cube regions or key sets. ReferencePeriod is used to report start date and end date constraints. MetadataConceptSet allows for conten t constraints to be described for metadata sets.</xs:documentation></xs:annotation>
+			<xs:sequence>
+				<xs:element name="ConstraintID" type="IDType"/>
+				<xs:element name="CubeRegion" type="CubeRegionType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="MetadataConceptSet" type="MetadataConceptSetType" minOccurs="0"/>
+				<xs:element name="KeySet" type="KeySetType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="ReleaseCalendar" type="ReleaseCalendarType" minOccurs="0"/>
+				<xs:element name="ReferencePeriod" type="ReferencePeriodType" minOccurs="0"/>
+			</xs:sequence>
+		<xs:attribute name="ConstraintType" type="ConstraintTypeType" use="required"/>
+	</xs:complexType>	
+			
+		
+	<xs:complexType name="CubeRegionType">
+		<xs:annotation><xs:documentation>CubeRegion describes the portion(s) of the possible combinations of all components within a key family or metadata structure definition by providing valid values on a per-component basis. This does not guarantee that data will be available for all possible combinations, but describes the portion of the cube in which it is useful to query for data. The isIncluded attribute, if true, indicates that the described area is the one in which it is useful to search/expect to find data. If false, this means that the portions of the cube outside the described region are useful to search/where you may expect to find data.</xs:documentation></xs:annotation>
+		<xs:sequence>
+			<xs:element name="Member" type="MemberType" maxOccurs="unbounded"/> 
+		</xs:sequence>
+		<xs:attribute name="isIncluded" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MetadataConceptSetType">
+		<xs:annotation><xs:documentation> The isIncluded attribute, if true, indicates that the described concepts - of those described as possibilities in the relevant metadata structure definition - are reported. If the value is false, then the specified concepts are not reported.</xs:documentation></xs:annotation>
+		<xs:sequence>
+			<xs:element name="Member" type="MemberType" maxOccurs="unbounded"/> 
+		</xs:sequence>
+		<xs:attribute name="isIncluded" type="xs:boolean" use="required"/>
+	</xs:complexType>	
+	<xs:complexType name="MemberType">
+		<xs:annotation><xs:documentation>Member describes the constrained component - which can be a dimension, an attribute, a metadata attribute, or a measure. This must agree with the metadata structure definition or key family  referenced by the Provision Agreement's Dataflow or Metadataflow. The isIncluded attribute indicates whether the Member is listing included or excluded values for each component, as seen against the full valid set described in the key family. When used to describe reported metadata, the MemberValue may be omitted in cases where no specification is made regarding the representation of the concept (as is the case with un-coded metadata attributes). Otherwise, MemberValue must be included.</xs:documentation></xs:annotation>
+		<xs:sequence>
+			<xs:element name="ComponentRef" type="IDType"/>			
+			<xs:element name="MemberValue" type="MemberValueType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="isIncluded" type="xs:boolean" use="required"/>		
+	</xs:complexType>	
+	<xs:complexType name="MemberValueType">
+		<xs:annotation><xs:documentation>MemberValue specifies the value of the specified component, which must be a valid value as described in the appropriate structure definition (key family).</xs:documentation></xs:annotation>
+		<xs:sequence>
+			<xs:element name="Value" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="KeySetType">
+		<xs:annotation><xs:documentation>KeySet describes a set of keys. The isIncluded attribute, if true, indicates that the specified keys are valid keys within the constraint. If false, the set of keys described are not valid - all other possible keys are the valid ones.</xs:documentation></xs:annotation>
+		<xs:sequence>
+			<xs:element name="Key" type="KeyType"/>
+		</xs:sequence>
+		<xs:attribute name="isIncluded" type="xs:boolean" use="required"/>		
+	</xs:complexType>
+	
+	<xs:complexType name="KeyType">
+		<xs:annotation><xs:documentation>Key allows for sets of component references - holding the name of the component's concept - and a permitted value for that component. This conctruct can be repeated as many times as dessired, but must describe complete keys according to teh relevant structure definition (key family).</xs:documentation></xs:annotation>
+		<xs:sequence maxOccurs="unbounded">
+			<xs:element name="ComponentRef" type="IDType"/>
+			<xs:element name="Value" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="ReleaseCalendarType">
+		<xs:annotation><xs:documentation>The ReleaseCalendar holds information about the timing of releases of the constrained data. Periodicity is the period between releases of the data set. Offset is the interval between January first and the first release of data within the year. Tolerance is the period after which the release of data may be deemed late. All of these values use the standard "P7D"-style format.</xs:documentation></xs:annotation>		
+		<xs:sequence>
+			<xs:element name="Periodicity" type="xs:string"/>
+			<xs:element name="Offset" type="xs:string"/>
+			<xs:element name="Tolerance" type="xs:string"/>						
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReferencePeriodType">
+		<xs:annotation><xs:documentation>Specifies the inclusive start and end times for a registry query.</xs:documentation></xs:annotation>
+		<xs:attribute name="startTime" type="xs:dateTime" use="required"/>
+		<xs:attribute name="endTime" type="xs:dateTime" use="required"/>
+	</xs:complexType>	
+	
+	<xs:simpleType name="ConstraintTypeType">
+			<xs:annotation>
+				<xs:documentation>ConstraintType provides an enumeration of values of the types of constraints.</xs:documentation>
+			</xs:annotation>
+			<xs:restriction base="xs:NMTOKEN">
+				<xs:enumeration value="Content">
+					<xs:annotation>
+						<xs:documentation>Content constraint.</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="Attachment">
+					<xs:annotation>
+						<xs:documentation>Attachment constraint.</xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+			</xs:restriction>
+	</xs:simpleType>	
+	
+
+	<xs:complexType name="TextType">
+		<xs:annotation>
+			<xs:documentation>TextType provides for a set of language-specific alternates to be provided for any human-readable construct in the instance.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="xml:lang" default="en"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationType">
+		<xs:annotation>
+			<xs:documentation>AnnotationType provides for non-documentation notes and annotations to be embedded in data and structure messages. It provides optional fields for providing a title, a type description, a URI, and the text of the annotation.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AnnotationTitle" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AnnotationTitle provides a title for the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AnnotationType is used to distinguish between annotations designed to support various uses. The types are not enumerated, as these can be specified by the user or creator of the annotations. The definitions and use of annotation types should be documented by their creator.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationURL" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This is a URI - typically a URL - which points to an external resource which may contain or supplement the annotation. If a specific behavior is desired, an annotation type should be defined which specifies the use of this field more exactly.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationText" type="TextType" minOccurs="0" maxOccurs="unbounded"><!-- Put back to TextType when you debug!--> 
+				<xs:annotation>
+					<xs:documentation>This is a language-specific string which holds the text oif the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnnotationsType">
+		<xs:annotation>
+			<xs:documentation>AnnotationsType provides for a list of annotations to be attached to data and structure messages.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Annotation" type="AnnotationType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="PeriodType">
+			<xs:annotation>
+				<xs:documentation>PeriodType provides a list of tokens for specifying common periods: Quarterly: Q1, Q2, Q3, Q4; Weekly: W1 - W52; Triannual: T1, T2, T3; Biannual: B1, B2. These values appear after a four-digit year indicator, followed by a dash (ie, 2005-Q1).</xs:documentation>
+			</xs:annotation>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="(\d\d\d\d\-Q1|\d\d\d\d\-Q2|\d\d\d\d\-Q3|\d\d\d\d\-Q4|\d\d\d\d\-T1|\d\d\d\d\-T2|\d\d\d\d\-T3|\d\d\d\d\-B1|\d\d\d\d\-B2|\d\d\d\d\-W1|\d\d\d\d\-W2|\d\d\d\d\-W3|\d\d\d\d\-W4|\d\d\d\d\-W5|\d\d\d\d\-W6|\d\d\d\d\-W7|\d\d\d\d\-W8|\d\d\d\d\-W9|\d\d\d\d\-W10|\d\d\d\d\-W11|\d\d\d\d\-W12|\d\d\d\d\-W13|\d\d\d\d\-W14|\d\d\d\d\-W15|\d\d\d\d\-W16|\d\d\d\d\-W17|\d\d\d\d\-W18|\d\d\d\d\-W19|\d\d\d\d\-W20|\d\d\d\d\-W21|\d\d\d\d\-W22|\d\d\d\d\-W23|\d\d\d\d\-W24|\d\d\d\d\-W25|\d\d\d\d\-W26|\d\d\d\d\-W27|\d\d\d\d\-W28|\d\d\d\d\-W29|\d\d\d\d\-W30|\d\d\d\d\-W31|\d\d\d\d\-W32|\d\d\d\d\-W33|\d\d\d\d\-W34|\d\d\d\d\-W35|\d\d\d\d\-W36|\d\d\d\d\-W37|\d\d\d\d\-W38|\d\d\d\d\-W39|\d\d\d\d\-W40|\d\d\d\d\-W41|\d\d\d\d\-W42|\d\d\d\d\-W43|\d\d\d\d\-W44|\d\d\d\d\-W45|\d\d\d\d\-W46|\d\d\d\d\-W47|\d\d\d\d\-W48|\d\d\d\d\-W49|\d\d\d\d\-W50|\d\d\d\d\-W51|\d\d\d\d\-W52)"/>
+			</xs:restriction>
+	</xs:simpleType>	
+	
+	<xs:simpleType name="TimePeriodType">
+		<xs:annotation>
+			<xs:documentation>TIME_PERIOD is not completely expressable in XML Schema's date type: instead we use the union of dateTime, date, gYearMonth, and gYear. The default name for the concept is TIME_PERIOD. Bi-annual, tri-annual, quarterly, and weekly periods have special formats (see PeriodType, above), but other periods would be described in terms of their beginning date or time (eg, a period of a decade is identified with a four-digit year corresponding to the decades' first year).</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:dateTime xs:date xs:gYearMonth xs:gYear PeriodType"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ActionType">
+		<xs:annotation>
+			<xs:documentation>ActionType provides a list of actions, describing the intention of the data transmission from the sender's side. Each action provided at the dataset or metadataset level applies to the entire dataset for which it is given. Note that the actions indicated in the Message Header are optional, and used to summarize specific actions indicated with this data type for all registry interactions. The "Informational" value is used when the message contains information in response to a query, rather than being used to invoke a maintenance activity.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Append">
+				<xs:annotation>
+					<xs:documentation>Data or metadata is an incremental update for an existing data/metadata set or the provision of new data or documentation (attribute values) formerly absent. If any of the supplied data or metadata is already present, it will not replace that data or metadata. This corresponds to the "Update" value found in version 1.0 of the SDMX Technical Standards.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Replace">
+				<xs:annotation>
+					<xs:documentation>Data/metadata is to be replaced, and may also include additional data/metadata to be appended.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Delete">
+				<xs:annotation>
+					<xs:documentation>Data/Metadata is to be deleted.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Information">
+				<xs:annotation>
+					<xs:documentation>Informational</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="IDType">
+			<xs:annotation>
+				<xs:documentation>IDType provides a type which is used for restricting the characters in codes and IDs throughout all SDMX-ML messages. Valid characters include A-Z, a-z, @, 0-9, _, -, $.</xs:documentation>
+			</xs:annotation>
+			<xs:restriction base="xs:string">
+				<xs:pattern value="([A-Z]|[a-z]|\*|@|[0-9]|_|$|\-)*"/>
+			</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

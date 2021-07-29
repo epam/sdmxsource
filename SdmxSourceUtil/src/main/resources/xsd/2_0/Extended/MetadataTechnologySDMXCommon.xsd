@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema targetNamespace="http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/common" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.metadatatechnology.com/standards/sdmx/schemas/v2_0/extension/common" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common">
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" schemaLocation="../../Schemas/SDMXCommon.xsd"/>
+	
+	<xs:complexType name="KeySetType">
+		<xs:complexContent>
+			<xs:extension base="common:KeySetType">
+				<xs:sequence>
+					<xs:element name="Key" type="common:KeyType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+</xs:schema>

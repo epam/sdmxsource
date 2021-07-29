@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2004  -   www.sdmx.org -->
+<xs:schema targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" elementFormDefault="qualified" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Note: The following import statement sometimes causes problems with IE 6.* If you have this problem, comment it out. -->
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+	
+	
+
+	<xs:complexType name="TextType">
+		<xs:annotation>
+			<xs:documentation>TextType provides for a set of language-specific alternates to be provided for any human-readable construct in the instance.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute ref="xml:lang" default="en"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AnnotationType">
+		<xs:annotation>
+			<xs:documentation>AnnotationType provides for non-documentation notes and annotations to be embedded in data and structure messages. It provides optional fields for providing a title, a type description, a URI, and the text of the annotation.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AnnotationTitle" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AnnotationTitle provides a title for the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AnnotationType is used to distinguish between annotations designed to support various uses. The types are not enumerated, as these can be specified by the user or creator of the annotations. The definitions and use of annotation types should be documented by their creator.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationURL" type="xs:anyURI" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>This is a URI - typically a URL - which points to an external resource which may contain or supplement the annotation. If a specific behavior is desired, an annotation type should be defined which specifies the use of this field more exactly.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AnnotationText" type="TextType" minOccurs="0" maxOccurs="unbounded"><!-- Put back to TextType when you debug!--> 
+				<xs:annotation>
+					<xs:documentation>This is a language-specific string which holds the text oif the annotation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnnotationsType">
+		<xs:annotation>
+			<xs:documentation>AnnotationsType provides for a list of annotations to be attached to data and structure messages.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Annotation" type="AnnotationType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:simpleType name="TimePeriodType">
+		<xs:annotation>
+			<xs:documentation>TIME_PERIOD is not completely expressable in XML Schema's date type: instead we use the union of dateTime, date, gYearMonth, and gYear. The default name for the concept is TIME_PERIOD. Semi-annual and quarterly periods would be described in terms of their beginning month, weekly periods in terms of their Monday: e.g. the second quarter of 2002 as 2002-04, since it starts with April.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:dateTime xs:date xs:gYearMonth xs:gYear"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ActionType">
+		<xs:annotation>
+			<xs:documentation>ActionType provides a list of actions, describing the intention of the data transmission from the sender's side. Each action applies to the entire dataset for which it is given.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Update">
+				<xs:annotation>
+					<xs:documentation>Data is an incremental update for an existing data setor the provision of new data or documentation (attribute values) formerly absent.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Delete">
+				<xs:annotation>
+					<xs:documentation>Data is to be deleted.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AlphaType">
+		<xs:annotation>
+			<xs:documentation>This type is used for datatyping the contents of uncoded attributes. It places no restrictions on characters used, but carries the semantic of the key-family designer in a fashion similar to that of the corresponding SDMX_EDI message.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+			
+	</xs:simpleType>
+	<xs:simpleType name="AlphaNumericType">
+		<xs:annotation>
+			<xs:documentation>This type is used for datatyping the contents of uncoded attributes. It places no restrictions on characters used, but carries the semantic of the key-family designer in a fashion similar to that of the corresponding SDMX_EDI message.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string"/>
+			
+	</xs:simpleType>
+</xs:schema>

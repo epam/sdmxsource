@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) SDMX 2005
+All rights reserved.
+http://www.sdmx.org
+-->
+<xs:schema targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/genericmetadata" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/genericmetadata" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common">
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" schemaLocation="SDMXCommon.xsd"/>
+	
+<!-- Note that this schema would be carried inside the SDMX Message like any other SDMX document type. The Message namespace is omitted here so that it is easier to see the MetadaReport element and its contents. -->
+
+<xs:element name="MetadataSet" type="MetadataSetType"/>
+
+<xs:complexType name="MetadataSetType">
+	<xs:annotation>
+		<xs:documentation>The Metadata Set is a set of reported metadata against a set of values for a given full or partial target identifier, as described in a metadata structure definition. Child elements include identification of the relevant metadata structure definition using the MetadataStructureRef and MetadataStructureAgencyRef elements. The ReportRef element includes the ID of the report structure as described in the metadata structure definition. AttributeValueSet is a repeatable child element which allows target identifier keys and their associated metadata attribute values to be reported (this functions like a series element does for data sets). An optional name and annotations may also be supplied. The metadataStructureURI allows for a URI to be provided, pointing to the SDMX-ML Structure Message representation of the referenced metadata structure definition. Attributes are provided for describing the contents of a data or metadata set, which are particularly important for interactions with the SDMX Registry: datasetID, dataProviderSchemeAgencyID, dataProviderSchemeID, dataflowAgencyID, and dataflowID all take the IDs specified by the attribute names. The action attribute indicates whether the file is appending, replacing, or deleting. Attributes reportingBeginDate, reportingEndDate, validFromDate, and validToDate are inclusive. publicationYear holds the ISO 8601 four-digit year, and publicationPeriod specifies the period of publication of the data in terms of whatever provisioning agreements might be in force (ie, "Q1 2005" if that is the time of publication for a data set published on a quarterly basis).</xs:documentation>
+	</xs:annotation>
+	<xs:sequence>
+		<xs:element name="Name" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>		
+		<xs:element name="MetadataStructureRef" type="common:IDType"/>
+		<xs:element name="MetadataStructureAgencyRef" type="common:IDType"/>
+		<xs:element name="ReportRef" type="common:IDType" />
+		<xs:element name="AttributeValueSet" type="AttributeValueSetType" maxOccurs="unbounded"/>
+		<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+	</xs:sequence>
+	<xs:attribute name="metadataStructureURI" type="xs:anyURI" use="optional"/>
+	<xs:attribute name="datasetID" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataProviderSchemeAgencyId" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataProviderSchemeId" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataProviderID" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataflowAgencyID" type="common:IDType" use="optional"/>
+	<xs:attribute name="dataflowID" type="common:IDType" use="optional"/>
+	<xs:attribute name="action" type="common:ActionType" use="optional"/>
+	<xs:attribute name="reportingBeginDate" type="common:TimePeriodType" use="optional"/>
+	<xs:attribute name="reportingEndDate" type="common:TimePeriodType" use="optional"/>
+	<xs:attribute name="validFromDate" type="common:TimePeriodType" use="optional"/>
+	<xs:attribute name="validToDate" type="common:TimePeriodType" use="optional"/>
+	<xs:attribute name="publicationYear" type="xs:gYear" use="optional"/>
+	<xs:attribute name="publicationPeriod" type="common:TimePeriodType" use="optional"/>
+</xs:complexType>
+
+<xs:complexType name="AttributeValueSetType">
+	<xs:annotation>
+		<xs:documentation>The attribute value set provides the values for a set of metadata attributes reported against a target identifier key. The TargetRef element contains the value of the metadata attribute's target attribute in the metadata structure definition (that is, the ID of the full or partial target identifier which is the target of the metadata report). TargetValues is an element substructure which provides the specific full or partial target identifier component values, and the ReportedAttribute sub-element allows for values to be reported against the metadata attributes as described in the referenced metadata structure definition for the referenced full or partial targets.</xs:documentation>
+	</xs:annotation>
+	<xs:sequence>
+		<xs:element name="TargetRef" type="common:IDType" />
+		<xs:element name="TargetValues" type="TargetValuesType" />
+		<xs:element name="ReportedAttribute" type="ReportedAttributeType" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+	
+<xs:complexType name="TargetValuesType">
+	<xs:annotation>
+		<xs:documentation>Target values contains the specific values for each concept in the full or partial target identifier as described in a metadata structure definition. These values typically come from codelists or other item schemes. Each such value should be presented in the order given in the metadata structure definition, and must use a valid representation for that concept. Concepts are those referenced by the identifier components of the target identifiers.</xs:documentation>
+	</xs:annotation>
+	<xs:sequence>
+		<xs:element name="ComponentValue" type="ComponentValueType" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>	
+
+<xs:complexType name="ComponentValueType">
+	<xs:annotation>
+		<xs:documentation>Component values have an object attribute with an object type value as provided in the metadata structure definition, a component attribute which takes the ID of the identifier component in the metadata structure definition's full target identifier, and a value, which must be a valid value for that concept's representation as described in the metadata structure definition.</xs:documentation>
+	</xs:annotation>
+	<xs:simpleContent>
+		<xs:extension base="xs:NMTOKEN">
+			<xs:attribute name="object" type="ObjectIDType" use="required"/>
+			<xs:attribute name="component" type="common:IDType" use="optional"/>
+			
+			
+		</xs:extension>
+	</xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType name="ReportedAttributeType">
+	<xs:annotation>
+		<xs:documentation>Reported attributes hold the values which are to be reported against the target specified in the metadata structure definition, and according to the metadata attributes specified for the target referenced in the TargetRef element. Each reported attribute may have Value sub-elements (one per language) if it takes a text or numeric value. The StartTime element is only used if the attribute being represented is of the Timespan type (as described in the corresponding TextFormat element in the metadata structure definition). In this case, the Value takes a duration. Only one such value is allowed in the ReportedAttribute in this case. The types of these values must conform to the limitations described in the metadata structure definition. Also - if permitted by the metadata structure definition - there may be one or more child ReportedAttribute elements. These must be arranged in the nesting hierarchy given in the metadat structure definition. The conceptID attribute provides the id of the concept given in the metadata structure definition to which the reported attribute corresponds.</xs:documentation>
+	</xs:annotation>
+	<xs:sequence>
+		<xs:element name="Value" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:element name="StartTime" type="xs:dateTime" minOccurs="0"/>
+		<xs:element name="ReportedAttribute" type="ReportedAttributeType" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:element name="Annotations" type="common:AnnotationsType" minOccurs="0"/>
+	</xs:sequence>
+	<xs:attribute name="conceptID" type="common:IDType" use="required"/>
+</xs:complexType>
+	<xs:simpleType name="ObjectIDType">
+		<xs:annotation>
+			<xs:documentation>The Object ID is used to reference a particular Object within the SDMX Information Model's formalization of statistical exchanges.</xs:documentation>
+		</xs:annotation>
+			<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Agency">
+				<xs:annotation>
+					<xs:documentation>Agency</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ConceptScheme">
+				<xs:annotation>
+					<xs:documentation>Concept scheme</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Concept">
+				<xs:annotation>
+					<xs:documentation>Concept</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Codelist">
+				<xs:annotation>
+					<xs:documentation>Codelist</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Code">
+				<xs:annotation>
+					<xs:documentation>Code</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="KeyFamily">
+				<xs:annotation>
+					<xs:documentation>Key family</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>				
+			<xs:enumeration value="Component">
+				<xs:annotation>
+					<xs:documentation>Component</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="KeyDescriptor">
+				<xs:annotation>
+					<xs:documentation>Key descriptor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="MeasureDescriptor">
+				<xs:annotation>
+					<xs:documentation>Measure descriptor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="AttributeDescriptor">
+				<xs:annotation>
+					<xs:documentation>Attribute descriptor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="GroupKeyDescriptor">
+				<xs:annotation>
+					<xs:documentation>Group key descriptor</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Dimension">
+				<xs:annotation>
+					<xs:documentation>Dimension</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Measure">
+				<xs:annotation>
+					<xs:documentation>Measure</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Attribute">
+				<xs:annotation>
+					<xs:documentation>Attribute</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="CategoryScheme">
+				<xs:annotation>
+					<xs:documentation>Category scheme</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ReportingTaxonomy">
+				<xs:annotation>
+					<xs:documentation>Reporting taxonomy</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Category">
+				<xs:annotation>
+					<xs:documentation>Category</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="OrganisationScheme">
+				<xs:annotation>
+					<xs:documentation>Organisation scheme</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="DataProvider">
+				<xs:annotation>
+					<xs:documentation>Data or metadata provioder</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="MetadataStructure">
+				<xs:annotation>
+					<xs:documentation>Metadata structure definition</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="FullTargetIdentifier">
+				<xs:annotation>
+					<xs:documentation>Full target identifier</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="PartialTargetIdentifier">
+				<xs:annotation>
+					<xs:documentation>Partial target identifier</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="MetadataAttribute">
+				<xs:annotation>
+					<xs:documentation>Metadata attribute</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="DataFlow">
+				<xs:annotation>
+					<xs:documentation>Data flow</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="ProvisionAgreement">
+				<xs:annotation>
+					<xs:documentation>Data or metadata provision agreement</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="MetadataFlow">
+				<xs:annotation>
+					<xs:documentation>Metadata flow</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>		
+			<xs:enumeration value="ContentConstraint">
+				<xs:annotation>
+					<xs:documentation>Content constraint</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="AttachmentConstraint">
+				<xs:annotation>
+					<xs:documentation>Attachment constraint</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="DataSet">
+				<xs:annotation>
+					<xs:documentation>Data set</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="XSDataSet">
+				<xs:annotation>
+					<xs:documentation>Cross-sectional data set</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="MetadataSet">
+				<xs:annotation>
+					<xs:documentation>Metadata set</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>	
+			<xs:enumeration value="HierarchicalCodelist">
+				<xs:annotation>
+					<xs:documentation>Hierarchical codelist</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="Hierarchy">
+				<xs:annotation>
+					<xs:documentation>Hierarchy</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="StructureSet">
+				<xs:annotation>
+					<xs:documentation>Structure set</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="StructureMap">
+				<xs:annotation>
+					<xs:documentation>Structure map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ComponentMap">
+				<xs:annotation>
+					<xs:documentation>Component map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CodelistMap">
+				<xs:annotation>
+					<xs:documentation>Codelist map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CodeMap">
+				<xs:annotation>
+					<xs:documentation>Code map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CategorySchemeMap">
+				<xs:annotation>
+					<xs:documentation>Category scheme map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CategoryMap">
+				<xs:annotation>
+					<xs:documentation>Category map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OrganisationSchemeMap">
+				<xs:annotation>
+					<xs:documentation>Organisation scheme map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="OrganisationRoleMap">
+				<xs:annotation>
+					<xs:documentation>Organisation role map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ConceptSchemeMap">
+				<xs:annotation>
+					<xs:documentation>Concept scheme map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ConceptMap">
+				<xs:annotation>
+					<xs:documentation>Concept map</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+			<xs:enumeration value="Process">
+				<xs:annotation>
+					<xs:documentation>Process</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ProcessStep">
+				<xs:annotation>
+					<xs:documentation>Process step</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>			
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

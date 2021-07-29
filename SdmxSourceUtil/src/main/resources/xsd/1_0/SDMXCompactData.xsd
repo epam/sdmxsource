@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2004  -   www.sdmx.org -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/compact" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/compact" 
+xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/compact">
+
+<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" schemaLocation="SDMXCommon.xsd"/>
+
+
+
+<xs:element name="DataSet" type="DataSetType">
+	<xs:annotation>
+		<xs:documentation>The DataSet element contains the data set.</xs:documentation>
+	</xs:annotation>
+	
+	
+</xs:element>
+
+<xs:complexType name="DataSetType" abstract="true">
+	<xs:annotation>
+		<xs:documentation>DataSetType acts as a structural base, which is extended through the addition of attributes to reflect the particular needs of a specific key family using the xs:extends element.</xs:documentation>
+	</xs:annotation>
+
+	
+	
+	
+</xs:complexType>
+
+<xs:element name="Group" type="GroupType">
+	<xs:annotation>
+		<xs:documentation>The Group element contains the group.</xs:documentation>
+	</xs:annotation>
+</xs:element>
+
+<xs:complexType name="GroupType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>GroupType acts as a structural base, which is extended through the addition of attributes to reflect the particular needs of a specific key family using the xs:extends element.</xs:documentation>
+		</xs:annotation>
+
+		
+</xs:complexType>
+
+<xs:element name="Series" type="SeriesType">
+	<xs:annotation>
+		<xs:documentation>The Series element contains the series.</xs:documentation>
+	</xs:annotation>
+</xs:element>
+
+
+<xs:complexType name="SeriesType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>SeriesType acts as a structural base, which is extended through the addition of attributes to reflect the particular needs of a specific key family using the xs:extends element.</xs:documentation>
+		</xs:annotation>
+
+		
+</xs:complexType>
+
+<xs:element name="Obs" type="ObsType">
+	<xs:annotation>
+		<xs:documentation>The Obs element contains the observations.</xs:documentation>
+	</xs:annotation>
+</xs:element>
+
+
+<xs:complexType name="ObsType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>ObsType acts as a structural base, which is extended through the addition of attributes to reflect the particular needs of a specific key family using the xs:extends element.</xs:documentation>
+		</xs:annotation>
+		
+</xs:complexType>
+
+</xs:schema>

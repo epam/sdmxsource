@@ -1,0 +1,199 @@
+﻿<?xml version="1.0"?>
+<!-- Copyright SDMX 2005  -   www.sdmx.org -->
+<RegistryInterface xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/compact" xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure"
+    xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry"
+    xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message
+    SDMXMessage.xsd">
+    <Header>
+        <ID>JD014</ID>
+        <Test>true</Test>
+        <Truncated>false</Truncated>
+        <Name xml:lang="en">Trans46302</Name>
+        <Prepared>2001-03-11T09:30:47-05:00</Prepared>
+        <Sender id="BIS">
+            <Name xml:lang="en">Bank for International Settlements</Name>
+            <Contact>
+                <Name xml:lang="en">G.B. Smith</Name>
+                <Telephone>+000.000.0000</Telephone>
+            </Contact>
+        </Sender>
+        <Receiver id="ECB">
+            <Name xml:lang="en">European Central Bank</Name>
+            <Contact>
+                <Name xml:lang="en">B.S. Featherstone</Name>
+                <Department xml:lang="en">Statistics Division</Department>
+                <Telephone>+000.000.0001</Telephone>
+            </Contact>
+        </Receiver>
+        <DataSetAgency>BIS</DataSetAgency>
+        <DataSetID>BIS_JD_237</DataSetID>
+        <DataSetAction>Append</DataSetAction>
+        <Extracted>2001-03-11T09:30:47-05:00</Extracted>
+        <ReportingBegin>2000-01-01T00:00:00</ReportingBegin>
+        <ReportingEnd>2000-12-01T00:00:00</ReportingEnd>
+    </Header>
+    <QueryStructureResponse>
+        <registry:StatusMessage status="Success"/>
+        <registry:Dataflows>
+            <structure:Dataflow id="SSTSCONS_PROD_M" agencyID="ESTAT" version="2.0" isFinal="true">
+                <structure:Name xml:lang="en">Production in construction, total, building construction, civil engineering (Monthly)</structure:Name>
+                <structure:KeyFamilyRef>
+                    <structure:KeyFamilyID>STS</structure:KeyFamilyID>
+                    <structure:KeyFamilyAgencyID>ESTAT</structure:KeyFamilyAgencyID>
+                    <structure:Version>2.0</structure:Version>
+                </structure:KeyFamilyRef>
+                <structure:CategoryRef>
+                    <structure:CategorySchemeID>ESTAT_DATAFLOWS_SCHEME</structure:CategorySchemeID>
+                    <structure:CategorySchemeAgencyID>ESTAT</structure:CategorySchemeAgencyID>
+                    <structure:CategorySchemeVersion>1.1</structure:CategorySchemeVersion>
+                    <structure:CategoryID>
+                        <structure:ID>SSTSCONS</structure:ID>
+                        <structure:CategoryVersion>1.0</structure:CategoryVersion>
+                    </structure:CategoryID>
+                </structure:CategoryRef>
+            </structure:Dataflow>
+        </registry:Dataflows>
+        <registry:CategorySchemes>
+            <structure:CategoryScheme id="ESTAT_DATAFLOWS_SCHEME" agencyID="ESTAT" version="1.1" isFinal="true">
+                <structure:Name xml:lang="en">A category scheme of Eurostat&apos;s dataflows</structure:Name>
+                <structure:Description xml:lang="en">A scheme to group dataflows used by Eurostat. At this version contains all STS related dataflows.</structure:Description>
+                <structure:Category id="14">
+                    <structure:Name xml:lang="en">IT normalisation and collaborative infrastructure for the ESS</structure:Name>
+                    <structure:Description xml:lang="en">IT normalisation and collaborative infrastructure for the ESS</structure:Description>
+                    <structure:Category id="14200">
+                        <structure:Name xml:lang="en">Normalisation of information systems</structure:Name>
+                        <structure:Description xml:lang="en"></structure:Description>
+                        <structure:Category id="SSTSRTD">
+                            <structure:Name xml:lang="en">SODI - Short-term Statistics on Retail Trade</structure:Name>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSRTD_TURN_M</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSRTD_TURNR_MS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                        </structure:Category>
+                        <structure:Category id="SSTSIND">
+                            <structure:Name xml:lang="en">SODI - Short-term Statistics on Industry</structure:Name>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSIND_PROD_M</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSIND_ORD_M</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSIND_PRIC_M</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSIND_TURN_M</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSIND_ORDR_MS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSIND_PRICR_MS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSIND_PRODR_MS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSIND_TURNR_MS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                        </structure:Category>
+                        <structure:Category id="SSTSSERV">
+                            <structure:Name xml:lang="en">SODI - Short-term Statistics on Services</structure:Name>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSSERV_TURN_M</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSSERV_TURN_Q</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSSERV_PRIC_Q</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSSERV_EMPL_Q</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSSERV_EMPLR_QS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSSERV_PRICR_QS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSSERV_TURNR_MS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSSERV_TURNR_QS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                        </structure:Category>
+                        <structure:Category id="SSTSCONS">
+                            <structure:Name xml:lang="en">SODI - Short-term Statistics on Construction</structure:Name>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSCONS_PROD_M</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:DataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:DataflowID>SSTSCONS_PROD_Q</structure:DataflowID>
+                                <structure:Version>2.0</structure:Version>
+                            </structure:DataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSCONS_PRODR_MS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                            <structure:MetadataflowRef>
+                                <structure:AgencyID>ESTAT</structure:AgencyID>
+                                <structure:MetadataflowID>SSTSCONS_PRODR_QS</structure:MetadataflowID>
+                                <structure:Version>1.0</structure:Version>
+                            </structure:MetadataflowRef>
+                        </structure:Category>
+                        <structure:Category id="CENSUS">
+                            <structure:Name xml:lang="en">SODI - Short-term Statistics on Construction</structure:Name>
+                        </structure:Category>
+                        <structure:Category id="CPI">
+                            <structure:Name xml:lang="en">SODI - Short-term Statistics on Construction</structure:Name>
+                        </structure:Category>
+                    </structure:Category>
+                </structure:Category>
+            </structure:CategoryScheme>
+        </registry:CategorySchemes>
+    </QueryStructureResponse>
+</RegistryInterface>

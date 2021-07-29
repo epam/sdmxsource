@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+    <mes:Header>
+        <mes:ID>IDREF2</mes:ID>
+        <mes:Test>false</mes:Test>
+        <mes:Prepared>2014-01-20T12:10:45.650Z</mes:Prepared>
+        <mes:Sender id="Unknown"/>
+        <mes:Receiver id="Unknown"/>
+    </mes:Header>
+    <mes:Structures>
+        <str:OrganisationSchemes>
+            <str:AgencyScheme id="AGENCIES" urn="urn:sdmx:org.sdmx.infomodel.base.AgencyScheme=ESTAT:AGENCIES(1.0)" agencyID="ESTAT" version="1.0" isExternalReference="false" isFinal="false" structureURL="http://need/to/change/this">
+                <com:Annotations>
+                    <com:Annotation id="fdsfs">
+                        <com:AnnotationTitle>dsfds</com:AnnotationTitle>
+                        <com:AnnotationText xml:lang="da">fdfdsfs</com:AnnotationText>
+                        <com:AnnotationText xml:lang="lv">fdsfs</com:AnnotationText>
+                    </com:Annotation>
+                </com:Annotations>
+                <com:Name xml:lang="et">dsfds</com:Name>
+                <com:Name xml:lang="en">SDMX</com:Name>
+                <com:Description xml:lang="en">SDMX</com:Description>
+                <com:Description xml:lang="cs">DFDSF</com:Description>
+                <com:Description xml:lang="sv">FDSFDS</com:Description>
+                <com:Description xml:lang="hr">DSFSDF</com:Description>
+                <str:Agency id="ESTAT" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.ESTAT">
+                    <com:Name xml:lang="en">Eurostat</com:Name>
+                    <com:Description xml:lang="en">Statistical office of the European Union</com:Description>
+                </str:Agency>
+                <str:Agency id="ECB" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.ECB">
+                    <com:Name xml:lang="en">European Central Bank</com:Name>
+                    <com:Description xml:lang="en">The European Central Bank is the central bank for Europe's single currency, the euro.</com:Description>
+                </str:Agency>
+                <str:Agency id="FAO" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.FAO">
+                    <com:Name xml:lang="en">Food and Agriculture Organisation</com:Name>
+                    <com:Description xml:lang="en">Food and Agriculture Organisation of the United Nations.</com:Description>
+                </str:Agency>
+                <str:Agency id="WB" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.WB">
+                    <com:Name xml:lang="en">World Bank</com:Name>
+                    <com:Description xml:lang="en">The World Bank</com:Description>
+                </str:Agency>
+                <str:Agency id="OECD" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.OECD">
+                    <com:Name xml:lang="en">Organisation for Economic Co-operation and Development</com:Name>
+                    <com:Description xml:lang="en">The Organisation for Economic Co-operation and Development (OECD).</com:Description>
+                </str:Agency>
+                <str:Agency id="BIS" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.BIS">
+                    <com:Name xml:lang="en">Bank for International Settlements</com:Name>
+                    <com:Description xml:lang="en">Bank for International Settlements.</com:Description>
+                </str:Agency>
+                <str:Agency id="IMF" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.IMF">
+                    <com:Name xml:lang="en">International Monetary Fund</com:Name>
+                    <com:Description xml:lang="en">International Monetary Fund</com:Description>
+                </str:Agency>
+                <str:Agency id="UN" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.UN">
+                    <com:Name xml:lang="en">United Nations</com:Name>
+                </str:Agency>
+                <str:Agency id="ADS" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.ADS">
+                    <com:Name xml:lang="en">ADS agency</com:Name>
+                    <com:Description xml:lang="en">description of the agency</com:Description>
+                </str:Agency>
+                <str:Agency id="TEST_AGENCY" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.TEST_AGENCY">
+                    <com:Name xml:lang="en">Testing</com:Name>
+                    <com:Description xml:lang="en">testing...</com:Description>
+                </str:Agency>
+                <str:Agency id="STRATOS" urn="urn:sdmx:org.sdmx.infomodel.base.Agency=ESTAT.STRATOS">
+                    <com:Name xml:lang="en">test</com:Name>
+                </str:Agency>
+            </str:AgencyScheme>
+        </str:OrganisationSchemes>
+    </mes:Structures>
+</mes:Structure>

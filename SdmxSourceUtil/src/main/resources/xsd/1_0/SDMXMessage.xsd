@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2004  -   www.sdmx.org -->
+<xs:schema targetNamespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/message" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/message" xmlns:message="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/message" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/structure" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/generic" xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/utility" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/compact" xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/cross" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/query" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common">
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/structure" schemaLocation="SDMXStructure.xsd"/>
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/generic" schemaLocation="SDMXGenericData.xsd"/>
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/utility" schemaLocation="SDMXUtilityData.xsd"/>
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/compact" schemaLocation="SDMXCompactData.xsd"/>
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/cross" schemaLocation="SDMXCrossSectionalData.xsd"/>
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/query" schemaLocation="SDMXQuery.xsd"/>
+	<xs:import namespace="http://www.SDMX.org/resources/SDMXML/schemas/v1_0/common" schemaLocation="SDMXCommon.xsd"/>
+	<xs:element name="Structure" type="StructureType">
+		<xs:annotation>
+			<xs:documentation>The Structure is a message that contains all the structural metadata about a data set. This can be key families, concepts, or codelists.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="GenericData" type="GenericDataType">
+		<xs:annotation>
+			<xs:documentation>The GenericDataType is used to convey data in a cross-key-family form.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="UtilityData" type="UtilityDataType">
+		<xs:annotation>
+			<xs:documentation>The UtilityData contains data in an XML form which is specific to each key family, according to standard mappings, and which is optimized to support guided editing tools and other applications which expect a "typical" XML schema. This format can be used to validate data in a key-family-specific fashion as is typically expected of XML schemas, and requires the entire data set. It cannot be used for incremental updates.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CompactData" type="CompactDataType">
+		<xs:annotation>
+			<xs:documentation>CompactData contains data in an XML format which is optimized for incremental updating, and the transfer of large data sets bilaterally. It is specific to each key family, according to standard mappings. It allows for key values to be expressed at a Group level.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CrossSectionalData" type="CrossSectionalDataType">
+		<xs:annotation>
+			<xs:documentation>CrossSectionalData contains data in an XML format which is optimized for describing many observations at a single point in time, and for the transfer of large data sets bilaterally. It is specific to each key family, according to standard mappings. It allows for key values to be expressed from the Group level down to the Observation level, and permits multiple observation values with different "measures". Time is attached at the DataSet level.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="QueryMessage" type="QueryMessageType">
+		<xs:annotation>
+			<xs:documentation>The QueryMessageType is used to query databases published on the web, and to invoke web services. It allows for queries to be made regarding both data and structural metadata.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MessageGroup" type="MessageGroupType">
+		<xs:annotation>
+			<xs:documentation>The MessageGroupType is used to allow for more than one data message of a single type to be included in a single transmission. This element arises from the requirement for some services to be able to exchange data which may come from more than one source, and be structured according to more than one key family.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="MessageType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>The Message is an abstract type which is used by all of the messages, to allow inheritance of common features. It also provides uniqueness constraints for the header fields.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Header" type="HeaderType">
+				<xs:unique name="SDMX_HeaderNameLanguageUniqueness">
+					<xs:selector xpath="message:Name"/>
+					<xs:field xpath="@xml:lang"/>
+				</xs:unique>
+				<xs:unique name="SDMX_HeaderSenderIDUniqueness">
+					<xs:selector xpath="message:Sender"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+				<xs:unique name="SDMX_HeaderReceiverIDUniqueness">
+					<xs:selector xpath="message:Receiver"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+				<xs:unique name="SDMX_HeaderDataSetIDUniqueness">
+					<xs:selector xpath="message:DataSetID"/>
+					<xs:field xpath="."/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StructureType">
+		<xs:annotation>
+			<xs:documentation>StructureType defines the contents of a structure message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MessageType">
+				<xs:sequence>
+					<xs:element name="Agencies" type="structure:AgenciesType" minOccurs="0"/>
+					<xs:element name="CodeLists" type="structure:CodeListsType" minOccurs="0"/>
+					<xs:element name="Concepts" type="structure:ConceptsType" minOccurs="0"/>
+					<xs:element name="KeyFamilies" type="structure:KeyFamiliesType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GenericDataType">
+		<xs:annotation>
+			<xs:documentation>GenericDataType defines the contents of a GenericData message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MessageType">
+				<xs:sequence>
+					<xs:element name="DataSet" type="generic:DataSetType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="UtilityDataType">
+		<xs:annotation>
+			<xs:documentation>UtilityDataType defines the contents of a UtilityData message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MessageType">
+				<xs:sequence>
+					<xs:element ref="utility:DataSet"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CompactDataType">
+		<xs:annotation>
+			<xs:documentation>CompactDataType defines the contents of a CompactData message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MessageType">
+				<xs:sequence>
+					<xs:element ref="compact:DataSet"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CrossSectionalDataType">
+		<xs:annotation>
+			<xs:documentation>CrossSectionalDataType defines the contents of a CrossSectionalData message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MessageType">
+				<xs:sequence>
+					<xs:element ref="cross:DataSet"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="QueryMessageType">
+		<xs:annotation>
+			<xs:documentation>QueryMessageType defines the contents of a QueryMessage.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MessageType">
+				<xs:sequence>
+					<xs:element name="Query" type="query:QueryType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MessageGroupType">
+		<xs:annotation>
+			<xs:documentation>MessageGroupType defines the contents of a MessageGroup message.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MessageType">
+				<xs:choice>
+					<xs:element ref="generic:DataSet" maxOccurs="unbounded"/>
+					<xs:element ref="utility:DataSet" maxOccurs="unbounded"/>
+					<xs:element ref="compact:DataSet" maxOccurs="unbounded"/>
+					<xs:element ref="cross:DataSet" maxOccurs="unbounded"/>
+				</xs:choice>
+				<xs:attribute name="id" type="xs:NMTOKEN" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="Header" type="HeaderType">
+		<xs:annotation>
+			<xs:documentation>Header type is declared globally so that it can function as the head of a substitution group for schemas which are used internally. While this is an exception to the overall design of SDMX-ML, many users feel this construct is useful. Note that when SDMX-ML messages are exchanged outside an organization, the standard header should be used - no assumptions about additional fields in substituted types should be made unless explicitly agreed-to by counterparties.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="HeaderType">
+		<xs:annotation>
+			<xs:documentation>HeaderType defines the header fields used for all messages. ID identifies a data flow definition, which, when combined with time, uniquely identifies the data set. Test indicates whather the message is for test purposes or not. Truncated is used in data messages which are responding to Query messages, and is set to true only if the response has been truncated to meet size limits suggested by the defaultLimit attribute in the Query mesage.  Name provides a name for the transmission. Prepared is the date prepared. Sender is information about the sender, and Receiver is information about the receiver. Agency provides the code identifier/abbreviation for the maintenance agency of a data set. Data set id provides an identifier for a contained data set. Action code provides a code for determining whether the enclosed message is an Update or Delete message (not to be used with the UtilityData message). KeyFamilyRef is used to reference a key family for a contained data set, using its id. (This information is required at the DataSet level for some messages, but is provided here as a convenience for those messages which do not require it.) KeyFamilyAgency specifies the agency of the key family using its coded id.  Fields which refer to a contained data set need not be used if the message contains a query or structural information - these messages provide specific fields for holding this information. The ones here are not to be used as defaults. Extracted is a time-stamp from the system rendering the data; ReportingBegin and ReportingEnd provide the time period covered by the message (in the case of data). Source provides human-readable information about the source of the data.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ID" type="xs:NCName"/>
+			<xs:element name="Test" type="xs:boolean" default="false"/>
+			<xs:element name="Truncated" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="Name" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Prepared" type="HeaderTimeType"/>
+			<xs:element name="Sender" type="PartyType">
+				<xs:unique name="SDMX_SenderNameLanguageUniqueness">
+					<xs:selector xpath="message:Name"/>
+					<xs:field xpath="@xml:lang"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Receiver" type="PartyType" minOccurs="0" maxOccurs="unbounded">
+				<xs:unique name="SDMX_ReceiverNameLanguageUniqueness">
+					<xs:selector xpath="message:Name"/>
+					<xs:field xpath="@xml:lang"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="KeyFamilyRef" type="xs:NMTOKEN" minOccurs="0"/>
+			<xs:element name="KeyFamilyAgency" type="xs:NMTOKEN" minOccurs="0"/>
+			<xs:element name="DataSetAgency" type="xs:NMTOKEN" minOccurs="0"/>
+			<xs:element name="DataSetID" type="xs:NMTOKEN" minOccurs="0"/>
+			<xs:element name="DataSetAction" type="common:ActionType" minOccurs="0"/>
+			
+			<xs:element name="Extracted" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="ReportingBegin" type="HeaderTimeType" minOccurs="0"/>
+			<xs:element name="ReportingEnd" type="HeaderTimeType" minOccurs="0"/>
+			<xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PartyType">
+		<xs:annotation>
+			<xs:documentation>PartyType defines the information which is sent about various parties such as senders and receivers of messages. The Name is the ID of the party, and Contact provides contact details.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<!-- This is for the organization name, not the contact name -->
+			<xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:NMTOKEN" use="required"/>
+		<!-- From organization codelist or agency codelist, depending on where used-->
+	</xs:complexType>
+	<xs:complexType name="ContactType">
+		<xs:annotation>
+			<xs:documentation>ContactType provides defines the contact information about a party. The Name provides a human-readable name.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Department" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Role" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="Telephone" type="xs:string"/>
+				<xs:element name="Fax" type="xs:string"/>
+				<xs:element name="X400" type="xs:string"/>
+				<xs:element name="URI" type="xs:anyURI"/>
+				<xs:element name="Email" type="xs:string"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="HeaderTimeType">
+		<xs:annotation>
+			<xs:documentation>Provides a union type of xs:date and xs:dateTime for the header fields in the message.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:dateTime xs:date"/>
+	</xs:simpleType>
+</xs:schema>

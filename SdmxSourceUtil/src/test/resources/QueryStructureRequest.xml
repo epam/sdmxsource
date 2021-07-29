@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!-- Copyright SDMX 2005  -   www.sdmx.org -->
+<RegistryInterface xmlns="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message" xmlns:common="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/common" xmlns:compact="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/compact" xmlns:cross="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/cross" xmlns:generic="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/generic" xmlns:query="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/query" xmlns:structure="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/structure" 
+xmlns:registry="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/registry"
+xmlns:utility="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/utility" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.SDMX.org/resources/SDMXML/schemas/v2_0/message
+SDMXMessage.xsd">
+	<Header>
+			<ID>JD014</ID>
+			<Test>true</Test>
+			<Truncated>false</Truncated>
+			<Name xml:lang="en">Trans46302</Name>
+			<Prepared>2001-03-11T09:30:47-05:00</Prepared>
+			<Sender id="BIS">
+				<Name xml:lang="en">Bank for International Settlements</Name>
+				<Contact>
+					<Name xml:lang="en">G.B. Smith</Name>
+					<Telephone>+000.000.0000</Telephone>
+				</Contact>
+			</Sender>
+			<Receiver id="ECB">
+				<Name xml:lang="en">European Central Bank</Name>
+				<Contact>
+					<Name xml:lang="en">B.S. Featherstone</Name>
+					<Department xml:lang="en">Statistics Division</Department>
+					<Telephone>+000.000.0001</Telephone>
+				</Contact>
+			</Receiver>
+			<DataSetAgency>BIS</DataSetAgency>
+			<DataSetID>BIS_JD_237</DataSetID>
+			<DataSetAction>Append</DataSetAction>
+			<Extracted>2001-03-11T09:30:47-05:00</Extracted>
+			<ReportingBegin>2000-01-01T00:00:00</ReportingBegin>
+			<ReportingEnd>2000-12-01T00:00:00</ReportingEnd>
+	</Header>
+	<QueryStructureRequest resolveReferences="false">
+		<registry:CodelistRef>
+			<registry:AgencyID>STAT</registry:AgencyID>
+			<registry:CodelistID>CL_TOPICS</registry:CodelistID>
+			<registry:Version>1.0</registry:Version>
+		</registry:CodelistRef>
+	</QueryStructureRequest>
+</RegistryInterface>	

@@ -1,0 +1,11 @@
+rootProject.name = 'SdmxSource'
+include 'SdmxApi'
+include 'SdmxBeans'
+include 'SdmxDataParser'
+include 'SdmxEdiParser'
+include 'SdmxFileQueryProcessor'
+include 'SdmxQueryBuilder'
+include 'SdmxSourceUtil'
+include 'SdmxStructureParser'
+include 'SdmxStructureRetrieval'
+
