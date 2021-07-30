@@ -2,6 +2,8 @@ package org.sdmxsource.sdmx.dataparser.engine.reader.csv;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
+
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 import org.sdmxsource.sdmx.api.engine.DataReaderEngine;
 import org.sdmxsource.sdmx.api.exception.SdmxSemmanticException;
@@ -50,7 +52,7 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
     private String[] row;
     private Map<String, Integer> columns;
     private Map<Integer, String> columns2;
-    private Map<String, Integer> dimensionColumns;
+    private List<Pair<DimensionBean, Integer>> dimensionColumns;
     private Map<String, Integer> attributeColumns;
     private int dataFlowOffset = 0;
     private int timeDimensionOffset;
@@ -89,7 +91,7 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
 
         columns = new HashMap<String, Integer>();
         columns2 = new HashMap<Integer, String>();
-        dimensionColumns = new HashMap<String, Integer>();
+        dimensionColumns = new ArrayList<>();
         attributeColumns = new HashMap<String, Integer>();
         final List<DimensionBean> dimensions = defaultDsd.getDimensionList().getDimensions();
         final List<AttributeBean> attributes = defaultDsd.getAttributeList().getAttributes();
@@ -137,10 +139,11 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
                     continue;
 
                 final Integer offset = columns.get(id);
-                dimensionColumns.put(id, offset);
+                dimensionColumns.add(Pair.of(dimension, offset));
                 if (offset == null || offset == -1)
                     throw new SdmxSemmanticException("Invalid format - no " + id + " dimension found.");
             }
+            dimensionColumns.sort(Comparator.comparingInt(pair -> pair.getLeft().getPosition()));
 
             for (AttributeBean attribute : attributes) {
                 final String id = attribute.getId();
@@ -177,9 +180,9 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
         List<KeyValue> key = new ArrayList<KeyValue>();
         StringBuilder sb = new StringBuilder();
         List<KeyValue> attributes = new ArrayList<KeyValue>();
-        for (Map.Entry<String, Integer> e : dimensionColumns.entrySet()) {
-            final String id = row[e.getValue()];
-            key.add(new KeyValueImpl(id, e.getKey()));
+        for (var p : dimensionColumns) {
+            final String id = row[p.getRight()];
+            key.add(new KeyValueImpl(id, p.getLeft().getId()));
             sb.append(id);
         }
 //        final String id = row[timeDimensionOffset];
