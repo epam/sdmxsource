@@ -33,6 +33,7 @@ import java.util.Objects;
 public class SeriesDataWriter extends AbstractJsonDataWriter {
     private static Logger LOG = Logger.getLogger(SeriesDataWriter.class);
     private boolean observationsKeyOpened;
+    private Keyable currentSeries;
 
     /**
      * Instantiates a new Series data writer.
@@ -112,9 +113,9 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
 
     @Override
     protected void writeKey(Keyable key) {
-
         if (key.isSeries()) {
             super.writeKey(key);
+            currentSeries = key;
         }
     }
 
@@ -125,17 +126,25 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
         prevKey = currentKey;
     }
 
+    @Override
+    public void startSeries(AnnotationBean... annotations) {
+        super.startSeries(annotations);
+        if (currentKey != null && !currentKey.equals(prevKey)) {
+            writeSeriesBlock(currentKey, currentSeries);
+        }
+    }
+
     private void writeJsonObs(String currentKey, String prevKey, Observation obs) {
         int idx = getReportedIndex(dimensionAtObservation, obs.getObsTime());
 
         if (!currentKey.equals(prevKey)) {
-            writeSeriesBlock(currentKey, prevKey, obs, obs.getSeriesKey());
+            writeSeriesBlock(currentKey, currentSeries);
         }
 
         writeJsonObs(obs, idx);
     }
 
-    private void writeSeriesBlock(String currentKey, String prevKey, Observation obs, Keyable series) {
+    private void writeSeriesBlock(String currentKey, Keyable series) {
         try {
             // Close the previous key if there was one open
             tryClosePrevSeries();
@@ -151,9 +160,7 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
 
             for (AttributeBean attr : currentDSDSuperBean.getBuiltFrom().getSeriesAttributes(dimensionAtObservation)) {
                 KeyValue kv = null;
-                if (obs != null)
-                    kv = obs.getAttribute(attr.getId());
-                if (kv == null && series != null) {
+                if (series != null) {
                     kv = series.getAttribute(attr.getId());
                 }
                 if (kv == null) {
@@ -171,7 +178,7 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
                 LOG.debug("[annotations]");
                 jsonGenerator.writeArrayFieldStart("annotations");
                 // Write the annotation values
-                for (AnnotationBean currentAnnotation : series.getAnnotations()) {
+                for (AnnotationBean currentAnnotation : annotations) {
                     if (!super.annotations.contains(currentAnnotation)) {
                         super.annotations.add(currentAnnotation);
                     }
@@ -264,7 +271,7 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
         try {
 
             if (!Objects.equals(currentKey, prevKey)) {
-                writeSeriesBlock(currentKey, prevKey, null, null);
+                writeSeriesBlock(currentKey, currentSeries);
                 prevKey = currentKey;
             }
 
