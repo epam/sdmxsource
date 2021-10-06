@@ -30,6 +30,7 @@ package org.sdmxsource.sdmx.sdmxbeans.model.mutable.datastructure;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
 import org.sdmxsource.sdmx.api.model.beans.datastructure.DimensionBean;
 import org.sdmxsource.sdmx.api.model.beans.reference.CrossReferenceBean;
+import org.sdmxsource.sdmx.api.model.beans.reference.IdentifiableRefBean;
 import org.sdmxsource.sdmx.api.model.beans.reference.StructureReferenceBean;
 import org.sdmxsource.sdmx.api.model.mutable.datastructure.DimensionMutableBean;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.base.ComponentMutableBeanImpl;
@@ -43,6 +44,8 @@ import java.util.List;
  */
 public class DimensionMutableBeanImpl extends ComponentMutableBeanImpl implements DimensionMutableBean {
     private static final long serialVersionUID = 1L;
+
+    private static final String FREQ = "FREQ";
 
     private boolean measureDimension;
     private boolean frequencyDimension;
@@ -66,11 +69,27 @@ public class DimensionMutableBeanImpl extends ComponentMutableBeanImpl implement
         this.measureDimension = bean.isMeasureDimension();
         this.frequencyDimension = bean.isFrequencyDimension();
         this.timeDimension = bean.isTimeDimension();
-        if (bean.getConceptRole() != null) {
-            for (CrossReferenceBean currentConceptRole : bean.getConceptRole()) {
-                conceptRole.add(currentConceptRole.createMutableInstance());
+        List<CrossReferenceBean> conceptRole = bean.getConceptRole();
+        if (conceptRole != null) {
+            for (CrossReferenceBean currentConceptRole : conceptRole) {
+                this.conceptRole.add(currentConceptRole.createMutableInstance());
+                IdentifiableRefBean roleReference = currentConceptRole.getChildReference();
+                checkFrequencyRole(roleReference);
             }
         }
+    }
+
+    private void checkFrequencyRole(IdentifiableRefBean roleReference) {
+        if (isFrequency(roleReference)) {
+            this.frequencyDimension = true;
+        }
+    }
+
+    private boolean isFrequency(IdentifiableRefBean roleReference) {
+        if (roleReference != null) {
+            return FREQ.equals(roleReference.getId());
+        }
+        return false;
     }
 
     @Override
@@ -117,5 +136,11 @@ public class DimensionMutableBeanImpl extends ComponentMutableBeanImpl implement
     @Override
     public void setConceptRole(List<StructureReferenceBean> conceptRole) {
         this.conceptRole = conceptRole;
+        if (conceptRole != null) {
+            for (StructureReferenceBean currentConceptRole : conceptRole) {
+                IdentifiableRefBean roleReference = currentConceptRole.getChildReference();
+                checkFrequencyRole(roleReference);
+            }
+        }
     }
 }
