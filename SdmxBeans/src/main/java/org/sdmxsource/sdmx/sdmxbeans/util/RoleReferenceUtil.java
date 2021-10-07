@@ -1,7 +1,6 @@
 package org.sdmxsource.sdmx.sdmxbeans.util;
 
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
-import org.sdmxsource.sdmx.api.model.beans.reference.CrossReferenceBean;
 import org.sdmxsource.sdmx.api.model.beans.reference.IdentifiableRefBean;
 import org.sdmxsource.sdmx.api.model.beans.reference.StructureReferenceBean;
 import org.sdmxsource.sdmx.util.beans.reference.StructureReferenceBeanImpl;
@@ -15,20 +14,27 @@ public final class RoleReferenceUtil {
     private RoleReferenceUtil() { }
 
     public static boolean isFrequency(StructureReferenceBean roleRef) {
-        if (roleRef == null) {
-            return false;
-        }
-
-        IdentifiableRefBean role = roleRef.getChildReference();
-        if (role== null) {
-            return false;
-        }
-
-        return ConceptRole.FREQ.name().equals(role.getId());
+        return isRole(roleRef, ConceptRole.FREQ);
     }
 
     public static StructureReferenceBean createFrequencyRoleReference() {
         return getStructureReferenceBean(ConceptRole.FREQ);
+    }
+
+    private static boolean isRole(StructureReferenceBean ref, ConceptRole role) {
+        if (ref == null) {
+            return false;
+        }
+
+        IdentifiableRefBean childRef = ref.getChildReference();
+        if (childRef == null) {
+            return false;
+        }
+
+        return AGENCY_ID.equals(ref.getAgencyId())
+                && MAINTAINABLE_ID.equals(ref.getMaintainableId())
+                && VERSION.equals(ref.getVersion())
+                && role.name().equals(childRef.getId());
     }
 
     private static StructureReferenceBeanImpl getStructureReferenceBean(ConceptRole role) {

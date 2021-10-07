@@ -1,6 +1,8 @@
 package org.sdmxsource.sdmx.sdmxbeans.model.mutable.datastructure;
 
 import org.junit.jupiter.api.Test;
+import org.sdmxsource.sdmx.api.model.beans.reference.StructureReferenceBean;
+import org.sdmxsource.sdmx.util.beans.reference.StructureReferenceBeanImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.sdmxsource.sdmx.sdmxbeans.data.DataHelper.getConceptStructureReferenceBean;
+import static org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE.CONCEPT;
 
 class DimensionMutableBeanImplTest {
     @Test
@@ -115,5 +117,9 @@ class DimensionMutableBeanImplTest {
         subject.setConceptRole(null);
 
         subject.setFrequencyDimension(false);
+    }
+
+    private static StructureReferenceBean getConceptStructureReferenceBean(String identfiableId) {
+        return new StructureReferenceBeanImpl("SDMX", "SDMX_CONCEPT_ROLES", "1.0", CONCEPT, identfiableId);
     }
 }
