@@ -17,8 +17,56 @@ public final class RoleReferenceUtil {
         return isRole(roleRef, ConceptRole.FREQ);
     }
 
+    public static boolean isComment(StructureReferenceBeanImpl roleRef) {
+        return isRole(roleRef, ConceptRole.COMMENT);
+    }
+
+    public static boolean isEntity(StructureReferenceBeanImpl roleRef) {
+        return isRole(roleRef, ConceptRole.ENTITY);
+    }
+
+    public static boolean isFlag(StructureReferenceBeanImpl roleRef) {
+        return isRole(roleRef, ConceptRole.FLAG);
+    }
+
+    public static boolean isGeo(StructureReferenceBeanImpl roleRef) {
+        return isRole(roleRef, ConceptRole.GEO);
+    }
+
+    public static boolean isOperation(StructureReferenceBeanImpl roleRef) {
+        return isRole(roleRef, ConceptRole.OPERATION);
+    }
+
+    public static boolean isVariable(StructureReferenceBeanImpl roleRef) {
+        return isRole(roleRef, ConceptRole.VARIABLE);
+    }
+
     public static StructureReferenceBean createFrequencyRoleReference() {
-        return getStructureReferenceBean(ConceptRole.FREQ);
+        return getConceptRoleReference(ConceptRole.FREQ);
+    }
+
+    public static StructureReferenceBean createCommentRoleReference() {
+        return getConceptRoleReference(ConceptRole.COMMENT);
+    }
+
+    public static StructureReferenceBean createEntityRoleReference() {
+        return getConceptRoleReference(ConceptRole.ENTITY);
+    }
+
+    public static StructureReferenceBean createFlagRoleReference() {
+        return getConceptRoleReference(ConceptRole.FLAG);
+    }
+
+    public static StructureReferenceBean createGeoRoleReference() {
+        return getConceptRoleReference(ConceptRole.GEO);
+    }
+
+    public static StructureReferenceBean createOperationRoleReference() {
+        return getConceptRoleReference(ConceptRole.OPERATION);
+    }
+
+    public static StructureReferenceBean createVariableRoleReference() {
+        return getConceptRoleReference(ConceptRole.VARIABLE);
     }
 
     private static boolean isRole(StructureReferenceBean ref, ConceptRole role) {
@@ -37,7 +85,7 @@ public final class RoleReferenceUtil {
                 && role.name().equals(childRef.getId());
     }
 
-    private static StructureReferenceBeanImpl getStructureReferenceBean(ConceptRole role) {
+    private static StructureReferenceBeanImpl getConceptRoleReference(ConceptRole role) {
         return new StructureReferenceBeanImpl(
                 AGENCY_ID,
                 MAINTAINABLE_ID,
