@@ -33,9 +33,11 @@ import org.sdmxsource.sdmx.api.model.beans.reference.CrossReferenceBean;
 import org.sdmxsource.sdmx.api.model.beans.reference.StructureReferenceBean;
 import org.sdmxsource.sdmx.api.model.mutable.datastructure.DimensionMutableBean;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.base.ComponentMutableBeanImpl;
+import org.sdmxsource.sdmx.sdmxbeans.util.RoleReferenceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 
 /**
@@ -45,7 +47,6 @@ public class DimensionMutableBeanImpl extends ComponentMutableBeanImpl implement
     private static final long serialVersionUID = 1L;
 
     private boolean measureDimension;
-    private boolean frequencyDimension;
     private boolean timeDimension;
     private List<StructureReferenceBean> conceptRole = new ArrayList<StructureReferenceBean>();
 
@@ -64,7 +65,6 @@ public class DimensionMutableBeanImpl extends ComponentMutableBeanImpl implement
     public DimensionMutableBeanImpl(DimensionBean bean) {
         super(bean);
         this.measureDimension = bean.isMeasureDimension();
-        this.frequencyDimension = bean.isFrequencyDimension();
         this.timeDimension = bean.isTimeDimension();
         if (bean.getConceptRole() != null) {
             for (CrossReferenceBean currentConceptRole : bean.getConceptRole()) {
@@ -88,12 +88,25 @@ public class DimensionMutableBeanImpl extends ComponentMutableBeanImpl implement
 
     @Override
     public boolean isFrequencyDimension() {
-        return frequencyDimension;
+        return isFrequencyRolePresent();
+    }
+
+    private boolean isFrequencyRolePresent() {
+        return Stream.ofNullable(conceptRole)
+                .flatMap(List::stream)
+                .anyMatch(RoleReferenceUtil::isFrequency);
     }
 
     @Override
-    public void setFrequencyDimension(boolean bool) {
-        this.frequencyDimension = bool;
+    public void setFrequencyDimension(boolean isFrequency) {
+        if (isFrequency && !isFrequencyDimension()) {
+            List<StructureReferenceBean> updatedRoles = new ArrayList<>();
+            updatedRoles.add(RoleReferenceUtil.createFrequencyRoleReference());
+            if (this.conceptRole != null) updatedRoles.addAll(this.conceptRole);
+            this.conceptRole = updatedRoles;
+        } else if (!isFrequency && isFrequencyDimension()) {
+            this.conceptRole.removeIf(RoleReferenceUtil::isFrequency);
+        }
     }
 
     @Override

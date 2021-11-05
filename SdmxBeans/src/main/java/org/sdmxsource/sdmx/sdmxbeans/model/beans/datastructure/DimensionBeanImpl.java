@@ -83,6 +83,7 @@ public class DimensionBeanImpl extends ComponentBeanImpl implements DimensionBea
             this.position = position;
             this.measureDimension = bean.isMeasureDimension();
             this.timeDimension = bean.isTimeDimension();
+            this.freqDimension = bean.isFrequencyDimension();
             if (bean.getConceptRole() != null) {
                 for (StructureReferenceBean currentConceptRole : bean.getConceptRole()) {
                     conceptRole.add(new CrossReferenceBeanImpl(this, currentConceptRole));

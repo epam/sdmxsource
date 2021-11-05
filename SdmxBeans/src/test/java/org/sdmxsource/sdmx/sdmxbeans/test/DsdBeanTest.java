@@ -14,9 +14,14 @@ import org.sdmxsource.sdmx.sdmxbeans.model.mutable.base.RepresentationMutableBea
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.base.TextFormatMutableBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.datastructure.DataStructureMutableBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.datastructure.DimensionMutableBeanImpl;
+import org.sdmxsource.sdmx.util.beans.reference.StructureReferenceBeanImpl;
 
+import static java.util.Collections.singletonList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE.CONCEPT;
 import static org.sdmxsource.sdmx.sdmxbeans.data.DataHelper.getConceptStructureReferenceBean;
 
 public class DsdBeanTest {
@@ -27,6 +32,22 @@ public class DsdBeanTest {
         var immutable = buildDataStructureBean(dimension);
 
         assertNotNull(immutable.getFrequencyDimension());
+    }
+
+    @Test
+    public void shouldReturnFreqDimensionWhenDimensionWithCorrespondingRolePresent() {
+        var immutable = buildDataStructureBean(dimensionBean("beanId", "FREQ"));
+
+        DimensionBean frequencyDimension = immutable.getFrequencyDimension();
+
+        assertEquals("beanId", frequencyDimension.getId());
+    }
+
+    @Test
+    public void shouldNotReturnFreqDimensionWhenCorrespondingRoleMissing() {
+        var immutable = buildDataStructureBean(dimensionBean("beanId", "VAR"));
+
+        assertNull(immutable.getFrequencyDimension());
     }
 
     @Test
@@ -59,6 +80,14 @@ public class DsdBeanTest {
         dsd.addPrimaryMeasure(getConceptStructureReferenceBean("OBS_VALUE"));
         dsd.addDimension(dimension);
         return dsd.getImmutableInstance();
+    }
+
+    private DimensionMutableBean dimensionBean(String id, String roleId) {
+        DimensionMutableBean dimension = new DimensionMutableBeanImpl();
+        dimension.setId(id);
+        dimension.setConceptRole(singletonList(new StructureReferenceBeanImpl("SDMX", "SDMX_CONCEPT_ROLES", "1.0", CONCEPT, roleId)));
+        dimension.setConceptRef(getConceptStructureReferenceBean("FREQ"));
+        return dimension;
     }
 
 }
