@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL.DIMENSION_GROUP;
+import static org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL.OBSERVATION;
 import static org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE.CODE_LIST;
 import static org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE.CONCEPT;
 
@@ -38,6 +39,7 @@ class DataReaderEngineCsvTest {
     private final static String ADJUSTMENT = "ADJUSTMENT";
     private final static String STS_ACTIVITY = "STS_ACTIVITY";
     private final static String TEST_AGENCY_ID = "TEST";
+    private final static String OBS_ATTRIBUTE = "OBS_ATTRIBUTE";
     private final static String VERSION = "1.0";
 
     private final SdmxSourceReadableDataLocationFactory factory = new SdmxSourceReadableDataLocationFactory();
@@ -67,6 +69,7 @@ class DataReaderEngineCsvTest {
                 () -> assertEquals("A", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
                 () -> assertEquals("2021-Q1", dataReaderEngine.getCurrentObservation().getObsTime()),
                 () -> assertEquals("10", dataReaderEngine.getCurrentObservation().getObservationValue()),
+                () -> assertEquals("10", dataReaderEngine.getCurrentObservation().getAttribute(OBS_ATTRIBUTE)),
                 () -> assertTrue(dataReaderEngine.moveNextObservation()),
                 () -> assertTrue(dataReaderEngine.moveNextObservation()),
                 () -> assertTrue(dataReaderEngine.moveNextObservation()),
@@ -79,7 +82,9 @@ class DataReaderEngineCsvTest {
                 () -> assertEquals("N", dataReaderEngine.getCurrentKey().getKeyValue(ADJUSTMENT)),
                 () -> assertEquals("A", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
                 () -> assertEquals("2022-M02", dataReaderEngine.getCurrentObservation().getObsTime()),
-                () -> assertEquals("1", dataReaderEngine.getCurrentObservation().getObservationValue()));
+                () -> assertEquals("1", dataReaderEngine.getCurrentObservation().getObservationValue()),
+                () -> assertEquals("1", dataReaderEngine.getCurrentObservation().getAttribute(OBS_ATTRIBUTE))
+                );
     }
 
     private DataflowBean getDataflowBean(DataStructureBean dsd) {
@@ -114,6 +119,12 @@ class DataReaderEngineCsvTest {
         attributeMutableObject.setAttachmentLevel(DIMENSION_GROUP);
         attributeMutableObject.setDimensionReferences(Arrays.asList(FREQ, ADJUSTMENT, STS_ACTIVITY));
         attributeMutableObject.setAssignmentStatus("Mandatory");
+
+        AttributeMutableBean obsAttributeMutableObject = dsdMutableObject.addAttribute(
+                getConceptStructureReferenceBean(OBS_ATTRIBUTE),null);
+        obsAttributeMutableObject.setAttachmentLevel(OBSERVATION);
+        obsAttributeMutableObject.setAssignmentStatus("Conditional");
+
         return dsdMutableObject.getImmutableInstance();
     }
 

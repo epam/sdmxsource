@@ -2,9 +2,9 @@ package org.sdmxsource.sdmx.dataparser.engine.reader.csv;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
+import org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL;
 import org.sdmxsource.sdmx.api.engine.DataReaderEngine;
 import org.sdmxsource.sdmx.api.exception.SdmxSemmanticException;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxBeanRetrievalManager;
@@ -53,7 +53,9 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
     private Map<String, Integer> columns;
     private Map<Integer, String> columns2;
     private List<Pair<DimensionBean, Integer>> dimensionColumns;
-    private Map<String, Integer> attributeColumns;
+    private Map<String, Integer> dataSetAttributeColumns;
+    private Map<String, Integer> seriesAttributeColumns;
+    private Map<String, Integer> observationAttributeColumns;
     private int dataFlowOffset = 0;
     private int timeDimensionOffset;
     private int obsValueOffset;
@@ -92,7 +94,9 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
         columns = new HashMap<String, Integer>();
         columns2 = new HashMap<Integer, String>();
         dimensionColumns = new ArrayList<>();
-        attributeColumns = new HashMap<String, Integer>();
+        dataSetAttributeColumns = new HashMap<String, Integer>();
+        seriesAttributeColumns = new HashMap<String, Integer>();
+        observationAttributeColumns = new HashMap<String, Integer>();
         final List<DimensionBean> dimensions = defaultDsd.getDimensionList().getDimensions();
         final List<AttributeBean> attributes = defaultDsd.getAttributeList().getAttributes();
         row = new String[(dimensions.size() + attributes.size() + 2)];
@@ -148,9 +152,16 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
             for (AttributeBean attribute : attributes) {
                 final String id = attribute.getId();
                 final Integer offset = columns.get(id);
-                if (attribute.isMandatory())
-                    continue;
-                attributeColumns.put(id, offset);
+
+                if (attribute.getAttachmentLevel() == ATTRIBUTE_ATTACHMENT_LEVEL.OBSERVATION)
+                    observationAttributeColumns.put(id, offset);
+                else if (attribute.getAttachmentLevel() == ATTRIBUTE_ATTACHMENT_LEVEL.DIMENSION_GROUP)
+                    seriesAttributeColumns.put(id, offset);
+                else if (attribute.getAttachmentLevel() == ATTRIBUTE_ATTACHMENT_LEVEL.DATA_SET)
+                    dataSetAttributeColumns.put(id, offset);
+                else if (attribute.getAttachmentLevel() == ATTRIBUTE_ATTACHMENT_LEVEL.GROUP)
+                    throw new SdmxSemmanticException("Group level attributes are not supported.");
+
                 if (offset == null || offset == -1)
                     throw new SdmxSemmanticException("Invalid format - no " + id + " attribute found.");
             }
@@ -179,34 +190,46 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
 
         List<KeyValue> key = new ArrayList<KeyValue>();
         StringBuilder sb = new StringBuilder();
-        List<KeyValue> attributes = new ArrayList<KeyValue>();
+        List<KeyValue> seriesAttributes = new ArrayList<KeyValue>();
+        List<KeyValue> observationAttributes = new ArrayList<KeyValue>();
         for (var p : dimensionColumns) {
             final String id = row[p.getRight()];
             key.add(new KeyValueImpl(id, p.getLeft().getId()));
             sb.append(id);
         }
-//        final String id = row[timeDimensionOffset];
-//        key.add(new KeyValueImpl(id, DimensionBean.TIME_DIMENSION_FIXED_ID));
-//        sb.append(id);
 
         String keyAsString = sb.toString();
 
-        for (Map.Entry<String, Integer> e : attributeColumns.entrySet()) {
-            attributes.add(new KeyValueImpl(row[e.getValue()], e.getKey()));
+        if (datasetAttributes == null) {
+            datasetAttributes = new ArrayList<KeyValue>();
+            for (Map.Entry<String, Integer> e : dataSetAttributeColumns.entrySet()) {
+                final String code = row[e.getValue()].trim();
+                if (!EMPTY_STRING.equals(code))
+                    datasetAttributes.add(new KeyValueImpl(code, e.getKey()));
+            }
+        }
+
+        for (Map.Entry<String, Integer> e : seriesAttributeColumns.entrySet()) {
+            final String code = row[e.getValue()].trim();
+            if (!EMPTY_STRING.equals(code))
+                seriesAttributes.add(new KeyValueImpl(code, e.getKey()));
+        }
+        for (Map.Entry<String, Integer> e : observationAttributeColumns.entrySet()) {
+            final String code = row[e.getValue()].trim();
+            if (!EMPTY_STRING.equals(code))
+                observationAttributes.add(new KeyValueImpl(code, e.getKey()));
         }
         if (!nextKeyAsString.equals(keyAsString)) {
             nextKeyFound = true;
-//            currentKeyAsString = nextKeyAsString;
             nextKeyAsString = keyAsString;
             currentKey = nextKey;
-            nextKey = new KeyableImpl(defaultDataflow, defaultDsd, key, attributes, (String) null, annotations);
+            nextKey = new KeyableImpl(defaultDataflow, defaultDsd, key, seriesAttributes, (String) null, annotations);
         } else {
             nextKeyFound = false;
         }
 
         nextObservationFound = true;
-//        currentObservation = nextObservation;
-        nextObservation = new ObservationImpl(nextKey, row[timeDimensionOffset], row[obsValueOffset], attributes, annotations);
+        nextObservation = new ObservationImpl(nextKey, row[timeDimensionOffset], row[obsValueOffset], observationAttributes, annotations);
 
         if (!nextDataFlowId.equals(row[dataFlowOffset])) {
             nextDataFlowFound = true;
