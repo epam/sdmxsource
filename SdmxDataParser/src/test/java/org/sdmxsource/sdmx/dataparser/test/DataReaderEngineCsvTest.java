@@ -69,7 +69,7 @@ class DataReaderEngineCsvTest {
                 () -> assertEquals("A", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
                 () -> assertEquals("2021-Q1", dataReaderEngine.getCurrentObservation().getObsTime()),
                 () -> assertEquals("10", dataReaderEngine.getCurrentObservation().getObservationValue()),
-                () -> assertEquals("10", dataReaderEngine.getCurrentObservation().getAttribute(OBS_ATTRIBUTE)),
+                () -> assertEquals("10", dataReaderEngine.getCurrentObservation().getAttribute(OBS_ATTRIBUTE).getCode()),
                 () -> assertTrue(dataReaderEngine.moveNextObservation()),
                 () -> assertTrue(dataReaderEngine.moveNextObservation()),
                 () -> assertTrue(dataReaderEngine.moveNextObservation()),
@@ -83,7 +83,7 @@ class DataReaderEngineCsvTest {
                 () -> assertEquals("A", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
                 () -> assertEquals("2022-M02", dataReaderEngine.getCurrentObservation().getObsTime()),
                 () -> assertEquals("1", dataReaderEngine.getCurrentObservation().getObservationValue()),
-                () -> assertEquals("1", dataReaderEngine.getCurrentObservation().getAttribute(OBS_ATTRIBUTE))
+                () -> assertEquals("1", dataReaderEngine.getCurrentObservation().getAttribute(OBS_ATTRIBUTE).getCode())
                 );
     }
 
