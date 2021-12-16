@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.factory;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.engine.DataWriterEngine;
 import org.sdmxsource.sdmx.api.factory.DataWriterFactory;
 import org.sdmxsource.sdmx.api.model.data.DataFormat;
@@ -44,7 +45,7 @@ import java.io.OutputStream;
  * The type Sdmx data writer factory.
  */
 public class SdmxDataWriterFactory implements DataWriterFactory {
-    private static Logger LOG = Logger.getLogger(SdmxDataWriterFactory.class);
+    private static Logger LOG = LogManager.getLogger(SdmxDataWriterFactory.class);
 
     @Override
     public DataWriterEngine getDataWriterEngine(DataFormat dataFormat, OutputStream out) {

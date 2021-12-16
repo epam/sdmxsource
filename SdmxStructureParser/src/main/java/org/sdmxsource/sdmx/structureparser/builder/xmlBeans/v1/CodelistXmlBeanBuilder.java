@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.CodeListType;
 import org.sdmxsource.sdmx.api.builder.Builder;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
@@ -41,7 +42,7 @@ import org.sdmxsource.sdmx.api.model.beans.codelist.CodelistBean;
 public class CodelistXmlBeanBuilder extends AbstractBuilder implements Builder<CodeListType, CodelistBean> {
 
     static {
-        log = Logger.getLogger(CodelistXmlBeanBuilder.class);
+        log = LogManager.getLogger(CodelistXmlBeanBuilder.class);
     }
 
     private final CodeXmlBeanBuilder codeXmlBeanBuilder = new CodeXmlBeanBuilder();

@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.xmlbeans.XmlNMTOKEN;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.GroupType;
 import org.sdmxsource.sdmx.api.builder.Builder;
@@ -42,7 +43,7 @@ import org.sdmxsource.util.ObjectUtil;
 public class GroupXmlBeansBuilder extends AbstractBuilder implements Builder<GroupType, GroupBean> {
 
     static {
-        log = Logger.getLogger(GroupXmlBeansBuilder.class);
+        log = LogManager.getLogger(GroupXmlBeansBuilder.class);
     }
 
     @Override

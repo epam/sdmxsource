@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.factory;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.engine.DataReaderEngine;
 import org.sdmxsource.sdmx.api.factory.DataReaderFactory;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxBeanRetrievalManager;
@@ -54,7 +55,7 @@ import java.util.Objects;
  * then the SdmxChainedDataReaderFactory will assume the data is SDMX or EDI.
  */
 public class SdmxDataReaderFactory implements DataReaderFactory {
-    private static Logger LOG = Logger.getLogger(SdmxDataReaderFactory.class);
+    private static Logger LOG = LogManager.getLogger(SdmxDataReaderFactory.class);
 
     private final DataInformationManager dataInformationManager;
 

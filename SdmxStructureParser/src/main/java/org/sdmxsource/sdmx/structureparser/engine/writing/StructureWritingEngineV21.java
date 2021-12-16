@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.engine.writing;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.xmlbeans.XmlObject;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.constants.SDMX_SCHEMA;
@@ -44,7 +45,7 @@ import java.io.OutputStream;
  * The type Structure writing engine v 21.
  */
 public class StructureWritingEngineV21 extends AbstractWritingEngine {
-    private static final Logger LOG = Logger.getLogger(StructureWritingEngineV21.class);
+    private static final Logger LOG = LogManager.getLogger(StructureWritingEngineV21.class);
 
     private final StructureXmlBeanBuilder structureXmlBeanBuilderBean = new StructureXmlBeanBuilder();
 

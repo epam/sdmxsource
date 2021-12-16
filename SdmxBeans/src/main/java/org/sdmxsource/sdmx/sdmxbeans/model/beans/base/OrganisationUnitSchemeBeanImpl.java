@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.base;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v21.structure.OrganisationUnitSchemeType;
 import org.sdmx.resources.sdmxml.schemas.v21.structure.OrganisationUnitType;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
@@ -54,7 +55,7 @@ import java.util.Set;
  */
 public class OrganisationUnitSchemeBeanImpl extends ItemSchemeBeanImpl<OrganisationUnitBean> implements OrganisationUnitSchemeBean {
     private static final long serialVersionUID = -787661696574731583L;
-    private static Logger LOG = Logger.getLogger(OrganisationUnitSchemeBeanImpl.class);
+    private static Logger LOG = LogManager.getLogger(OrganisationUnitSchemeBeanImpl.class);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////BUILD FROM ITSELF, CREATES STUB BEAN //////////////////////////////////////////////////

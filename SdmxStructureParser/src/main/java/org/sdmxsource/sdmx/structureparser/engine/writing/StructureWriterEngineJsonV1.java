@@ -3,7 +3,8 @@ package org.sdmxsource.sdmx.structureparser.engine.writing;
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v21.message.StructureDocument;
 import org.sdmx.resources.sdmxml.schemas.v21.message.StructureHeaderType;
 import org.sdmx.resources.sdmxml.schemas.v21.message.StructureType;
@@ -48,7 +49,7 @@ import java.util.stream.Collectors;
  */
 public class StructureWriterEngineJsonV1 implements StructureWriterEngine, AutoCloseable {
 
-    private static final Logger LOG = Logger.getLogger(StructureWritingEngineV21.class);
+    private static final Logger LOG = LogManager.getLogger(StructureWritingEngineV21.class);
     private final SdmxStructureJsonFormat sdmxStructureJsonFormat;
     private final DataTypeBuilder dataTypeBuilder = new DataTypeBuilder();
     private final JsonGenerator jsonGenerator;

@@ -4,7 +4,8 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
 import org.sdmxsource.sdmx.api.engine.DataWriterEngine;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -31,7 +32,7 @@ import java.util.UUID;
  * The type Json data writer engine.
  */
 public class JsonDataWriterEngine implements DataWriterEngine {
-    private static Logger LOG = Logger.getLogger(JsonDataWriterEngine.class);
+    private static Logger LOG = LogManager.getLogger(JsonDataWriterEngine.class);
 
     private DatasetInfoDataWriterEngine internalWriter;
     private OutputStream out;

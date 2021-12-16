@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.superbeans.impl;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxBeanRetrievalManager;
 import org.sdmxsource.sdmx.api.model.beans.datastructure.AttributeBean;
 import org.sdmxsource.sdmx.api.model.beans.datastructure.DataStructureBean;
@@ -48,7 +49,7 @@ import java.util.List;
  * Build a project specific DataStructure model object from a KeyFamilyType XMLBean
  */
 public class DataStructureSuperBeanBuilder extends StructureBuilderImpl<DataStructureSuperBean, DataStructureBean> {
-    private static final Logger LOG = Logger.getLogger(SuperBeansBuilderImpl.class);
+    private static final Logger LOG = LogManager.getLogger(SuperBeansBuilderImpl.class);
 
     private final AttributeSuperBeanBuilder attributeSuperBeanBuilder;
 
