@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v21.assemblers;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.xmlbeans.GDuration;
 import org.sdmx.resources.sdmxml.schemas.v21.structure.TextFormatType;
 import org.sdmxsource.sdmx.api.constants.TEXT_TYPE;
@@ -40,7 +41,7 @@ import org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v21.DataTypeBuilder;
  * The type Text format assembler.
  */
 public class TextFormatAssembler implements Assembler<TextFormatType, TextFormatBean> {
-    private final Logger log = Logger.getLogger(TextFormatAssembler.class);
+    private final Logger log = LogManager.getLogger(TextFormatAssembler.class);
 
     private final DataTypeBuilder dataTypeBuilder = new DataTypeBuilder();
 

@@ -97,4 +97,6 @@ subprojects {
     test {
         useJUnitPlatform()
     }
+
+    task allDependencies(type: DependencyReportTask) {}
 }

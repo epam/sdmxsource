@@ -2,7 +2,8 @@ package org.sdmxsource.sdmx.dataparser.engine.writer.jsonsupport;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
 import org.sdmxsource.sdmx.api.exception.SdmxNotImplementedException;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -34,7 +35,7 @@ import java.util.List;
  * The type Abstract json data writer.
  */
 public abstract class AbstractJsonDataWriter extends DatasetInfoDataWriterEngine {
-    private static Logger LOG = Logger.getLogger(AbstractJsonDataWriter.class);
+    private static Logger LOG = LogManager.getLogger(AbstractJsonDataWriter.class);
 
     /**
      * The Current key.

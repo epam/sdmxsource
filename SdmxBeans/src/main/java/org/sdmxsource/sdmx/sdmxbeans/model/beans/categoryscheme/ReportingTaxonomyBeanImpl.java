@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.categoryscheme;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.CategoryType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.ReportingTaxonomyType;
 import org.sdmx.resources.sdmxml.schemas.v21.structure.ReportingCategoryType;
@@ -51,7 +52,7 @@ import java.net.URL;
  */
 public class ReportingTaxonomyBeanImpl extends ItemSchemeBeanImpl<ReportingCategoryBean> implements ReportingTaxonomyBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = Logger.getLogger(ReportingTaxonomyBeanImpl.class);
+    private static Logger LOG = LogManager.getLogger(ReportingTaxonomyBeanImpl.class);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////BUILD FROM ITSELF, CREATES STUB BEAN //////////////////////////////////////////////////

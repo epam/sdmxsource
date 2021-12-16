@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.common.AnnotationType;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.common.AnnotationsType;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.common.TextType;
