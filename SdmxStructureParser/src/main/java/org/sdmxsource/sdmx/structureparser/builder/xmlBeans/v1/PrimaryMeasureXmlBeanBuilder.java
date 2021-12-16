@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.PrimaryMeasureType;
 import org.sdmxsource.sdmx.api.builder.Builder;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
@@ -40,7 +41,7 @@ import org.sdmxsource.sdmx.util.beans.ConceptRefUtil;
  */
 public class PrimaryMeasureXmlBeanBuilder extends AbstractBuilder implements Builder<PrimaryMeasureType, PrimaryMeasureBean> {
     static {
-        log = Logger.getLogger(PrimaryMeasureXmlBeanBuilder.class);
+        log = LogManager.getLogger(PrimaryMeasureXmlBeanBuilder.class);
     }
 
     @Override

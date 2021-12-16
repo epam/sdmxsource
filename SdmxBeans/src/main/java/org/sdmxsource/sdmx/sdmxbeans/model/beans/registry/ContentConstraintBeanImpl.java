@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.registry;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v21.common.ComponentValueSetType;
 import org.sdmx.resources.sdmxml.schemas.v21.common.ContentConstraintTypeCodeType;
 import org.sdmx.resources.sdmxml.schemas.v21.common.CubeRegionType;
@@ -55,7 +56,7 @@ import java.util.*;
  * The type Content constraint bean.
  */
 public class ContentConstraintBeanImpl extends ConstraintBeanImpl implements ContentConstraintBean {
-    private transient static final Logger LOG = Logger.getLogger(ContentConstraintBeanImpl.class);
+    private transient static final Logger LOG = LogManager.getLogger(ContentConstraintBeanImpl.class);
 
     private static final long serialVersionUID = 896125780368907794L;
 

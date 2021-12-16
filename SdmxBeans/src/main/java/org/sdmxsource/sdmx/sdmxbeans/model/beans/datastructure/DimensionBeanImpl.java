@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.datastructure;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.DimensionType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.TimeDimensionType;
 import org.sdmx.resources.sdmxml.schemas.v21.common.ConceptReferenceType;
@@ -60,7 +61,7 @@ import java.util.List;
  */
 public class DimensionBeanImpl extends ComponentBeanImpl implements DimensionBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = Logger.getLogger(DimensionBeanImpl.class);
+    private static Logger LOG = LogManager.getLogger(DimensionBeanImpl.class);
     private boolean measureDimension;
     private boolean timeDimension;
     private boolean freqDimension;

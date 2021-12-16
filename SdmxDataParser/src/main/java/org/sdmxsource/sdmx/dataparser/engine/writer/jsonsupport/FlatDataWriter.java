@@ -2,7 +2,8 @@ package org.sdmxsource.sdmx.dataparser.engine.writer.jsonsupport;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -26,7 +27,7 @@ import java.io.IOException;
  * The type Flat data writer.
  */
 public class FlatDataWriter extends AbstractJsonDataWriter {
-    private static Logger LOG = Logger.getLogger(FlatDataWriter.class);
+    private static Logger LOG = LogManager.getLogger(FlatDataWriter.class);
 
     /**
      * Instantiates a new Flat data writer.

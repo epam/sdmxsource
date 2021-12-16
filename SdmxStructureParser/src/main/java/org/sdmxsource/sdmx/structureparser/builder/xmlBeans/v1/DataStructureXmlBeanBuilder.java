@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.AttachmentLevelType;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.AttributeType;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.ComponentsType;
@@ -51,7 +52,7 @@ import java.util.List;
 public class DataStructureXmlBeanBuilder extends AbstractBuilder implements Builder<KeyFamilyType, DataStructureBean> {
 
     static {
-        log = Logger.getLogger(DataStructureXmlBeanBuilder.class);
+        log = LogManager.getLogger(DataStructureXmlBeanBuilder.class);
     }
 
     private final DimensionXmlBeanBuilder dimensionXmlBeanBuilder = new DimensionXmlBeanBuilder();

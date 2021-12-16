@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.metadatastructure;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.MetadataStructureDefinitionType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.ReportStructureType;
 import org.sdmx.resources.sdmxml.schemas.v21.structure.MetadataStructureType;
@@ -60,7 +61,7 @@ import java.util.Set;
  */
 public class MetadataStructureDefinitionBeanImpl extends MaintainableBeanImpl implements MetadataStructureDefinitionBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = Logger.getLogger(MetadataStructureDefinitionBeanImpl.class);
+    private static Logger LOG = LogManager.getLogger(MetadataStructureDefinitionBeanImpl.class);
     private List<ReportStructureBean> reportStructures = new ArrayList<ReportStructureBean>();
     private List<MetadataTargetBean> metadataTarget = new ArrayList<MetadataTargetBean>();
 

@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.ConceptType;
 import org.sdmxsource.sdmx.api.builder.Builder;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
@@ -40,7 +41,7 @@ import org.sdmxsource.sdmx.api.model.beans.conceptscheme.ConceptBean;
 public class ConceptXmlBeanBuilder extends AbstractBuilder implements Builder<ConceptType, ConceptBean> {
 
     static {
-        log = Logger.getLogger(ConceptXmlBeanBuilder.class);
+        log = LogManager.getLogger(ConceptXmlBeanBuilder.class);
     }
 
     @Override

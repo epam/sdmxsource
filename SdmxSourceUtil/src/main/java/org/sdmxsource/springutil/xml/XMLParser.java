@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.springutil.xml;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.constants.SDMX_SCHEMA;
 import org.sdmxsource.sdmx.api.exception.SdmxSyntaxException;
 import org.sdmxsource.sdmx.api.util.ReadableDataLocation;
@@ -56,7 +57,7 @@ import java.util.Map;
  * The type Xml parser.
  */
 public class XMLParser {
-    private static final Logger log = Logger.getLogger(XMLParser.class);
+    private static final Logger log = LogManager.getLogger(XMLParser.class);
     private static final SchemaFactory schemaFactory = SchemaFactory.newInstance("http://www.w3.org/2001/XMLSchema");
     private static boolean enableValidation = true;
     private static Map<SDMX_SCHEMA, URI> schemaLocations = new HashMap<SDMX_SCHEMA, URI>();

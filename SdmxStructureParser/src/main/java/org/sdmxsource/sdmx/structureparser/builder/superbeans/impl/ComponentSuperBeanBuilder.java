@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.superbeans.impl;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.exception.CrossReferenceException;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxBeanRetrievalManager;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -52,7 +53,7 @@ import org.sdmxsource.sdmx.util.beans.container.SuperBeansImpl;
  * @param <V> the type parameter
  */
 public abstract class ComponentSuperBeanBuilder<K extends SuperBean, V extends SDMXBean> extends StructureBuilderImpl<K, V> {
-    private static final Logger LOG = Logger.getLogger(ComponentSuperBeanBuilder.class);
+    private static final Logger LOG = LogManager.getLogger(ComponentSuperBeanBuilder.class);
 
     private final CodelistSuperBeanBuilder codelistSuperBeanBuilder;
 

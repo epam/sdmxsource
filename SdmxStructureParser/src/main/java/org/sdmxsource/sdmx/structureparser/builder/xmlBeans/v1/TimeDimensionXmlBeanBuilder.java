@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.TextFormatType;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.TimeDimensionType;
 import org.sdmxsource.sdmx.api.builder.Builder;
@@ -42,7 +43,7 @@ import org.sdmxsource.sdmx.util.beans.ConceptRefUtil;
 public class TimeDimensionXmlBeanBuilder extends AbstractBuilder implements Builder<TimeDimensionType, DimensionBean> {
 
     static {
-        log = Logger.getLogger(TimeDimensionXmlBeanBuilder.class);
+        log = LogManager.getLogger(TimeDimensionXmlBeanBuilder.class);
     }
 
     /**

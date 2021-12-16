@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.datastructure;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.ComponentsType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.GroupType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.KeyFamilyType;
@@ -57,7 +58,7 @@ import java.util.*;
  */
 public class DataStructureBeanImpl extends MaintainableBeanImpl implements DataStructureBean {
     private static final long serialVersionUID = 5566227534589657654L;
-    private static Logger LOG = Logger.getLogger(DataStructureBeanImpl.class);
+    private static Logger LOG = LogManager.getLogger(DataStructureBeanImpl.class);
     private List<GroupBean> groups = new ArrayList<GroupBean>();
     private DimensionListBean dimensionList;
     private AttributeListBean attributeList;

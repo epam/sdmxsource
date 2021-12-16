@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.api.exception;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
 import org.sdmxsource.sdmx.api.constants.SDMX_ERROR_CODE;
 import org.sdmxsource.sdmx.api.util.MessageResolver;
@@ -46,7 +47,7 @@ import java.util.Map;
  */
 public class SdmxException extends RuntimeException {
     private static final long serialVersionUID = 7230038232116051945L;
-    private static Logger LOG = Logger.getLogger(SdmxException.class);
+    private static Logger LOG = LogManager.getLogger(SdmxException.class);
     private static MessageResolver messageResolver;
     private static LocalObjectStore localObjectStore = new LocalObjectStore();
     private ExceptionCode code;
