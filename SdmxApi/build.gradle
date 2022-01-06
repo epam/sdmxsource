@@ -7,14 +7,20 @@ repositories {
 }
 
 dependencies {
-    compile 'javax.xml.bind:jaxb-api:2.3.0'
-    implementation 'com.sun.xml.bind:jaxb-core:2.3.0'
-    implementation 'com.sun.xml.bind:jaxb-impl:2.3.0'
+    implementation("org.apache.logging.log4j:log4j-api:${log4j_version}")
+
+    compile ('javax.xml.bind:jaxb-api:2.3.0'){
+        exclude group: 'log4j', module: 'log4j'
+    }
+    implementation ('com.sun.xml.bind:jaxb-core:2.3.0'){
+        exclude group: 'log4j', module: 'log4j'
+    }
+    implementation ('com.sun.xml.bind:jaxb-impl:2.3.0'){
+        exclude group: 'log4j', module: 'log4j'
+    }
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-
-    compile("org.apache.logging.log4j:log4j-core:2.16.0")
 }
 
 test {

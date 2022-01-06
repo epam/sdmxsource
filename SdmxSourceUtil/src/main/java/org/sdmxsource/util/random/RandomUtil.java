@@ -53,8 +53,8 @@ public class RandomUtil {
     /**
      * Generate random password string.
      *
-     * @param length the length
-     * @return the string
+     * @param length the length of resulting string
+     * @return the random password string
      */
     public static String generateRandomPassword(int length) {
         Random r = new Random();
