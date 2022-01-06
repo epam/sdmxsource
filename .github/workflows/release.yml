@@ -78,7 +78,7 @@ jobs:
           git config user.email github-actions@github.com
           git fetch
           git checkout -b workflow-$GITHUB_RUN_ID origin/workflow-$GITHUB_RUN_ID~1
-          versionRelease=`grep 'version=' gradle.properties | sed 's/version=\([^-]*\)/\1/'`
+          versionRelease=`grep '^version=' gradle.properties | sed 's/version=\([^-]*\)/\1/'`
           echo $versionRelease
           git tag $versionRelease
           git push origin $versionRelease
