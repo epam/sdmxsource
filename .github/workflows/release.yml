@@ -24,9 +24,9 @@ jobs:
           versionRelease=`echo $versionSnapshot | sed 's/\([^-]*\)-SNAPSHOT/\1/'`
           versionSnapshotNext=`echo $versionSnapshot | perl -pe 's/^((\d+\.)*)(\d+)(.*)$/$1.($3+1).$4/e'`
           echo "$versionSnapshot -> $versionRelease  -> $versionSnapshotNext"
-          sed -i "s/version=$versionSnapshot/version=$versionRelease/" gradle.properties
+          sed -i 's|version=$versionSnapshot|version=$versionRelease|' gradle.properties
           git commit -am "[skip-ci] Generate release version"
-          sed -i "s/version=$versionRelease/version=$versionSnapshotNext/" gradle.properties
+          sed -i 's|version=$versionRelease|version=$versionSnapshotNext|' gradle.properties
           git commit -am "[skip-ci] Generate next snapshot version"
           git push origin HEAD
 
