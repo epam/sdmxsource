@@ -28,7 +28,7 @@ jobs:
           cat gradle.properties
           echo "Generate release version $versionRelease"
           git commit -am "[skip-ci] Generate release version $versionRelease"
-          sed -i 's|^version=$versionRelease|version=$versionSnapshotNext|' gradle.properties
+          sed -i "s|^version=$versionRelease|version=$versionSnapshotNext|" gradle.properties
           cat gradle.properties
           echo "Generate release version $versionSnapshotNext"
           git commit -am "[skip-ci] Generate next snapshot version $versionSnapshotNext"
