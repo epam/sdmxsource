@@ -16,7 +16,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
     compile project(':SdmxApi')
-    compile 'org.apache.xmlbeans:xmlbeans:2.3.0'
+    compile 'org.apache.xmlbeans:xmlbeans:3.1.0'
     compile 'joda-time:joda-time:2.9.9'
     compile 'org.springframework:spring-context:4.3.30.RELEASE'
     compile 'dom4j:dom4j:1.6.1'
