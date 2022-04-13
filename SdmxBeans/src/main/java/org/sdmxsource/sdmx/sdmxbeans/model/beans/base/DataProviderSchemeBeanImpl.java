@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.base;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.DataProvidersType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.OrganisationSchemeType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.OrganisationType;
@@ -55,7 +56,7 @@ import java.net.URL;
  */
 public class DataProviderSchemeBeanImpl extends OrganisationSchemeBeanImpl<DataProviderBean> implements DataProviderSchemeBean {
     private static final long serialVersionUID = 3160896936707022679L;
-    private static Logger LOG = Logger.getLogger(DataProviderSchemeBeanImpl.class);
+    private static Logger LOG = LogManager.getLogger(DataProviderSchemeBeanImpl.class);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////BUILD FROM ITSELF, CREATES STUB BEAN //////////////////////////////////////////////////

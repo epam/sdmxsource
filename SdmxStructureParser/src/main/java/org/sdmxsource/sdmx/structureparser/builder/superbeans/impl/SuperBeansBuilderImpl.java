@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.superbeans.impl;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.builder.SuperBeansBuilder;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxBeanRetrievalManager;
@@ -52,7 +53,7 @@ import org.sdmxsource.sdmx.util.beans.container.SuperBeansImpl;
  * The type Super beans builder.
  */
 public class SuperBeansBuilderImpl implements SuperBeansBuilder {
-    private static final Logger LOG = Logger.getLogger(SuperBeansBuilderImpl.class);
+    private static final Logger LOG = LogManager.getLogger(SuperBeansBuilderImpl.class);
 
     private final CategorySchemeSuperBeanBuilder categorySchemeSuperBeanBuilder;
 

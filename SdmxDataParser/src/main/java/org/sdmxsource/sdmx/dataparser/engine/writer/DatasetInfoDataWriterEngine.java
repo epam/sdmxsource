@@ -1,5 +1,7 @@
 package org.sdmxsource.sdmx.dataparser.engine.writer;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.sdmxsource.sdmx.api.engine.DataWriterEngine;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
 import org.sdmxsource.sdmx.api.model.beans.base.AnnotationBean;
@@ -33,7 +35,7 @@ public abstract class DatasetInfoDataWriterEngine extends DecoratedDataWriterEng
 //To get the DSD SuperBean
     protected SdmxSuperBeanRetrievalManager superBeanRetrievalManager;
     //A map containing the codes that have been reported against the given dimension
-    private Map<String, List<String>> codesForComponentMap;
+    private Map<String, Pair<Map<String, Integer>, List<String>>> codesForComponentMap;
 
     //The following is relevant for calculating index of series
     //A list of all the dimensions and series level attributes for a DSD
@@ -62,12 +64,12 @@ public abstract class DatasetInfoDataWriterEngine extends DecoratedDataWriterEng
         this.currentDSDSuperBean = superBeanRetrievalManager.getDataStructureSuperBean(dsd.asReference().getMaintainableReference());
         this.flow = flow;
 
-        codesForComponentMap = new HashMap<String, List<String>>();
+        codesForComponentMap = new HashMap<>();
         allDimensions = currentDSDSuperBean.getDimensions();
         for (ComponentSuperBean currentComponent : currentDSDSuperBean.getComponents()) {
-            codesForComponentMap.put(currentComponent.getId(), new ArrayList<String>());
+            codesForComponentMap.put(currentComponent.getId(), ImmutablePair.of(new HashMap<>(), new ArrayList<>()));
         }
-        codesForComponentMap.put(DimensionBean.TIME_DIMENSION_FIXED_ID, new ArrayList<String>());
+        codesForComponentMap.put(DimensionBean.TIME_DIMENSION_FIXED_ID, ImmutablePair.of(new HashMap<>(), new ArrayList<>()));
     }
 
 
@@ -97,8 +99,18 @@ public abstract class DatasetInfoDataWriterEngine extends DecoratedDataWriterEng
     }
 
     private void storeComponentValue(String componentId, String componentValue) {
-        if (codesForComponentMap.containsKey(componentId) && !codesForComponentMap.get(componentId).contains(componentValue)) {
-            codesForComponentMap.get(componentId).add(componentValue);
+        final Pair<Map<String, Integer>, List<String>> codes = codesForComponentMap.get(componentId);
+
+        if (codes != null) {
+            final Map<String, Integer> map = codes.getLeft();
+
+            if (!map.containsKey(componentValue)){
+                final List<String> list = codes.getRight();
+                final int index = list.size();
+
+                list.add(componentValue);
+                map.put(componentValue, index);
+            }
         }
     }
 
@@ -118,7 +130,7 @@ public abstract class DatasetInfoDataWriterEngine extends DecoratedDataWriterEng
      * @return the reported values
      */
     public List<String> getReportedValues(String componentId) {
-        return codesForComponentMap.get(componentId);
+        return codesForComponentMap.get(componentId).getRight();
     }
 
     /**
@@ -129,7 +141,8 @@ public abstract class DatasetInfoDataWriterEngine extends DecoratedDataWriterEng
      * @return the reported index
      */
     public int getReportedIndex(String concept, String code) {
-        return codesForComponentMap.get(concept).indexOf(code);
+        final Integer index = codesForComponentMap.get(concept).getLeft().get(code);
+        return (index == null) ? -1 : index;
     }
 }
 

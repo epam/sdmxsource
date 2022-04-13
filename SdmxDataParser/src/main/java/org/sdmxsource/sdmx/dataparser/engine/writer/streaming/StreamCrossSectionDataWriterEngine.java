@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.engine.writer.streaming;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.constants.BASE_DATA_FORMAT;
 import org.sdmxsource.sdmx.api.constants.SDMX_SCHEMA;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
@@ -55,7 +56,7 @@ public class StreamCrossSectionDataWriterEngine extends StreamDataWriterEngineBa
      * The Flush obs required.
      */
     boolean flushObsRequired = false;
-    private Logger LOG = Logger.getLogger(StreamCrossSectionDataWriterEngine.class);
+    private Logger LOG = LogManager.getLogger(StreamCrossSectionDataWriterEngine.class);
     private List<String> datasetComponents = new ArrayList<>();
     private List<String> groupComponents = new ArrayList<>();
     private List<String> sectionComponents = new ArrayList<>();

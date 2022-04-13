@@ -1,7 +1,8 @@
 package org.sdmxsource.sdmx.dataparser.engine.writer.csv;
 
 import com.opencsv.CSVWriter;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
 import org.sdmxsource.sdmx.api.engine.DataWriterEngine;
@@ -25,7 +26,7 @@ import java.util.*;
  * The type Csv data writer engine.
  */
 public class StreamCsvDataWriterEngine implements DataWriterEngine {
-    private static final Logger LOG = Logger.getLogger(StreamCsvDataWriterEngine.class);
+    private static final Logger LOG = LogManager.getLogger(StreamCsvDataWriterEngine.class);
     private static final String EMPTY_STRING = "";
     private final boolean csvWithHeaders;
     private final String dataflowKey = "DATAFLOW";
@@ -37,6 +38,8 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
     private List<Integer> obsAttributes = new ArrayList<Integer>();
     private int timeDimensionOffset;
     private int obsValueOffset;
+    private boolean startDataset = false;
+    private boolean startSeries = false;
 
     /**
      * Instantiates a new Csv data writer engine.
@@ -80,6 +83,7 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
         writer.writeNext(row, false);
 
         row[0] = dataflow.getAgencyId() + ":" + dataflow.getId() + "(" + dataflow.getVersion() + ")";
+        startDataset = true;
     }
 
     @Override
@@ -94,6 +98,11 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
 
     @Override
     public void startSeries(AnnotationBean... annotations) {
+        if (!startDataset) {
+            writeCurrentObservation();
+        }
+        startDataset = false;
+        startSeries = true;
         for (int i = 1; i < row.length; i++) {
             row[i] = EMPTY_STRING;
         }
@@ -120,12 +129,18 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
 
     @Override
     public void writeObservation(String observationConceptId, String obsConceptValue, String obsValue, AnnotationBean... annotations) {
+        if (!startSeries) {
+            writeCurrentObservation();
+            for (var rowIndex : obsAttributes)
+                row[rowIndex] = EMPTY_STRING;
+        }
+        startSeries = false;
         row[timeDimensionOffset] = obsConceptValue;
         row[obsValueOffset] = obsValue;
-        writer.writeNext(row, false);
+    }
 
-        for (var rowIndex : obsAttributes)
-            row[rowIndex] = EMPTY_STRING;
+    private void writeCurrentObservation() {
+        writer.writeNext(row, false);
     }
 
     @Override
@@ -136,8 +151,10 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
     @Override
     public void close(FooterMessage... footer) {
         try {
-            if (writer != null)
+            if (writer != null) {
+                writeCurrentObservation();
                 writer.close();
+            }
         } catch (IOException e) {
             LOG.error(e);
             StreamUtil.closeStream(out);

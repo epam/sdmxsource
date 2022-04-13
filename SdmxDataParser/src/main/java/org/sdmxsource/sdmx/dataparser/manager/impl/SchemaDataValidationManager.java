@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.manager.impl;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmxsource.sdmx.api.constants.DATA_TYPE;
 import org.sdmxsource.sdmx.api.exception.SdmxSemmanticException;
 import org.sdmxsource.sdmx.api.exception.SdmxSyntaxException;
@@ -47,7 +48,7 @@ import java.io.OutputStream;
  * Validates data from a DataStructure against a Generated Schema
  */
 public class SchemaDataValidationManager implements SchemaValidationManager {
-    private static Logger LOG = Logger.getLogger(SchemaDataValidationManager.class);
+    private static Logger LOG = LogManager.getLogger(SchemaDataValidationManager.class);
 
     private final DataInformationManager dataInformationManager;
 

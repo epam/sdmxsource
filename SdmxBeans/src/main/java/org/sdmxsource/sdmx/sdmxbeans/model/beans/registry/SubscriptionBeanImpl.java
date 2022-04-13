@@ -27,7 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.registry;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v21.common.ReferenceType;
 import org.sdmx.resources.sdmxml.schemas.v21.registry.*;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
@@ -64,7 +65,7 @@ import java.util.Set;
  */
 public class SubscriptionBeanImpl extends MaintainableBeanImpl implements SubscriptionBean {
     private static final long serialVersionUID = 6358405744989772694L;
-    private static Logger LOG = Logger.getLogger(SubscriptionBeanImpl.class);
+    private static Logger LOG = LogManager.getLogger(SubscriptionBeanImpl.class);
     private CrossReferenceBean owner;
     private List<String> mailTo = new ArrayList<String>();
     private List<String> HTTPPostTo = new ArrayList<String>();
