@@ -64,6 +64,20 @@ public class StructureWriterEngineJsonV1 implements StructureWriterEngine, AutoC
     public StructureWriterEngineJsonV1(
             OutputStream outputStream,
             SdmxStructureJsonFormat sdmxStructureJsonFormat) {
+        this(outputStream, sdmxStructureJsonFormat, false);
+    }
+
+    /**
+     * Instantiates a new Structure writer engine json v 1.
+     *
+     * @param outputStream            the output stream
+     * @param sdmxStructureJsonFormat the sdmx structure json format
+     * @param prettyFy                 the pretty fy
+     */
+    public StructureWriterEngineJsonV1(
+            OutputStream outputStream,
+            SdmxStructureJsonFormat sdmxStructureJsonFormat,
+            boolean prettyFy) {
         if (outputStream == null)
             throw new IllegalArgumentException("outputStream");
         if (sdmxStructureJsonFormat == null)
@@ -72,6 +86,8 @@ public class StructureWriterEngineJsonV1 implements StructureWriterEngine, AutoC
         JsonFactory factory = new JsonFactory();
         try {
             this.jsonGenerator = factory.createGenerator(outputStream, JsonEncoding.UTF8);
+            if (prettyFy)
+                this.jsonGenerator.useDefaultPrettyPrinter();
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
