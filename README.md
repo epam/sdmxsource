@@ -14,8 +14,8 @@ The fork is based on latest (to date) public version of `SdmxSource` `1.5.6.6`. 
 
 ## Other improvements
 
-* `SDMX-JSON` serialization / deserialization for structural artefacts. Ported from .NET version of [`SdmxSource` by `Eurostat`](https://ec.europa.eu/eurostat/web/sdmx-infospace/sdmx-it-tools/sdmx-source).
+* `SDMX-JSON` serialization / deserialization for structural artefacts. Ported from .NET version of [`SdmxSource` by `Eurostat`](https://ec.europa.eu/eurostat/cros/content/sdmx-source_en).
 * `SDMX-CSV` serialization / deserialization for data sets.
-* Unit test coverage. Ported from .NET version of [`SdmxSource` by `Eurostat`](https://ec.europa.eu/eurostat/web/sdmx-infospace/sdmx-it-tools/sdmx-source).
+* Unit test coverage. Ported from .NET version of [`SdmxSource` by `Eurostat`](https://ec.europa.eu/eurostat/cros/content/sdmx-source_en).
 * Bug fixes.
 
