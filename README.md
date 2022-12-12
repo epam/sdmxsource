@@ -1,6 +1,6 @@
 # SdmxSource
 
-A fork of a wonderful [`SdmxSource`](https://nexus.d4science.org/nexus/content/repositories/MTRepo/org/sdmxsource/) library by [`Metadata Technology`](https://metadatatechnology.com).
+A fork of a wonderful [`SdmxSource`](https://sdmx.org/?page_id=4690) library by `Metadata Technology`.
 
 The fork is based on latest (to date) public version of `SdmxSource` `1.5.6.6`. The motivation behind forking is to resolve several limitations of the original library that are important for its wider adoption as well as wider community contribution to the project.
 
