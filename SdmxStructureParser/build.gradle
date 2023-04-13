@@ -19,8 +19,8 @@ dependencies {
     compile project(':SdmxStructureRetrieval')
     compile project(':SdmxEdiParser')
 
-    compile 'com.fasterxml.jackson.core:jackson-core:2.14.0'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+    compile "com.fasterxml.jackson.core:jackson-core:${fasterxml_version}"
+    compile "com.fasterxml.jackson.core:jackson-databind:${fasterxml_version}"
 }
 
 test {
