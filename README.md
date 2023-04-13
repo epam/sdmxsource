@@ -1,6 +1,6 @@
 # SdmxSource
 
-A fork of a wonderful [`SdmxSource`](https://metadatatechnology.com/software/sdmxsource.php) library by `Metadata Technology`.
+A fork of a wonderful [`SdmxSource`](https://sdmx.org/?page_id=4690) library by `Metadata Technology`.
 
 The fork is based on latest (to date) public version of `SdmxSource` `1.5.6.6`. The motivation behind forking is to resolve several limitations of the original library that are important for its wider adoption as well as wider community contribution to the project.
 
@@ -14,8 +14,8 @@ The fork is based on latest (to date) public version of `SdmxSource` `1.5.6.6`. 
 
 ## Other improvements
 
-* `SDMX-JSON` serialization / deserialization for structural artefacts. Ported from .NET version of [`SdmxSource` by `Eurostat`](https://ec.europa.eu/eurostat/web/sdmx-infospace/sdmx-it-tools/sdmx-source).
+* `SDMX-JSON` serialization / deserialization for structural artefacts. Ported from .NET version of [`SdmxSource` by `Eurostat`](https://ec.europa.eu/eurostat/cros/content/sdmx-source_en).
 * `SDMX-CSV` serialization / deserialization for data sets.
-* Unit test coverage. Ported from .NET version of [`SdmxSource` by `Eurostat`](https://ec.europa.eu/eurostat/web/sdmx-infospace/sdmx-it-tools/sdmx-source).
+* Unit test coverage. Ported from .NET version of [`SdmxSource` by `Eurostat`](https://ec.europa.eu/eurostat/cros/content/sdmx-source_en).
 * Bug fixes.
 
