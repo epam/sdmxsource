@@ -376,7 +376,7 @@ public class StreamCompactDataWriterEngine extends StreamDataWriterEngineBase {
                 case DATASET:
                 case DATASET_ATTRIBUTE:
                     currentPosition = POSITION.DATASET_ATTRIBUTE;
-                    super.writeDatasetAttribute(attributeId, attributeValue);
+                    writer.writeAttribute(attributeId, attributeValue);
                     break;
                 case OBSERVATION:
                 case OBSERVATION_ATTRIBUTE:
