@@ -76,6 +76,25 @@ class DataWriterEngineTest {
     }
 
     @Test
+    void checkStreaming_COMPACT_21_SERIES_WithDsAttribute() throws IOException {
+        DataStructureBean dsd = buildDsd();
+
+        var os = new ByteArrayOutputStream();
+        var dataWriterEngine = new StreamCompactDataWriterEngine(SDMX_SCHEMA.VERSION_TWO_POINT_ONE, os);
+
+        DatasetHeaderBean datasetHeaderBean = getDatasetHeaderBean(dsd, null);
+
+        final DataflowBean dataflowBean = getDataflowBean(dsd);
+        List<Series> seriesList = buildSeries(dsd, dataflowBean);
+        Map<String, String> dsAttributes = Map.of("Dataset", "dataset meta");
+        generate(dsd, dataflowBean, getHeaderBean(), datasetHeaderBean, dataWriterEngine, seriesList, dsAttributes);
+
+        final var expected = new String(Objects.requireNonNull(DataWriterEngineTest.class.getClassLoader()
+            .getResourceAsStream("writer/Compact_ts_with_ds_attribute.xml")).readAllBytes());
+        assertEquals(expected, os.toString(StandardCharsets.UTF_8));
+    }
+
+    @Test
     void checkStreaming_COMPACT_21_FLAT() throws IOException {
         DataStructureBean dsd = buildDsd();
         var os = new ByteArrayOutputStream();
@@ -174,9 +193,18 @@ class DataWriterEngineTest {
     private void generate(DataStructureBean dsd, DataflowBean dataflowBean, HeaderBean headerBean,
                           DatasetHeaderBean datasetHeaderBean,
                           DataWriterEngine dataWriterEngine, List<Series> seriesList) {
+        generate(dsd, dataflowBean, headerBean, datasetHeaderBean, dataWriterEngine, seriesList, Collections.emptyMap());
+    }
+
+    private void generate(DataStructureBean dsd, DataflowBean dataflowBean, HeaderBean headerBean,
+                          DatasetHeaderBean datasetHeaderBean,
+                          DataWriterEngine dataWriterEngine,
+                          List<Series> seriesList, Map<String, String> dsMetadataAttribute) {
 
         dataWriterEngine.writeHeader(headerBean);
         dataWriterEngine.startDataset(null, dataflowBean, dsd, datasetHeaderBean);
+
+        dsMetadataAttribute.forEach(dataWriterEngine::writeAttributeValue);
 
         seriesList.forEach(s -> {
             writeSeries(s, dataWriterEngine, dsd);
