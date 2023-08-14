@@ -30,8 +30,8 @@
  */
 package org.sdmxsource.sdmx.sdmxbeans.model.superbeans.codelist;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.model.beans.base.MaintainableBean;
 import org.sdmxsource.sdmx.api.model.beans.codelist.CodeBean;
 import org.sdmxsource.sdmx.api.model.beans.codelist.CodelistBean;
@@ -49,7 +49,7 @@ import java.util.*;
  * @author Matt Nelson
  */
 public class CodelistSuperBeanImpl extends MaintainableSuperBeanImpl implements CodelistSuperBean {
-    private static final transient Logger LOG = LogManager.getLogger(CodelistSuperBeanImpl.class);
+    private static final transient Logger LOG = LoggerFactory.getLogger(CodelistSuperBeanImpl.class);
     private static final long serialVersionUID = 1L;
 
     private List<CodeSuperBean> codes = new ArrayList<CodeSuperBean>();

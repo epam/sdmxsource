@@ -2,8 +2,8 @@ package org.sdmxsource.sdmx.dataparser.engine.writer.jsonsupport;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -32,7 +32,7 @@ import java.util.Objects;
  * The type Series data writer.
  */
 public class SeriesDataWriter extends AbstractJsonDataWriter {
-    private static Logger LOG = LogManager.getLogger(SeriesDataWriter.class);
+    private static Logger LOG = LoggerFactory.getLogger(SeriesDataWriter.class);
     private boolean observationsKeyOpened;
     private Keyable currentSeries;
 

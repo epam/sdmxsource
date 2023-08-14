@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.AssignmentStatusType;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.AttachmentLevelType;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.AttributeType;
@@ -46,7 +46,7 @@ import org.sdmxsource.util.ObjectUtil;
 public class AttributeXmlBeanBuilder extends AbstractBuilder implements Builder<AttributeType, AttributeBean> {
 
     static {
-        log = LogManager.getLogger(AttributeXmlBeanBuilder.class);
+        log = LoggerFactory.getLogger(AttributeXmlBeanBuilder.class);
     }
 
     @Override

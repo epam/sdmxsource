@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.xmlBeans.v1;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.AgencyType;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
 import org.sdmxsource.sdmx.api.model.beans.base.AgencyBean;
@@ -40,7 +40,7 @@ import org.sdmxsource.sdmx.api.model.beans.base.AgencyBean;
 public class AgencyXmlBeanBuilder extends AbstractBuilder {
 
     static {
-        log = LogManager.getLogger(AgencyXmlBeanBuilder.class);
+        log = LoggerFactory.getLogger(AgencyXmlBeanBuilder.class);
     }
 
     /**

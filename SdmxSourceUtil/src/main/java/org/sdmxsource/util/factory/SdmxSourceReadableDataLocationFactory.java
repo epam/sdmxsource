@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.util.factory;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.factory.ReadableDataLocationFactory;
 import org.sdmxsource.sdmx.api.util.ReadableDataLocation;
 import org.sdmxsource.util.io.FileUtil;
@@ -46,7 +46,7 @@ import java.net.URL;
  * The type Sdmx source readable data location factory.
  */
 public class SdmxSourceReadableDataLocationFactory implements ReadableDataLocationFactory {
-    private static final Logger LOG = LogManager.getLogger(SdmxSourceReadableDataLocationFactory.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SdmxSourceReadableDataLocationFactory.class);
     private Long maxMemory = (1024l * 1024l * 30l);  //DEFAULT to 30Mb in memory
     private Long memoryUseage = 0l;
 

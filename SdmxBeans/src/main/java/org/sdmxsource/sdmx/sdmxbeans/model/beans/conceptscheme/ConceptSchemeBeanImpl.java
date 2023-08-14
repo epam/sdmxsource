@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.conceptscheme;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.common.TextType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.ConceptSchemeType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.ConceptType;
@@ -56,7 +56,7 @@ import java.util.*;
  */
 public class ConceptSchemeBeanImpl extends ItemSchemeBeanImpl<ConceptBean> implements ConceptSchemeBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = LogManager.getLogger(ConceptSchemeBean.class);
+    private static Logger LOG = LoggerFactory.getLogger(ConceptSchemeBean.class);
     private transient Map<String, ConceptBean> itemById = new HashMap<String, ConceptBean>();
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureretrieval.manager;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
 import org.sdmxsource.sdmx.api.constants.STRUCTURE_QUERY_DETAIL;
@@ -84,7 +84,7 @@ public abstract class BaseSdmxBeanRetrievalManager extends IdentifiableRetrieval
      * The Service retrieval manager.
      */
     protected ServiceRetrievalManager serviceRetrievalManager;
-    private Logger LOG = LogManager.getLogger(BaseSdmxBeanRetrievalManager.class);
+    private Logger LOG = LoggerFactory.getLogger(BaseSdmxBeanRetrievalManager.class);
     private SdmxBeanRetrievalManager proxy;
     private RegistrationBeanRetrievalManager registrationRetrievalManager;
     private HeaderRetrievalManager headerRetrievalManager;

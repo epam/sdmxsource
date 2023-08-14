@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.transform.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.SDMX_SCHEMA;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
 import org.sdmxsource.sdmx.api.model.superbeans.datastructure.AttributeSuperBean;
@@ -46,7 +46,7 @@ import java.util.Set;
  */
 public class CompactSchemaCreatorSdmx extends CompactSchemaCreator {
 
-    private static Logger LOG = LogManager.getLogger(CompactSchemaCreatorSdmx.class);
+    private static Logger LOG = LoggerFactory.getLogger(CompactSchemaCreatorSdmx.class);
 
     /**
      * Instantiates a new Compact schema creator sdmx.

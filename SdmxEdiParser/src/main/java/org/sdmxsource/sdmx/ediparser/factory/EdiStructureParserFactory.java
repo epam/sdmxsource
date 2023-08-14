@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.ediparser.factory;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.SDMX_SCHEMA;
 import org.sdmxsource.sdmx.api.factory.StructureParserFactory;
 import org.sdmxsource.sdmx.api.model.beans.SdmxBeans;
@@ -43,7 +43,7 @@ import org.sdmxsource.sdmx.util.sdmx.SdmxMessageUtil;
  * The type Edi structure parser factory.
  */
 public class EdiStructureParserFactory implements StructureParserFactory {
-    private static final Logger LOG = LogManager.getLogger(EdiStructureParserFactory.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EdiStructureParserFactory.class);
 
     private final EdiParseManager ediParseManager;
 

@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.datastructure;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.DataflowType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.KeyFamilyRefType;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
@@ -56,7 +56,7 @@ import java.util.Set;
  */
 public class DataflowBeanImpl extends MaintainableBeanImpl implements DataflowBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = LogManager.getLogger(DataflowBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(DataflowBeanImpl.class);
     private CrossReferenceBean keyFamilyRef;
 
 

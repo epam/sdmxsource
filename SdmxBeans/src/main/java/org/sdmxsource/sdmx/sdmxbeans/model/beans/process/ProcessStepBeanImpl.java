@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.process;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.ProcessStepType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.TransitionType;
 import org.sdmx.resources.sdmxml.schemas.v21.structure.InputOutputType;
@@ -60,7 +60,7 @@ import java.util.Set;
 public class ProcessStepBeanImpl extends NameableBeanImpl implements ProcessStepBean {
     private static final long serialVersionUID = 1L;
 
-    private static Logger LOG = LogManager.getLogger(ProcessStepBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(ProcessStepBeanImpl.class);
 
     private List<InputOutputBean> input = new ArrayList<InputOutputBean>();
     private List<InputOutputBean> output = new ArrayList<InputOutputBean>();

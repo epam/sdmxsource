@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.superbeans.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.exception.CrossReferenceException;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxBeanRetrievalManager;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -48,7 +48,7 @@ import org.sdmxsource.sdmx.util.beans.container.SuperBeansImpl;
  * The type Provision super bean builder.
  */
 public class ProvisionSuperBeanBuilder extends StructureBuilderImpl<ProvisionAgreementSuperBean, ProvisionAgreementBean> {
-    private static final Logger LOG = LogManager.getLogger(ProvisionSuperBeanBuilder.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ProvisionSuperBeanBuilder.class);
 
     private final DataflowSuperBeanBuilder dataflowSuperBeanBuilder;
 

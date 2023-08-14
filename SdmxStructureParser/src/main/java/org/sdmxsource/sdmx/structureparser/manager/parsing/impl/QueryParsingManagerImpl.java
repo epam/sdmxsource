@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.manager.parsing.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.apache.xmlbeans.XmlException;
 import org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.message.QueryMessageDocument;
 import org.sdmx.resources.sdmxml.schemas.v20.message.RegistryInterfaceDocument;
@@ -58,7 +58,7 @@ import java.util.List;
 //JAVADOC missing
 public class QueryParsingManagerImpl implements QueryParsingManager {
     private final QueryBeanBuilder queryBeanBuilder = new QueryBeanBuilderImpl();
-    private Logger log = LogManager.getLogger(QueryParsingManagerImpl.class);
+    private Logger log = LoggerFactory.getLogger(QueryParsingManagerImpl.class);
 
     @Override
     public QueryWorkspace parseQueries(ReadableDataLocation dataLocation) throws ParseException {

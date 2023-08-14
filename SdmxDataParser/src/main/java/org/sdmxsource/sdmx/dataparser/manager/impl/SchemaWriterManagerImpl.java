@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.manager.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.engine.SchemaWriterEngine;
 import org.sdmxsource.sdmx.api.exception.SdmxNotImplementedException;
 import org.sdmxsource.sdmx.api.factory.SchemaWriterFactory;
@@ -46,7 +46,7 @@ import java.util.Set;
  * The type Schema writer manager.
  */
 public class SchemaWriterManagerImpl implements SchemaWriterManager {
-    private static Logger LOG = LogManager.getLogger(SchemaWriterManagerImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(SchemaWriterManagerImpl.class);
 
     private final SchemaWriterFactory[] factories;
 

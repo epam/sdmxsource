@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.util.io;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 
 import java.io.*;
 import java.net.URI;
@@ -43,7 +43,7 @@ import java.util.Scanner;
  * The type File util.
  */
 public class FileUtil {
-    private static final Logger LOG = LogManager.getLogger(FileUtil.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FileUtil.class);
     private static final String TMP_FILE_DIR = System.getProperty("java.io.tmpdir");
 
     /**

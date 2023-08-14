@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.registry;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.registry.DatasourceType;
 import org.sdmx.resources.sdmxml.schemas.v20.registry.ProvisionAgreementRefType;
 import org.sdmx.resources.sdmxml.schemas.v20.registry.RegistrationType;
@@ -62,7 +62,7 @@ import java.util.*;
  */
 public class RegistrationBeanImpl extends MaintainableBeanImpl implements RegistrationBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = LogManager.getLogger(RegistrationBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(RegistrationBeanImpl.class);
     private SdmxDate lastUpdated = new SdmxDateImpl(new Date(), TIME_FORMAT.DATE_TIME);
     private SdmxDate validFrom;
     private SdmxDate validTo;

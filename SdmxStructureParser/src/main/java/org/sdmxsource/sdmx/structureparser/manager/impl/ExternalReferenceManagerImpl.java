@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.manager.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
 import org.sdmxsource.sdmx.api.exception.CrossReferenceException;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
@@ -59,7 +59,7 @@ import java.util.Set;
  */
 //JAVADOC missing
 public class ExternalReferenceManagerImpl implements ExternalReferenceManager {
-    private static final Logger LOG = LogManager.getLogger(ExternalReferenceManagerImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ExternalReferenceManagerImpl.class);
     private static final ResolutionSettings retriervalSettings = new ResolutionSettings(RESOLVE_EXTERNAL_SETTING.DO_NOT_RESOLVE, RESOLVE_CROSS_REFERENCES.DO_NOT_RESOLVE, 0);
     private final ReadableDataLocationFactory readableDataLocationFactory;
     private StructureParsingManager structureParsingManager;
