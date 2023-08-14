@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.manager.parsing.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.message.RegistryInterfaceDocument;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
 import org.sdmxsource.sdmx.api.constants.SDMX_SCHEMA;
@@ -50,7 +50,7 @@ import java.io.InputStream;
  * The type Notification parsing manager.
  */
 public class NotificationParsingManagerImpl implements NotificationParsingManager {
-    private Logger log = LogManager.getLogger(NotificationParsingManagerImpl.class);
+    private Logger log = LoggerFactory.getLogger(NotificationParsingManagerImpl.class);
 
 
     //TODO Test that there is a notification event in this message!

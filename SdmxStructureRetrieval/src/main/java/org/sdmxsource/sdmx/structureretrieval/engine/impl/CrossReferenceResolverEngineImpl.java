@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureretrieval.engine.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
 import org.sdmxsource.sdmx.api.exception.CrossReferenceException;
 import org.sdmxsource.sdmx.api.exception.SdmxReferenceException;
@@ -57,7 +57,7 @@ import java.util.Set;
  * The type Cross reference resolver engine.
  */
 public class CrossReferenceResolverEngineImpl implements CrossReferenceResolverEngine {
-    private static final Logger LOG = LogManager.getLogger(CrossReferenceResolverEngineImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CrossReferenceResolverEngineImpl.class);
     private final MaintainableCrossReferenceRetrieverEngine maintainableCrossReferenceRetrieverEngine;
     private boolean resolveAgencies;
     private Map<IdentifiableBean, Set<IdentifiableBean>> crossReferences = new HashMap<IdentifiableBean, Set<IdentifiableBean>>();

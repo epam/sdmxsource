@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.util.io;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
 import org.sdmxsource.sdmx.api.exception.SdmxServiceUnavailableException;
@@ -46,7 +46,7 @@ import java.util.zip.GZIPInputStream;
  * The type Url util.
  */
 public class URLUtil {
-    private static final Logger LOG = LogManager.getLogger(URLUtil.class);
+    private static final Logger LOG = LoggerFactory.getLogger(URLUtil.class);
 
     /**
      * Opens an input stream to the URL, accepts GZIP encoding.

@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.registry;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.registry.DataProviderRefType;
 import org.sdmx.resources.sdmxml.schemas.v20.registry.DataflowRefType;
 import org.sdmx.resources.sdmxml.schemas.v20.registry.MetadataflowRefType;
@@ -61,7 +61,7 @@ import java.util.*;
  */
 public class ProvisionAgreementBeanImpl extends MaintainableBeanImpl implements ProvisionAgreementBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = LogManager.getLogger(ProvisionAgreementBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(ProvisionAgreementBeanImpl.class);
     private CrossReferenceBean structureUseage;
     private CrossReferenceBean dataproviderRef;
 

@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.util.thread;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.util.log.LoggingUtil;
 
 
@@ -39,7 +39,7 @@ public class Lockable {
     /**
      * The Log.
      */
-    Logger log = LogManager.getLogger(Lockable.class);
+    Logger log = LoggerFactory.getLogger(Lockable.class);
     private boolean isLocked = false;
     private String lockOwner;
     private int lockCount = 0;

@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureretrieval.manager;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.listener.Listener;
 import org.sdmxsource.sdmx.api.manager.parse.StructureParsingManager;
 import org.sdmxsource.sdmx.api.manager.persist.StructurePersistenceManager;
@@ -68,7 +68,7 @@ import java.util.Set;
 public class InMemoryRetrievalManager extends BaseSdmxBeanRetrievalManager implements SdmxBeanRetrievalManager,
         StructurePersistenceManager,
         Listener<ReadableDataLocation> {
-    private static Logger LOG = LogManager.getLogger(InMemoryRetrievalManager.class);
+    private static Logger LOG = LoggerFactory.getLogger(InMemoryRetrievalManager.class);
     private final StructureParsingManager structureParsingManager;
     /**
      * The Beans.

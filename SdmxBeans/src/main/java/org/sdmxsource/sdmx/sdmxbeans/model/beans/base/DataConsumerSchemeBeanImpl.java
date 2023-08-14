@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.base;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.DataConsumersType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.OrganisationSchemeType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.OrganisationType;
@@ -55,7 +55,7 @@ import java.net.URL;
  */
 public class DataConsumerSchemeBeanImpl extends OrganisationSchemeBeanImpl<DataConsumerBean> implements DataConsumerSchemeBean {
     private static final long serialVersionUID = 2335090671092865670L;
-    private static Logger LOG = LogManager.getLogger(DataConsumerSchemeBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(DataConsumerSchemeBeanImpl.class);
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////

@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.ediparser.engine.writer.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.*;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
 import org.sdmxsource.sdmx.api.exception.SdmxNotImplementedException;
@@ -62,7 +62,7 @@ import java.util.*;
  * The type Edi data writer engine.
  */
 public class EDIDataWriterEngineImpl implements EDIDataWriterEngine {
-    private static final Logger LOG = LogManager.getLogger(EDIDataWriterEngineImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(EDIDataWriterEngineImpl.class);
     private static final int MAX_MISSING = 3; //The number of missing values in a row before starting a new time period
     private static int DATASET_ID = 1;
     private final WriteableDataLocationFactory writeableDataLocationFactory;

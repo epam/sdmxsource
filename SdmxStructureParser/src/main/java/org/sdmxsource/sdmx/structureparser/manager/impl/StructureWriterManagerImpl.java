@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.manager.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.engine.StructureWriterEngine;
 import org.sdmxsource.sdmx.api.exception.SdmxNotImplementedException;
 import org.sdmxsource.sdmx.api.factory.StructureWriterFactory;
@@ -47,7 +47,7 @@ import java.io.OutputStream;
  * The type Structure writer manager.
  */
 public class StructureWriterManagerImpl implements StructureWriterManager {
-    private static Logger LOG = LogManager.getLogger(StructureWriterManagerImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(StructureWriterManagerImpl.class);
 
     private final StructureWriterFactory[] factories;
 

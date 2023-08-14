@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.manager.parsing.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.exception.CrossReferenceException;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
 import org.sdmxsource.sdmx.api.exception.SdmxNotImplementedException;
@@ -52,7 +52,7 @@ import org.sdmxsource.sdmx.structureparser.workspace.impl.StructureWorkspaceImpl
 public class StructureParsingManagerImpl implements StructureParsingManager {
     private final ExternalReferenceManager externalReferenceManager;
     private final StructureParserFactory[] factories;
-    private Logger LOG = LogManager.getLogger(StructureParsingManagerImpl.class);
+    private Logger LOG = LoggerFactory.getLogger(StructureParsingManagerImpl.class);
 
     /**
      * Instantiates a new Structure parsing manager.

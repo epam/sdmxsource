@@ -1,7 +1,7 @@
 package org.sdmxsource.sdmx.dataparser.engine.reader.json;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.constants.DATASET_POSITION;
 import org.sdmxsource.sdmx.api.engine.DataReaderEngine;
@@ -33,7 +33,7 @@ import java.util.Map;
  * The type Json data reader engine.
  */
 public class JsonDataReaderEngine extends AbstractDataReaderEngine {
-    private static final Logger LOG = LogManager.getLogger(JsonDataReaderEngine.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JsonDataReaderEngine.class);
 
     private static final long serialVersionUID = 1L;
 
