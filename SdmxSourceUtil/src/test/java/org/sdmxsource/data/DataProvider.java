@@ -25,6 +25,8 @@ public class DataProvider {
                 Arguments.of("2004-B1", TIME_FORMAT.HALF_OF_YEAR),
                 Arguments.of("2004-B2", TIME_FORMAT.HALF_OF_YEAR),
 
+                Arguments.of("2004-02", TIME_FORMAT.MONTH),
+
                 Arguments.of("2004-W3", TIME_FORMAT.WEEK),
                 Arguments.of("2004-W33", TIME_FORMAT.WEEK),
                 Arguments.of("2004-W52", TIME_FORMAT.WEEK),
