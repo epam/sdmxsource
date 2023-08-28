@@ -67,6 +67,8 @@ public class DateUtil {
     private static final Pattern xmlSemiAnnualPattern = Pattern.compile("[0-9][0-9][0-9][0-9]-S[1-2]");
     private static final Pattern xmlYearlyPattern = Pattern.compile("[0-9][0-9][0-9][0-9]");
 
+    private static final Pattern gregorianMonthlyPattern = Pattern.compile("[0-9][0-9][0-9][0-9]-(0[1-9]|1[0-2])");
+
     /**
      * Returns a calendar which is initialized with date now() +/- the time given in the calfield, obtained from Calendar.[Feild]
      * and the time.  For example to get a calendar where the date is 1 day previous to now()
@@ -475,7 +477,7 @@ public class DateUtil {
             return TIME_FORMAT.HALF_OF_YEAR;
         } else if (xmlQuarterlyPattern.matcher(dateStr).matches()) {
             return TIME_FORMAT.QUARTER_OF_YEAR;
-        } else if (xmlMonthlyPattern.matcher(dateStr).matches()) {
+        } else if (xmlMonthlyPattern.matcher(dateStr).matches() || gregorianMonthlyPattern.matcher(dateStr).matches()) {
             return TIME_FORMAT.MONTH;
         } else if (xmlWeeklyPattern.matcher(dateStr).matches()) {
             return TIME_FORMAT.WEEK;
