@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.manager.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.engine.DataReaderEngine;
 import org.sdmxsource.sdmx.api.engine.DataWriterEngine;
 import org.sdmxsource.sdmx.api.factory.WriteableDataLocationFactory;
@@ -58,7 +58,7 @@ import java.util.List;
  * The type Data parse manager.
  */
 public class DataParseManagerImpl implements DataParseManager {
-    private final Logger log = LogManager.getLogger(DataParseManagerImpl.class);
+    private final Logger log = LoggerFactory.getLogger(DataParseManagerImpl.class);
 
     private final DataReaderManager dataReaderManager;
 

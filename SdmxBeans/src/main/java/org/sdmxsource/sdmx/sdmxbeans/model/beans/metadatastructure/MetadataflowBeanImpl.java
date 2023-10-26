@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.metadatastructure;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.MetadataStructureRefType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.MetadataflowType;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
@@ -52,7 +52,7 @@ import java.util.Set;
  */
 public class MetadataflowBeanImpl extends MaintainableBeanImpl implements MetadataFlowBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = LogManager.getLogger(MetadataflowBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(MetadataflowBeanImpl.class);
     private CrossReferenceBean metadataStructureRef;
 
 

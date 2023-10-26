@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.builder.superbeans.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.exception.CrossReferenceException;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxBeanRetrievalManager;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -47,7 +47,7 @@ import org.sdmxsource.sdmx.util.beans.container.SuperBeansImpl;
  * The type Concept super bean builder.
  */
 public class ConceptSuperBeanBuilder extends StructureBuilderImpl<ConceptSuperBean, ConceptBean> {
-    private static final Logger LOG = LogManager.getLogger(ComponentSuperBeanBuilder.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ComponentSuperBeanBuilder.class);
 
     private CodelistSuperBeanBuilder codelistSuperBeanBuilder;
 

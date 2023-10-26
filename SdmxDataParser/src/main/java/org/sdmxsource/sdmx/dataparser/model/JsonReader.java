@@ -5,8 +5,8 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.MappingJsonFactory;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.exception.SdmxException;
 import org.sdmxsource.sdmx.api.util.ReadableDataLocation;
 import org.sdmxsource.sdmx.util.date.DateUtil;
@@ -25,7 +25,7 @@ public class JsonReader {
      * The constant SKIP_OBJECT_ITERATOR.
      */
     public static final SkipObjectIterator SKIP_OBJECT_ITERATOR = new JsonReader().new SkipObjectIterator();
-    private static final Logger LOG = LogManager.getLogger(JsonReader.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JsonReader.class);
     private ReadableDataLocation rdl;
     private JsonParser jParser;
     private JsonToken token;

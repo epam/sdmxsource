@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.process;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.ProcessStepType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.ProcessType;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
@@ -57,7 +57,7 @@ import java.util.Set;
  */
 public class ProcessBeanImpl extends MaintainableBeanImpl implements ProcessBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = LogManager.getLogger(ProcessBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(ProcessBeanImpl.class);
     private List<ProcessStepBean> processSteps = new ArrayList<ProcessStepBean>();
 
 

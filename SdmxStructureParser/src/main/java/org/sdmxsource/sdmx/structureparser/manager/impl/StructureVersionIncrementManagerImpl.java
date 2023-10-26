@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.manager.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.manager.parse.StructureVersionIncrementManager;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxBeanRetrievalManager;
 import org.sdmxsource.sdmx.api.manager.retrieval.StructureVersionRetrievalManager;
@@ -53,7 +53,7 @@ import java.util.*;
 public class StructureVersionIncrementManagerImpl implements StructureVersionIncrementManager {
     private final CrossReferenceReversionEngine crossReferenceReversionEngine;
     private final StructureVersionRetrievalManager structureVersionRetrievalManager;
-    private Logger LOG = LogManager.getLogger(StructureVersionIncrementManagerImpl.class);
+    private Logger LOG = LoggerFactory.getLogger(StructureVersionIncrementManagerImpl.class);
     private CrossReferencingRetrievalManager crossReferencingRetrievalManager;
     private SdmxBeanRetrievalManager beanRetrievalManager;
 

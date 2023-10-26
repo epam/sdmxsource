@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.base;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.TextFormatType;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.TextTypeType;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
@@ -54,7 +54,7 @@ import java.util.regex.Pattern;
  */
 public class TextFormatBeanImpl extends SDMXBeanImpl implements TextFormatBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = LogManager.getLogger(TextFormatBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(TextFormatBeanImpl.class);
     private TEXT_TYPE textType;
     private TERTIARY_BOOL isSequence = TERTIARY_BOOL.UNSET;
     private TERTIARY_BOOL isMultiLingual = TERTIARY_BOOL.UNSET;

@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.structureparser.manager.parsing.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.apache.xmlbeans.XmlException;
 import org.sdmx.resources.sdmxml.schemas.v20.message.QueryMessageDocument;
 import org.sdmx.resources.sdmxml.schemas.v21.message.GenericDataQueryDocument;
@@ -68,7 +68,7 @@ import java.util.Map;
  */
 public class DataQueryParseManagerImpl implements DataQueryParseManager {
     private final DataQueryBuilder dataQueryBuilder = new DataQueryBuilderImpl();
-    private Logger log = LogManager.getLogger(DataQueryParseManagerImpl.class);
+    private Logger log = LoggerFactory.getLogger(DataQueryParseManagerImpl.class);
 
     @Override
     public DataQuery parseRESTQuery(String query, SdmxBeanRetrievalManager beanRetrievalManager) {

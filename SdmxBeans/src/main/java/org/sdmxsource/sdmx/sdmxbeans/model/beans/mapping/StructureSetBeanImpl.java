@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.mapping;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v20.structure.StructureSetType;
 import org.sdmx.resources.sdmxml.schemas.v21.structure.*;
 import org.sdmxsource.sdmx.api.constants.ExceptionCode;
@@ -54,7 +54,7 @@ import java.util.Set;
  */
 public class StructureSetBeanImpl extends MaintainableBeanImpl implements StructureSetBean {
     private static final long serialVersionUID = 1L;
-    private static Logger LOG = LogManager.getLogger(StructureSetBeanImpl.class);
+    private static Logger LOG = LoggerFactory.getLogger(StructureSetBeanImpl.class);
     private RelatedStructuresBean relatedStructures;
     private List<StructureMapBean> structureMapList = new ArrayList<StructureMapBean>();
     private List<CodelistMapBean> codelistMapList = new ArrayList<CodelistMapBean>();

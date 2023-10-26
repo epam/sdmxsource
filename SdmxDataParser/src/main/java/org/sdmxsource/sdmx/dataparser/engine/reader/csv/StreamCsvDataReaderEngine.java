@@ -3,8 +3,8 @@ package org.sdmxsource.sdmx.dataparser.engine.reader.csv;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL;
 import org.sdmxsource.sdmx.api.engine.DataReaderEngine;
 import org.sdmxsource.sdmx.api.exception.SdmxSemmanticException;
@@ -44,7 +44,7 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
      * The constant EMPTY_STRING.
      */
     public static final String EMPTY_STRING = "";
-    private static final Logger LOG = LogManager.getLogger(StreamCsvDataReaderEngine.class);
+    private static final Logger LOG = LoggerFactory.getLogger(StreamCsvDataReaderEngine.class);
     /**
      * The Annotations.
      */
@@ -175,7 +175,7 @@ public class StreamCsvDataReaderEngine extends AbstractDataReaderEngine {
 
             readNextRow();
         } catch (IOException | CsvValidationException e) {
-            LOG.error(e);
+            LOG.error("Error occurred: {}", e.getMessage(), e);
             reader = null;
         }
     }

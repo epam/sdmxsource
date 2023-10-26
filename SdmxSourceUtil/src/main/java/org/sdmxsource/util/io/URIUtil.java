@@ -27,8 +27,8 @@
  ******************************************************************************/
 package org.sdmxsource.util.io;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.sdmxsource.util.ObjectUtil;
 import org.sdmxsource.util.log.LoggingUtil;
 import org.springframework.core.io.ClassPathResource;
@@ -45,7 +45,7 @@ import java.util.*;
  */
 public class URIUtil {
     //SAME FOR ALL INSTANCES
-    private static Logger log = LogManager.getLogger(URIUtil.class);
+    private static Logger log = LoggerFactory.getLogger(URIUtil.class);
     private static URIUtil TEMPORARY_URI_UTIL = new URIUtil("resources/streams/tmp", "tmpFile", 1440000, true); //DELETE FILES ONE DAY OLD
     private static Set<String> uris = new HashSet<String>();
 
