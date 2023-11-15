@@ -415,8 +415,6 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
         for (AttributeBean attribute : dsd.getSeriesAttributes(dimensionAtObservation)) {
             ComponentSuperBean attrSb = currentDSDSuperBean.getComponentById(attribute.getId());
             writeComponent(attrSb, -1);
-
-
         }
         jsonGenerator.writeEndArray(); //End series array
 
