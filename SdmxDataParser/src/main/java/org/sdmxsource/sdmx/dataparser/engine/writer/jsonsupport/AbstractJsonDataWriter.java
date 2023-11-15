@@ -2,6 +2,8 @@ package org.sdmxsource.sdmx.dataparser.engine.writer.jsonsupport;
 
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
+import org.apache.commons.collections4.CollectionUtils;
+import org.sdmxsource.sdmx.api.model.superbeans.datastructure.AttributeSuperBean;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
@@ -320,6 +322,21 @@ public abstract class AbstractJsonDataWriter extends DatasetInfoDataWriterEngine
             jsonGenerator.writeStringField("role", "time");
         } else {
             jsonGenerator.writeNullField("role");
+        }
+
+        if (component instanceof AttributeSuperBean) {
+            AttributeSuperBean asAttribute = (AttributeSuperBean) component;
+            final List<String> dimensionReferences = asAttribute.getDimensionReferences();
+            if (CollectionUtils.isNotEmpty(dimensionReferences)) {
+                jsonGenerator.writeFieldName("relationship");
+                jsonGenerator.writeStartObject();
+                jsonGenerator.writeArrayFieldStart("dimensions");
+                for (String dimensionReference : dimensionReferences) {
+                    jsonGenerator.writeString(dimensionReference);
+                }
+                jsonGenerator.writeEndArray();
+                jsonGenerator.writeEndObject();
+            }
         }
 
         LOG.debug("[values]");
