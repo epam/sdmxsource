@@ -32,6 +32,7 @@ import org.sdmxsource.util.ObjectUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The type Abstract json data writer.
@@ -151,7 +152,7 @@ public abstract class AbstractJsonDataWriter extends DatasetInfoDataWriterEngine
             LOG.debug("[attributes]");
             jsonGenerator.writeArrayFieldStart("attributes");
             for (KeyValue dsAttr : datasetAttributes) {
-                jsonGenerator.writeNumber(super.getReportedIndex(dsAttr.getConcept(), dsAttr.getCode()));
+                jsonGenerator.writeString(toStringValue(dsAttr.getConcept(), dsAttr.getCode()));
             }
             LOG.debug("[/attributes]");
             jsonGenerator.writeEndArray();
@@ -161,18 +162,12 @@ public abstract class AbstractJsonDataWriter extends DatasetInfoDataWriterEngine
     @Override
     protected void writeKey(Keyable key) {
         super.writeKey(key);
-        StringBuilder sb = new StringBuilder();
-
-        String delimiter = "";
-        for (KeyValue kv : key.getKey()) {
-            int currentIndex = getReportedIndex(kv.getConcept(), kv.getCode());
-            sb.append(delimiter + currentIndex);
-            delimiter = ":";
-        }
         if (currentKey != null) {
-            prevKey = currentKey.toString();
+            prevKey = currentKey;
         }
-        currentKey = sb.toString();
+        currentKey = key.getKey().stream()
+            .map(keyValue -> toStringValue(keyValue.getConcept(), keyValue.getCode()))
+            .collect(Collectors.joining(":"));
     }
 
 

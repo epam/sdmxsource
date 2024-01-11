@@ -1,9 +1,12 @@
 package org.sdmxsource.sdmx.dataparser.engine.writer.jsonsupport;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -22,11 +25,8 @@ import org.sdmxsource.sdmx.api.model.superbeans.codelist.CodelistSuperBean;
 import org.sdmxsource.sdmx.api.model.superbeans.datastructure.DimensionSuperBean;
 import org.sdmxsource.sdmx.util.date.DateUtil;
 import org.sdmxsource.util.ObjectUtil;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The type Series data writer.
@@ -167,8 +167,7 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
                 if (kv == null) {
                     jsonGenerator.writeNull();
                 } else {
-                    int reportedIndex = getReportedIndex(kv.getConcept(), kv.getCode());
-                    jsonGenerator.writeNumber(reportedIndex);
+                    jsonGenerator.writeString(toStringValue(kv.getConcept(), kv.getCode()));
                 }
             }
             LOG.debug("[/attributes]");
@@ -222,30 +221,25 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
             jsonGenerator.writeString(obs.getObservationValue());
 
             // Write the attribute values
-            List<Integer> obsAttrs = new ArrayList<Integer>();
+            List<String> obsAttrs = new ArrayList<>();
             List<AttributeBean> attr = currentDSDSuperBean.getBuiltFrom().getObservationAttributes(dimensionAtObservation);
             for (AttributeBean currentAttr : attr) {
                 KeyValue kv = obs.getAttribute(currentAttr.getId());
                 if (kv == null) {
                     kv = obs.getSeriesKey().getAttribute(currentAttr.getId());
                 }
-                String attrValue = kv != null ? kv.getCode() : null;
-                if (attrValue == null) {
-                    obsAttrs.add(null);
-                } else {
-                    int index = getReportedIndex(currentAttr.getId(), attrValue);
-                    obsAttrs.add(index);
-                }
+                String attrCode = kv != null ? kv.getCode() : null;
+                obsAttrs.add(toStringValue(currentAttr.getId(), attrCode));
             }
 
             // Only write out the attributes, if they are not all null and there are no annotations following
             if (ObjectUtil.validCollection(obsAttrs)) {
                 if (!ObjectUtil.isAllNulls(obsAttrs) || obs.getAnnotations().size() > 0) {
-                    for (Integer attrIdx : obsAttrs) {
-                        if (attrIdx == null) {
+                    for (String attrValue : obsAttrs) {
+                        if (attrValue == null) {
                             jsonGenerator.writeNull();
                         } else {
-                            jsonGenerator.writeNumber(attrIdx);
+                            jsonGenerator.writeString(attrValue);
                         }
                     }
                 }
@@ -404,7 +398,7 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
         LOG.debug("{attributes}");
         jsonGenerator.writeObjectFieldStart("attributes");
 
-        jsonGenerator.writeArrayFieldStart("dataset");
+        jsonGenerator.writeArrayFieldStart("dataSet");
         for (AttributeBean attribute : dsd.getDatasetAttributes()) {
             ComponentSuperBean attrSb = currentDSDSuperBean.getComponentById(attribute.getId());
             writeComponent(attrSb, -1);
