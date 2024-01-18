@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Captures all the information about a datasets series and series codes as that are being written
@@ -99,6 +100,10 @@ public abstract class DatasetInfoDataWriterEngine extends DecoratedDataWriterEng
     }
 
     private void storeComponentValue(String componentId, String componentValue) {
+        if (!shouldBeIndexed(componentId)) {
+            return;
+        }
+
         final Pair<Map<String, Integer>, List<String>> codes = codesForComponentMap.get(componentId);
 
         if (codes != null) {
@@ -112,6 +117,12 @@ public abstract class DatasetInfoDataWriterEngine extends DecoratedDataWriterEng
                 map.put(componentValue, index);
             }
         }
+    }
+
+    protected boolean shouldBeIndexed(String componentId) {
+        return currentDSDSuperBean.getCodelistByComponentId(componentId) != null
+            || Objects.equals(dimensionAtObservation, componentId)
+            || DimensionBean.TIME_DIMENSION_FIXED_ID.equals(componentId);
     }
 
     /**
@@ -143,6 +154,14 @@ public abstract class DatasetInfoDataWriterEngine extends DecoratedDataWriterEng
     public int getReportedIndex(String concept, String code) {
         final Integer index = codesForComponentMap.get(concept).getLeft().get(code);
         return (index == null) ? -1 : index;
+    }
+
+    public String toStringValue(String concept, String code) {
+        if (code == null) {
+            return null;
+        }
+        int index = getReportedIndex(concept, code);
+        return index == -1 ? code : Integer.toString(index);
     }
 }
 

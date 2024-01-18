@@ -1,0 +1,275 @@
+{
+  "header": {
+    "id": "266fef6f-f30a-44b5-994c-d0c98257d210",
+    "prepared": "2024-01-12T08:29:48",
+    "test": false,
+    "sender": {
+      "id": "unknown",
+      "name": "unknown"
+    }
+  },
+  "dataSets": [
+    {
+      "action": "Information",
+      "attributes": [
+        "dataset attribute"
+      ],
+      "series": {
+        "CPI:c_1:ca_1:i_1:0": {
+          "attributes": [
+            "series1 comment",
+            "series1 status",
+            null,
+            null,
+            null
+          ],
+          "observations": {
+            "0": [
+              "11",
+              "observation1 comment",
+              "observation1 status",
+              null,
+              null,
+              null
+            ]
+          }
+        },
+        "CPI:c_2:ca_1:i_2:1": {
+          "attributes": [
+            "series2 comment",
+            "series2 status",
+            null,
+            null,
+            null
+          ],
+          "observations": {
+            "1": [
+              "21"
+            ]
+          }
+        },
+        "CPI:c_3:ca_1:i_2:0": {
+          "attributes": [
+            "series3 comment",
+            "series3 status",
+            null,
+            null,
+            null
+          ],
+          "observations": {
+            "2": [
+              "31"
+            ],
+            "3": [
+              "32"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "structure": {
+    "name": "simple df",
+    "description": null,
+    "dimensions": {
+      "dataset": [],
+      "series": [
+        {
+          "id": "DATA_DOMAIN",
+          "name": "DATA_DOMAIN",
+          "keyPosition": 0,
+          "role": null,
+          "values": []
+        },
+        {
+          "id": "COUNTRY",
+          "name": "COUNTRY",
+          "keyPosition": 1,
+          "role": null,
+          "values": []
+        },
+        {
+          "id": "COUNTERPART_AREA",
+          "name": "COUNTERPART_AREA",
+          "keyPosition": 2,
+          "role": null,
+          "values": []
+        },
+        {
+          "id": "INDICATOR",
+          "name": "INDICATOR",
+          "keyPosition": 3,
+          "role": null,
+          "values": []
+        },
+        {
+          "id": "FREQ",
+          "name": "Frequency",
+          "keyPosition": 4,
+          "role": null,
+          "values": [
+            {
+              "id": "A",
+              "name": "Annual"
+            },
+            {
+              "id": "Q",
+              "name": "Quarterly"
+            }
+          ]
+        }
+      ],
+      "observation": [
+        {
+          "id": "TIME_PERIOD",
+          "name": "Time period",
+          "keyPosition": 5,
+          "role": "time",
+          "values": [
+            {
+              "start": "2001-01-01T00:00:00",
+              "end": "2001-12-31T23:59:59",
+              "id": "2001",
+              "name": "2001"
+            },
+            {
+              "start": "2001-01-01T00:00:00",
+              "end": "2001-03-31T23:59:59",
+              "id": "2001-Q1",
+              "name": "2001-Q1"
+            },
+            {
+              "start": "2002-01-01T00:00:00",
+              "end": "2002-12-31T23:59:59",
+              "id": "2002",
+              "name": "2002"
+            },
+            {
+              "start": "2003-01-01T00:00:00",
+              "end": "2003-12-31T23:59:59",
+              "id": "2003",
+              "name": "2003"
+            }
+          ]
+        }
+      ]
+    },
+    "attributes": {
+      "dataSet": [
+        {
+          "id": "A0",
+          "name": "DATASET_COMMENT_META",
+          "role": null,
+          "values": []
+        }
+      ],
+      "series": [
+        {
+          "id": "COMMENT",
+          "name": "COMMENT",
+          "role": null,
+          "relationship": {
+            "dimensions": [
+              "DATA_DOMAIN",
+              "COUNTRY",
+              "COUNTERPART_AREA",
+              "INDICATOR",
+              "FREQ"
+            ]
+          },
+          "values": []
+        },
+        {
+          "id": "STATUS",
+          "name": "STATUS",
+          "role": null,
+          "relationship": {
+            "dimensions": [
+              "DATA_DOMAIN",
+              "COUNTRY",
+              "COUNTERPART_AREA",
+              "INDICATOR",
+              "FREQ"
+            ]
+          },
+          "values": []
+        },
+        {
+          "id": "UPDATE_DATE",
+          "name": "UPDATE_DATE",
+          "role": null,
+          "relationship": {
+            "dimensions": [
+              "DATA_DOMAIN",
+              "COUNTRY",
+              "COUNTERPART_AREA",
+              "INDICATOR",
+              "FREQ"
+            ]
+          },
+          "values": []
+        },
+        {
+          "id": "A1",
+          "name": "GROUP_COMMENT_META",
+          "role": null,
+          "relationship": {
+            "dimensions": [
+              "DATA_DOMAIN",
+              "COUNTRY",
+              "COUNTERPART_AREA"
+            ]
+          },
+          "values": []
+        },
+        {
+          "id": "A2",
+          "name": "SERIES_COMMENT_META",
+          "role": null,
+          "relationship": {
+            "dimensions": [
+              "DATA_DOMAIN",
+              "COUNTRY",
+              "COUNTERPART_AREA",
+              "INDICATOR",
+              "FREQ"
+            ]
+          },
+          "values": []
+        }
+      ],
+      "observation": [
+        {
+          "id": "OBS_COMMENT",
+          "name": "OBS_COMMENT",
+          "role": null,
+          "values": []
+        },
+        {
+          "id": "OBS_STATUS",
+          "name": "OBS_STATUS",
+          "role": null,
+          "values": []
+        },
+        {
+          "id": "OBS_UPDATE_DATE",
+          "name": "OBS_UPDATE_DATE",
+          "role": null,
+          "values": []
+        },
+        {
+          "id": "UNIT",
+          "name": "UNIT",
+          "role": null,
+          "values": []
+        },
+        {
+          "id": "A3",
+          "name": "OBS_COMMENT_META",
+          "role": null,
+          "values": []
+        }
+      ]
+    }
+  }
+}

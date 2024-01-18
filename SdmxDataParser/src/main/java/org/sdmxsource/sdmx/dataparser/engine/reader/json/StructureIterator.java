@@ -1,5 +1,9 @@
 package org.sdmxsource.sdmx.dataparser.engine.reader.json;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
 import org.sdmxsource.sdmx.api.exception.SdmxSemmanticException;
 import org.sdmxsource.sdmx.api.model.beans.base.AnnotationBean;
@@ -8,20 +12,14 @@ import org.sdmxsource.sdmx.api.model.data.KeyValue;
 import org.sdmxsource.sdmx.api.model.header.DatasetStructureReferenceBean;
 import org.sdmxsource.sdmx.dataparser.model.JsonReader;
 import org.sdmxsource.sdmx.dataparser.model.JsonReader.Iterator;
-import org.sdmxsource.sdmx.sdmxbeans.model.data.KeyValueImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.header.DatasetStructureReferenceBeanImpl;
 import org.sdmxsource.sdmx.util.beans.reference.StructureReferenceBeanImpl;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The type Structure iterator.
  */
 public class StructureIterator extends AbstractIterator {
-    private List<ComponentIterator> componentIterators = new ArrayList<StructureIterator.ComponentIterator>();
+    private final List<ComponentIterator> componentIterators = new ArrayList<>();
     private LEVEL currentLevel = null;
     private String uri;
     private boolean inAttributes = false;
@@ -45,11 +43,11 @@ public class StructureIterator extends AbstractIterator {
         return new JsonDatasetStructuralMetadata();
     }
 
-    private List<Map<Integer, KeyValue>> getList(LEVEL lvl) {
-        List<Map<Integer, KeyValue>> returnList = new ArrayList<Map<Integer, KeyValue>>();
-        for (ComponentIterator comp : componentIterators) {
-            if (comp.getLevel() == lvl) {
-                returnList.add(comp.componentMap);
+    private List<Component> getList(LEVEL lvl) {
+        List<Component> returnList = new ArrayList<>();
+        for (ComponentIterator iterator : componentIterators) {
+            if (iterator.getLevel() == lvl) {
+                returnList.add(iterator.component);
             }
         }
         return returnList;
@@ -140,12 +138,12 @@ public class StructureIterator extends AbstractIterator {
      */
     public class JsonDatasetStructuralMetadata {
         private DatasetStructureReferenceBean datasetStructureReference;
-        private List<AnnotationBean> annotationList;
-        private List<Map<Integer, KeyValue>> datasetAttributeList;
-        private List<Map<Integer, KeyValue>> seriesAttributeList;
-        private List<Map<Integer, KeyValue>> obsAttributeList;
-        private List<Map<Integer, KeyValue>> seriesList;  //Series keys
-        private List<String> obsIds;  //All the concepts at the observation level
+        private final List<AnnotationBean> annotationList;
+        private final List<Component> datasetAttributeList;
+        private final List<Component> seriesAttributeList;
+        private final List<Component> obsAttributeList;
+        private List<Component> seriesList;  //Series keys
+        private final List<String> obsIds;  //All the concepts at the observation level
         private String dimensionAtObservation;
 
 
@@ -159,36 +157,30 @@ public class StructureIterator extends AbstractIterator {
             obsAttributeList = getList(LEVEL.OBS_ATTR);
             seriesList = getList(LEVEL.SERIES);
 
-            Map<Integer, KeyValue> observationMap = null;
-            if (seriesList.size() == 0) {
+            Component observationComponent = null;
+            if (seriesList.isEmpty()) {
                 //Flat - Observation Concept is last one in list
                 seriesList = getList(LEVEL.OBS);
-                observationMap = seriesList.get(seriesList.size() - 1);
+                observationComponent = seriesList.get(seriesList.size() - 1);
 
             } else {
-                ComponentIterator observationComp = null;
-                for (ComponentIterator comp : componentIterators) {
-                    if (comp.getLevel() == LEVEL.OBS) {
-                        observationComp = comp;
+                ComponentIterator observationCompIterator = null;
+                for (ComponentIterator iterator : componentIterators) {
+                    if (iterator.getLevel() == LEVEL.OBS) {
+                        observationCompIterator = iterator;
                         break;
                     }
                 }
-                if (observationComp != null) {
-                    observationMap = observationComp.componentMap;
+                if (observationCompIterator != null) {
+                    observationComponent = observationCompIterator.component;
                 }
             }
-            if (observationMap == null) {
+            if (observationComponent == null) {
                 throw new SdmxSemmanticException("Can not read JSON Data Message, missing Observation information in the Structure part of the message");
             }
-            obsIds = new ArrayList<String>();
-            for (int i = 0; i < Integer.MAX_VALUE; i++) {
-                KeyValue kv = observationMap.get(i);
-                if (kv == null) {
-                    break;
-                }
-                dimensionAtObservation = kv.getConcept();
-                obsIds.add(kv.getCode());
-            }
+            dimensionAtObservation = observationComponent.id;
+            obsIds = observationComponent.values;
+
 
             if (uri != null) {
                 String[] uriSplit = uri.split("/");
@@ -226,7 +218,7 @@ public class StructureIterator extends AbstractIterator {
          *
          * @return the dataset attribute list
          */
-        public List<Map<Integer, KeyValue>> getDatasetAttributeList() {
+        public List<Component> getDatasetAttributeList() {
             return datasetAttributeList;
         }
 
@@ -235,7 +227,7 @@ public class StructureIterator extends AbstractIterator {
          *
          * @return the series attribute list
          */
-        public List<Map<Integer, KeyValue>> getSeriesAttributeList() {
+        public List<Component> getSeriesAttributeList() {
             return seriesAttributeList;
         }
 
@@ -244,7 +236,7 @@ public class StructureIterator extends AbstractIterator {
          *
          * @return the obs attribute list
          */
-        public List<Map<Integer, KeyValue>> getObsAttributeList() {
+        public List<Component> getObsAttributeList() {
             return obsAttributeList;
         }
 
@@ -253,7 +245,7 @@ public class StructureIterator extends AbstractIterator {
          *
          * @return the series list
          */
-        public List<Map<Integer, KeyValue>> getSeriesList() {
+        public List<Component> getSeriesList() {
             return seriesList;
         }
 
@@ -276,13 +268,11 @@ public class StructureIterator extends AbstractIterator {
         }
     }
 
-    private class ComponentIterator extends AbstractIterator {
-        private LEVEL level;
-        private String id;
-        private Map<Integer, KeyValue> componentMap = new HashMap<Integer, KeyValue>();
+    private static class ComponentIterator extends AbstractIterator {
+        private final LEVEL level;
+        private Component component;
 
         private boolean inValues;
-        private int pos;
 
         /**
          * Instantiates a new Component iterator.
@@ -299,11 +289,10 @@ public class StructureIterator extends AbstractIterator {
         public void next(String fieldName) {
             if (inValues) {
                 if ("id".equals(fieldName)) {
-                    componentMap.put(pos, new KeyValueImpl(jReader.getValueAsString(), this.id));
-                    pos++;
+                    component.getValues().add(jReader.getValueAsString());
                 }
             } else if ("id".equals(fieldName)) {
-                this.id = jReader.getValueAsString();
+                this.component = new Component(jReader.getValueAsString(), new ArrayList<>());
             }
         }
 
@@ -324,4 +313,42 @@ public class StructureIterator extends AbstractIterator {
             return level;
         }
     }
+
+    static class Component {
+
+        private final String id;
+        private final List<String> values;
+
+
+        public Component(String id, List<String> values) {
+            this.id = id;
+            this.values = values;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public List<String> getValues() {
+            return values;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof Component)) {
+                return false;
+            }
+            Component that = (Component) o;
+            return Objects.equals(id, that.id) && Objects.equals(values, that.values);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(id, values);
+        }
+    }
+
 }

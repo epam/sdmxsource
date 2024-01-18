@@ -1,7 +1,12 @@
 package org.sdmxsource.sdmx.dataparser.engine.reader.json;
 
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.lang3.ArrayUtils;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.constants.DATASET_POSITION;
 import org.sdmxsource.sdmx.api.engine.DataReaderEngine;
@@ -17,17 +22,16 @@ import org.sdmxsource.sdmx.api.model.data.Observation;
 import org.sdmxsource.sdmx.api.model.header.DatasetStructureReferenceBean;
 import org.sdmxsource.sdmx.api.util.ReadableDataLocation;
 import org.sdmxsource.sdmx.dataparser.engine.reader.AbstractDataReaderEngine;
+import org.sdmxsource.sdmx.dataparser.engine.reader.json.StructureIterator.Component;
 import org.sdmxsource.sdmx.dataparser.engine.reader.json.StructureIterator.JsonDatasetStructuralMetadata;
 import org.sdmxsource.sdmx.dataparser.model.JsonReader;
+import org.sdmxsource.sdmx.sdmxbeans.model.data.KeyValueImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.data.KeyableImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.data.ObservationImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.header.DatasetHeaderBeanImpl;
 import org.sdmxsource.sdmx.util.date.DateUtil;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The type Json data reader engine.
@@ -223,7 +227,7 @@ public class JsonDataReaderEngine extends AbstractDataReaderEngine {
 								504 attached at the data set level. Example:
 								505 "attributes": [ 0, null, 0 ]
 							 */
-                            List<Integer> datasetAttributeLinks = jReader.readIntegerArray();
+                            var datasetAttributeLinks = jReader.readStringArray();
                             datasetAttributes = decode(datasetAttributeLinks, jsonDatasetStructuralMetadata.getDatasetAttributeList());
                         }
                     } else {
@@ -352,24 +356,25 @@ public class JsonDataReaderEngine extends AbstractDataReaderEngine {
      * For Series observations, the reader will be poistioned at the start of the
      */
     protected Observation lazyLoadObservation() {
-        String obsValue = null;
-        List<KeyValue> attributes = new ArrayList<KeyValue>();
-        List<AnnotationBean> annotations = new ArrayList<AnnotationBean>();
-        List<Integer> obsAttributes = new ArrayList<Integer>();
+        String obsValue;
+        List<KeyValue> attributes;
+        List<AnnotationBean> annotations = new ArrayList<>();
+        List<String> obsAttributes = new ArrayList<>();
         for (int i = 1; i < obsValues.size(); i++) {
             String obsVal = obsValues.get(i);
             if (obsVal == null) {
                 continue;
             }
-            Integer asInt = Integer.parseInt(obsVal);
             if (jsonDatasetStructuralMetadata.getObsAttributeList().size() < i) {
+                int asInt = Integer.parseInt(obsVal);
                 if (jsonDatasetStructuralMetadata.getAnnotationList().size() < asInt + 1) {
-                    LOG.warn("Can not read annotation at index '" + asInt + "' only '" + jsonDatasetStructuralMetadata.getAnnotationList().size() + "' annotations have been reported, so the reported index does not exist");
+                    LOG.warn("Can not read annotation at index '" + asInt + "' only '" + jsonDatasetStructuralMetadata.getAnnotationList().size()
+                        + "' annotations have been reported, so the reported index does not exist");
                 } else {
                     annotations.add(jsonDatasetStructuralMetadata.getAnnotationList().get(asInt));
                 }
             } else {
-                obsAttributes.add(asInt);
+                obsAttributes.add(obsVal);
             }
         }
         attributes = decode(obsAttributes, jsonDatasetStructuralMetadata.getObsAttributeList());
@@ -394,7 +399,7 @@ public class JsonDataReaderEngine extends AbstractDataReaderEngine {
                     if ("annotations".equals(jReader.getCurrentFieldName())) {
                         annotations = decodeAnnotations(jReader.readIntegerArray());
                     } else if ("attributes".equals(jReader.getCurrentFieldName())) {
-                        attributes = decode(jReader.readIntegerArray(), jsonDatasetStructuralMetadata.getSeriesAttributeList());
+                        attributes = decode(jReader.readStringArray(), jsonDatasetStructuralMetadata.getSeriesAttributeList());
                     }
                 } else if (jReader.isStartObject()) {
                     if (jReader.getCurrentFieldName().equals("observations")) {
@@ -419,26 +424,33 @@ public class JsonDataReaderEngine extends AbstractDataReaderEngine {
         return annList.toArray(returnArray);
     }
 
-    private List<KeyValue> decode(List<Integer> encodedValues, List<Map<Integer, KeyValue>> decodeList) {
-        List<KeyValue> returnList = new ArrayList<KeyValue>();
+    private List<KeyValue> decode(List<String> encodedValues, List<Component> structureComponents) {
+        List<KeyValue> result = new ArrayList<>();
         for (int i = 0; i < encodedValues.size(); i++) {
-            Integer val = encodedValues.get(i);
-            if (val != null && decodeList.size() > i) {
-                KeyValue decoded = decodeList.get(i).get(val);
-                if (decoded != null) {
-                    returnList.add(decoded);
-                }
+            var encodedValue = encodedValues.get(i);
+            if (encodedValue == null) {
+                continue;
             }
+
+            var component = structureComponents.get(i);
+            var values = component.getValues();
+            String code = values.isEmpty()
+                       ? encodedValue
+                       : values.get(Integer.parseInt(encodedValue));
+            if (code == null) {
+                continue;
+            }
+
+            result.add(new KeyValueImpl(code, component.getId()));
         }
-        return returnList;
+        return result;
     }
 
-    private List<KeyValue> decode(String[] encodedValues, List<Map<Integer, KeyValue>> decodeList) {
-        List<Integer> l = new ArrayList<Integer>();
-        for (String str : encodedValues) {
-            l.add(Integer.parseInt(str));
+    private List<KeyValue> decode(String[] encodedValues, List<Component> decodeList) {
+        if (ArrayUtils.isEmpty(encodedValues)) {
+            return Collections.emptyList();
         }
-        return decode(l, decodeList);
+        return decode(Arrays.asList(encodedValues), decodeList);
     }
 
     @Override

@@ -164,8 +164,7 @@ public class FlatDataWriter extends AbstractJsonDataWriter {
                 if (attrValue == null) {
                     jsonGenerator.writeNull();
                 } else {
-                    int idx = getReportedIndex(attr.getId(), attrValue);
-                    jsonGenerator.writeNumber(idx);
+                    jsonGenerator.writeString(toStringValue(attr.getId(), attrValue));
                 }
             }
 
@@ -232,7 +231,7 @@ public class FlatDataWriter extends AbstractJsonDataWriter {
         LOG.debug("{attributes}");
         jsonGenerator.writeObjectFieldStart("attributes");
 
-        jsonGenerator.writeArrayFieldStart("dataset");
+        jsonGenerator.writeArrayFieldStart("dataSet");
         for (AttributeBean attribute : dsd.getDatasetAttributes()) {
             ComponentSuperBean attrSb = currentDSDSuperBean.getComponentById(attribute.getId());
             writeComponent(attrSb, -1);
