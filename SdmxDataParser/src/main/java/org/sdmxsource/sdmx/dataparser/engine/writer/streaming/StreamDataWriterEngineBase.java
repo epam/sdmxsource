@@ -40,7 +40,6 @@ import org.sdmxsource.sdmx.api.model.beans.registry.ProvisionAgreementBean;
 import org.sdmxsource.sdmx.api.model.header.DatasetHeaderBean;
 import org.sdmxsource.sdmx.api.model.header.HeaderBean;
 import org.sdmxsource.sdmx.api.model.header.PartyBean;
-import org.sdmxsource.sdmx.sdmxbeans.model.header.DatasetHeaderBeanImpl;
 import org.sdmxsource.sdmx.util.beans.ConceptRefUtil;
 import org.sdmxsource.sdmx.util.date.DateUtil;
 import org.sdmxsource.util.ObjectUtil;
@@ -340,7 +339,9 @@ public abstract class StreamDataWriterEngineBase implements DataWriterEngine {
 
             closeDataset();
 
-            writeDatasetHeader(dataSetInfo, header.getAction());
+            dataSetInfo = new DataSetInfo(dataSetInfo.provision, dataSetInfo.dataflow, dataSetInfo.dsd, header);
+
+            writeDatasetHeader(dataSetInfo);
             currentPosition = POSITION.DATASET;
 
         } catch (Throwable e) {
@@ -657,10 +658,9 @@ public abstract class StreamDataWriterEngineBase implements DataWriterEngine {
      * Writes out the dataset header to the writer
      *
      * @param dataSetInfo contains base information about dataset
-     * @param datasetAction contains action performed on dataset
      * @throws XMLStreamException the xml stream exception
      */
-    protected void writeDatasetHeader(DataSetInfo dataSetInfo, DATASET_ACTION datasetAction) throws XMLStreamException {
+    protected void writeDatasetHeader(DataSetInfo dataSetInfo) throws XMLStreamException {
 
         Namespace datasetNamespace = this.dataSetInfo.datasetNamespace;
         if (!isTwoPointOne() && dataFormat == BASE_DATA_FORMAT.GENERIC) {
@@ -687,8 +687,6 @@ public abstract class StreamDataWriterEngineBase implements DataWriterEngine {
         }
         if (dataSetInfo.headerBean != null) {
             DatasetHeaderBean datasetHeader = dataSetInfo.headerBean;
-            ((DatasetHeaderBeanImpl) datasetHeader).setAction(datasetAction);
-
             if (ObjectUtil.validString(datasetHeader.getPublicationPeriod())) {
                 writer.writeAttribute("publicationPeriod", datasetHeader.getPublicationPeriod());
             }
