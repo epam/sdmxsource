@@ -331,6 +331,7 @@ public abstract class StreamDataWriterEngineBase implements DataWriterEngine {
                         || !dataSetInfo.dsd.deepEquals(dsd, true)) {
                     throw new IllegalArgumentException("Datasets with different structure not supported.");
                 }
+                dataSetInfo = new DataSetInfo(dataSetInfo.provision, dataSetInfo.dataflow, dataSetInfo.dsd, header);
             } else {
                 initEngine(provision, dataflowBean, dsd, header);
                 writeMessageTag();
@@ -338,8 +339,6 @@ public abstract class StreamDataWriterEngineBase implements DataWriterEngine {
             }
 
             closeDataset();
-
-            dataSetInfo = new DataSetInfo(dataSetInfo.provision, dataSetInfo.dataflow, dataSetInfo.dsd, header);
 
             writeDatasetHeader(dataSetInfo);
             currentPosition = POSITION.DATASET;
