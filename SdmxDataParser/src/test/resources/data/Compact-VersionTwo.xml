@@ -2772,4 +2772,30 @@
             <ns1:Obs TIME_PERIOD="2013-05" OBS_VALUE="99" />
         </ns1:Series>
     </ns1:DataSet>
+    <ns1:DataSet>
+        <ns1:Series FREQ="Q" ADJUSTMENT="N" STS_ACTIVITY="B" DECIMALS="2">
+            <ns1:Obs TIME_PERIOD="2024-Q1" OBS_VALUE="76"/>
+            <ns1:Obs TIME_PERIOD="2024-Q2" OBS_VALUE="77"/>
+            <ns1:Obs TIME_PERIOD="2024-Q3" OBS_VALUE="78"/>
+            <ns1:Obs TIME_PERIOD="2024-Q4" OBS_VALUE="79"/>
+            <ns1:Obs TIME_PERIOD="2025-Q1" OBS_VALUE="80"/>
+            <ns1:Obs TIME_PERIOD="2025-Q2" OBS_VALUE="81"/>
+            <ns1:Obs TIME_PERIOD="2025-Q3" OBS_VALUE="82"/>
+            <ns1:Obs TIME_PERIOD="2025-Q4" OBS_VALUE="83"/>
+        </ns1:Series>
+        <ns1:Series FREQ="Q" ADJUSTMENT="N" STS_ACTIVITY="C" DECIMALS="3">
+            <ns1:Obs TIME_PERIOD="2026-Q1" OBS_VALUE="84"/>
+            <ns1:Obs TIME_PERIOD="2026-Q2" OBS_VALUE="85"/>
+            <ns1:Obs TIME_PERIOD="2026-Q3" OBS_VALUE="86"/>
+            <ns1:Obs TIME_PERIOD="2026-Q4" OBS_VALUE="87"/>
+            <ns1:Obs TIME_PERIOD="2027-Q1" OBS_VALUE="88"/>
+            <ns1:Obs TIME_PERIOD="2027-Q2" OBS_VALUE="89"/>
+            <ns1:Obs TIME_PERIOD="2027-Q3" OBS_VALUE="90"/>
+            <ns1:Obs TIME_PERIOD="2027-Q4" OBS_VALUE="91"/>
+            <ns1:Obs TIME_PERIOD="2028-Q1" OBS_VALUE="92"/>
+            <ns1:Obs TIME_PERIOD="2028-Q2" OBS_VALUE="93"/>
+            <ns1:Obs TIME_PERIOD="2028-Q3" OBS_VALUE="94"/>
+            <ns1:Obs TIME_PERIOD="2028-Q4" OBS_VALUE="95"/>
+        </ns1:Series>
+    </ns1:DataSet>
 </CompactData>
