@@ -1,5 +1,6 @@
 package org.sdmxsource.sdmx.dataparser.test;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -58,7 +59,7 @@ public class DataReaderEngineTest {
         var sourceData = factory.getReadableDataLocation(new File(file));
         var dataReaderEngine = new CompactDataReaderEngine(sourceData, dsd, null, null);
 
-        validateDataReaderEngine(dataReaderEngine);
+        validateDataReaderEngine(dataReaderEngine, true);
     }
 
     @ParameterizedTest
@@ -69,7 +70,7 @@ public class DataReaderEngineTest {
         var sourceData = factory.getReadableDataLocation(new File(file));
         var dataReaderEngine = new GenericDataReaderEngine(sourceData, dsd, null, null);
 
-        validateDataReaderEngine(dataReaderEngine);
+        validateDataReaderEngine(dataReaderEngine, true);
     }
 
     @ParameterizedTest
@@ -80,7 +81,7 @@ public class DataReaderEngineTest {
         DataReaderManager manager = new DataReaderManagerImpl(new DataReaderFactory[0]);
         var dataReaderEngine = manager.getDataReaderEngine(sourceData, dsd, null);
 
-        validateDataReaderEngine(dataReaderEngine);
+        validateDataReaderEngine(dataReaderEngine, false);
     }
 
     @ParameterizedTest
@@ -92,7 +93,7 @@ public class DataReaderEngineTest {
         var sourceData = factory.getReadableDataLocation(new File(file));
         var dataReaderEngine = sdmxDataReaderFactory.getDataReaderEngine(sourceData, dsd, null, null);
 
-        validateDataReaderEngine(dataReaderEngine);
+        validateDataReaderEngine(dataReaderEngine, false);
     }
 
     @ParameterizedTest
@@ -143,7 +144,16 @@ public class DataReaderEngineTest {
         assertEquals("2005", currentObs.getObsTime());
     }
 
-    private <T extends DataReaderEngine> void validateDataReaderEngine(T dataReaderEngine) {
+    @Test
+    public void shouldCheckCompactDataReaderAllDim() {
+        DataStructureBean dsd = buildDsd();
+        var sourceData = factory.getReadableDataLocation(new File("src/test/resources/data/Compact21-alldim.xml"));
+        var dataReaderEngine = new CompactDataReaderEngine(sourceData, dsd, null, null);
+
+        validateDataReaderEngineAllDim(dataReaderEngine);
+    }
+
+    private <T extends DataReaderEngine> void validateDataReaderEngine(T dataReaderEngine, boolean multipleDatasetWrite) {
         assertAll(
                 () -> assertNotNull(dataReaderEngine),
                 () -> assertNotNull(dataReaderEngine.getHeader()),
@@ -154,6 +164,43 @@ public class DataReaderEngineTest {
                 () -> assertEquals("N", dataReaderEngine.getCurrentKey().getKeyValue(ADJUSTMENT)),
                 () -> assertEquals("A", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
                 () -> assertEquals("2005-Q1", dataReaderEngine.getCurrentObservation().getObsTime()));
+
+        if (multipleDatasetWrite) {
+            assertAll(
+                () -> assertTrue(dataReaderEngine.moveNextDataset()),
+                () -> assertTrue(dataReaderEngine.moveNextKeyable()),
+                () -> assertTrue(dataReaderEngine.moveNextObservation()),
+                () -> assertEquals("Q", dataReaderEngine.getCurrentKey().getKeyValue(FREQ)),
+                () -> assertEquals("N", dataReaderEngine.getCurrentKey().getKeyValue(ADJUSTMENT)),
+                () -> assertEquals("B", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
+                () -> assertEquals("2024-Q1", dataReaderEngine.getCurrentObservation().getObsTime()),
+                () -> assertTrue(dataReaderEngine.moveNextKeyable()),
+                () -> assertTrue(dataReaderEngine.moveNextObservation()),
+                () -> assertEquals("Q", dataReaderEngine.getCurrentKey().getKeyValue(FREQ)),
+                () -> assertEquals("N", dataReaderEngine.getCurrentKey().getKeyValue(ADJUSTMENT)),
+                () -> assertEquals("C", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
+                () -> assertEquals("2026-Q1", dataReaderEngine.getCurrentObservation().getObsTime()));
+        }
+    }
+
+    private <T extends DataReaderEngine> void validateDataReaderEngineAllDim(T dataReaderEngine) {
+        assertAll(
+            () -> assertNotNull(dataReaderEngine),
+            () -> assertNotNull(dataReaderEngine.getHeader()),
+            () -> assertTrue(dataReaderEngine.moveNextDataset()),
+            () -> assertTrue(dataReaderEngine.moveNextKeyable()),
+            () -> assertTrue(dataReaderEngine.moveNextObservation()),
+            () -> assertEquals("Q", dataReaderEngine.getCurrentKey().getKeyValue(FREQ)),
+            () -> assertEquals("N", dataReaderEngine.getCurrentKey().getKeyValue(ADJUSTMENT)),
+            () -> assertEquals("A", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
+            () -> assertEquals("2005-Q1", dataReaderEngine.getCurrentObservation().getObsTime()),
+            () -> assertTrue(dataReaderEngine.moveNextDataset()),
+            () -> assertTrue(dataReaderEngine.moveNextKeyable()),
+            () -> assertTrue(dataReaderEngine.moveNextObservation()),
+            () -> assertEquals("Q", dataReaderEngine.getCurrentKey().getKeyValue(FREQ)),
+            () -> assertEquals("W", dataReaderEngine.getCurrentKey().getKeyValue(ADJUSTMENT)),
+            () -> assertEquals("B", dataReaderEngine.getCurrentKey().getKeyValue(STS_ACTIVITY)),
+            () -> assertEquals("2024-Q1", dataReaderEngine.getCurrentObservation().getObsTime()));
     }
 
     private DataStructureBean buildDsd() {
@@ -205,7 +252,5 @@ public class DataReaderEngineTest {
             assertEquals(expectedValue, currentObs.getCrossSectionalValue().getCode());
         }
     }
-
-
 }
 

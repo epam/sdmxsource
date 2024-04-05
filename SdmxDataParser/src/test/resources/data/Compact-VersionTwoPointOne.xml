@@ -2775,4 +2775,30 @@
             <Obs TIME_PERIOD="2013-05" OBS_VALUE="99" />
         </Series>
     </message:DataSet>
+    <message:DataSet ss:dataScope="DataStructure" xsi:type="ns1:DataSetType" ss:structureRef="TEST_TEST_DSD_1_0" xmlns:ss="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/data/structurespecific">
+        <Series FREQ="Q" ADJUSTMENT="N" STS_ACTIVITY="B" DECIMALS="2">
+            <Obs TIME_PERIOD="2024-Q1" OBS_VALUE="76"/>
+            <Obs TIME_PERIOD="2024-Q2" OBS_VALUE="77"/>
+            <Obs TIME_PERIOD="2024-Q3" OBS_VALUE="78"/>
+            <Obs TIME_PERIOD="2024-Q4" OBS_VALUE="79"/>
+            <Obs TIME_PERIOD="2025-Q1" OBS_VALUE="80"/>
+            <Obs TIME_PERIOD="2025-Q2" OBS_VALUE="81"/>
+            <Obs TIME_PERIOD="2025-Q3" OBS_VALUE="82"/>
+            <Obs TIME_PERIOD="2025-Q4" OBS_VALUE="83"/>
+        </Series>
+        <Series FREQ="Q" ADJUSTMENT="N" STS_ACTIVITY="C" DECIMALS="3">
+            <Obs TIME_PERIOD="2026-Q1" OBS_VALUE="84"/>
+            <Obs TIME_PERIOD="2026-Q2" OBS_VALUE="85"/>
+            <Obs TIME_PERIOD="2026-Q3" OBS_VALUE="86"/>
+            <Obs TIME_PERIOD="2026-Q4" OBS_VALUE="87"/>
+            <Obs TIME_PERIOD="2027-Q1" OBS_VALUE="88"/>
+            <Obs TIME_PERIOD="2027-Q2" OBS_VALUE="89"/>
+            <Obs TIME_PERIOD="2027-Q3" OBS_VALUE="90"/>
+            <Obs TIME_PERIOD="2027-Q4" OBS_VALUE="91"/>
+            <Obs TIME_PERIOD="2028-Q1" OBS_VALUE="92"/>
+            <Obs TIME_PERIOD="2028-Q2" OBS_VALUE="93"/>
+            <Obs TIME_PERIOD="2028-Q3" OBS_VALUE="94"/>
+            <Obs TIME_PERIOD="2028-Q4" OBS_VALUE="95"/>
+        </Series>
+    </message:DataSet>
 </message:StructureSpecificData>
