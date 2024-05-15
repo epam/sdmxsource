@@ -49,12 +49,16 @@ public interface MetadataTargetRegionMutableBean extends MutableBean {
      */
     String getReport();
 
+    void setReport(String report);
+
     /**
      * Gets metadata target.
      *
      * @return the metadata target
      */
     String getMetadataTarget();
+
+    void setMetadataTarget(String metadataTarget);
 
     /**
      * Returns the key values restrictions for the metadata target region
