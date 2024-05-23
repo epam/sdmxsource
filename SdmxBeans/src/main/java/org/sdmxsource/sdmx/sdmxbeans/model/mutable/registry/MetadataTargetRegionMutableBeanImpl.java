@@ -88,8 +88,18 @@ public class MetadataTargetRegionMutableBeanImpl extends MutableBeanImpl impleme
     }
 
     @Override
+    public void setReport(String report) {
+        this.report = report;
+    }
+
+    @Override
     public String getMetadataTarget() {
         return metadataTarget;
+    }
+
+    @Override
+    public void setMetadataTarget(String metadataTarget) {
+        this.metadataTarget = metadataTarget;
     }
 
     @Override
