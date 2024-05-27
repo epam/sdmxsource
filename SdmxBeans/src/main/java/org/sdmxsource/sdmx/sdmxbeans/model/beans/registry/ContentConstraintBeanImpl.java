@@ -27,6 +27,7 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.sdmxbeans.model.beans.registry;
 
+import org.sdmx.resources.sdmxml.schemas.v21.common.MetadataTargetRegionType;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.sdmx.resources.sdmxml.schemas.v21.common.ComponentValueSetType;
@@ -145,8 +146,7 @@ public class ContentConstraintBeanImpl extends ConstraintBeanImpl implements Con
             buildCubeRegions(type.getCubeRegionList());
         }
         if (ObjectUtil.validCollection(type.getMetadataTargetRegionList())) {
-            //FUNC 2.1 MetadataTarget Region
-            throw new SdmxNotImplementedException(ExceptionCode.UNSUPPORTED, "ContentConstraintBeanImpl - MetadataTargetRegionList");
+            buildMetadataTargetRegion(type.getMetadataTargetRegionList());
         }
         if (type.getReferencePeriod() != null) {
             this.referencePeriodBean = new ReferencePeriodBeanImpl(type.getReferencePeriod(), this);
@@ -188,6 +188,12 @@ public class ContentConstraintBeanImpl extends ConstraintBeanImpl implements Con
             }
             storeCubeRegion(new CubeRegionBeanImpl(cubeRegionType, negate, this), isExcluded);
         }
+    }
+
+    private void buildMetadataTargetRegion(List<MetadataTargetRegionType> metadataTargetRegionList) {
+        metadataTargetRegionList.stream()
+            .findFirst()
+            .ifPresent(metadataTargetRegionType -> this.metadataTargetRegionBean = new MetadataTargetRegionBeanImpl(metadataTargetRegionType, this));
     }
 
     @Override
