@@ -1,0 +1,587 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<mes:Structure xmlns:mes="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message" xmlns:str="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/structure" xmlns:com="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xml="http://www.w3.org/XML/1998/namespace" xsi:schemaLocation="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message ../../schemas/SDMXMessage.xsd">
+  <mes:Header>
+    <mes:ID>IDREF2563</mes:ID>
+    <mes:Test>false</mes:Test>
+    <mes:Prepared>2024-01-09T15:13:33.319346014Z</mes:Prepared>
+    <mes:Sender id="unknown"/>
+  </mes:Header>
+  <mes:Structures>
+    <str:Codelists>
+      <str:Codelist urn="urn:sdmx:org.sdmx.infomodel.codelist.Codelist=SDMX:CL_FREQ(2.0.2)" agencyID="SDMX" id="CL_FREQ" version="2.0.2" isFinal="true" isExternalReference="false" isPartial="false">
+        <com:Annotations>
+          <com:Annotation id="origin"/>
+        </com:Annotations>
+        <com:Name xml:lang="en">Frequency</com:Name>
+        <com:Description xml:lang="en">This code list provides a set of values indicating the "frequency" of the data (e.g. weekly, monthly, quarterly). The concept “frequency” may refer to various stages in the production process, e.g. data collection or data dissemination. For example, a time series could be disseminated at annual frequency but the underlying data are compiled monthly. The code list is applicable for all different uses of "frequency". This code list was formally adopted on 4 December 2013. More information about and supporting material for this code list and SDMX code lists in general (e.g. list of generic codes for expressing general concepts like "Total", "Unknown", etc.; syntaxes for the creation of further codes; general guidelines for the creation of SDMX code lists) can be found at this address: https://sdmx.org/?page_id=4345.</com:Description>
+        <str:Code id="A">
+          <com:Name xml:lang="en">Annual</com:Name>
+          <com:Description xml:lang="en">To be used for data collected or disseminated every year.</com:Description>
+        </str:Code>
+        <str:Code id="Q">
+          <com:Name xml:lang="en">Quarterly</com:Name>
+          <com:Description xml:lang="en">To be used for data collected or disseminated every quarter.</com:Description>
+        </str:Code>
+      </str:Codelist>
+    </str:Codelists>
+    <str:Concepts>
+      <str:ConceptScheme urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.ConceptScheme=AGENCY_ID:SIMPLE_CONCEPTS(1.1.0)" agencyID="AGENCY_ID" id="SIMPLE_CONCEPTS" version="1.1.0" isFinal="true" isExternalReference="false" isPartial="false">
+        <com:Annotations>
+          <com:Annotation id="origin"/>
+          <com:Annotation id="lastUpdatedAt"/>
+        </com:Annotations>
+        <com:Name xml:lang="en">SIMPLE CONCEPTS</com:Name>
+        <str:Concept id="FREQ">
+          <com:Name xml:lang="en">Frequency</com:Name>
+          <com:Description xml:lang="en">The time interval at which observations occur over a given time period.</com:Description>
+          <str:CoreRepresentation>
+            <str:Enumeration>
+              <Ref agencyID="SDMX" id="CL_FREQ" version="2.0.2" package="codelist" class="Codelist"/>
+            </str:Enumeration>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="STRING">
+          <com:Name xml:lang="en">String</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_VALUE">
+          <com:Name xml:lang="en">Observation</com:Name>
+          <com:Description xml:lang="en">The value of a particular variable at a particular period.</com:Description>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="TIME_PERIOD">
+          <com:Name xml:lang="en">Time period</com:Name>
+          <com:Description xml:lang="en">The period of time or point in time to which the measured observation refers.</com:Description>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="DATA_DOMAIN">
+          <com:Name xml:lang="en">DATA_DOMAIN</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COUNTRY">
+          <com:Name xml:lang="en">COUNTRY</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COUNTERPART_AREA">
+          <com:Name xml:lang="en">COUNTERPART_AREA</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_COMMENT">
+          <com:Name xml:lang="en">OBS_COMMENT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_STATUS">
+          <com:Name xml:lang="en">OBS_STATUS</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_UPDATE_DATE">
+          <com:Name xml:lang="en">OBS_UPDATE_DATE</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="UNIT">
+          <com:Name xml:lang="en">UNIT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COMMENT">
+          <com:Name xml:lang="en">COMMENT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="STATUS">
+          <com:Name xml:lang="en">STATUS</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="UPDATE_DATE">
+          <com:Name xml:lang="en">UPDATE_DATE</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+      </str:ConceptScheme>
+      <str:ConceptScheme urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.ConceptScheme=AGENCY_ID:SIMPLE_CONCEPTS(1.2.0)" agencyID="AGENCY_ID" id="SIMPLE_CONCEPTS" version="1.2.0" isFinal="true" isExternalReference="false" isPartial="false">
+        <com:Annotations>
+          <com:Annotation id="origin"/>
+          <com:Annotation id="parentUrn">
+            <com:AnnotationText xml:lang="en">urn:sdmx:org.sdmx.infomodel.conceptscheme.ConceptScheme=AGENCY_ID:SIMPLE_CONCEPTS(1.0.0)</com:AnnotationText>
+          </com:Annotation>
+          <com:Annotation id="lastUpdatedAt"/>
+        </com:Annotations>
+        <com:Name xml:lang="en">SIMPLE CONCEPTS</com:Name>
+        <str:Concept id="FREQ">
+          <com:Name xml:lang="en">Frequency</com:Name>
+          <com:Description xml:lang="en">The time interval at which observations occur over a given time period.</com:Description>
+          <str:CoreRepresentation>
+            <str:Enumeration>
+              <Ref agencyID="SDMX" id="CL_FREQ" version="2.0.2" package="codelist" class="Codelist"/>
+            </str:Enumeration>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="STRING">
+          <com:Name xml:lang="en">String</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_VALUE">
+          <com:Name xml:lang="en">Observation</com:Name>
+          <com:Description xml:lang="en">The value of a particular variable at a particular period.</com:Description>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="TIME_PERIOD">
+          <com:Name xml:lang="en">Time period</com:Name>
+          <com:Description xml:lang="en">The period of time or point in time to which the measured observation refers.</com:Description>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="DATA_DOMAIN">
+          <com:Name xml:lang="en">DATA_DOMAIN</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COUNTRY">
+          <com:Name xml:lang="en">COUNTRY</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COUNTERPART_AREA">
+          <com:Name xml:lang="en">COUNTERPART_AREA</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_COMMENT">
+          <com:Name xml:lang="en">OBS_COMMENT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_STATUS">
+          <com:Name xml:lang="en">OBS_STATUS</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_UPDATE_DATE">
+          <com:Name xml:lang="en">OBS_UPDATE_DATE</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="UNIT">
+          <com:Name xml:lang="en">UNIT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COMMENT">
+          <com:Name xml:lang="en">COMMENT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="STATUS">
+          <com:Name xml:lang="en">STATUS</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="UPDATE_DATE">
+          <com:Name xml:lang="en">UPDATE_DATE</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="INDICATOR">
+          <com:Name xml:lang="en">INDICATOR</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+      </str:ConceptScheme>
+      <str:ConceptScheme urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.ConceptScheme=AGENCY_ID:SIMPLE_CONCEPTS(1.3.0)" agencyID="AGENCY_ID" id="SIMPLE_CONCEPTS" version="1.3.0" isFinal="true" isExternalReference="false" isPartial="false">
+        <com:Annotations>
+          <com:Annotation id="origin"/>
+          <com:Annotation id="parentUrn">
+            <com:AnnotationText xml:lang="en">urn:sdmx:org.sdmx.infomodel.conceptscheme.ConceptScheme=AGENCY_ID:SIMPLE_CONCEPTS(1.2.0)</com:AnnotationText>
+          </com:Annotation>
+          <com:Annotation id="lastUpdatedAt"/>
+        </com:Annotations>
+        <com:Name xml:lang="en">SIMPLE CONCEPTS</com:Name>
+        <str:Concept id="FREQ">
+          <com:Name xml:lang="en">Frequency</com:Name>
+          <com:Description xml:lang="en">The time interval at which observations occur over a given time period.</com:Description>
+          <str:CoreRepresentation>
+            <str:Enumeration>
+              <Ref agencyID="SDMX" id="CL_FREQ" version="2.0.2" package="codelist" class="Codelist"/>
+            </str:Enumeration>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="STRING">
+          <com:Name xml:lang="en">String</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_VALUE">
+          <com:Name xml:lang="en">Observation</com:Name>
+          <com:Description xml:lang="en">The value of a particular variable at a particular period.</com:Description>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="TIME_PERIOD">
+          <com:Name xml:lang="en">Time period</com:Name>
+          <com:Description xml:lang="en">The period of time or point in time to which the measured observation refers.</com:Description>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="DATA_DOMAIN">
+          <com:Name xml:lang="en">DATA_DOMAIN</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COUNTRY">
+          <com:Name xml:lang="en">COUNTRY</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COUNTERPART_AREA">
+          <com:Name xml:lang="en">COUNTERPART_AREA</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_COMMENT">
+          <com:Name xml:lang="en">OBS_COMMENT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_STATUS">
+          <com:Name xml:lang="en">OBS_STATUS</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_UPDATE_DATE">
+          <com:Name xml:lang="en">OBS_UPDATE_DATE</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="UNIT">
+          <com:Name xml:lang="en">UNIT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="COMMENT">
+          <com:Name xml:lang="en">COMMENT</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="STATUS">
+          <com:Name xml:lang="en">STATUS</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="UPDATE_DATE">
+          <com:Name xml:lang="en">UPDATE_DATE</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="INDICATOR">
+          <com:Name xml:lang="en">INDICATOR</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="DATASET_COMMENT_META">
+          <com:Name xml:lang="en">DATASET_COMMENT_META</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="GROUP_COMMENT_META">
+          <com:Name xml:lang="en">GROUP_COMMENT_META</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="SERIES_COMMENT_META">
+          <com:Name xml:lang="en">SERIES_COMMENT_META</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+        <str:Concept id="OBS_COMMENT_META">
+          <com:Name xml:lang="en">OBS_COMMENT_META</com:Name>
+          <str:CoreRepresentation>
+            <str:TextFormat textType="String"/>
+          </str:CoreRepresentation>
+        </str:Concept>
+      </str:ConceptScheme>
+    </str:Concepts>
+    <str:DataStructures>
+      <str:DataStructure urn="urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=AGENCY_ID:SIMPLE_DSD(3.0.0)" agencyID="AGENCY_ID" id="SIMPLE_DSD" version="3.0.0" isFinal="true" isExternalReference="false">
+        <com:Annotations>
+          <com:Annotation id="origin"/>
+          <com:Annotation id="parentUrn">
+            <com:AnnotationText xml:lang="en">urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=AGENCY_ID:SIMPLE_DSD(2.0.0)</com:AnnotationText>
+          </com:Annotation>
+          <com:Annotation id="lastUpdatedAt"/>
+        </com:Annotations>
+        <com:Name xml:lang="en">simple dsd</com:Name>
+        <str:DataStructureComponents>
+          <str:DimensionList id="DimensionDescriptor">
+            <str:Dimension id="DATA_DOMAIN" position="0">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.1.0" agencyID="AGENCY_ID" id="DATA_DOMAIN" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+            </str:Dimension>
+            <str:Dimension id="COUNTRY" position="1">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.1.0" agencyID="AGENCY_ID" id="COUNTRY" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+            </str:Dimension>
+            <str:Dimension id="COUNTERPART_AREA" position="2">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.1.0" agencyID="AGENCY_ID" id="COUNTERPART_AREA" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+            </str:Dimension>
+            <str:Dimension id="INDICATOR" position="3">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="INDICATOR" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+            </str:Dimension>
+            <str:Dimension id="FREQ" position="4">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.1.0" agencyID="AGENCY_ID" id="FREQ" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+            </str:Dimension>
+            <str:TimeDimension id="TIME_PERIOD">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="TIME_PERIOD" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+            </str:TimeDimension>
+          </str:DimensionList>
+          <str:AttributeList id="AttributeDescriptor">
+            <str:Attribute id="OBS_COMMENT" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="OBS_COMMENT" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="OBS_STATUS" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="OBS_STATUS" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="OBS_UPDATE_DATE" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="OBS_UPDATE_DATE" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="UNIT" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="UNIT" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="COMMENT" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="COMMENT" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="DATA_DOMAIN"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTRY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTERPART_AREA"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="INDICATOR"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="STATUS" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="STATUS" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="DATA_DOMAIN"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTRY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTERPART_AREA"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="INDICATOR"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="UPDATE_DATE" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.2.0" agencyID="AGENCY_ID" id="UPDATE_DATE" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="DATA_DOMAIN"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTRY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTERPART_AREA"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="INDICATOR"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="A0" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.3.0" agencyID="AGENCY_ID" id="DATASET_COMMENT_META" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <None/>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="A1" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.3.0" agencyID="AGENCY_ID" id="GROUP_COMMENT_META" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="DATA_DOMAIN"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTRY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTERPART_AREA"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="A2" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.3.0" agencyID="AGENCY_ID" id="SERIES_COMMENT_META" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:Dimension>
+                  <Ref id="DATA_DOMAIN"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTRY"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="COUNTERPART_AREA"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="INDICATOR"/>
+                </str:Dimension>
+                <str:Dimension>
+                  <Ref id="FREQ"/>
+                </str:Dimension>
+              </str:AttributeRelationship>
+            </str:Attribute>
+            <str:Attribute id="A3" assignmentStatus="Conditional">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.3.0" agencyID="AGENCY_ID" id="OBS_COMMENT_META" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+              <str:AttributeRelationship>
+                <str:PrimaryMeasure>
+                  <Ref id="OBS_VALUE"/>
+                </str:PrimaryMeasure>
+              </str:AttributeRelationship>
+            </str:Attribute>
+          </str:AttributeList>
+          <str:MeasureList id="MeasureDescriptor">
+            <str:PrimaryMeasure id="OBS_VALUE">
+              <str:ConceptIdentity>
+                <Ref maintainableParentID="SIMPLE_CONCEPTS" maintainableParentVersion="1.1.0" agencyID="AGENCY_ID" id="OBS_VALUE" package="conceptscheme" class="Concept"/>
+              </str:ConceptIdentity>
+            </str:PrimaryMeasure>
+          </str:MeasureList>
+        </str:DataStructureComponents>
+      </str:DataStructure>
+    </str:DataStructures>
+    <str:Dataflows>
+      <str:Dataflow urn="urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=AGENCY_ID:SIMPLE_DF(2.0.0)" agencyID="AGENCY_ID" id="SIMPLE_DF" version="2.0.0" isFinal="true" isExternalReference="false">
+        <com:Annotations>
+        </com:Annotations>
+        <com:Name xml:lang="en">simple df</com:Name>
+        <str:Structure>
+          <Ref agencyID="AGENCY_ID" id="SIMPLE_DSD" version="3.0.0" package="datastructure" class="DataStructure"/>
+        </str:Structure>
+      </str:Dataflow>
+    </str:Dataflows>
+  </mes:Structures>
+</mes:Structure>
