@@ -26,6 +26,11 @@ import org.sdmxsource.sdmx.api.model.mutable.conceptscheme.ConceptSchemeMutableB
 import org.sdmxsource.sdmx.api.model.mutable.datastructure.*;
 import org.sdmxsource.sdmx.api.model.mutable.reference.CodeRefMutableBean;
 import org.sdmxsource.sdmx.api.model.mutable.reference.CodelistRefMutableBean;
+import org.sdmxsource.sdmx.api.model.mutable.registry.ConstraintAttachmentMutableBean;
+import org.sdmxsource.sdmx.api.model.mutable.registry.ContentConstraintMutableBean;
+import org.sdmxsource.sdmx.api.model.mutable.registry.KeyValuesMutable;
+import org.sdmxsource.sdmx.api.model.mutable.registry.MetadataTargetRegionMutableBean;
+import org.sdmxsource.sdmx.api.model.mutable.registry.ReleaseCalendarMutableBean;
 import org.sdmxsource.sdmx.sdmxbeans.model.SdmxStructureJsonFormat;
 import org.sdmxsource.sdmx.sdmxbeans.model.beans.base.AgencySchemeBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.beans.categoryscheme.CategorisationBeanImpl;
@@ -34,6 +39,7 @@ import org.sdmxsource.sdmx.sdmxbeans.model.beans.codelist.CodelistBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.beans.codelist.HierarchicalCodelistBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.beans.conceptscheme.ConceptSchemeBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.beans.datastructure.DataflowBeanImpl;
+import org.sdmxsource.sdmx.sdmxbeans.model.beans.registry.ContentConstraintBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.header.HeaderBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.header.PartyBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.base.*;
@@ -50,6 +56,12 @@ import org.sdmxsource.sdmx.sdmxbeans.model.mutable.datastructure.*;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.metadatastructure.DataflowMutableBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.reference.CodeRefMutableBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutable.reference.CodelistRefMutableBeanImpl;
+import org.sdmxsource.sdmx.sdmxbeans.model.mutable.registry.ContentConstraintAttachmentMutableBeanImpl;
+import org.sdmxsource.sdmx.sdmxbeans.model.mutable.registry.ContentConstraintMutableBeanImpl;
+import org.sdmxsource.sdmx.sdmxbeans.model.mutable.registry.CubeRegionMutableBeanImpl;
+import org.sdmxsource.sdmx.sdmxbeans.model.mutable.registry.KeyValuesMutableImpl;
+import org.sdmxsource.sdmx.sdmxbeans.model.mutable.registry.MetadataTargetRegionMutableBeanImpl;
+import org.sdmxsource.sdmx.sdmxbeans.model.mutable.registry.ReleaseCalendarMutableBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.util.TextTypeUtil;
 import org.sdmxsource.sdmx.util.beans.container.SdmxBeansImpl;
 import org.sdmxsource.sdmx.util.beans.reference.StructureReferenceBeanImpl;
@@ -157,6 +169,7 @@ public class SdmxObjectsJsonV1Builder extends AbstractSdmxBeansBuilder {
             this.processCodeLists(structure.get("codelists"), beans);
             this.processHierarchicalCodelists(structure.get("hierarchicalCodelists"), beans);
             this.processDatastructures(structure.get("dataStructures"), beans);
+            this.processContentConstraint(structure.get("contentconstraint"), beans);
         }
         return beans;
     }
@@ -747,6 +760,186 @@ public class SdmxObjectsJsonV1Builder extends AbstractSdmxBeansBuilder {
                 }
             }
         }
+    }
+
+    private void processContentConstraint(JsonNode contentConstraints, SdmxBeansImpl beans) throws JsonProcessingException {
+        if (contentConstraints == null || beans == null) {
+            return;
+        }
+
+        for (JsonNode contentConstraint : contentConstraints) {
+            ContentConstraintMutableBean bean = new ContentConstraintMutableBeanImpl();
+            SdmxObjectsJsonV1Builder.Core core = this.processMaintainableMutableObject(contentConstraint, bean);
+            processConstraintAttachment(contentConstraint.get("constraintAttachment"), bean);
+            processReleaseCalendar(contentConstraint.get("releaseCalendar"), bean);
+            processCubeRegions(contentConstraint.get("cubeRegions"), bean);
+            processMetadataTargetRegions(contentConstraint.get("metadataTargetRegions"), bean);
+            try {
+                addIfNotDuplicateURN(beans, new HashSet<String>(), new ContentConstraintBeanImpl(bean));
+            } catch (Exception ex) {
+                String agencyId = core.agencyID;
+                String id = core.identifiable.getId();
+                String version = core.version;
+                throw new MaintainableBeanException(ex, SDMX_STRUCTURE_TYPE.AGENCY_SCHEME, agencyId, id, version);
+            }
+        }
+    }
+
+    private void processReleaseCalendar(JsonNode releaseCalendar, ContentConstraintMutableBean bean) {
+        if (releaseCalendar == null) {
+            return;
+        }
+        ReleaseCalendarMutableBean releaseCalendarMutableBean = new ReleaseCalendarMutableBeanImpl();
+        JsonNode offset = releaseCalendar.get("offset");
+        releaseCalendarMutableBean.setOffset(offset != null ? offset.textValue() : null);
+        JsonNode periodicity = releaseCalendar.get("periodicity");
+        releaseCalendarMutableBean.setPeriodicity(periodicity != null ? periodicity.textValue() : null);
+        JsonNode tolerance = releaseCalendar.get("tolerance");
+        releaseCalendarMutableBean.setTolerance(tolerance != null ? tolerance.textValue() : null);
+        bean.setReleaseCalendar(releaseCalendarMutableBean);
+    }
+
+    private void processConstraintAttachment(JsonNode constraintAttachments, ContentConstraintMutableBean bean) {
+        if (constraintAttachments == null) {
+            return;
+        }
+        Set<StructureReferenceBean> structureReferenceBeans = new HashSet<>();
+        for (JsonNode constraintAttachment : constraintAttachments) {
+            StructureReferenceBean referenceBean = null;
+            if (constraintAttachment.isArray()) {
+                for(int i = 0; i < constraintAttachment.size(); i++) {
+                    String value = constraintAttachment.get(i).textValue();
+                    referenceBean = setConceptRef(value);
+                }
+            } else {
+                referenceBean = setConceptRef(constraintAttachment.textValue());
+            }
+            structureReferenceBeans.add(referenceBean);
+        }
+        ConstraintAttachmentMutableBean attachmentMutableBean = new ContentConstraintAttachmentMutableBeanImpl();
+        attachmentMutableBean.setStructureReference(structureReferenceBeans);
+        bean.setConstraintAttachment(attachmentMutableBean);
+    }
+
+    private void processCubeRegions(JsonNode cubeRegions, ContentConstraintMutableBean bean) {
+        if (cubeRegions == null) {
+            return;
+        }
+        for (JsonNode cubeRegion : cubeRegions) {
+            CubeRegionMutableBeanImpl cubeRegionMutableBean = new CubeRegionMutableBeanImpl();
+            cubeRegionMutableBean.setAttributeValues(processKeyValues(cubeRegion.get("attributes")));
+            cubeRegionMutableBean.setKeyValues(processKeyValues(cubeRegion.get("keyValues")));
+            JsonNode isIncluded = cubeRegion.get("isIncluded");
+            if (isIncluded != null) {
+                boolean include = isIncluded.booleanValue();
+                if (include) {
+                    bean.setIncludedCubeRegion(cubeRegionMutableBean);
+                } else {
+                    bean.setExcludedCubeRegion(cubeRegionMutableBean);
+                }
+            }
+        }
+    }
+
+    private List<KeyValuesMutable> processKeyValues(JsonNode keyValues) {
+        if (keyValues == null) {
+            return Collections.emptyList();
+        }
+        List<KeyValuesMutable> keyValuesMutableList = new ArrayList<>();
+        for (JsonNode keyValue : keyValues) {
+            KeyValuesMutable keyValuesMutable = new KeyValuesMutableImpl();
+            JsonNode id = keyValue.get("id");
+            keyValuesMutable.setId(id.textValue() != null ? id.textValue() : null);
+            JsonNode values = keyValue.get("values");
+            keyValuesMutable.setKeyValues(processValues(values));
+            JsonNode cascadeValues = keyValue.get("cascadeValues");
+            keyValuesMutable.setCascade(processValues(cascadeValues));
+            JsonNode timeRange = keyValue.get("timeRange");
+            keyValuesMutable.setTimeRange(processTimeRange(timeRange));
+            keyValuesMutableList.add(keyValuesMutable);
+        }
+
+        return keyValuesMutableList;
+    }
+
+    private List<String> processValues(JsonNode valuesList) {
+        if (valuesList == null) {
+            return Collections.emptyList();
+        }
+
+        List<String> values = new ArrayList<>();
+        for (JsonNode element : valuesList) {
+            String value = element.textValue();
+            if (value != null) {
+                values.add(value);
+            }
+        }
+        return values;
+    }
+
+    private TimeRangeMutableBean processTimeRange(JsonNode timeRange) {
+        if (timeRange == null) {
+            return null;
+        }
+        TimeRangeMutableBean timeRangeMutableBean = new TimeRangeMutableBeanImpl();
+        JsonNode beforePeriod = timeRange.get("beforePeriod");
+        setStartDate(beforePeriod, timeRangeMutableBean);
+        JsonNode startPeriod = timeRange.get("startPeriod");
+        setStartDate(startPeriod, timeRangeMutableBean);
+
+        JsonNode afterPeriod = timeRange.get("afterPeriod");
+        setEndDate(afterPeriod, timeRangeMutableBean);
+        JsonNode endPeriod = timeRange.get("endPeriod");
+        setEndDate(endPeriod, timeRangeMutableBean);
+
+        return timeRangeMutableBean;
+    }
+
+    private void setStartDate(JsonNode node, TimeRangeMutableBean bean) {
+        if (node == null) {
+            return;
+        }
+        JsonNode period = node.get("period");
+        bean.setStartDate(parseDate(period));
+
+        JsonNode isInclusive = node.get("isInclusive");
+        if (isInclusive != null) {
+            bean.setIsStartInclusive(isInclusive.asBoolean());
+        }
+    }
+    private void setEndDate(JsonNode node, TimeRangeMutableBean bean) {
+        if (node == null) {
+            return;
+        }
+        JsonNode period = node.get("period");
+        bean.setEndDate(parseDate(period));
+
+        JsonNode isInclusive = node.get("isInclusive");
+        if (isInclusive != null) {
+            bean.setIsEndInclusive(isInclusive.asBoolean());
+        }
+    }
+
+    private Date parseDate(JsonNode period) {
+        if (period == null) {
+            return null;
+        }
+        try {
+            return Date.from(Instant.parse(period.textValue()));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private void processMetadataTargetRegions(JsonNode metadataTargetRegions, ContentConstraintMutableBean bean) {
+        if (metadataTargetRegions == null) {
+            return;
+        }
+        MetadataTargetRegionMutableBean metadataTargetRegionMutableBean = new MetadataTargetRegionMutableBeanImpl();
+        metadataTargetRegionMutableBean.setAttributes(processKeyValues(metadataTargetRegions.get("attributes")));
+        metadataTargetRegionMutableBean.setReport("skipped");
+        metadataTargetRegionMutableBean.setMetadataTarget("skipped");
+        bean.setMetadataTargetRegion(metadataTargetRegionMutableBean);
     }
 
     private HeaderBean processHeader(JsonNode baseHeaderType) {

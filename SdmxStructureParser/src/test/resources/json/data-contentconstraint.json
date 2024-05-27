@@ -1,0 +1,105 @@
+{
+  "meta": {},
+  "data": {
+    "contentconstraint": [
+      {
+        "links": [
+          {
+            "urn": "urn:sdmx:org.sdmx.infomodel.registry.DataConstraint=IMF:ARTEFACT(1.2)",
+            "type": "dataconstraint",
+            "rel": "self"
+          }
+        ],
+        "annotations": [
+          {
+            "id": "1",
+            "type": "type1",
+            "text": "text",
+            "texts": {
+              "en": "text"
+            }
+          }
+        ],
+        "id": "ARTEFACT",
+        "name": "Maintanable artefact",
+        "names": {
+          "en": "Maintanable artefact",
+          "fr-CA": "artefact"
+        },
+        "description": "Some artefact",
+        "descriptions": {
+          "en": "Some artefact"
+        },
+        "version": "1.2",
+        "validTo": "2022-07-17T10:11:16Z",
+        "validFrom": "2022-07-17T10:11:16Z",
+        "isFinal": true,
+        "agencyID": "IMF",
+        "constraintAttachment": {
+          "dataProvider": "urn:sdmx:org.sdmx.infomodel.base.DataProvider=IMF:DATA_PROVIDERS(1.0).DP"
+        },
+        "role": "Allowed",
+        "releaseCalendar": {
+          "tolerance": "Tolerance",
+          "offset": "Offset",
+          "periodicity": "Periodicity"
+        },
+        "cubeRegions": [
+          {
+            "isIncluded": true,
+            "attributes": [
+              {
+                "id": "some component id 1",
+                "values": [
+                  "selectionValue1"
+                ]
+              },
+              {
+                "id": "some component id 2",
+                "values": [
+                  "selectionValue2",
+                  "selectionValue5"
+                ]
+              }
+            ],
+            "keyValues": [
+              {
+                "id": "123",
+                "timeRange": {
+                  "beforePeriod": {
+                    "period": "2020",
+                    "isInclusive": false
+                  },
+                  "afterPeriod": {
+                    "period": "2021",
+                    "isInclusive": false
+                  }
+                }
+              }
+            ],
+            "annotations": [
+              {
+                "id": "Annot"
+              }
+            ]
+          }
+        ],
+        "dataKeySets": [
+          {
+            "isIncluded": true,
+            "keys": [
+              {
+                "keyValues": [
+                  {
+                    "id": "C1",
+                    "value": "Value"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
