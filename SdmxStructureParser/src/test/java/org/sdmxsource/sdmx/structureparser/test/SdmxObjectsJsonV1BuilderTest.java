@@ -27,12 +27,16 @@ public class SdmxObjectsJsonV1BuilderTest {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode node = mapper.readTree(stream);
             beans = sdmxObjectsJsonV1Builder.build(node);
+            beans.getDataflows();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         assertThat(beans.getContentConstraintBeans()).isNotEmpty();
         assertThat(beans.getContentConstraintBeans().size()).isEqualTo(1);
+
+        var contentConstraint = beans.getContentConstraintBeans().stream().findFirst().get();
+        assertThat(contentConstraint.getAnnotations().size()).isEqualTo(1);
     }
 
 }

@@ -1044,8 +1044,6 @@ public class SdmxObjectsJsonV1Builder extends AbstractSdmxBeansBuilder {
             if (node != null)
                 nameableObject.addDescription("en", node.textValue());
         }
-
-        this.processAnnotations(data, nameableObject);
     }
 
     private class Core {
