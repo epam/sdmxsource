@@ -342,7 +342,7 @@ public class StreamCompactDataWriterEngine extends StreamDataWriterEngineBase {
             }
             if (isCrossSectionalMeasure) {
                 writer.writeAttribute("xsi", XSI_NS, "type", COMPACT_NS.namespacePrefix + ":" + obsIdValue);
-            } else {
+            } else if (ObjectUtil.validString(obsConceptId)) {
                 writer.writeAttribute(obsConceptId, obsIdValue);
             }
 
