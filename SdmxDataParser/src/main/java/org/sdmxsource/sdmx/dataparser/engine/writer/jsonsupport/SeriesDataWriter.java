@@ -404,7 +404,7 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
         LOG.debug("{attributes}");
         jsonGenerator.writeObjectFieldStart("attributes");
 
-        jsonGenerator.writeArrayFieldStart("dataset");
+        jsonGenerator.writeArrayFieldStart("dataSet");
         for (AttributeBean attribute : dsd.getDatasetAttributes()) {
             ComponentSuperBean attrSb = currentDSDSuperBean.getComponentById(attribute.getId());
             writeComponent(attrSb, -1);
