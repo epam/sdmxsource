@@ -331,7 +331,6 @@ public class DecoratedDataWriterEngine implements DataWriterEngine {
             return;
         }
         isClosed = true;
-//        flushDatasetAttributes();
         flushKey();
         flushObs();
         if (dwe != null) {
