@@ -1,9 +1,12 @@
 package org.sdmxsource.sdmx.dataparser.engine.writer.jsonsupport;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
 import org.sdmxsource.sdmx.api.manager.retrieval.SdmxSuperBeanRetrievalManager;
@@ -20,13 +23,11 @@ import org.sdmxsource.sdmx.api.model.superbeans.base.ComponentSuperBean;
 import org.sdmxsource.sdmx.api.model.superbeans.codelist.CodeSuperBean;
 import org.sdmxsource.sdmx.api.model.superbeans.codelist.CodelistSuperBean;
 import org.sdmxsource.sdmx.api.model.superbeans.datastructure.DimensionSuperBean;
+import org.sdmxsource.sdmx.dataparser.model.DATA_POSITION;
 import org.sdmxsource.sdmx.util.date.DateUtil;
 import org.sdmxsource.util.ObjectUtil;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The type Series data writer.
@@ -35,6 +36,7 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
     private static Logger LOG = LoggerFactory.getLogger(SeriesDataWriter.class);
     private boolean observationsKeyOpened;
     private Keyable currentSeries;
+    private boolean seriesOpen = false;
 
     /**
      * Instantiates a new Series data writer.
@@ -101,9 +103,6 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
                 jsonGenerator.writeEndArray();
             }
 
-            // Non-flat now needs the series tag
-            LOG.debug("{series}");
-            jsonGenerator.writeObjectFieldStart("series");
         } catch (Throwable th) {
             throw new RuntimeException(th);
 
@@ -129,9 +128,39 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
 
     @Override
     public void startSeries(AnnotationBean... annotations) {
-        super.startSeries(annotations);
+        checkClosed();
+        flushDatasetAttributes();
+        tryWriteDatasetAttributes();
+        currentPosition = DATA_POSITION.SERIES_KEY;
+        flushKey();
+        flushObs();
+        this.currentAnnotations = annotations;
+
+        // Non-flat now needs the series tag
+        if (!seriesOpen) {
+            tryOpenSeries();
+            seriesOpen = true;
+        }
+
         if (currentKey != null && !currentKey.equals(prevKey)) {
             writeSeriesBlock(currentKey, currentSeries);
+        }
+    }
+
+    private void tryOpenSeries() {
+        LOG.debug("{series}");
+        try {
+            jsonGenerator.writeObjectFieldStart("series");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void tryWriteDatasetAttributes() {
+        try {
+            writeDatasetAttributes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -280,8 +309,6 @@ public class SeriesDataWriter extends AbstractJsonDataWriter {
 
             LOG.debug("{/}");
             jsonGenerator.writeEndObject();  // End the current series object
-
-            writeDatasetAttributes();
 
             LOG.debug("{/series}");
             jsonGenerator.writeEndObject();  //End the series tag
