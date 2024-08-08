@@ -110,8 +110,8 @@ jobs:
         run: ./gradlew publishAll
         env:
           MAVEN_REPOSITORY: ${{ secrets.MAVEN_REPOSITORY }}
-          MAVEN_USERNAME:   ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_PASSWORD:   ${{ secrets.MAVEN_PASSWORD }}
+          MAVEN_USERNAME:   ${{ secrets.MAVEN_USERNAME_1 }}
+          MAVEN_PASSWORD:   ${{ secrets.MAVEN_PASSWORD_1 }}
           SIGNING_KEY:      ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
 
