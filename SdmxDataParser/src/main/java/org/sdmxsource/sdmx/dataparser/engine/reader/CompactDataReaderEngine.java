@@ -27,6 +27,7 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.engine.reader;
 
+import org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.constants.DATASET_POSITION;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
@@ -56,6 +57,7 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 /**
@@ -297,6 +299,24 @@ public class CompactDataReaderEngine extends AbstractSdmxDataReaderEngine {
             populateGroupConcepts(groupBean, groups);
             groupConcepts.put(groupId, groups);
         }
+
+        dsd.getAttributes().stream()
+            .filter(attr -> attr.getAttachmentLevel().equals(ATTRIBUTE_ATTACHMENT_LEVEL.DIMENSION_GROUP))
+            .forEach(attr -> {
+                var dimRefs = attr.getDimensionReferences();
+                var joiner = new StringJoiner(".");
+
+                dimRefs.forEach(joiner::add);
+                String id = joiner.toString();
+
+                groupConcepts.put(id, dimRefs);
+
+                var attributeConcepts = dsd.getAttributeList().getAttributes().stream()
+                    .map(AttributeBean::getId)
+                    .collect(Collectors.toSet());
+
+                groupAttributeConcepts.put(id, attributeConcepts);
+            });
     }
 
     @Override

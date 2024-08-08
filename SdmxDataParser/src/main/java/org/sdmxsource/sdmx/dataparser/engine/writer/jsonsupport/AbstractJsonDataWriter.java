@@ -116,8 +116,6 @@ public abstract class AbstractJsonDataWriter extends DatasetInfoDataWriterEngine
 //
                     LOG.debug("{/series}");
                     jsonGenerator.writeEndObject();  // End the current series object
-
-                    writeDatasetAttributes();
 //
                     LOG.debug("{/}");
                     jsonGenerator.writeEndObject();  //End the dataset tag
@@ -156,6 +154,7 @@ public abstract class AbstractJsonDataWriter extends DatasetInfoDataWriterEngine
             LOG.debug("[/attributes]");
             jsonGenerator.writeEndArray();
         }
+        datasetAttributes = null;
     }
 
     @Override
