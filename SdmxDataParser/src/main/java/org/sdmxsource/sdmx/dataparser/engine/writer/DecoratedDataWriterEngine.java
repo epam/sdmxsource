@@ -97,7 +97,7 @@ public class DecoratedDataWriterEngine implements DataWriterEngine {
         currentAnnotations = null;
     }
 
-    private void checkClosed() {
+    protected void checkClosed() {
         if (isClosed) {
             throw new RuntimeException("Data Writer has already been closed and can not have any more information written to it!");
         }
@@ -331,7 +331,6 @@ public class DecoratedDataWriterEngine implements DataWriterEngine {
             return;
         }
         isClosed = true;
-        flushDatasetAttributes();
         flushKey();
         flushObs();
         if (dwe != null) {

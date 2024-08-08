@@ -3,6 +3,7 @@ package org.sdmxsource.sdmx.dataparser.test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL.DATA_SET;
 import static org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL.DIMENSION_GROUP;
 import static org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE.CODE_LIST;
 import static org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE.CONCEPT;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.sdmxsource.sdmx.api.constants.DATASET_ACTION;
 import org.sdmxsource.sdmx.api.constants.DIMENSION_AT_OBSERVATION;
@@ -69,7 +71,6 @@ import org.sdmxsource.sdmx.sdmxbeans.model.superbeans.datastructure.PrimaryMeasu
 import org.sdmxsource.sdmx.util.beans.reference.MaintainableRefBeanImpl;
 import org.sdmxsource.sdmx.util.beans.reference.StructureReferenceBeanImpl;
 import org.sdmxsource.sdmx.util.date.DateUtil;
-import org.mockito.Mock;
 
 @ExtendWith(MockitoExtension.class)
 class DataWriterEngineJsonTest {
@@ -177,13 +178,64 @@ class DataWriterEngineJsonTest {
         assertEquals(expected, os.toString(StandardCharsets.UTF_8));
     }
 
+    @Test
+    void check_21_SERIES_4() throws IOException {
+        Map<String, CodelistSuperBean> codelistSuperBeanMap = getCodelistSuperBeanMap();
+        Map<String, ConceptSuperBean> conceptSuperBeanMap = getConceptSuperBeanMap(codelistSuperBeanMap);
+
+        DataStructureSuperBean superDsd = getDataStructureSuperBeanWithDatasetAttr(codelistSuperBeanMap, conceptSuperBeanMap);
+        DataStructureBean dsd = superDsd.getBuiltFrom();
+        DatasetHeaderBean datasetHeaderBean = getDatasetHeaderBean(dsd, null);
+        DataflowBean dataflowBean = getDataflowBean(dsd);
+        List<Series> seriesList = buildSeries3(dsd, dataflowBean);
+
+        var os = new ByteArrayOutputStream();
+        when(sdmxSuperBeanRetrievalManager.getDataStructureSuperBean(any())).thenReturn(superDsd);
+        var dataWriterEngine = new JsonDataWriterEngine(os, sdmxSuperBeanRetrievalManager, false);
+
+
+        dataWriterEngine.writeHeader(getHeaderBean());
+        dataWriterEngine.startDataset(null, dataflowBean, dsd, datasetHeaderBean);
+
+        dataWriterEngine.writeAttributeValue("DECIMALS", "2");
+
+        seriesList.forEach(s -> {
+            s.setAttributes(Map.of());
+            writeSeries(s, dataWriterEngine, dsd);
+
+            List<Observation> observations = s.getObservations();
+            observations.forEach(obs -> {
+                final var flat = DIMENSION_AT_OBSERVATION.ALL.getVal()
+                    .equals(datasetHeaderBean.getDataStructureReference().getDimensionAtObservation());
+                writeObservation(obs, dataWriterEngine, flat);
+            });
+        });
+
+        dataWriterEngine.close();
+
+        final var expected = new String(Objects.requireNonNull(DataWriterEngineJsonTest.class.getClassLoader()
+            .getResourceAsStream("writer/Json_ts_4.json")).readAllBytes());
+        assertEquals(expected, os.toString(StandardCharsets.UTF_8));
+    }
+
     private DataStructureSuperBean getDataStructureSuperBean(Map<String, CodelistSuperBean> codelistSuperBeanMap,
                                                              Map<String, ConceptSuperBean> conceptSuperBeanMap) {
         DataStructureBean dsd = buildDsd();
         List<DimensionSuperBean> dims = getDimensionSuperBeans(codelistSuperBeanMap, conceptSuperBeanMap, dsd);
         List<AttributeSuperBean> attrs = getAttributeSuperBeans(codelistSuperBeanMap, conceptSuperBeanMap, dsd);
         PrimaryMeasureSuperBean prim = new PrimaryMeasureSuperBeanImpl(dsd.getPrimaryMeasure(), null,
-                conceptSuperBeanMap.get(OBS_VALUE));
+            conceptSuperBeanMap.get(OBS_VALUE));
+        DataStructureSuperBean superDsd = new DataStructureSuperBeanImpl(dsd, dims, attrs, prim);
+        return superDsd;
+    }
+
+    private DataStructureSuperBean getDataStructureSuperBeanWithDatasetAttr(Map<String, CodelistSuperBean> codelistSuperBeanMap,
+                                                                            Map<String, ConceptSuperBean> conceptSuperBeanMap) {
+        DataStructureBean dsd = buildDsdWithDatasetAttribute();
+        List<DimensionSuperBean> dims = getDimensionSuperBeans(codelistSuperBeanMap, conceptSuperBeanMap, dsd);
+        List<AttributeSuperBean> attrs = getAttributeSuperBeans(codelistSuperBeanMap, conceptSuperBeanMap, dsd);
+        PrimaryMeasureSuperBean prim = new PrimaryMeasureSuperBeanImpl(dsd.getPrimaryMeasure(), null,
+            conceptSuperBeanMap.get(OBS_VALUE));
         DataStructureSuperBean superDsd = new DataStructureSuperBeanImpl(dsd, dims, attrs, prim);
         return superDsd;
     }
@@ -316,6 +368,30 @@ class DataWriterEngineJsonTest {
                 getCodeListStructureReferenceBean("STS", "CL_DECIMALS"));
         attributeMutableObject.setAttachmentLevel(DIMENSION_GROUP);
         attributeMutableObject.setDimensionReferences(Arrays.asList(FREQ, ADJUSTMENT, STS_ACTIVITY));
+        attributeMutableObject.setAssignmentStatus("Mandatory");
+        return dsdMutableObject.getImmutableInstance();
+    }
+
+    private DataStructureBean buildDsdWithDatasetAttribute() {
+        var dsdMutableObject = dsdMutableObject();
+        dsdMutableObject.addDimension(getConceptStructureReferenceBean(FREQ),
+            getCodeListStructureReferenceBean("SDMX", "CL_FREQ"));
+        dsdMutableObject.addDimension(getConceptStructureReferenceBean(ADJUSTMENT),
+            getCodeListStructureReferenceBean("SDMX", "CL_ADJUSTMENT"));
+        dsdMutableObject.addDimension(getConceptStructureReferenceBean(STS_ACTIVITY),
+            getCodeListStructureReferenceBean("STS", "CL_STS_ACTIVITY"));
+
+        DimensionMutableBean dimensionMutableBean = new DimensionMutableBeanImpl();
+        dimensionMutableBean.setConceptRef(getConceptStructureReferenceBean(TIME_PERIOD));
+        dimensionMutableBean.setTimeDimension(true);
+        dsdMutableObject.addDimension(dimensionMutableBean);
+        dsdMutableObject.addPrimaryMeasure(getConceptStructureReferenceBean(OBS_VALUE));
+
+
+        AttributeMutableBean attributeMutableObject = dsdMutableObject.addAttribute(
+            getConceptStructureReferenceBean(DECIMALS),
+            getCodeListStructureReferenceBean("STS", "CL_DECIMALS"));
+        attributeMutableObject.setAttachmentLevel(DATA_SET);
         attributeMutableObject.setAssignmentStatus("Mandatory");
         return dsdMutableObject.getImmutableInstance();
     }
