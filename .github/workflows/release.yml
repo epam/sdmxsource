@@ -114,7 +114,7 @@ jobs:
           MAVEN_PASSWORD:   ${{ secrets.MAVEN_PASSWORD }}
           SIGNING_KEY:      ${{ secrets.SIGNING_KEY }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
-
+ 
   cleanup:
     name: Cleanup
     if: ${{ always() && !contains(github.event.head_commit.message, '[skip-ci]') }}
