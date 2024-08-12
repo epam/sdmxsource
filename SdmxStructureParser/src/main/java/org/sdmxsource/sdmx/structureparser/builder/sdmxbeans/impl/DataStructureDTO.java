@@ -286,7 +286,7 @@ public class DataStructureDTO {
         public String primaryMeasure;
 
         /**
-         * None relationship
+         * The Dataset relationship.
          */
         public Object none;
     }
