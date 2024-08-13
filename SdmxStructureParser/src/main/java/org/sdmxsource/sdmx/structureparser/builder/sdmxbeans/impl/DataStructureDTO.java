@@ -284,6 +284,11 @@ public class DataStructureDTO {
          * The Primary measure.
          */
         public String primaryMeasure;
+
+        /**
+         * The Dataset relationship.
+         */
+        public Object none;
     }
 
     /**
