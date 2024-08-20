@@ -1,8 +1,17 @@
 package org.sdmxsource.sdmx.dataparser.engine.writer.csv;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import com.opencsv.CSVWriter;
-import org.slf4j.LoggerFactory;
-import org.slf4j.Logger;
 import org.sdmxsource.sdmx.api.constants.ATTRIBUTE_ATTACHMENT_LEVEL;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
 import org.sdmxsource.sdmx.api.engine.DataWriterEngine;
@@ -16,11 +25,8 @@ import org.sdmxsource.sdmx.api.model.header.DatasetHeaderBean;
 import org.sdmxsource.sdmx.api.model.header.HeaderBean;
 import org.sdmxsource.sdmx.util.date.DateUtil;
 import org.sdmxsource.util.io.StreamUtil;
-
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.util.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The type Csv data writer engine.
@@ -36,6 +42,7 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
     private String[] row;
     private Map<String, Integer> columns = new HashMap<String, Integer>();
     private List<Integer> obsAttributes = new ArrayList<Integer>();
+    private Set<Integer> datasetAttributes = new HashSet<>();
     private int timeDimensionOffset;
     private int obsValueOffset;
     private boolean startDataset = false;
@@ -72,8 +79,11 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
         for (AttributeBean attribute : attributes) {
             final String id = attribute.getId();
             columns.put(id, ++offset);
-            if (attribute.getAttachmentLevel() == ATTRIBUTE_ATTACHMENT_LEVEL.OBSERVATION)
+            if (attribute.getAttachmentLevel() == ATTRIBUTE_ATTACHMENT_LEVEL.OBSERVATION) {
                 obsAttributes.add(offset);
+            } else if (attribute.getAttachmentLevel() == ATTRIBUTE_ATTACHMENT_LEVEL.DATA_SET) {
+                datasetAttributes.add(offset);
+            }
             row[offset] = id;
         }
 
@@ -83,6 +93,7 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
         writer.writeNext(row, false);
 
         row[0] = dataflow.getAgencyId() + ":" + dataflow.getId() + "(" + dataflow.getVersion() + ")";
+        clearAllComponents();
         startDataset = true;
     }
 
@@ -103,6 +114,19 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
         }
         startDataset = false;
         startSeries = true;
+        clearObservationComponents();
+    }
+
+    private void clearObservationComponents() {
+        for (int i = 1; i < row.length; i++) {
+            if (datasetAttributes.contains(i)) {
+                continue;
+            }
+            row[i] = EMPTY_STRING;
+        }
+    }
+
+    private void clearAllComponents() {
         for (int i = 1; i < row.length; i++) {
             row[i] = EMPTY_STRING;
         }
