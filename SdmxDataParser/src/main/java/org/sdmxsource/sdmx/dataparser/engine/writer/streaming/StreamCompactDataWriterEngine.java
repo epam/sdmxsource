@@ -128,7 +128,7 @@ public class StreamCompactDataWriterEngine extends StreamDataWriterEngineBase {
 
             if (isTwoPointOne()) {
                 writer.writeStartElement("Group");      //WRITE THE START GROUP
-                writer.writeAttribute(XSI_NS, "type", groupId);
+                writer.writeAttribute(XSI_NS, "type", COMPACT_NS.namespacePrefix + ":" + groupId);
                 writeAnnotations(writer, annotations);
             } else {
                 groupAnnotations = annotations;
@@ -342,7 +342,7 @@ public class StreamCompactDataWriterEngine extends StreamDataWriterEngineBase {
             }
             if (isCrossSectionalMeasure) {
                 writer.writeAttribute("xsi", XSI_NS, "type", COMPACT_NS.namespacePrefix + ":" + obsIdValue);
-            } else {
+            } else if (ObjectUtil.validString(obsConceptId)) {
                 writer.writeAttribute(obsConceptId, obsIdValue);
             }
 
