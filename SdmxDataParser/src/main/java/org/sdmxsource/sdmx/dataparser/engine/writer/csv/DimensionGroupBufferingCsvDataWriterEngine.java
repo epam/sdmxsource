@@ -39,14 +39,11 @@ import org.slf4j.LoggerFactory;
 public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEngine {
     private static final Logger LOG = LoggerFactory.getLogger(DimensionGroupBufferingCsvDataWriterEngine.class);
     private static final String EMPTY_STRING = "";
-    private final boolean csvWithHeaders;
-    private final String dataflowKey = "DATAFLOW";
-    private final String obsValueKey = "OBS_VALUE";
     private final OutputStream out;
     private final CSVWriter writer;
     private String[] row;
-    private final Map<String, Integer> columns = new HashMap<String, Integer>();
-    private final List<Integer> obsAttributes = new ArrayList<Integer>();
+    private final Map<String, Integer> columns = new HashMap<>();
+    private final List<Integer> obsAttributes = new ArrayList<>();
     private final Set<Integer> datasetAttributes = new HashSet<>();
     private int timeDimensionOffset;
     private int obsValueOffset;
@@ -58,14 +55,11 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
     /**
      * Instantiates a new Csv data writer engine.
      *
-     * @param out            the out
-     * @param csvWithHeaders the csv with headers
+     * @param out the out
      */
-    public DimensionGroupBufferingCsvDataWriterEngine(OutputStream out, boolean csvWithHeaders) {
+    public DimensionGroupBufferingCsvDataWriterEngine(OutputStream out) {
         this.out = out;
-        //TODO: add locale support
         writer = new CSVWriter(new OutputStreamWriter(out));
-        this.csvWithHeaders = csvWithHeaders;
     }
 
     @Override
@@ -74,15 +68,15 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
         final List<AttributeBean> attributes = dataStructureBean.getAttributeList().getAttributes();
         int offset = 0;
         row = new String[(dimensions.size() + attributes.size() + 2)];
-        row[0] = dataflowKey;
+        row[0] = "DATAFLOW";
         for (DimensionBean dimension : dimensions) {
             final String id = dimension.getId();
             columns.put(id, ++offset);
             //TODO: add csvWithHeaders support
             row[offset] = id;
         }
-        columns.put(obsValueKey, ++offset);
-        row[offset] = obsValueKey;
+        columns.put("OBS_VALUE", ++offset);
+        row[offset] = "OBS_VALUE";
         for (AttributeBean attribute : attributes) {
             final String id = attribute.getId();
             columns.put(id, ++offset);
@@ -95,7 +89,7 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
         }
 
         timeDimensionOffset = columns.get(DimensionBean.TIME_DIMENSION_FIXED_ID);
-        obsValueOffset = columns.get(obsValueKey);
+        obsValueOffset = columns.get("OBS_VALUE");
 
         writer.writeNext(row, false);
 
@@ -208,11 +202,9 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
     @Override
     public void close(FooterMessage... footer) {
         try {
-            if (writer != null) {
-                writeCurrentObservation();
-                writeGroupAttributesOutOfSeries();
-                writer.close();
-            }
+            writeCurrentObservation();
+            writeGroupAttributesOutOfSeries();
+            writer.close();
         } catch (IOException e) {
             LOG.error("Error occurred: {}", e.getMessage(), e);
             StreamUtil.closeStream(out);
