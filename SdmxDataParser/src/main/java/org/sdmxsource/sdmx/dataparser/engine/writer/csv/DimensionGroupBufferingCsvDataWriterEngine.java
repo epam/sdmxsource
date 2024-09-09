@@ -72,7 +72,6 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
         for (DimensionBean dimension : dimensions) {
             final String id = dimension.getId();
             columns.put(id, ++offset);
-            //TODO: add csvWithHeaders support
             row[offset] = id;
         }
         columns.put("OBS_VALUE", ++offset);
@@ -144,7 +143,6 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
         if (offset != null) {
             row[offset] = value;
         }
-//        else throw new IllegalArgumentException("Unknown series key: " + id);
     }
 
     @Override
