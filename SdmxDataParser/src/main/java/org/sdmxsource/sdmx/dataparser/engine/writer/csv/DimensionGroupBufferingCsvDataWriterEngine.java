@@ -1,5 +1,9 @@
 package org.sdmxsource.sdmx.dataparser.engine.writer.csv;
 
+import static java.util.stream.Collectors.toList;
+import static org.sdmxsource.sdmx.dataparser.engine.writer.csv.GroupsProcessingState.GROUPS_IN_PROGRESS;
+import static org.sdmxsource.sdmx.dataparser.engine.writer.csv.GroupsProcessingState.GROUPS_PROCESSED;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -29,36 +33,34 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The type Csv data writer engine.
+ * CSV Data Writer engine which is capable of writing dimension group attributes. Requires more memory as opposed to
+ * its streaming counterpart - {@link StreamCsvDataWriterEngine}
  */
-public class StreamCsvDataWriterEngine implements DataWriterEngine {
-    private static final Logger LOG = LoggerFactory.getLogger(StreamCsvDataWriterEngine.class);
+public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEngine {
+    private static final Logger LOG = LoggerFactory.getLogger(DimensionGroupBufferingCsvDataWriterEngine.class);
     private static final String EMPTY_STRING = "";
-    private final boolean csvWithHeaders;
-    private final String dataflowKey = "DATAFLOW";
-    private final String obsValueKey = "OBS_VALUE";
-    private OutputStream out;
-    private CSVWriter writer;
+    private final OutputStream out;
+    private final CSVWriter writer;
     private String[] row;
-    private Map<String, Integer> columns = new HashMap<String, Integer>();
-    private List<Integer> obsAttributes = new ArrayList<Integer>();
-    private Set<Integer> datasetAttributes = new HashSet<>();
+    private final Map<String, Integer> columns = new HashMap<>();
+    private final Map<String, String> currentDimensions = new HashMap<>();
+    private final List<Integer> obsAttributes = new ArrayList<>();
+    private final Set<Integer> datasetAttributes = new HashSet<>();
     private int timeDimensionOffset;
     private int obsValueOffset;
     private boolean startDataset = false;
     private boolean startSeries = false;
 
+    private final DimensionGroupTracker dimensionGroupTracker = new DimensionGroupTracker();
+
     /**
      * Instantiates a new Csv data writer engine.
      *
-     * @param out            the out
-     * @param csvWithHeaders the csv with headers
+     * @param out the out
      */
-    public StreamCsvDataWriterEngine(OutputStream out, boolean csvWithHeaders) {
+    public DimensionGroupBufferingCsvDataWriterEngine(OutputStream out) {
         this.out = out;
-        //TODO: add locale support
         writer = new CSVWriter(new OutputStreamWriter(out));
-        this.csvWithHeaders = csvWithHeaders;
     }
 
     @Override
@@ -67,15 +69,14 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
         final List<AttributeBean> attributes = dataStructureBean.getAttributeList().getAttributes();
         int offset = 0;
         row = new String[(dimensions.size() + attributes.size() + 2)];
-        row[0] = dataflowKey;
+        row[0] = "DATAFLOW";
         for (DimensionBean dimension : dimensions) {
             final String id = dimension.getId();
             columns.put(id, ++offset);
-            //TODO: add csvWithHeaders support
             row[offset] = id;
         }
-        columns.put(obsValueKey, ++offset);
-        row[offset] = obsValueKey;
+        columns.put("OBS_VALUE", ++offset);
+        row[offset] = "OBS_VALUE";
         for (AttributeBean attribute : attributes) {
             final String id = attribute.getId();
             columns.put(id, ++offset);
@@ -88,7 +89,7 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
         }
 
         timeDimensionOffset = columns.get(DimensionBean.TIME_DIMENSION_FIXED_ID);
-        obsValueOffset = columns.get(obsValueKey);
+        obsValueOffset = columns.get("OBS_VALUE");
 
         writer.writeNext(row, false);
 
@@ -99,16 +100,22 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
 
     @Override
     public void startGroup(String groupId, AnnotationBean... annotations) {
-        LOG.warn("startGroup is not supported in StreamCsvDataWriterEngine");
+        dimensionGroupTracker.setGroupsProcessingState(GROUPS_IN_PROGRESS);
+        dimensionGroupTracker.startGroup();
     }
 
     @Override
     public void writeGroupKeyValue(String id, String value) {
-        LOG.warn("writeGroupKeyValue is not supported in StreamCsvDataWriterEngine");
+        DimensionGroup dimensionGroup = dimensionGroupTracker.getCurrentGroupInProgress();
+        Map<String, String> dimensions = dimensionGroup.getDimensions();
+        dimensions.put(id, value);
     }
 
     @Override
     public void startSeries(AnnotationBean... annotations) {
+        currentDimensions.clear();
+        dimensionGroupTracker.clearSeries();
+        dimensionGroupTracker.setGroupsProcessingState(GROUPS_PROCESSED);
         if (!startDataset) {
             writeCurrentObservation();
         }
@@ -135,15 +142,24 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
     @Override
     public void writeSeriesKeyValue(String id, String value) {
         final Integer offset = columns.get(id);
-        if (offset != null) row[offset] = value;
-//        else throw new IllegalArgumentException("Unknown series key: " + id);
+        if (offset != null) {
+            row[offset] = value;
+            currentDimensions.put(id, value);
+        }
     }
 
     @Override
     public void writeAttributeValue(String id, String value) {
+        if (dimensionGroupTracker.getGroupsProcessingState() == GROUPS_IN_PROGRESS) {
+            DimensionGroup dimensionGroup = dimensionGroupTracker.getCurrentGroupInProgress();
+            dimensionGroup.getAttributes().put(id, List.of(value));
+            return;
+        }
+
         final Integer offset = columns.get(id);
-        if (offset != null) row[offset] = value;
-//        else throw new IllegalArgumentException("Unknown attribute: " + id);
+        if (offset != null) {
+            row[offset] = value;
+        }
     }
 
     @Override
@@ -155,12 +171,25 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
     public void writeObservation(String observationConceptId, String obsConceptValue, String obsValue, AnnotationBean... annotations) {
         if (!startSeries) {
             writeCurrentObservation();
-            for (var rowIndex : obsAttributes)
+            for (var rowIndex : obsAttributes) {
                 row[rowIndex] = EMPTY_STRING;
+            }
         }
         startSeries = false;
         row[timeDimensionOffset] = obsConceptValue;
         row[obsValueOffset] = obsValue;
+        writeMatchingGroupAttributes();
+    }
+
+    private void writeMatchingGroupAttributes() {
+        dimensionGroupTracker.findMatchingGroupAttributes(currentDimensions);
+        for (DimensionGroup dimensionGroup : dimensionGroupTracker.getCurrentSeriesDimensionGroups()) {
+            Map<String, List<String>> attributes = dimensionGroup.getAttributes();
+            for (Map.Entry<String, List<String>> attribute : attributes.entrySet()) {
+                Integer idIndex = columns.get(attribute.getKey());
+                row[idIndex] = String.join(",", attribute.getValue());
+            }
+        }
     }
 
     private void writeCurrentObservation() {
@@ -175,13 +204,45 @@ public class StreamCsvDataWriterEngine implements DataWriterEngine {
     @Override
     public void close(FooterMessage... footer) {
         try {
-            if (writer != null) {
-                writeCurrentObservation();
-                writer.close();
-            }
+            writeCurrentObservation();
+            writeGroupAttributesOutOfSeries();
+            writer.close();
         } catch (IOException e) {
             LOG.error("Error occurred: {}", e.getMessage(), e);
             StreamUtil.closeStream(out);
+        }
+    }
+
+    private void writeGroupAttributesOutOfSeries() {
+        dimensionGroupTracker.setGroupsProcessingState(GROUPS_PROCESSED);
+
+        List<DimensionGroup> dimensionGroups = dimensionGroupTracker.listAllGroups().stream()
+            .filter(dimGroup -> !dimGroup.isTouched())
+            .collect(toList());
+
+        if (!dimensionGroups.isEmpty()) {
+            dimensionGroups.forEach(group -> {
+                clearObservationComponents();
+                writeGroup(group);
+                writer.writeNext(row, false);
+            });
+        }
+    }
+
+    private void writeGroup(DimensionGroup group) {
+        Map<String, String> dimensions = group.getDimensions();
+        for (Map.Entry<String, String> dimension : dimensions.entrySet()) {
+            Integer columnIndex = columns.get(dimension.getKey());
+            if (columnIndex != null) {
+                row[columnIndex] = dimension.getValue();
+            }
+        }
+        Map<String, List<String>> attributes = group.getAttributes();
+        for (Map.Entry<String, List<String>> attribute : attributes.entrySet()) {
+            Integer columnIndex = columns.get(attribute.getKey());
+            if (columnIndex != null) {
+                row[columnIndex] = String.join(",", attribute.getValue());
+            }
         }
     }
 
