@@ -43,6 +43,7 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
     private final CSVWriter writer;
     private String[] row;
     private final Map<String, Integer> columns = new HashMap<>();
+    private final Map<String, String> currentDimensions = new HashMap<>();
     private final List<Integer> obsAttributes = new ArrayList<>();
     private final Set<Integer> datasetAttributes = new HashSet<>();
     private int timeDimensionOffset;
@@ -112,6 +113,7 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
 
     @Override
     public void startSeries(AnnotationBean... annotations) {
+        currentDimensions.clear();
         dimensionGroupTracker.clearSeries();
         dimensionGroupTracker.setGroupsProcessingState(GROUPS_PROCESSED);
         if (!startDataset) {
@@ -142,6 +144,7 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
         final Integer offset = columns.get(id);
         if (offset != null) {
             row[offset] = value;
+            currentDimensions.put(id, value);
         }
     }
 
@@ -179,6 +182,7 @@ public class DimensionGroupBufferingCsvDataWriterEngine implements DataWriterEng
     }
 
     private void writeMatchingGroupAttributes() {
+        dimensionGroupTracker.findMatchingGroupAttributes(currentDimensions);
         for (DimensionGroup dimensionGroup : dimensionGroupTracker.getCurrentSeriesDimensionGroups()) {
             Map<String, List<String>> attributes = dimensionGroup.getAttributes();
             for (Map.Entry<String, List<String>> attribute : attributes.entrySet()) {
