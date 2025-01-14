@@ -309,7 +309,7 @@ public class GenericDataReaderEngine extends AbstractSdmxDataReaderEngine {
                     }
                 }
             }
-            timeFormat = DateUtil.getTimeFormatOfDate(obsTime);
+            timeFormat = obsTime != null ? DateUtil.getTimeFormatOfDate(obsTime) : null;
             currentKey = new KeyableImpl(currentDataflow, currentDsd, seriesKey, seriesAttributes, timeFormat);
             currentObs = new ObservationImpl(currentKey, obsTime, obsValue, obsAttributes);
         } else {
