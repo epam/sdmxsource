@@ -104,13 +104,9 @@ public class ObservationImpl implements Observation {
         if (seriesKey == null) {
             throw new IllegalArgumentException("Series Key can not be null");
         }
-        if (!ObjectUtil.validString(obsTime)) {
-            if (seriesKey.isTimeSeries()) {
-                throw new IllegalArgumentException("Observation for Key '" + seriesKey + "' does not specify the observation time");
-            }
-            throw new IllegalArgumentException("Observation for Key '" + seriesKey + "' does not specify the observation concept: " + seriesKey.getCrossSectionConcept());
-        }
+
         this.obsTime = obsTime;
+
         if (attributes != null) {
             this.attributes = new ArrayList<KeyValue>(attributes);
             for (KeyValue currentKv : attributes) {
