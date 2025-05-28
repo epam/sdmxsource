@@ -15,11 +15,11 @@ dependencies {
     testImplementation("org.mockito:mockito-junit-jupiter:3.8.0")
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
-    compile project(':SdmxApi')
-    compile 'org.apache.xmlbeans:xmlbeans:3.1.0'
-    compile 'joda-time:joda-time:2.9.9'
-    compile "org.springframework:spring-context-support:${spring_version}"
-    compile ('org.dom4j:dom4j:2.1.4') {
+    implementation project(':SdmxApi')
+
+    implementation 'joda-time:joda-time:2.9.9'
+    implementation "org.springframework:spring-context-support:${spring_version}"
+    implementation ('org.dom4j:dom4j:2.1.4') {
         //workaround for https://github.com/dom4j/dom4j/issues/99
         exclude module: 'pull-parser'
         exclude module: 'jaxen'

@@ -15,13 +15,14 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.9.0'
     testImplementation("org.mockito:mockito-junit-jupiter:3.8.0")
 
-    compile project(':SdmxApi')
-    compile project(':SdmxSourceUtil')
-    compile project(':SdmxBeans')
-    compile project(':SdmxEdiParser')
-    compile project(':SdmxStructureRetrieval')
-    compile project(':SdmxStructureParser')
-    compile "com.fasterxml.jackson.core:jackson-databind:${fasterxml_version}"
+    implementation project(':SdmxApi')
+    implementation project(':SdmxSourceUtil')
+    implementation project(':SdmxBeans')
+    implementation project(':SdmxEdiParser')
+    implementation project(':SdmxStructureRetrieval')
+    implementation project(':SdmxStructureParser')
+
+    implementation "com.fasterxml.jackson.core:jackson-databind:${fasterxml_version}"
 
     implementation 'com.opencsv:opencsv:5.7.1'
 }
