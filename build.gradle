@@ -3,11 +3,9 @@ subprojects {
     apply plugin: 'signing'
     apply plugin: 'maven-publish'
 
-    sourceCompatibility = 17
-    targetCompatibility = 17
-
     ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
+    
     repositories {
         mavenCentral()
     }
@@ -17,6 +15,9 @@ subprojects {
     }
 
     java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
         withJavadocJar()
         withSourcesJar()
     }
