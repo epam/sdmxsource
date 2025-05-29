@@ -10,9 +10,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
-    compile project(':SdmxApi')
-    compile project(':SdmxDataParser')
-    compile project(':SdmxBeans')
+    implementation project(':SdmxApi')
+    implementation project(':SdmxSourceUtil')
+    implementation project(':SdmxDataParser')
+    implementation project(':SdmxBeans')
 }
 
 test {
