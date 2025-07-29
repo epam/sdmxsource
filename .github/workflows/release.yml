@@ -119,7 +119,7 @@ jobs:
           auth=$(echo -n "$MAVEN_USERNAME:$MAVEN_PASSWORD" | base64)
           curl -X POST \
                -H "Authorization: Bearer $auth" \
-               "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/com.epam.jsdmx"
+               "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/com.epam.deltix"
         env:
           MAVEN_REPOSITORY: ${{ secrets.MAVEN_REPOSITORY }}
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
