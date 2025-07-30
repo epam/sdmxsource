@@ -42,7 +42,12 @@ public class DataProvider {
                 Arguments.of("2012-12-31T23:59:59", TIME_FORMAT.HOUR),
                 Arguments.of("2012-12-31T00:00:00", TIME_FORMAT.HOUR),
                 Arguments.of("2012-01-01T00:00:00", TIME_FORMAT.HOUR),
-                Arguments.of("2012-01-01T13:00:59", TIME_FORMAT.HOUR)
+                Arguments.of("2012-01-01T13:00:59", TIME_FORMAT.HOUR),
+
+                Arguments.of("2012-12-31T23:59:59Z", TIME_FORMAT.HOUR),
+                Arguments.of("2012-12-31T00:00:00Z", TIME_FORMAT.HOUR),
+                Arguments.of("2012-01-01T00:00:00Z", TIME_FORMAT.HOUR),
+                Arguments.of("2012-01-01T13:00:59Z", TIME_FORMAT.HOUR)
         );
     }
 
