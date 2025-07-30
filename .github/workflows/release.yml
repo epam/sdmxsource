@@ -108,14 +108,21 @@ jobs:
           java-version: 17
       - name: POST Sonatype namespace
         run: |
+          echo POST Sonatype namespace
           auth=$(echo -n "$MAVEN_USERNAME:$MAVEN_PASSWORD" | base64)
           curl -X POST \
                -H "Authorization: Bearer $auth" \
                "https://ossrh-staging-api.central.sonatype.com/manual/upload/defaultRepository/com.epam.deltix"
+          exit_code=$?     
+          if [ $exit_code -eq 0 ]; then
+            echo " completed successfully"
+          else
+            echo " failed with exit code $exit_code"
+          fi
         env:
           MAVEN_REPOSITORY: ${{ secrets.MAVEN_REPOSITORY }}
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          MAVEN_USERNAME:   ${{ secrets.MAVEN_USERNAME }}
+          MAVEN_PASSWORD:   ${{ secrets.MAVEN_PASSWORD }}
       - name: Publish jars
         run: ./gradlew publishAll
         env:
