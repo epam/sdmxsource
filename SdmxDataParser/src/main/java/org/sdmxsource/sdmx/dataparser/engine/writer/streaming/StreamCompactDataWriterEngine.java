@@ -128,6 +128,7 @@ public class StreamCompactDataWriterEngine extends StreamDataWriterEngineBase {
 
             if (isTwoPointOne()) {
                 writer.writeStartElement("Group");      //WRITE THE START GROUP
+                writer.writeAttribute(XSI_NS, "type", COMPACT_NS.namespacePrefix + ":" + groupId);
                 writeAnnotations(writer, annotations);
             } else {
                 groupAnnotations = annotations;
