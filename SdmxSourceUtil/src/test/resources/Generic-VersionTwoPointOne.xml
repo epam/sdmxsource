@@ -3,7 +3,7 @@
   <message:Header>
     <message:ID>TEST_DATAFLOW</message:ID>
     <message:Test>true</message:Test>
-    <message:Prepared>2013-01-17T15:02:14</message:Prepared>
+    <message:Prepared>2013-01-17T15:02:14Z</message:Prepared>
     <message:Sender id="ZZ1">
       <common:Name xml:lang="en" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">TEST SENDER</common:Name>
     </message:Sender>

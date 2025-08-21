@@ -3,7 +3,7 @@
     <message:Header>
         <message:ID>IT1001</message:ID>
         <message:Test>true</message:Test>
-        <message:Prepared>2001-03-11T15:30:47</message:Prepared>
+        <message:Prepared>2001-03-11T15:30:47Z</message:Prepared>
         <message:Sender id="ISTAT">
             <common:Name xml:lang="en" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">Italian Statistical Institute</common:Name>
             <message:Contact>

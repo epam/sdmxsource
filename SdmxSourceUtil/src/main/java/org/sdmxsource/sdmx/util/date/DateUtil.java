@@ -518,7 +518,7 @@ public class DateUtil {
      */
     public static DateFormat getDateTimeFormat() {
         // ISO8601 Standard Date/Time format
-        return getDateFormatter("yyyy-MM-dd'T'HH:mm:ss");
+        return getDateFormatter("yyyy-MM-dd'T'HH:mm:ss'Z'");
     }
 
     /**
