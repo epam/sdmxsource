@@ -54,12 +54,14 @@ import java.util.*;
 public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements CodelistBean {
     private static final long serialVersionUID = 1L;
 
+    private final Map<String, CodeBean> codeMap;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////BUILD FROM ITSELF, CREATES STUB BEAN //////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     private CodelistBeanImpl(CodelistBean bean, URL actualLocation, boolean isServiceUrl) {
         super(bean, actualLocation, isServiceUrl);
+        this.codeMap = new HashMap<>();
     }
 
     /**
@@ -72,10 +74,13 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     public CodelistBeanImpl(CodelistMutableBean codelist) {
         super(codelist);
+        codeMap = new HashMap<>();
         try {
             if (codelist.getItems() != null) {
-                for (CodeMutableBean code : codelist.getItems()) {
-                    this.items.add(new CodeBeanImpl(this, code));
+                for (CodeMutableBean mutableCode : codelist.getItems()) {
+                    var code = new CodeBeanImpl(this, mutableCode);
+                    this.items.add(code);
+                    this.codeMap.put(code.getId(), code);
                 }
             }
         } catch (SdmxSemmanticException ex) {
@@ -134,10 +139,13 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
                 bean.getNameList(),
                 createTertiary(bean.isSetIsExternalReference(), bean.getIsExternalReference()),
                 bean.getAnnotations());
+        this.codeMap = new HashMap<>();
 
         try {
             for (org.sdmx.resources.sdmxml.schemas.v10.xmlbeans.structure.CodeType currentCode : bean.getCodeList()) {
-                items.add(new CodeBeanImpl(this, currentCode));
+                var code = new CodeBeanImpl(this, currentCode);
+                items.add(code);
+                codeMap.put(code.getId(), code);
             }
         } catch (SdmxSemmanticException ex) {
             throw new SdmxSemmanticException(ex, ExceptionCode.BEAN_STRUCTURE_CONSTRUCTION_ERROR, this.getUrn());
@@ -176,10 +184,13 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
                 createTertiary(bean.isSetIsExternalReference(), bean.getIsExternalReference()),
                 bean.getAnnotations());
 
+        this.codeMap = new HashMap<>();
 
         try {
             for (CodeType currentCode : bean.getCodeList()) {
-                items.add(new CodeBeanImpl(this, currentCode));
+                var code = new CodeBeanImpl(this, currentCode);
+                items.add(code);
+                codeMap.put(code.getId(), code);
             }
         } catch (SdmxSemmanticException ex) {
             throw new SdmxSemmanticException(ex, ExceptionCode.BEAN_STRUCTURE_CONSTRUCTION_ERROR, this.getUrn());
@@ -205,10 +216,13 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
     ///////////////////////////////////////////////////////////////////////////////////////////////////
     public CodelistBeanImpl(CodelistType bean) {
         super(bean, SDMX_STRUCTURE_TYPE.CODE_LIST);
+        this.codeMap = new HashMap<>();
 
         try {
             for (org.sdmx.resources.sdmxml.schemas.v21.structure.CodeType currentCode : bean.getCodeList()) {
-                items.add(new CodeBeanImpl(this, currentCode));
+                var code = new CodeBeanImpl(this, currentCode);
+                items.add(code);
+                codeMap.put(code.getId(), code);
             }
         } catch (SdmxSemmanticException ex) {
             throw new SdmxSemmanticException(ex, ExceptionCode.BEAN_STRUCTURE_CONSTRUCTION_ERROR, this.getUrn());
@@ -255,7 +269,7 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
                 urns.add(code.getUrn());
 
                 if (ObjectUtil.validString(code.getParentCode())) {
-                    CodeBean parentCode = getCode(items, code.getParentCode());
+                    CodeBean parentCode = getCode(code.getParentCode());
                     Set<CodeBean> children;
                     if (parentChildMap.containsKey(parentCode)) {
                         children = parentChildMap.get(parentCode);
@@ -296,13 +310,12 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
         }
     }
 
-    private CodeBean getCode(List<CodeBean> codes, String id) {
-        for (CodeBean currentCode : codes) {
-            if (currentCode.getId().equals(id)) {
-                return currentCode;
-            }
+    private CodeBean getCode(String id) {
+        CodeBean code = getCodeById(id);
+        if (code == null) {
+            throw new SdmxSemmanticException(ExceptionCode.CAN_NOT_RESOLVE_PARENT, id);
         }
-        throw new SdmxSemmanticException(ExceptionCode.CAN_NOT_RESOLVE_PARENT, id);
+        return code;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -321,11 +334,6 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
 
     @Override
     public CodeBean getCodeById(String id) {
-        for (CodeBean currentCode : items) {
-            if (currentCode.getId().equals(id)) {
-                return currentCode;
-            }
-        }
-        return null;
+        return codeMap.get(id);
     }
 }

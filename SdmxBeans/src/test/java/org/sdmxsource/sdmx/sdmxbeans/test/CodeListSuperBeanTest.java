@@ -1,5 +1,12 @@
 package org.sdmxsource.sdmx.sdmxbeans.test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.sdmxsource.sdmx.sdmxbeans.data.DataHelper.buildCodelist;
+
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.sdmxsource.sdmx.api.model.beans.codelist.CodeBean;
@@ -9,12 +16,6 @@ import org.sdmxsource.sdmx.api.model.superbeans.codelist.CodelistSuperBean;
 import org.sdmxsource.sdmx.sdmxbeans.model.mutablesuperbeans.codelist.CodelistMutableSuperBeanImpl;
 import org.sdmxsource.sdmx.sdmxbeans.model.superbeans.codelist.CodelistSuperBeanImpl;
 
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.sdmxsource.sdmx.sdmxbeans.data.DataHelper.buildCodelist;
-
 public class CodeListSuperBeanTest {
 
     private CodelistBean codelistBean;
@@ -22,7 +23,7 @@ public class CodeListSuperBeanTest {
 
     @BeforeEach
     public void setup() {
-        codelistBean = buildCodelist(10).getImmutableInstance();
+        codelistBean = buildCodelist(5_000).getImmutableInstance();
         codelistSuperBean = new CodelistSuperBeanImpl(codelistBean);
     }
 
@@ -40,7 +41,7 @@ public class CodeListSuperBeanTest {
     public void shouldCheckNumberOfCodes() {
         List<CodeBean> codesWithoutParent = codelistBean.getItems().stream()
                 .filter(code -> code.getParentCode() == null)
-                .collect(toList());
+                .toList();
 
         assertEquals(codesWithoutParent.size(), codelistSuperBean.getCodes().size());
     }
