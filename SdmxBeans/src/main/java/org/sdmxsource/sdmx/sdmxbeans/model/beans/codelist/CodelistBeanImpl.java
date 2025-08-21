@@ -78,7 +78,7 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
         try {
             if (codelist.getItems() != null) {
                 for (CodeMutableBean mutableCode : codelist.getItems()) {
-                    final var code = new CodeBeanImpl(this, mutableCode);
+                    var code = new CodeBeanImpl(this, mutableCode);
                     this.items.add(code);
                     this.codeMap.put(code.getId(), code);
                 }
@@ -188,7 +188,7 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
 
         try {
             for (CodeType currentCode : bean.getCodeList()) {
-                CodeBeanImpl code = new CodeBeanImpl(this, currentCode);
+                var code = new CodeBeanImpl(this, currentCode);
                 items.add(code);
                 codeMap.put(code.getId(), code);
             }
@@ -220,7 +220,7 @@ public class CodelistBeanImpl extends ItemSchemeBeanImpl<CodeBean> implements Co
 
         try {
             for (org.sdmx.resources.sdmxml.schemas.v21.structure.CodeType currentCode : bean.getCodeList()) {
-                CodeBeanImpl code = new CodeBeanImpl(this, currentCode);
+                var code = new CodeBeanImpl(this, currentCode);
                 items.add(code);
                 codeMap.put(code.getId(), code);
             }
