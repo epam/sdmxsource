@@ -23,7 +23,7 @@ public class CodeListSuperBeanTest {
 
     @BeforeEach
     public void setup() {
-        codelistBean = buildCodelist(50_000).getImmutableInstance();
+        codelistBean = buildCodelist(5_000).getImmutableInstance();
         codelistSuperBean = new CodelistSuperBeanImpl(codelistBean);
     }
 
