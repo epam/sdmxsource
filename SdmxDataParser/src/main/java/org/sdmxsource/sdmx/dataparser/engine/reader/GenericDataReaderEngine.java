@@ -27,6 +27,7 @@
  ******************************************************************************/
 package org.sdmxsource.sdmx.dataparser.engine.reader;
 
+import org.apache.commons.lang3.StringUtils;
 import org.sdmxsource.sdmx.api.constants.DATASET_POSITION;
 import org.sdmxsource.sdmx.api.constants.SDMX_STRUCTURE_TYPE;
 import org.sdmxsource.sdmx.api.constants.TIME_FORMAT;
@@ -309,12 +310,12 @@ public class GenericDataReaderEngine extends AbstractSdmxDataReaderEngine {
                     }
                 }
             }
-            timeFormat = DateUtil.getTimeFormatOfDate(obsTime);
+            timeFormat = obsTime != null ? DateUtil.getTimeFormatOfDate(obsTime) : null;
             currentKey = new KeyableImpl(currentDataflow, currentDsd, seriesKey, seriesAttributes, timeFormat);
             currentObs = new ObservationImpl(currentKey, obsTime, obsValue, obsAttributes);
         } else {
             if (isTimeSeries()) {
-                if (obsConcept != null) {
+                if (obsConcept != null && !obsConcept.isEmpty()) {
                     timeFormat = DateUtil.getTimeFormatOfDate(obsConcept);
                 }
                 currentKey = new KeyableImpl(currentDataflow, currentDsd, key, attributes, timeFormat);
@@ -383,6 +384,9 @@ public class GenericDataReaderEngine extends AbstractSdmxDataReaderEngine {
         obsDimension = getComponentId(obsDimension);
 
         try {
+            if (isEmpty(obsDimension, obsValue)) {
+                return null;
+            }
             if (isTimeSeries()) {
                 return new ObservationImpl(currentKey, obsDimension, obsValue, attributes);
             }
@@ -397,6 +401,10 @@ public class GenericDataReaderEngine extends AbstractSdmxDataReaderEngine {
             }
             throw new RuntimeException("Error while processing observation");
         }
+    }
+
+    private boolean isEmpty(String obsDimension, String obsValue) {
+        return StringUtils.isEmpty(obsDimension) && StringUtils.isEmpty(obsValue);
     }
 
     private List<KeyValue> getKeyValues(String endElement) throws XMLStreamException {

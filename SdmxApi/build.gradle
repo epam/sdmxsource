@@ -9,7 +9,7 @@ repositories {
 dependencies {
     implementation("org.slf4j:slf4j-api:${slf4j_version}")
 
-    compile ('javax.xml.bind:jaxb-api:2.3.0'){
+    implementation ('javax.xml.bind:jaxb-api:2.3.0'){
         exclude group: 'log4j', module: 'log4j'
     }
     implementation ('com.sun.xml.bind:jaxb-core:2.3.0'){
