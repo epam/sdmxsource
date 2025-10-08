@@ -1,0 +1,118 @@
+{
+  "meta": {},
+  "data": {
+    "dataStructures": [
+      {
+        "annotations": [
+          {
+            "texts": {
+              "en": "text"
+            },
+            "id": "1",
+            "text": "text",
+            "type": "type1"
+          }
+        ],
+        "description": "Some artefact",
+        "agencyID": "IMF",
+        "descriptions": {
+          "en": "Some artefact"
+        },
+        "version": "1.2",
+        "names": {
+          "en": "Maintanable artefact",
+          "fr-CA": "artefact"
+        },
+        "dataStructureComponents": {
+          "groups": [
+            {
+              "id": "GROUP1",
+              "groupDimensions": [
+                "DIM1"
+              ]
+            }
+          ],
+          "attributeList": {
+            "attributes": [
+              {
+                "assignmentStatus": "Conditional",
+                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:ADVANCED_RELEASE_CALANDER_DIAGNOSTICS_COLLECTION_SCHEME(1.5.1).DATE_VALUE",
+                "attributeRelationship": {
+                  "dimensions": [
+                    "DIM1"
+                  ],
+                  "attachmentGroups": [
+                    "GROUP1"
+                  ]
+                },
+                "localRepresentation": {
+                  "textFormat": {
+                    "textType": "AlphaNumeric"
+                  }
+                },
+                "conceptRoles": [
+                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:ADVANCED_RELEASE_CALANDER(1.5.1).DATE_VALUE",
+                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:ADVANCED_RELEASE_CALANDER_DIAGNOSTICS(1.5.2).DATE_VALUE"
+                ],
+                "id": "DA1"
+              }
+            ],
+            "id": "AttributeDescriptor"
+          },
+          "dimensionList": {
+            "timeDimensions": [
+              {
+                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:TIME_DIMENSION(1.6.1).DATE_VALUE",
+                "localRepresentation": {
+                  "textFormat": {
+                    "textType": "BasicTimePeriod"
+                  }
+                },
+                "id": "TIME_PERIOD",
+                "position": 2,
+                "type": "TimeDimension"
+              }
+            ],
+            "id": "DimensionDescriptor",
+            "dimensions": [
+              {
+                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:DIMENSION(1.6.1).DATE_VALUE",
+                "localRepresentation": {
+                  "enumeration": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=IMF:CODELIST(1.0)"
+                },
+                "conceptRoles": [
+                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:ADVANCED_RELEASE_CALANDER(1.5.1).DATE_VALUE"
+                ],
+                "id": "DIM1",
+                "position": 1,
+                "type": "Dimension"
+              }
+            ]
+          },
+          "measureList": {
+            "primaryMeasure": {
+              "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:MEASURE(1.5.2).DATE_VALUE",
+              "localRepresentation": {
+                "textFormat": {
+                  "textType": "BasicTimePeriod"
+                }
+              },
+              "id": "MES1"
+            },
+            "id": "MeasureDescriptor"
+          }
+        },
+        "name": "Maintanable artefact",
+        "links": [
+          {
+            "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=IMF:ARTEFACT(1.2)",
+            "rel": "self",
+            "type": "datastructure"
+          }
+        ],
+        "id": "ARTEFACT",
+        "isFinal": true
+      }
+    ]
+  }
+}

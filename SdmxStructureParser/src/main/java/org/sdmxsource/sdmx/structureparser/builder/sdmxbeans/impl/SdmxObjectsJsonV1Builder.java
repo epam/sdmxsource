@@ -306,9 +306,11 @@ public class SdmxObjectsJsonV1Builder extends AbstractSdmxBeansBuilder {
                     for (DataStructureDTO.Group groupDto : dataStructureDto.dataStructureComponents.groups) {
                         GroupMutableBean group = new GroupMutableBeanImpl();
                         group.setId(groupDto.id);
+                        group.setDimensionRef(new ArrayList<>(groupDto.groupDimensions.length));
 
-                        for (String groupDimension : groupDto.groupDimensions)
+                        for (String groupDimension : groupDto.groupDimensions) {
                             group.getDimensionRef().add(groupDimension);
+                        }
                         structureMutableObject.addGroup(group);
                     }
                 }
