@@ -14,7 +14,7 @@
           }
         ],
         "description": "Some artefact",
-        "agencyID": "IMF",
+        "agencyID": "QH",
         "descriptions": {
           "en": "Some artefact"
         },
@@ -36,7 +36,7 @@
             "attributes": [
               {
                 "assignmentStatus": "Conditional",
-                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:ADVANCED_RELEASE_CALANDER_DIAGNOSTICS_COLLECTION_SCHEME(1.5.1).DATE_VALUE",
+                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=QH:ADVANCED_RELEASE_CALANDER_DIAGNOSTICS_COLLECTION_SCHEME(1.5.1).DATE_VALUE",
                 "attributeRelationship": {
                   "dimensions": [
                     "DIM1"
@@ -51,8 +51,8 @@
                   }
                 },
                 "conceptRoles": [
-                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:ADVANCED_RELEASE_CALANDER(1.5.1).DATE_VALUE",
-                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:ADVANCED_RELEASE_CALANDER_DIAGNOSTICS(1.5.2).DATE_VALUE"
+                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=QH:ADVANCED_RELEASE_CALANDER(1.5.1).DATE_VALUE",
+                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=QH:ADVANCED_RELEASE_CALANDER_DIAGNOSTICS(1.5.2).DATE_VALUE"
                 ],
                 "id": "DA1"
               }
@@ -62,7 +62,7 @@
           "dimensionList": {
             "timeDimensions": [
               {
-                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:TIME_DIMENSION(1.6.1).DATE_VALUE",
+                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=QH:TIME_DIMENSION(1.6.1).DATE_VALUE",
                 "localRepresentation": {
                   "textFormat": {
                     "textType": "BasicTimePeriod"
@@ -76,12 +76,12 @@
             "id": "DimensionDescriptor",
             "dimensions": [
               {
-                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:DIMENSION(1.6.1).DATE_VALUE",
+                "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=QH:DIMENSION(1.6.1).DATE_VALUE",
                 "localRepresentation": {
-                  "enumeration": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=IMF:CODELIST(1.0)"
+                  "enumeration": "urn:sdmx:org.sdmx.infomodel.codelist.Codelist=QH:CODELIST(1.0)"
                 },
                 "conceptRoles": [
-                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:ADVANCED_RELEASE_CALANDER(1.5.1).DATE_VALUE"
+                  "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=QH:ADVANCED_RELEASE_CALANDER(1.5.1).DATE_VALUE"
                 ],
                 "id": "DIM1",
                 "position": 1,
@@ -91,7 +91,7 @@
           },
           "measureList": {
             "primaryMeasure": {
-              "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=IMF:MEASURE(1.5.2).DATE_VALUE",
+              "conceptIdentity": "urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=QH:MEASURE(1.5.2).DATE_VALUE",
               "localRepresentation": {
                 "textFormat": {
                   "textType": "BasicTimePeriod"
@@ -105,7 +105,7 @@
         "name": "Maintanable artefact",
         "links": [
           {
-            "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=IMF:ARTEFACT(1.2)",
+            "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=QH:ARTEFACT(1.2)",
             "rel": "self",
             "type": "datastructure"
           }
