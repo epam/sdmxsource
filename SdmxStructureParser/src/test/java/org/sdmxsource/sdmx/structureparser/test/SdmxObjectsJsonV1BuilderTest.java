@@ -39,4 +39,21 @@ public class SdmxObjectsJsonV1BuilderTest {
         assertThat(contentConstraint.getAnnotations().size()).isEqualTo(1);
     }
 
+    @Test
+    public void shouldBuildSdmxBeans_dataStructure() {
+        ReadableDataLocation fileReadableDataLocation = new ReadableDataLocationTmp("src/test/resources/json/datastructure.json");
+        SdmxBeans beans;
+
+        try (InputStream stream = fileReadableDataLocation.getInputStream()) {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode node = mapper.readTree(stream);
+            beans = sdmxObjectsJsonV1Builder.build(node);
+            beans.getDataflows();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        assertThat(beans.getDataStructures()).isNotEmpty();
+        assertThat(beans.getDataStructures().size()).isEqualTo(1);
+    }
 }
