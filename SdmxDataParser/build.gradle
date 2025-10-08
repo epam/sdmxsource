@@ -24,7 +24,7 @@ dependencies {
 
     implementation "com.fasterxml.jackson.core:jackson-databind:${fasterxml_version}"
 
-    implementation 'com.opencsv:opencsv:5.7.1'
+    implementation "com.opencsv:opencsv:${openc_csv_version}"
 }
 
 test {
