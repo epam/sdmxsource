@@ -93,7 +93,9 @@ public class RESTSdmxBeanRetrievalManager extends BaseSdmxBeanRetrievalManager {
             throw new SdmxException(e, "Could not open a conneciton to URL: " + restQuery);
         }
         ReadableDataLocation rdl = rdlFactory.getReadableDataLocation(restURL);
-        return spm.parseStructures(rdl).getStructureBeans(false);
+		SdmxBeans result = spm.parseStructures(rdl).getStructureBeans(false);
+		rdl.close();
+		return result;
     }
 
     @Override
