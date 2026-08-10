@@ -60,8 +60,6 @@ public class StructureHeaderXmlBeanBuilder extends AbstractBeanAssembler impleme
             headerType.setPrepared(DateUtil.createCalendar(new Date()));
             SenderType senderType = headerType.addNewSender();
             senderType.setId("unknown");
-            PartyType receiverType = headerType.addNewReceiver();
-            receiverType.setId("unknown");
             return headerType;
         }
         if (ObjectUtil.validString(buildFrom.getId())) {
@@ -123,10 +121,6 @@ public class StructureHeaderXmlBeanBuilder extends AbstractBeanAssembler impleme
                     buildContact(receiverType.addNewContact(), contact);
                 }
             }
-        }
-        if (!ObjectUtil.validCollection(headerType.getReceiverList())) {
-            PartyType receiverType = headerType.addNewReceiver();
-            receiverType.setId("unknown");
         }
         return headerType;
     }

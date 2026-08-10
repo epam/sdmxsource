@@ -59,6 +59,7 @@ public class RegistrySubmitXmlBeanBuilder implements Builder<RegistryInterfaceDo
         BaseHeaderType headerType;
         if (buildFrom.getHeader() != null) {
             headerType = structureHeaderXmlBeanBuilder.build(buildFrom.getHeader());
+            V2_1Helper.ensureReceiverPresent(headerType);
             registryInterfaceType.setHeader(headerType);
         } else {
             headerType = registryInterfaceType.addNewHeader();
