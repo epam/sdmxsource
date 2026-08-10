@@ -101,4 +101,19 @@ public class V2_1Helper {
         }
     }
 
+    /**
+     * RegistryInterfaceType.Header is typed as BasicHeaderType, which (unlike StructureHeaderType)
+     * requires exactly one Receiver. Callers building a registry request/response header from a
+     * caller-supplied HeaderBean must ensure one is present, since StructureHeaderXmlBeanBuilder
+     * no longer invents a default one.
+     *
+     * @param header the header to check and, if needed, patch with a default Receiver
+     */
+    public static void ensureReceiverPresent(BaseHeaderType header) {
+        if (!ObjectUtil.validCollection(header.getReceiverList())) {
+            PartyType receiver = header.addNewReceiver();
+            receiver.setId(HeaderHelper.INSTANCE.getReceiverId());
+        }
+    }
+
 }
