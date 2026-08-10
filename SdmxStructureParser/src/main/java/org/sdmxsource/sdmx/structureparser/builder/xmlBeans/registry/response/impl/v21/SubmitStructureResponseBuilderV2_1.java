@@ -86,7 +86,9 @@ public class SubmitStructureResponseBuilderV2_1 extends AbstractResponseBuilder 
         RegistryInterfaceType regInterface = responseType.addNewRegistryInterface();
         SubmitStructureResponseType returnType = regInterface.addNewSubmitStructureResponse();
 
-        regInterface.setHeader(headerXmlBeansBuilder.build(beans.getHeader()));
+        var headerType = headerXmlBeansBuilder.build(beans.getHeader());
+        V2_1Helper.ensureReceiverPresent(headerType);
+        regInterface.setHeader(headerType);
 
         processMaintainables(returnType, beans.getAllMaintainables());
         return responseType;
